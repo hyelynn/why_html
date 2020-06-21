@@ -10,7 +10,8 @@
     <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
-
+    <!-- <script type="text/javascript" src="http://code.jquery.com/jquery-latest.min.js"></script>
+    <script type="text/javascript" src="js/jquery.ajax-cross-origin.min.js"></script> -->
     <!-- Custom -->
     <link rel="stylesheet" href="../css/custom.css">
     <script src="../js/custom.js"></script>
@@ -279,11 +280,41 @@
     </footer>
     <script type="text/javascript">
 
-        document.getElementById("is_dup").addEventListener('click', function(){
-            var email = {'email': document.getElementById("user_id").value};
-            sendDataAjax('http://3.34.150.116:3000/user/verify', email);
-        })
-    
+    // $(function() {
+    //     $('#signup').click(function(){
+    //         $.ajax({
+    //             crossOrigin: true,
+    //             url: 'http://3.34.150.116:3000/user/apply',
+    //              async : true
+    //             , type : "POST"
+    //             , cache:false
+    //             , timeout : 30000 
+    //             , data:{
+    //                 'user_id':$('#user_id').val(),
+    //                 'user_pw':$('#user_pw').val(),
+    //                 'user_name':$('#user_name').val(),
+    //                 'user_nickname':$('#user_nickname').val(),
+    //                 'user_phone':$('#user_phone').val(),
+    //             }, 
+    //             xhrFields: {
+    //                 withCredentials: false
+    //             }
+    //             , beforeSend: function (xhr) {
+    //                 xhr.setRequestHeader("Accept", "application/json");
+    //             }
+    //             , success : function (data, statusText, xhr) { 
+    //                     alert("success status :: " + xhr.status + " || statusText :: " + statusText);
+    //             }
+    //             , error : function (xhr, statusText, errorThrown) { 
+    //                 alert("error status :: " + xhr.status + " || statusText :: " + xhr.responseText + " || errorThrown :: " + errorThrown);
+    //             }
+    //         });
+    //     });
+    // });
+    // document.getElementById("is_dup").addEventListener('click', function(){
+    //         var email = {'email': document.getElementById("user_id").value};
+    //         sendDataAjax('http://3.34.150.116:3000/user/verify', email);
+    //     })
         function sendFormAjax(){
             if(CheckForm()){
                 var user_id = document.getElementById("user_id").value;
@@ -316,7 +347,7 @@
                         alert("0::"+xhr.status);
                     }
                 };
-                xhr.open('POST', 'http://3.34.150.116:3000/user/apply',true);
+                xhr.open('POST', 'http://localhost:3000/user/apply',true);
                 xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
                 xhr.send(dataStuff); 
             }
@@ -324,38 +355,38 @@
         }
         
     
-        function sendDataAjax(url, data){
-            data = JSON.stringify(data);
-            var xhr = new XMLHttpRequest();
-            alert("go");
+    //     function sendDataAjax(url, data){
+    //         data = JSON.stringify(data);
+    //         var xhr = new XMLHttpRequest();
+    //         alert("go");
     
-            xhr.onreadystatechange = function() { 
-                alert("0::"+xhr.status);
-                if (xhr.readyState === xhr.DONE) { 
-                    alert("1::"+xhr.status);
-                    if (xhr.status === 200 || xhr.status === 201) {
-                        var result = JSON.parse(xhr.responseText);
-                        alert("사용 할 수 있는 아이디 입니다.");
-                    } else {
-                        alert("이미 사용중인 아이디 입니다.");
-                        document.getElementById("user_id").value = "";
-                        document.getElementById("user_id").focus();
-                    }
-                }
-                else{
-                    alert("2::"+xhr.status);
-                }
-            };
+    //         xhr.onreadystatechange = function() { 
+    //             alert("0::"+xhr.status);
+    //             if (xhr.readyState === xhr.DONE) { 
+    //                 alert("1::"+xhr.status);
+    //                 if (xhr.status === 200 || xhr.status === 201) {
+    //                     var result = JSON.parse(xhr.responseText);
+    //                     alert("사용 할 수 있는 아이디 입니다.");
+    //                 } else {
+    //                     alert("이미 사용중인 아이디 입니다.");
+    //                     document.getElementById("user_id").value = "";
+    //                     document.getElementById("user_id").focus();
+    //                 }
+    //             }
+    //             else{
+    //                 alert("2::"+xhr.status);
+    //             }
+    //         };
             
-            xhr.open('POST', url);
-            xhr.setRequestHeader('Content-Type', 'application/json');
-            xhr.send(JSON.stringify(data)); 
+    //         xhr.open('POST', url);
+    //         xhr.setRequestHeader('Content-Type', 'application/json');
+    //         xhr.send(JSON.stringify(data)); 
           
-        }
+    //     }
         
-        document.getElementById("get_num").addEventListener('click', function(){
-             console.log(Math.floor(Math.random() * 99999 + 1));
-        })
+    //     document.getElementById("get_num").addEventListener('click', function(){
+    //          console.log(Math.floor(Math.random() * 99999 + 1));
+    //     })
      
         function CheckForm(){
             var user_id = document.getElementById("user_id").value;
