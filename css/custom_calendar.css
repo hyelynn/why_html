@@ -1,0 +1,256 @@
+/**
+ * ALL the UI design credit goes to:
+ * https://www.sketchappsources.com/free-source/2676-calendar-template-sketch-freebie-resource.html
+ */
+
+
+/* WRAPPER */
+
+.custom-calendar .wrapper {
+  display: grid;
+  grid-template-rows: 0px 1fr 0px;
+  grid-template-columns: 1fr;
+  grid-template-areas: "sidebar"
+                       "content";
+  /*width: 100vw;*/ /* unnecessary, but let's keep things consistent */
+  /* height: 100vh; */
+}
+
+@media screen and (min-width: 850px) {
+  .custom-calendar .wrapper {
+    grid-template-columns: 0px 5fr;
+    grid-template-rows: 1fr;
+    grid-template-areas: "sidebar content";
+  }
+}
+
+.custom-calendar .main {
+  grid-area: content;
+}
+
+/* MAIN */
+
+.custom-calendar .toolbar{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 24px;
+}
+
+.custom-calendar .calendar-week,
+.custom-calendar .calendar-header {
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+  grid-template-columns: repeat(7, 1fr);
+
+}
+.custom-calendar .calendar-week {
+  grid-auto-rows: 100px;
+  -ms-grid-rows: 100px;
+  text-align: center;
+  border-right: 1px solid #e1e1e1;
+  border-left: 1px solid #e1e1e1;
+  height: 160px;
+}
+
+.custom-calendar .calendar-header {
+  grid-auto-rows: 50px;
+  -ms-grid-rows: 50px;
+  align-items: center;
+  text-align: center;
+}
+
+/* for ie */
+
+.custom-calendar .calendar-header > div:nth-child(1),
+.custom-calendar .calendar-day:nth-child(1) {
+  -ms-grid-column: 1;
+  grid-column: 1;
+}
+.custom-calendar .calendar-header > div:nth-child(2),
+.custom-calendar .calendar-day:nth-child(2) {
+  -ms-grid-column: 2;
+  grid-column: 2;
+}
+.custom-calendar .calendar-header > div:nth-child(3),
+.custom-calendar .calendar-day:nth-child(3) {
+  -ms-grid-column: 3;
+  grid-column: 3;
+}
+.custom-calendar .calendar-header > div:nth-child(4),
+.custom-calendar .calendar-day:nth-child(4) {
+  -ms-grid-column: 4;
+  grid-column: 4;
+}
+.custom-calendar .calendar-header > div:nth-child(5),
+.custom-calendar .calendar-day:nth-child(5) {
+  -ms-grid-column: 5;
+  grid-column: 5;
+}
+.custom-calendar .calendar-header > div:nth-child(6),
+.custom-calendar .calendar-day:nth-child(6) {
+  -ms-grid-column: 6;
+  grid-column: 6;
+}
+.custom-calendar .calendar-header > div:nth-child(7),
+.custom-calendar .calendar-day:nth-child(7) {
+  -ms-grid-column: 7;
+  grid-column: 7;
+}
+
+.custom-calendar .function > * {
+  min-width: 100px;
+  border-color: #e1e1e1;
+  font-size: 0.8rem;
+  height: 35px;
+}
+
+.custom-calendar .list {
+  margin-top: 30px;
+}
+
+/* COSMETIC STYLING */
+
+.custom-calendar .calendar {
+  border-bottom: 1px solid #e1e1e1;
+}
+
+.custom-calendar .calendar-header > div {
+  text-transform: uppercase;
+  color: #d7d7d7;
+}
+
+.custom-calendar .calendar-day {
+  border-right: 1px solid #e1e1e1;
+  border-top: 1px solid #e1e1e1;
+  color: #717171;
+  position: relative;
+  padding: .5rem .3rem;
+  height: inherit;
+}
+.custom-calendar .calendar-day.next-month {
+  color: #d7d7d7;
+}
+
+.custom-calendar .calendar-day:last-child {
+  border-right: 0;
+}
+
+.custom-calendar .day-event {
+  position: absolute;
+  margin-top: 5px;
+  text-align: left;
+  padding: 0 .3rem;
+  font-weight: 300;
+  font-size: 0.8rem;
+  z-index: 10;
+  min-height: 20px;
+  cursor: pointer;
+}
+
+.custom-calendar .day-event-popover {
+  min-width: 320px;
+  background: #fff;
+  position: absolute;
+  top: 30px;
+  border: 1px solid #e1e1e1;
+  padding: 1rem 1rem 1rem 2rem;
+  cursor: initial;
+}
+.custom-calendar .day-event-popover.left-down {
+  left: 80px;
+}
+.custom-calendar .day-event-popover:after,
+.custom-calendar .event-color-chart:after {
+  content: '';
+    position: absolute;
+    border-style: solid;
+    border-width: 0 8px 10px;
+    border-color: #ffffff transparent;
+    display: block;
+    width: 0;
+    z-index: 1;
+    top: -10px;
+}
+.custom-calendar .day-event-popover:before,
+.custom-calendar .event-color-chart:before {
+  content: '';
+  position: absolute;
+  border-style: solid;
+  border-width: 0 9px 11px;
+  border-color: #e1e1e1 transparent;
+  display: block;
+  width: 0;
+  z-index: 0;
+  top: -11px;
+}
+.custom-calendar .day-event-popover.left-down:after {
+    left: 31px;
+}
+.custom-calendar .day-event-popover.left-down:before {
+  left: 30px;
+}
+.custom-calendar .day-event-popover.right-down {
+  right: 0;
+}
+.custom-calendar .day-event-popover.right-down:after {
+    right: 31px;
+}
+.custom-calendar .day-event-popover.right-down:before {
+  right: 30px;
+}
+.custom-calendar .day-event-popover .header {
+  font-size: 1.2rem;
+}
+.custom-calendar .day-event-popover .event-color {
+  width: 14px;
+  height: 14px;
+}
+.custom-calendar .day-event-popover .event-buttons > * {
+  font-size: inherit;
+  font-weight: inherit;
+  border-radius: 0;
+  color: #fff;
+  padding-left: 1.5rem;
+    padding-right: 1.5rem;
+}
+
+.custom-calendar .border,
+.custom-calendar .form-control {
+  border-color: #e1e1e1 !important;
+}
+
+.custom-calendar .event-color-box {
+  width: 34px;
+  height: 34px;
+}
+
+.custom-calendar .event-color-chart {
+  position: absolute;
+  top: 64px;
+  background: #fff;
+  z-index: 1;
+}
+.custom-calendar .event-color-chart:after {
+  left: 21px;
+}
+.custom-calendar .event-color-chart:before {
+  left: 20px;
+}
+
+@media (min-width: 992px) {
+  .custom-calendar .function > * {
+    min-width: 160px;
+    font-size: inherit;
+  }
+  .custom-calendar .list {
+    margin-top: 50px;
+  }
+}
+
+@media (min-width: 768px) {
+  .custom-calendar .day-event-popover.left-down {
+    left: 110px;
+  }
+}

@@ -1,0 +1,859 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ART BY US</title>
+
+    <!-- Bootstrap 4.3.1 -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+
+    <!-- Custom -->
+    <link rel="stylesheet" href="../css/custom.css">
+    <script src="../js/custom.js"></script>
+    <link rel="stylesheet" href="../css/custom_calendar.css">
+
+    <!-- Fontawesome -->
+    <link rel="stylesheet" href="../css/fontawesome/css/all.min.css">
+</head>
+
+<body>
+    <!-- Login Modal -->
+    <div class="modal fade" id="loginModal" tabindex="-1" role="dialog" aria-labelledby="loginModalLabel" aria-hidden="true">
+        <div class="modal-dialog custom-modal" role="document">
+            <div class="modal-content px-lg-10 px-5 py-lg-5 py-5">
+                <div class="modal-header p-0 mb-4 border-0 justify-content-center">
+                    <h5 class="modal-title text-center" id="loginModalLabel"><img src="../img/logo.png" srcset="../img/logo@2x.png 2x, ../img/logo@3x.png 3x"></h5>
+                    <!-- <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button> -->
+                </div>
+                <div class="modal-body p-0 custom-inputs">
+                    <div class="input-group mb-2">
+                        <input type="text" class="form-control" placeholder="E-mail">
+                    </div>
+                    <div class="input-group mb-2">
+                        <input type="password" class="form-control" placeholder="비밀번호">
+                    </div>
+                    <button type="button" class="btn btn-block bg-hot-pink text-white">로그인</button>
+
+                    <div class="border-top mt-3 mb-4 pt-3">
+                        <button type="button" class="btn btn-block bg-kakao"><img src="../img/logo_kakao.svg" class="mr-3" width="20px">카카오계정으로 로그인</button>
+                        <button type="button" class="btn btn-block text-white bg-naver"><img src="../img/logo_naver.svg" class="mr-3" width="20px">네이버계정으로 로그인</button>
+                        <!-- <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-primary">Save changes</button> -->
+                    </div>
+                    <div class="text-center">
+                        <a href="../member/signup.html" class="text-decoration-none font-weight-light d-block text-light-gray mb-2">아직 아트바이어스의 회원이 아니신가요?</a>
+                        <a href="#x" class="text-decoration-none font-weight-light d-block text-light-gray">계정 정보 찾기</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="py-md-3 px-5 py-2 text-center text-white bg-deep-dark top-notice">
+        <span class="font-weight-light">코로나19에 대한 아트바이어스의 대책 및 환불 정책에 대한 최신 정보를 확인하세요.</span>
+        <a href="#x" class="text-white d-lg-inline-block d-block">자세히 알아보기</a>
+    </div>
+
+    <nav class="navbar navbar-expand-lg navbar-light py-lg-3 py-1">
+        <div class="container">
+            <a class="navbar-brand" href="../index.html"><img src="../img/logo.png" srcset="../img/logo@2x.png 2x, ../img/logo@3x.png 3x"></a>
+            <div class="ml-auto align-items-center d-lg-none d-flex">
+                <a class="text-dark mr-3 font-size-sm" href="../member/calendar.html"><i class="far fa-calendar-alt"></i></a>
+                <a class="text-dark mr-3 font-size-sm" href="../member/recent_list.html"><i class="far fa-clock"></i></a>
+                <a class="text-dark mr-2 font-size-sm" href="../member/cart.html"><i class="fas fa-shopping-cart"></i></a>
+            </div>
+            <button class="navbar-toggler border-0 font-size-md text-dark" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+                <i class="fas fa-bars"></i>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarNavDropdown">
+                <!-- <ul class="navbar-nav m-auto font-weight-light top-nav">
+                    <li class="nav-item mx-lg-3 mx-2 active">
+                        <a class="nav-link text-dark" href="#x">캘린더</a>
+                    </li>
+                    <li class="nav-item mx-lg-3 mx-2">
+                        <a class="nav-link text-dark" href="#x">최근 본 리스트</a>
+                    </li>
+                    <li class="nav-item mx-lg-3 mx-2">
+                        <a class="nav-link text-dark" href="#x">장바구니</a>
+                    </li>
+                </ul> -->
+
+                <ul class="navbar-nav m-auto font-weight-light sub-nav">
+                    <li class="nav-item mx-lg-3 mx-2 active">
+                        <div class="d-flex justify-content-between">
+                            <a class="nav-link text-dark" href="../sub/studio.html" id="menu1">Studio</a>
+                            <button class="navbar-toggler border-0 font-size-md text-dark" type="button" data-toggle="collapse" data-target="#subNavDropdown1" aria-controls="subNavDropdown1" aria-expanded="false" aria-label="Toggle navigation">
+                                <i class="fas fa-chevron-down"></i>
+                            </button>
+                        </div>
+
+                        <!-- sub menu : mobile -->
+                        <div class="collapse navbar-collapse sub-nav-dropdown" id="subNavDropdown1">
+                            <ul class="navbar-nav m-auto font-weight-light">
+                                <li class="nav-item border-bottom p-2"><a href="../sub/studio.html" class="text-decoration-none text-dark">무용</a></li>
+                                <li class="nav-item border-bottom p-2"><a href="../sub/studio.html" class="text-decoration-none text-dark">연기</a></li>
+                                <li class="nav-item border-bottom p-2"><a href="../sub/studio.html" class="text-decoration-none text-dark">음악</a></li>
+                                <li class="nav-item border-bottom p-2"><a href="../sub/studio.html" class="text-decoration-none text-dark">보컬</a></li>
+                                <li class="nav-item border-bottom p-2"><a href="../sub/studio.html" class="text-decoration-none text-dark">댄스</a></li>
+                                <li class="nav-item p-2"><a href="../sub/studio.html" class="text-decoration-none text-dark">촬영스튜디오</a></li>
+                            </ul>
+                        </div>
+                    </li>
+                    <li class="nav-item mx-lg-3 mx-2">
+                        <div class="d-flex justify-content-between">
+                            <a class="nav-link text-dark" href="../sub/class.html" id="menu2">Class</a>
+                            <button class="navbar-toggler border-0 font-size-md text-dark" type="button" data-toggle="collapse" data-target="#subNavDropdown2" aria-controls="subNavDropdown2" aria-expanded="false" aria-label="Toggle navigation">
+                                <i class="fas fa-chevron-down"></i>
+                            </button>
+                        </div>
+
+                        <!-- sub menu : mobile -->
+                        <div class="collapse navbar-collapse sub-nav-dropdown" id="subNavDropdown2">
+                            <ul class="navbar-nav m-auto font-weight-light">
+                                <li class="nav-item border-bottom p-2"><a href="../sub/class.html" class="text-decoration-none text-dark">특강</a></li>
+                                <li class="nav-item border-bottom p-2"><a href="../sub/class.html" class="text-decoration-none text-dark">무용</a></li>
+                                <li class="nav-item border-bottom p-2"><a href="../sub/class.html" class="text-decoration-none text-dark">연기</a></li>
+                                <li class="nav-item border-bottom p-2"><a href="../sub/class.html" class="text-decoration-none text-dark">클래식</a></li>
+                                <li class="nav-item border-bottom p-2"><a href="../sub/class.html" class="text-decoration-none text-dark">음악</a></li>
+                                <li class="nav-item border-bottom p-2"><a href="../sub/class.html" class="text-decoration-none text-dark">댄스</a></li>
+                                <li class="nav-item border-bottom p-2"><a href="../sub/class.html" class="text-decoration-none text-dark">보컬</a></li>
+                                <li class="nav-item border-bottom p-2"><a href="../sub/class.html" class="text-decoration-none text-dark">그외</a></li>
+                            </ul>
+                        </div>
+                    </li>
+                    <li class="nav-item mx-lg-3 mx-2">
+                        <div class="d-flex justify-content-between">
+                            <a class="nav-link text-dark" href="../sub/performance.html" id="menu3">Performance</a>
+                            <button class="navbar-toggler border-0 font-size-md text-dark" type="button" data-toggle="collapse" data-target="#subNavDropdown3" aria-controls="subNavDropdown3" aria-expanded="false" aria-label="Toggle navigation">
+                                <i class="fas fa-chevron-down"></i>
+                            </button>
+                        </div>
+
+                        <!-- sub menu : mobile -->
+                        <div class="collapse navbar-collapse sub-nav-dropdown" id="subNavDropdown3">
+                            <ul class="navbar-nav m-auto font-weight-light">
+                                <li class="nav-item border-bottom p-2"><a href="../sub/performance.html" class="text-decoration-none text-dark">뮤지컬</a></li>
+                                <li class="nav-item border-bottom p-2"><a href="../sub/performance.html" class="text-decoration-none text-dark">연극</a></li>
+                                <li class="nav-item border-bottom p-2"><a href="../sub/performance.html" class="text-decoration-none text-dark">콘서트</a></li>
+                                <li class="nav-item border-bottom p-2"><a href="../sub/performance.html" class="text-decoration-none text-dark">무용</a></li>
+                                <li class="nav-item border-bottom p-2"><a href="../sub/performance.html" class="text-decoration-none text-dark">클래식</a></li>
+                                <li class="nav-item border-bottom p-2"><a href="../sub/performance.html" class="text-decoration-none text-dark">오페라</a></li>
+                                <li class="nav-item border-bottom p-2"><a href="../sub/performance.html" class="text-decoration-none text-dark">마술</a></li>
+                                <li class="nav-item border-bottom p-2"><a href="../sub/performance.html" class="text-decoration-none text-dark">그외</a></li>
+                            </ul>
+                        </div>
+                    </li>
+                    <li class="nav-item mx-lg-3 mx-2">
+                        <div class="d-flex justify-content-between">
+                            <a class="nav-link text-dark" href="../sub/audition.html" id="menu4">Audition</a>
+                            <button class="navbar-toggler border-0 font-size-md text-dark" type="button" data-toggle="collapse" data-target="#subNavDropdown4" aria-controls="subNavDropdown4" aria-expanded="false" aria-label="Toggle navigation">
+                                <i class="fas fa-chevron-down"></i>
+                            </button>
+                        </div>
+
+                        <!-- sub menu : mobile -->
+                        <div class="collapse navbar-collapse sub-nav-dropdown" id="subNavDropdown4">
+                            <ul class="navbar-nav m-auto font-weight-light">
+                                <li class="nav-item border-bottom p-2"><a href="../sub/audition.html" class="text-decoration-none text-dark">뮤지컬</a></li>
+                                <li class="nav-item border-bottom p-2"><a href="../sub/audition.html" class="text-decoration-none text-dark">영화</a></li>
+                                <li class="nav-item border-bottom p-2"><a href="../sub/audition.html" class="text-decoration-none text-dark">무용</a></li>
+                                <li class="nav-item border-bottom p-2"><a href="../sub/audition.html" class="text-decoration-none text-dark">음악</a></li>
+                                <li class="nav-item border-bottom p-2"><a href="../sub/audition.html" class="text-decoration-none text-dark">엔터테인먼트</a></li>
+                                <li class="nav-item border-bottom p-2"><a href="../sub/audition.html" class="text-decoration-none text-dark">오디션 캘린더</a></li>
+                            </ul>
+                        </div>
+                    </li>
+                    <li class="nav-item mx-lg-3 mx-2">
+                        <div class="d-flex justify-content-between">
+                            <a class="nav-link text-dark" href="../sub/store.html" id="menu5">Store</a>
+                            <button class="navbar-toggler border-0 font-size-md text-dark" type="button" data-toggle="collapse" data-target="#subNavDropdown5" aria-controls="subNavDropdown5" aria-expanded="false" aria-label="Toggle navigation">
+                                <i class="fas fa-chevron-down"></i>
+                            </button>
+                        </div>
+
+                        <!-- sub menu : mobile -->
+                        <div class="collapse navbar-collapse sub-nav-dropdown" id="subNavDropdown5">
+                            <ul class="navbar-nav m-auto font-weight-light">
+                                <li class="nav-item border-bottom p-2"><a href="../sub/store.html" class="text-decoration-none text-dark">교육</a></li>
+                                <li class="nav-item border-bottom p-2"><a href="../sub/store.html" class="text-decoration-none text-dark">공연</a></li>
+                                <li class="nav-item border-bottom p-2"><a href="../sub/store.html" class="text-decoration-none text-dark">판매점</a></li>
+                                <li class="nav-item border-bottom p-2"><a href="../sub/store.html" class="text-decoration-none text-dark">제작</a></li>
+                            </ul>
+                        </div>
+                    </li>
+                </ul>
+
+                <!-- user -->
+                <ul class="navbar-nav border-top pt-3 m-lg-auto mt-2 font-size-xs d-block d-lg-none">
+                    <!-- Login -->
+                    <!--
+                    <li class="nav-item mx-lg-3 mx-2 mb-2">
+                        <button class="btn btn-block border text-dark dropdown-toggle p-2 bg-white rounded-xl" type="button" data-toggle="modal" data-target="#loginModal">
+                            <span>로그인</span>
+                        </button>
+                    </li>
+                    -->
+
+                    <!-- Login - user -->
+                    <li class="nav-item mx-lg-3 mx-2 mb-2">
+                        <div class="d-flex">
+                            <div class="position-relative mr-2 nav-user-profile">
+                                <span class="position-absolute rounded-pill bg-hot-pink nav-user-notify"></span>
+                                <img src="../img/profile-photo@3x.jpg" class="rounded-circle nav-user-profile-img" alt="김민범님">
+                            </div>
+                            <span class="align-self-center">김민범</span>
+                        </div>
+                    </li>
+
+                    <li class="nav-item mx-lg-3 mx-2">
+                        <a class="nav-link" href="#x">예약 리스트</a>
+                    </li>
+                    <li class="nav-item mx-lg-3 mx-2">
+                        <a class="nav-link" href="#x">찜 리스트</a>
+                    </li>
+                    <li class="nav-item mx-lg-3 mx-2">
+                        <a class="nav-link" href="#x">나의 이용 후기</a>
+                    </li>
+                    <li class="nav-item mx-lg-3 mx-2">
+                        <a class="nav-link" href="#x">채팅</a>
+                    </li>
+                    <li class="nav-item mx-lg-3 mx-2">
+                        <a class="nav-link" href="../member/chat_user.html">1:1 문의<span class="ml-2 d-inline-block rounded-pill align-top mt-1 bg-hot-pink nav-notify"></span></a>
+                    </li>
+                    <div class="dropdown-divider"></div>
+                    <li class="nav-item mx-lg-3 mx-2">
+                        <a class="nav-link" href="#x">회원 정보 관리</a>
+                    </li>
+                    <li class="nav-item mx-lg-3 mx-2">
+                        <a class="nav-link" href="#x">호스트 전환</a>
+                    </li>
+
+                    <!-- Login했을 때에만 출력 -->
+                    <li class="nav-item mx-lg-3 mx-2">
+                        <a class="nav-link text-hot-pink" href="#x">로그아웃</a>
+                    </li>
+                </ul>
+
+                <!-- user - lg -->
+                <!-- index, chat 페이지 ml-auto 추가 -->
+                <ul class="navbar-nav ml-auto_ align-items-center d-none d-lg-flex">
+                    <li class="nav-item mr-2 font-size-md">
+                        <a class="nav-link text-dark" href="../member/calendar.html"><i class="far fa-calendar-alt"></i></a>
+                    </li>
+                    <li class="nav-item mr-2 font-size-md">
+                        <a class="nav-link text-dark" href="../member/recent_list.html"><i class="far fa-clock"></i></a>
+                    </li>
+                    <li class="nav-item mr-3 font-size-md">
+                        <a class="nav-link text-dark" href="../member/cart.html"><i class="fas fa-shopping-cart"></i></a>
+                    </li>
+                    <li class="nav-item">
+                        <!-- Login -->
+                        <!--
+                        <button class="btn border text-dark dropdown-toggle bg-white rounded-xl" type="button" data-toggle="modal" data-target="#loginModal">
+                            <span>로그인</span>
+                        </button>
+                        -->
+
+                        <!-- Login - user -->
+                        <div class="dropdown">
+                            <button class="btn border text-dark dropdown-toggle bg-white rounded-xl" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <div class="d-flex">
+                                    <div class="position-relative mr-2 nav-user-profile">
+                                        <span class="position-absolute rounded-pill bg-hot-pink nav-user-notify"></span>
+                                        <img src="../img/profile-photo@3x.jpg" class="rounded-circle nav-user-profile-img" alt="김민범님">
+                                    </div>
+                                    <span>김민범</span>
+                                </div>
+                            </button>
+                            <div class="dropdown-menu dropdown-menu-lg-right rounded-xl" aria-labelledby="dropdownMenuButton">
+                                <a class="dropdown-item" href="#x">예약 리스트</a>
+                                <a class="dropdown-item" href="#x">찜 리스트</a>
+                                <a class="dropdown-item" href="#x">나의 이용 후기</a>
+                                <a class="dropdown-item" href="#x">채팅</a>
+                                <a class="dropdown-item" href="../member/chat_user.html">1:1 문의<span class="ml-2 d-inline-block rounded-pill align-top mt-1 bg-hot-pink nav-notify"></span></a>
+                                <div class="dropdown-divider"></div>
+                                <a class="dropdown-item" href="#x">회원 정보 관리</a>
+                                <a class="dropdown-item" href="#x">호스트 전환</a>
+                                <a class="dropdown-item text-hot-pink" href="#x">로그아웃</a>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+
+            <!-- submenu : pc -->
+            <div class="sub-nav-menu">
+                <div class="border-top border-bottom menu1">
+                    <div class="container">
+                        <ul class="nav justify-content-center py-2">
+                            <li class="nav-item">
+                                <a href="../sub/studio.html" class="nav-link px-5 text-decoration-none text-dark">무용</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="../sub/studio.html" class="nav-link px-5 text-decoration-none text-dark">연기</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="../sub/studio.html" class="nav-link px-5 text-decoration-none text-dark">음악</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="../sub/studio.html" class="nav-link px-5 text-decoration-none text-dark">보컬</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="../sub/studio.html" class="nav-link px-5 text-decoration-none text-dark">댄스</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="../sub/studio.html" class="nav-link px-5 text-decoration-none text-dark">촬영스튜디오</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="border-top border-bottom menu2">
+                    <div class="container">
+                        <ul class="nav justify-content-center py-2">
+                            <li class="nav-item">
+                                <a href="../sub/class.html" class="nav-link px-5 text-decoration-none text-dark">특강</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="../sub/class.html" class="nav-link px-5 text-decoration-none text-dark">무용</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="../sub/class.html" class="nav-link px-5 text-decoration-none text-dark">연기</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="../sub/class.html" class="nav-link px-5 text-decoration-none text-dark">클래식</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="../sub/class.html" class="nav-link px-5 text-decoration-none text-dark">음악</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="../sub/class.html" class="nav-link px-5 text-decoration-none text-dark">댄스</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="../sub/class.html" class="nav-link px-5 text-decoration-none text-dark">보컬</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="../sub/class.html" class="nav-link px-5 text-decoration-none text-dark">그외</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="border-top border-bottom menu3">
+                    <div class="container">
+                        <ul class="nav justify-content-center py-2">
+                            <li class="nav-item">
+                                <a href="../sub/performance.html" class="nav-link px-5 text-decoration-none text-dark">뮤지컬</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="../sub/performance.html" class="nav-link px-5 text-decoration-none text-dark">연극</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="../sub/performance.html" class="nav-link px-5 text-decoration-none text-dark">콘서트</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="../sub/performance.html" class="nav-link px-5 text-decoration-none text-dark">무용</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="../sub/performance.html" class="nav-link px-5 text-decoration-none text-dark">클래식</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="../sub/performance.html" class="nav-link px-5 text-decoration-none text-dark">오페라</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="../sub/performance.html" class="nav-link px-5 text-decoration-none text-dark">마술</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="../sub/performance.html" class="nav-link px-5 text-decoration-none text-dark">그외</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="border-top border-bottom menu4">
+                    <div class="container">
+                        <ul class="nav justify-content-center py-2">
+                            <li class="nav-item">
+                                <a href="../sub/audition.html" class="nav-link px-5 text-decoration-none text-dark">뮤지컬</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="../sub/audition.html" class="nav-link px-5 text-decoration-none text-dark">영화</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="../sub/audition.html" class="nav-link px-5 text-decoration-none text-dark">무용</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="../sub/audition.html" class="nav-link px-5 text-decoration-none text-dark">음악</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="../sub/audition.html" class="nav-link px-5 text-decoration-none text-dark">엔터테인먼트</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="../sub/audition.html" class="nav-link px-5 text-decoration-none text-dark">오디션 캘린더</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="border-top border-bottom menu5">
+                    <div class="container">
+                        <ul class="nav justify-content-center py-2">
+                            <li class="nav-item">
+                                <a href="../sub/store.html" class="nav-link px-5 text-decoration-none text-dark">교육</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="../sub/store.html" class="nav-link px-5 text-decoration-none text-dark">공연</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="../sub/store.html" class="nav-link px-5 text-decoration-none text-dark">판매점</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="../sub/store.html" class="nav-link px-5 text-decoration-none text-dark">제작</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <main role="main">
+        <div class="border-top">
+            <div class="container my-md-5 my-3">
+                <div class="wrapper view-type custom-calendar overflow-hidden">
+                    <div class="main">
+                        <div class="toolbar mb-lg-4 mb-2">
+                            <!-- date -->
+                            <div class="d-flex align-items-center">
+                                <button type="button" class="btn font-size-md text-light-gray-more" aria-label="prev"><i class="fas fa-chevron-left"></i></button>
+                                <h2 class="mx-lg-5 mx-md-3 mx-2 mb-0">2020년 5월</h2>
+                                <button type="button" class="btn font-size-md text-light-gray-more" aria-label="next"><i class="fas fa-chevron-right"></i></button>
+                            </div>
+
+                            <!-- function -->
+                            <div class="d-flex custom-inputs-sub function">
+                                <button type="button" class="btn border mr-2 font-weight-light" data-toggle="modal" data-target="#addEventModal">
+                                    <i class="fas fa-plus mr-1 text-sky"></i>일정추가
+                                </button>
+                                <select class="form-control font-weight-light">
+                                    <option value="">전체</option>
+                                    <option value="studio">공간예약</option>
+                                    <option value="class">클래스</option>
+                                    <option value="performance">공연</option>
+                                    <option value="audition">오디션</option>
+                                    <option value="personal">개인일정</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <!-- calendar -->
+                        <div class="float-lg-left pr-lg-5 mb-lg-0 mb-4 left">
+                            <div class="calendar">
+                                <div class="calendar-header">
+                                    <div>SUN</div>
+                                    <div>MON</div>
+                                    <div>TUE</div>
+                                    <div>WED</div>
+                                    <div>THU</div>
+                                    <div>FRI</div>
+                                    <div>SAT</div>
+                                </div>
+                                <div class="calendar-week">
+                                    <div class="calendar-day day">1
+                                        <!-- event list -->
+                                        <div class="day-event bg-red text-white" style="width: 290%; margin-top: 5px;">
+                                            <span>사당 ABC 댄스연습실 - G1</span>
+                                        </div>
+                                        <div class="day-event bg-purple text-white" style="width: 190%; margin-top: 30px;">
+                                            <span>공병각의 캘리그라피...</span>
+                                        </div>
+                                        <div class="day-event bg-yellow text-dark" style="width: 190%; margin-top: 55px;">
+                                            <span>JYP 1차 오디션</span>
+
+                                            <!-- event info : left-down -->
+                                            <div class="day-event-popover left-down">
+                                                <div class="mb-2 header">
+                                                    <span class="d-inline-block align-middle mr-1 event-color bg-yellow"></span>
+                                                    <span class="d-inline-block align-middle text-dark">JYP 1차 오디션</span>
+                                                </div>
+                                                <p class="text-red">2020.05.01 오후 13:30 시작<br>2020.05.02 오전 10:00 종료</p>
+                                                <p class="mb-4 text-light-gray">
+                                                    예약자 : 김인간, 010-1234-5678<br>
+                                                    주소 : 서울특별시 강동구 양재대로 123<br>
+                                                    담당자 : 010-1234-5678<br>
+                                                    예약상태 : 예약완료<br>
+                                                    추가옵션 : 프로젝터, 반주테이프
+                                                </p>
+                                                <div class="d-flex justify-content-end text-white event-buttons">
+                                                    <button type="button" class="btn mr-2 bg-mid-gray" data-toggle="modal" data-target="#editEventModal">편집</button>
+                                                    <button type="button" class="btn bg-red">예약취소</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="day-event bg-dark-gray text-white" style="width: 90%; margin-top: 80px;">
+                                            <span>+3 ...</span>
+                                        </div>
+                                    </div>
+                                    <div class="calendar-day day">2</div>
+                                    <div class="calendar-day day">3</div>
+                                    <div class="calendar-day day">4</div>
+                                    <div class="calendar-day day">5</div>
+                                    <div class="calendar-day day">6</div>
+                                    <div class="calendar-day day">7</div>
+                                </div>
+                                <div class="calendar-week">
+                                    <div class="calendar-day day">8</div>
+                                    <div class="calendar-day day">9</div>
+                                    <div class="calendar-day day">10</div>
+                                    <div class="calendar-day day">11</div>
+                                    <div class="calendar-day day">12</div>
+                                    <div class="calendar-day day">13
+                                        <!-- event list -->
+                                        <div class="day-event bg-light-green text-white" style="width: 90%; margin-top: 5px;">
+                                            <span>강남 술약속</span>
+
+                                            <!-- event info : right-down -->
+                                            <div class="day-event-popover right-down" style="display: none">
+                                                <div class="mb-2 header">
+                                                    <span class="d-inline-block align-middle mr-1 event-color bg-yellow"></span>
+                                                    <span class="d-inline-block align-middle text-dark">JYP 1차 오디션</span>
+                                                </div>
+                                                <p class="text-red">2020.05.01 오후 13:30 시작<br>2020.05.02 오전 10:00 종료</p>
+                                                <p class="mb-4 text-light-gray">
+                                                    예약자 : 김인간, 010-1234-5678<br>
+                                                    주소 : 서울특별시 강동구 양재대로 123<br>
+                                                    담당자 : 010-1234-5678<br>
+                                                    예약상태 : 예약완료<br>
+                                                    추가옵션 : 프로젝터, 반주테이프
+                                                </p>
+                                                <div class="d-flex justify-content-end text-white event-buttons">
+                                                    <button type="button" class="btn mr-2 bg-mid-gray" data-toggle="modal" data-target="#editEventModal">편집</button>
+                                                    <button type="button" class="btn bg-red">예약취소</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="calendar-day day">14</div>
+                                </div>
+                                <div class="calendar-week">
+                                    <div class="calendar-day day">15</div>
+                                    <div class="calendar-day day">16</div>
+                                    <div class="calendar-day day">17</div>
+                                    <div class="calendar-day day">18</div>
+                                    <div class="calendar-day day">19
+                                        <div class="day-event bg-sky text-white" style="width: 290%; margin-top: 5px;">
+                                            <span>BIG HIT ENTERTAINMETN VOCAL AUDITION</span>
+                                        </div>
+                                    </div>
+                                    <div class="calendar-day day">20</div>
+                                    <div class="calendar-day day">21</div>
+                                </div>
+                                <div class="calendar-week">
+                                    <div class="calendar-day day">22</div>
+                                    <div class="calendar-day day">23</div>
+                                    <div class="calendar-day day">24</div>
+                                    <div class="calendar-day day">25</div>
+                                    <div class="calendar-day day">26</div>
+                                    <div class="calendar-day day">27</div>
+                                    <div class="calendar-day day">28</div>
+                                </div>
+                                <div class="calendar-week">
+                                    <div class="calendar-day day">29</div>
+                                    <div class="calendar-day day">30</div>
+                                    <div class="calendar-day day">31
+                                        <div class="day-event bg-sky text-white" style="width: 290%; margin-top: 5px; opacity: 0.5;">
+                                            <span>BIG HIT ENTERTAINMETN VOCAL AUDITION</span>
+                                        </div>
+                                    </div>
+                                    <div class="calendar-day day next-month">1</div>
+                                    <div class="calendar-day day next-month">2</div>
+                                    <div class="calendar-day day next-month">3</div>
+                                    <div class="calendar-day day next-month">4</div>
+                                </div>
+                                <div class="calendar-week">
+                                    <div class="calendar-day day next-month">5</div>
+                                    <div class="calendar-day day next-month">6</div>
+                                    <div class="calendar-day day next-month">7</div>
+                                    <div class="calendar-day day next-month">8
+                                        <div class="day-event bg-purple text-white" style="width: 190%; margin-top: 5px; opacity: 0.5;">
+                                            <span>WEB DESIGN UX/UI...</span>
+                                        </div>
+                                    </div>
+                                    <div class="calendar-day day next-month">9</div>
+                                    <div class="calendar-day day next-month">10</div>
+                                    <div class="calendar-day day next-month">11</div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- list -->
+                        <div class="float-lg-right right list">
+                            <div class="border p-3">
+                                <!-- selected date -->
+                                <div class="d-flex align-items-center font-weight-light border-bottom pb-3">
+                                    <div class="align-self-start" style="min-width: 80px;">
+                                        <p class="text-light-gray-more mb-0">하루종일</p>
+                                    </div>
+                                    <div class="bg-sky" style="width: 5px;min-height: 40px;"></div>
+                                    <div class="ml-4">
+                                        <p class="mb-0">JYP Ent. 보컬 오디션</p>
+                                        <span class="text-light-gray font-size-xs">서울특별시 강동구 양재대로 123</span>
+                                    </div>
+                                </div>
+
+                                <!-- other date -->
+                                <div class="pt-3">
+                                    <div class="d-flex align-items-center font-weight-light pb-2">
+                                        <div class="align-self-start" style="min-width: 80px;">
+                                            <p class="text-light-gray-more mb-0">09:00</p>
+                                            <p class="text-gray mb-0">13:00</p>
+                                        </div>
+                                        <div class="bg-red" style="width: 5px;min-height: 40px;"></div>
+                                        <div class="ml-4">
+                                            <p class="mb-0">사당안무연습실 [G1실]</p>
+                                            <span class="text-light-gray font-size-xs">예약자 : 이정훈</span>
+                                        </div>
+                                    </div>
+
+                                    <div class="d-flex align-items-center font-weight-light pb-2">
+                                        <div class="align-self-start" style="min-width: 80px;">
+                                            <p class="text-light-gray-more mb-0">09:00</p>
+                                            <p class="text-gray mb-0">11:00</p>
+                                        </div>
+                                        <div class="bg-red" style="width: 5px;min-height: 40px;"></div>
+                                        <div class="ml-4">
+                                            <p class="mb-0">사당안무연습실 [G2실]</p>
+                                            <span class="text-light-gray font-size-xs">예약자 : 배규리</span>
+                                        </div>
+                                    </div>
+
+                                    <div class="d-flex align-items-center font-weight-light pb-2">
+                                        <div class="align-self-start" style="min-width: 80px;">
+                                            <p class="text-light-gray-more mb-0">13:00</p>
+                                            <p class="text-gray mb-0">14:00</p>
+                                        </div>
+                                        <div class="bg-light-green" style="width: 5px;min-height: 40px;"></div>
+                                        <div class="ml-4">
+                                            <p class="mb-0">점심 약속</p>
+                                            <span class="text-light-gray font-size-xs">커피스미스 경리단길</span>
+                                        </div>
+                                    </div>
+
+                                    <div class="d-flex align-items-center font-weight-light pb-2">
+                                        <div class="align-self-start" style="min-width: 80px;">
+                                            <p class="text-light-gray-more mb-0">15:00</p>
+                                            <p class="text-gray mb-0">18:00</p>
+                                        </div>
+                                        <div class="bg-purple" style="width: 5px;min-height: 40px;"></div>
+                                        <div class="ml-4">
+                                            <p class="mb-0">공병각의 캘리그라피 교실...</p>
+                                            <span class="text-light-gray font-size-xs">서울특별시 강남구 테헤란로 413 ...</span>
+                                        </div>
+                                    </div>
+
+                                    <div class="d-flex align-items-center font-weight-light pb-2">
+                                        <div class="align-self-start" style="min-width: 80px;">
+                                            <p class="text-light-gray-more mb-0">19:00</p>
+                                            <p class="text-gray mb-0">22:00</p>
+                                        </div>
+                                        <div class="bg-yellow" style="width: 5px;min-height: 40px;"></div>
+                                        <div class="ml-4">
+                                            <p class="mb-0">뮤지컬 “모차르트”</p>
+                                            <span class="text-light-gray font-size-xs">샤롯데시어터</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 일정 추가 modal -->
+                    <div class="modal fade" tabindex="-1" role="dialog" id="addEventModal" aria-labelledby="addEventModal" aria-hidden="true">
+                        <div class="modal-dialog custom-modal" role="document">
+                            <div class="modal-content px-lg-5 px-3 py-lg-5 py-4">
+                                <div class="modal-header p-0 mb-4 border-0 d-flex position-relative custom-inputs-sub">
+                                    <button type="button" class="btn btn-outline border mr-3 eventColor">
+                                        <span class="d-block bg-red event-color-box"></span>
+                                    </button>
+                                    <!--
+                                        color chart class
+                                        bg-red / bg-sky / bg-yellow / bg-purple / bg-light-green / bg-orange / bg-light-pink /
+                                        bg-mint / bg-light-brown / bg-gray / bg-mid-gray / bg-deep-dark
+                                    -->
+                                    <div class="event-color-chart border p-3 d-none">
+                                        <div class="d-flex mb-3">
+                                            <div class="border p-2 mr-3"><span class="d-block event-color-box bg-red"></span></div>
+                                            <div class="border p-2 mr-3"><span class="d-block event-color-box bg-sky"></span></div>
+                                            <div class="border p-2 mr-3"><span class="d-block event-color-box bg-yellow"></span></div>
+                                            <div class="border p-2 mr-3"><span class="d-block event-color-box bg-purple"></span></div>
+                                            <div class="border p-2 mr-3"><span class="d-block event-color-box bg-light-green"></span></div>
+                                            <div class="border p-2"><span class="d-block event-color-box bg-orange"></span></div>
+                                        </div>
+                                        <div class="d-flex">
+                                            <div class="border p-2 mr-3"><span class="d-block event-color-box bg-pink"></span></div>
+                                            <div class="border p-2 mr-3"><span class="d-block event-color-box bg-mint"></span></div>
+                                            <div class="border p-2 mr-3"><span class="d-block event-color-box bg-light-brown"></span></div>
+                                            <div class="border p-2 mr-3"><span class="d-block event-color-box bg-gray"></span></div>
+                                            <div class="border p-2 mr-3"><span class="d-block event-color-box bg-mid-gray"></span></div>
+                                            <div class="border p-2"><span class="d-block event-color-box bg-deep-dark"></span></div>
+                                        </div>
+                                    </div>
+                                    <input type="text" class="form-control" placeholder="일정을 입력하세요.">
+                                </div>
+                                <div class="modal-body p-0 mb-4 custom-inputs">
+                                    <p class="font-weight-light mb-2 font-size-sm">예약 날짜 및 시간</p>
+                                    <input type="text" class="form-control mb-3">
+                                    <p class="font-weight-light mb-2 font-size-sm">장소</p>
+                                    <input type="text" class="form-control" value="서울대입구역">
+                                </div>
+                                <div class="modal-footer p-0 border-0 custom-inputs">
+                                    <button type="button" class="btn btn-block text-white bg-red">적용</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 편집 modal -->
+                    <div class="modal fade" tabindex="-1" role="dialog" id="editEventModal" aria-labelledby="editEventModal" aria-hidden="true">
+                        <div class="modal-dialog custom-modal" role="document">
+                            <div class="modal-content px-lg-5 px-3 py-lg-5 py-4">
+                                <div class="modal-header p-0 mb-4 border-0 d-flex justify-content-start align-items-center position-relative custom-inputs-sub">
+                                    <button type="button" class="btn btn-outline border mr-3 eventColor">
+                                        <span class="d-block bg-red event-color-box"></span>
+                                    </button>
+                                    <!--
+                                        color chart class
+                                        bg-red / bg-sky / bg-yellow / bg-purple / bg-light-green / bg-orange / bg-light-pink /
+                                        bg-mint / bg-light-brown / bg-gray / bg-mid-gray / bg-deep-dark
+                                    -->
+                                    <div class="event-color-chart border p-3 d-none">
+                                        <div class="d-flex mb-3">
+                                            <div class="border p-2 mr-3"><span class="d-block event-color-box bg-red"></span></div>
+                                            <div class="border p-2 mr-3"><span class="d-block event-color-box bg-sky"></span></div>
+                                            <div class="border p-2 mr-3"><span class="d-block event-color-box bg-yellow"></span></div>
+                                            <div class="border p-2 mr-3"><span class="d-block event-color-box bg-purple"></span></div>
+                                            <div class="border p-2 mr-3"><span class="d-block event-color-box bg-light-green"></span></div>
+                                            <div class="border p-2"><span class="d-block event-color-box bg-orange"></span></div>
+                                        </div>
+                                        <div class="d-flex">
+                                            <div class="border p-2 mr-3"><span class="d-block event-color-box bg-pink"></span></div>
+                                            <div class="border p-2 mr-3"><span class="d-block event-color-box bg-mint"></span></div>
+                                            <div class="border p-2 mr-3"><span class="d-block event-color-box bg-light-brown"></span></div>
+                                            <div class="border p-2 mr-3"><span class="d-block event-color-box bg-gray"></span></div>
+                                            <div class="border p-2 mr-3"><span class="d-block event-color-box bg-mid-gray"></span></div>
+                                            <div class="border p-2"><span class="d-block event-color-box bg-deep-dark"></span></div>
+                                        </div>
+                                    </div>
+                                    <!-- <input type="text" class="form-control" placeholder="일정을 입력하세요."> -->
+                                    <h2 class="mb-0">JYP 1차 오디션</h2>
+                                </div>
+                                <div class="modal-body p-0 mb-4 custom-inputs">
+                                    <p class="font-weight-light mb-2 font-size-sm">예약 날짜 및 시간</p>
+                                    <input type="text" class="form-control mb-3" value="2020-01-24 13:30 ~ 2020-01-30 14:00">
+                                    <p class="font-weight-light mb-2 font-size-sm">추가옵션</p>
+                                    <div class="container">
+                                        <div class="row border custom-inputs">
+                                            <div class="col-lg-3 col-md-4 col-6 my-3">
+                                                <div class="d-flex align-items-center">
+                                                    <input type="checkbox" class="mr-2 custom-checkbox" id="opt1">
+                                                    <label for="opt1" class="font-weight-light mb-0">빔 프로젝터</label>
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-3 col-md-4 col-6 my-3">
+                                                <div class="d-flex align-items-center">
+                                                    <input type="checkbox" class="mr-2 custom-checkbox" id="opt2">
+                                                    <label for="opt2" class="font-weight-light mb-0">TV</label>
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-3 col-md-4 col-6 my-3">
+                                                <div class="d-flex align-items-center">
+                                                    <input type="checkbox" class="mr-2 custom-checkbox" id="opt3">
+                                                    <label for="opt3" class="font-weight-light mb-0">복사/인쇄기</label>
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-3 col-md-4 col-6 my-3">
+                                                <div class="d-flex align-items-center">
+                                                    <input type="checkbox" class="mr-2 custom-checkbox" id="opt4">
+                                                    <label for="opt4" class="font-weight-light mb-0">PC/노트북</label>
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-3 col-md-4 col-6 my-3">
+                                                <div class="d-flex align-items-center">
+                                                    <input type="checkbox" class="mr-2 custom-checkbox" id="opt5">
+                                                    <label for="opt5" class="font-weight-light mb-0">거울</label>
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-3 col-md-4 col-6 my-3">
+                                                <div class="d-flex align-items-center">
+                                                    <input type="checkbox" class="mr-2 custom-checkbox" id="opt6">
+                                                    <label for="opt6" class="font-weight-light mb-0">주차요청</label>
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-3 col-md-4 col-6 my-3">
+                                                <div class="d-flex align-items-center">
+                                                    <input type="checkbox" class="mr-2 custom-checkbox" id="opt7">
+                                                    <label for="opt7" class="font-weight-light mb-0">음향/마이크</label>
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-3 col-md-4 col-6 my-3">
+                                                <div class="d-flex align-items-center">
+                                                    <input type="checkbox" class="mr-2 custom-checkbox" id="opt8">
+                                                    <input type="text" class="form-control font-weight-light" placeholder="직접입력..." style="height: 34px !important">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="modal-footer p-0 border-0 custom-inputs">
+                                    <button type="button" class="btn btn-block text-white bg-red">적용</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer class="bg-light">
+        <div class="container py-lg-5 py-4">
+            <div class="d-lg-flex align-items-center justify-content-between mb-lg-4 mb-3">
+                <a href="../index.html"><img src="../img/logo.png" srcset="../img/logo@2x.png 2x, ../img/logo@3x.png 3x"></a>
+                <ul class="d-flex list-unstyled mb-0 font-weight-light footer-menu font-size-x mt-lg-0 mt-3">
+                    <li class="px-md-2 px-1 position-relative"><a href="../sub/terms.html" class="text-muted text-decoration-none">이용약관</a></li>
+                    <li class="px-md-2 px-1 position-relative"><a href="#x" class="text-muted text-decoration-none">서비스정보</a></li>
+                    <li class="px-md-2 px-1 position-relative"><a href="../sub/board_notice.html" class="text-muted text-decoration-none">공지사항</a></li>
+                    <li class="px-md-2 px-1 position-relative"><a href="#x" class="text-muted text-decoration-none">도움말</a></li>
+                    <li class="px-md-2 px-1 position-relative"><a href="#x" class="text-muted text-decoration-none">광고신청하기</a></li>
+                    <li class="px-md-2 px-1 position-relative"><a href="#x" class="text-muted text-decoration-none">호스트등록</a></li>
+                </ul>
+            </div>
+
+            <div class="border-top text-muted font-weight-light pt-lg-4 pt-3 font-size-x">
+                <p class="mb-0">상호명 : 아트바이어스<span class="text-divider"></span>대표 : 김사람<span class="text-divider"></span>사업자등록번호 : 123-45-67890<span class="text-divider"></span>통신판매업신고번호 : 2018-서울관악-12345<span class="text-divider"></span>
+                    <a href="#x" class="text-dark text-decoration-none font-weight-normal">사업자등록정보 ></a></p>
+                <p>영업소재지 : 서울특별시 강남구 테헤란로 123<span class="text-divider"></span>이메일 : info@artbyus.com<span class="text-divider"></span>대표전화 : 02-123-4567 (평일 오전 9시 ~ 오후 6시, 공휴일 제외)</p>
+
+                <div class="d-lg-flex mb-3">
+                    <a href="#x" class="text-dark text-decoration-none font-weight-normal mr-2">온라인 1:1문의 바로가기</a>
+                    <span>(평일 2시 ~ 오후 6시) * 공간에 대한 문의사항은 해당 공간 호스트에게 직접 문의해 주세요.</span>
+                </div>
+
+                <p>아트바이어스는 통신판매중개자이며 통신판매의 당사자가 아닙니다. 따라서 아트바이어스는 공간 거래정보 및 거래에 대해 책임지지 않습니다.</p>
+                <p class="text-right font-weight-light text-light-gray">Copyright ART BY US crop. All Right Reserved.</p>
+            </div>
+        </div>
+    </footer>
+</body>
+
+<script>
+    $('.eventColor').on('click', function () {
+        $('.event-color-chart').toggleClass('d-none');
+    })
+
+</script>
+
+</html>
