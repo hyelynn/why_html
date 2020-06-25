@@ -244,7 +244,7 @@
 
             <!-- button -->
             <div class="custom-inputs-sub not">
-                <button type="button" id="signup" onClick="sendFormAjax();"class="btn btn-block bg-yellow">회원가입 완료</button>
+                <button type="button" id="signup" onClick="sendFormAjax();" class="btn btn-block bg-yellow">회원가입 완료</button>
             </div>
         </div>
     </main>
@@ -280,177 +280,140 @@
     </footer>
     <script type="text/javascript">
 
-    // $(function() {
-    //     $('#signup').click(function(){
-    //         $.ajax({
-    //             crossOrigin: true,
-    //             url: 'http://3.34.150.116:3000/user/apply',
-    //              async : true
-    //             , type : "POST"
-    //             , cache:false
-    //             , timeout : 30000 
-    //             , data:{
-    //                 'user_id':$('#user_id').val(),
-    //                 'user_pw':$('#user_pw').val(),
-    //                 'user_name':$('#user_name').val(),
-    //                 'user_nickname':$('#user_nickname').val(),
-    //                 'user_phone':$('#user_phone').val(),
-    //             }, 
-    //             xhrFields: {
-    //                 withCredentials: false
-    //             }
-    //             , beforeSend: function (xhr) {
-    //                 xhr.setRequestHeader("Accept", "application/json");
-    //             }
-    //             , success : function (data, statusText, xhr) { 
-    //                     alert("success status :: " + xhr.status + " || statusText :: " + statusText);
-    //             }
-    //             , error : function (xhr, statusText, errorThrown) { 
-    //                 alert("error status :: " + xhr.status + " || statusText :: " + xhr.responseText + " || errorThrown :: " + errorThrown);
-    //             }
-    //         });
-    //     });
-    // });
-    // document.getElementById("is_dup").addEventListener('click', function(){
-    //         var email = {'email': document.getElementById("user_id").value};
-    //         sendDataAjax('http://3.34.150.116:3000/user/verify', email);
-    //     })
-        function sendFormAjax(){
-            if(CheckForm()){
-                var user_id = document.getElementById("user_id").value;
-                var user_pw = document.getElementById("user_pw").value;
-                var user_name = document.getElementById("user_name").value;
-                var user_nickname = document.getElementById("user_nickname").value;
-                var user_phone = document.getElementById("user_phone").value;
-                var dataStuff = {
-                    'user_id':user_id,
-                    'user_pw':user_pw,
-                    'user_name':user_name,
-                    'user_nickname':user_nickname,
-                    'user_phone':user_phone
-                }
-                alert("go");
-                var xhr = new XMLHttpRequest();
-                xhr.onreadystatechange = function() {
-                    alert("4::"+xhr.status);
-                    if (xhr.readyState === xhr.DONE) { 
-                        alert("2::"+xhr.status);
-                        if (xhr.status === 200 || xhr.status === 201) {
-                            window.location.href = "/";
-                            console.log(xhr.responseText);
-                            alert("1::"+xhr.status);
-                        } else {
-                            alert("3::"+xhr.status);
-                            console.error(xhr.responseText);
+    document.getElementById("is_dup").addEventListener('click', function(){
+            var email =  document.getElementById("user_id").value;
+            var xhr = new XMLHttpRequest();
+    
+            xhr.onreadystatechange = function() { 
+                if (xhr.readyState === xhr.DONE) { 
+                    if (xhr.status === 200 || xhr.status === 201) {
+                        var result = JSON.parse(xhr.responseText);
+                        if(result.result=="false"){
+                            alert("이미 사용중인 아이디 입니다.");
+                            document.getElementById("user_id").value = "";
+                            document.getElementById("user_id").focus();
                         }
-                    }else{
-                        alert("0::"+xhr.status);
+                        else{
+                            alert("사용 할 수 있는 아이디 입니다.");
+                        }
+                    } else {
                     }
-                };
-                xhr.open('POST', 'http://localhost:3000/user/apply',true);
-                xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
-                xhr.send(dataStuff); 
-            }
-               
-        }
-        
-    
-    //     function sendDataAjax(url, data){
-    //         data = JSON.stringify(data);
-    //         var xhr = new XMLHttpRequest();
-    //         alert("go");
-    
-    //         xhr.onreadystatechange = function() { 
-    //             alert("0::"+xhr.status);
-    //             if (xhr.readyState === xhr.DONE) { 
-    //                 alert("1::"+xhr.status);
-    //                 if (xhr.status === 200 || xhr.status === 201) {
-    //                     var result = JSON.parse(xhr.responseText);
-    //                     alert("사용 할 수 있는 아이디 입니다.");
-    //                 } else {
-    //                     alert("이미 사용중인 아이디 입니다.");
-    //                     document.getElementById("user_id").value = "";
-    //                     document.getElementById("user_id").focus();
-    //                 }
-    //             }
-    //             else{
-    //                 alert("2::"+xhr.status);
-    //             }
-    //         };
+                }
+                else{
+                }
+            };
             
-    //         xhr.open('POST', url);
-    //         xhr.setRequestHeader('Content-Type', 'application/json');
-    //         xhr.send(JSON.stringify(data)); 
-          
-    //     }
+            xhr.open('POST', 'http://3.34.150.116:3000/user/verify');
+            xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+            xhr.send("email="+ email); 
+        })
+
+    function sendFormAjax(){
+        if(CheckForm()){
+            var user_id_t = document.getElementById("user_id").value;
+            var user_pw_t = document.getElementById("user_pw").value;
+            var user_name_t = document.getElementById("user_name").value;
+            var user_nickname_t = document.getElementById("user_nickname").value;
+            var user_phone_t = document.getElementById("user_phone").value;
+            // var dataStuff = {
+            //     user_id:user_id_t,
+            //     user_pw:user_pw_t,
+            //     user_name:user_name_t,
+            //     user_nickname:user_nickname_t,
+            //     user_phone:user_phone_t
+            // }
+            var xhr = new XMLHttpRequest();
+            xhr.onreadystatechange = function() {
+                if (xhr.readyState === xhr.DONE) { 
+                    if (xhr.status === 200 || xhr.status === 201) {
+                        alert(xhr.responseText);
+                        window.location.href = "../index.html";
+                    } else {
+                        alert("회원가입이 정상적으로 이루어지지 않았습니다. 다시 시도해주세요.");
+                        console.error(xhr.responseText);
+                    }
+                }else{
+                }
+            };
+            xhr.open('POST', 'http://3.34.150.116:3000/user/apply',true);
+            xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+            xhr.send("user_id="+user_id_t+"&user_pw="+user_pw_t+"&user_name="+user_name_t+"&user_nickname="+user_nickname_t+"&user_phone="+user_phone_t); 
+            // xhr.send(dataStuff);
+        }
+            
+    }
         
     //     document.getElementById("get_num").addEventListener('click', function(){
     //          console.log(Math.floor(Math.random() * 99999 + 1));
     //     })
      
-        function CheckForm(){
-            var user_id = document.getElementById("user_id").value;
-            var user_pw = document.getElementById("user_pw").value;
-            var user_pw2 = document.getElementById("user_pw2").value;
-            var user_name = document.getElementById("user_name").value;
-            var user_nickname = document.getElementById("user_nickname").value;
-            var user_phone = document.getElementById("user_phone").value;
-            var user_auth = document.getElementById("user_auth").value;
-            var all_agree = document.getElementById("all_agree");
-    
-            if(user_id == ""){
-                alert("아이디를 입력해주세요.");
-                document.getElementById("user_id").focus();
-                return false;
-            }
-            if(user_pw == ""){
-                alert("비밀번호를 입력해주세요.");
-                document.getElementById("user_pw").focus();
-                return false;
-            }
-            if(user_pw2 == ""){
-                alert("비밀번호 확인을 입력해주세요.");
-                document.getElementById("user_pw2").focus();
-                return false;
-            }
-            if(user_pw != user_pw2){
-                alert("비밀번호가 서로 일치하지 않습니다.");
-                document.getElementById("user_pw2").focus();
-                return false;
-            }
-            if(user_name == ""){
-                alert("이름을 입력해주세요.");
-                document.getElementById("user_name").focus();
-                return false;
-            }
-            if(user_nickname == ""){
-                alert("닉네임을 입력해주세요.");
-                document.getElementById("user_nickname").focus();
-                return false;
-            }
-            if(user_phone == ""){
-                alert("연락처를 입력해주세요.");
-                document.getElementById("user_phone").focus();
-                return false;
-            }
-            if(user_auth == ""){
-                alert("인증번호를 입력해주세요.");
-                document.getElementById("user_auth").focus();
-                return false;
-            }
-            if(user_auth != 1234){
-                alert("인증번호가 맞지 않습니다.");
-                document.getElementById("user_auth").focus();
-                return false;
-            }
-            if(all_agree.checked){
-                return true;
-            }else{
-                alert("동의를 해주세요.");
-                return false;
-            }
+    function CheckForm(){
+        var user_id = document.getElementById("user_id").value;
+        var user_pw = document.getElementById("user_pw").value;
+        var user_pw2 = document.getElementById("user_pw2").value;
+        var user_name = document.getElementById("user_name").value;
+        var user_nickname = document.getElementById("user_nickname").value;
+        var user_phone = document.getElementById("user_phone").value;
+        var user_auth = document.getElementById("user_auth").value;
+        var all_agree = document.getElementById("all_agree");
+
+        if(user_id == ""){
+            alert("아이디를 입력해주세요.");
+            document.getElementById("user_id").focus();
+            return false;
         }
-    
+        if(user_pw == ""){
+            alert("비밀번호를 입력해주세요.");
+            document.getElementById("user_pw").focus();
+            return false;
+        }
+        if(user_pw.length > 6 ){
+            alert("비밀번호는 6~14자리 입력해주세요.");
+            document.getElementById("user_pw").focus();
+            return false;
+        }
+        if(user_pw2 == ""){
+            alert("비밀번호 확인을 입력해주세요.");
+            document.getElementById("user_pw2").focus();
+            return false;
+        }
+        if(user_pw != user_pw2){
+            alert("비밀번호가 서로 일치하지 않습니다.");
+            document.getElementById("user_pw2").focus();
+            return false;
+        }
+        if(user_name == ""){
+            alert("이름을 입력해주세요.");
+            document.getElementById("user_name").focus();
+            return false;
+        }
+        if(user_nickname == ""){
+            alert("닉네임을 입력해주세요.");
+            document.getElementById("user_nickname").focus();
+            return false;
+        }
+        if(user_phone == ""){
+            alert("연락처를 입력해주세요.");
+            document.getElementById("user_phone").focus();
+            return false;
+        }
+        if(user_auth == ""){
+            alert("인증번호를 입력해주세요.");
+            document.getElementById("user_auth").focus();
+            return false;
+        }
+        if(user_auth != 1234){
+            alert("인증번호가 맞지 않습니다.");
+            document.getElementById("user_auth").focus();
+            return false;
+        }
+        if(all_agree.checked){
+            return true;
+        }else{
+            alert("동의를 해주세요.");
+            return false;
+        }
+    }
     </script>
 </body>
 

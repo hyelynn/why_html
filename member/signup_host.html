@@ -10,10 +10,11 @@
     <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
-
+    
     <!-- Custom -->
     <link rel="stylesheet" href="../css/custom.css">
     <script src="../js/custom.js"></script>
+    <script src="../js/upload.js"></script>
 
     <!-- Fontawesome -->
     <link rel="stylesheet" href="../css/fontawesome/css/all.min.css">
@@ -205,7 +206,7 @@
                     <label for="host_id" class="d-block text-gray">아이디(이메일) <span class="d-block d-md-inline-block text-red font-size-xs">* 정산 정보와 예약 내역 등, 알림메일을 발송해 드립니다.</span></label>
                     <div class="d-flex">
                         <input type="text" class="form-control flex-fill mr-4" id="host_id" placeholder="example@example.com">
-                        <button type="button" class="btn flex-fill w-25 bg-yellow">중복확인</button>
+                        <button type="button" id="is_dup" class="btn flex-fill w-25 bg-yellow">중복확인</button>
                     </div>
                 </div>
                 <div class="row mb-3">
@@ -284,9 +285,9 @@
                     <label for="host_zipcode" class="d-block text-gray">사업장 주소</label>
                     <div class="d-lg-flex">
                         <input type="text" class="form-control flex-fill w-25 mr-4 mb-lg-0 mb-3" id="host_zipcode"  placeholder="우편번호">
-                        <input type="text" class="form-control flex-fill w-75" placeholder="기본주소">
+                        <input type="text" class="form-control flex-fill w-75" id="host_address" placeholder="기본주소">
                     </div>
-                    <input type="text" class="form-control mt-3" placeholder="상세주소">
+                    <input type="text" class="form-control mt-3" id="host_address2"  placeholder="상세주소">
                 </div>
                 <div class="row mb-3">
                     <div class="col-lg-6 custom-inputs-sub not mb-lg-0 mb-3">
@@ -314,15 +315,18 @@
                     <label for="host_bank_no" class="d-block text-gray">계좌번호</label>
                     <input type="text" class="form-control" id="host_bank_no" placeholder="예) 1234567890">
                 </div>
+                <form id="theForm" method="POST" enctype="multipart/form-data" >
                 <div class="custom-inputs-sub not mb-4">
                     <span class="d-block mb-2 text-gray">사업자등록증 사본</span>
                     <div class="d-flex custom-file">
-                        <input class="upload-name form-control flex-fill mr-4" value="JPG, PNG 파일만 가능합니다.(파일이름은 “OOO사업자등록증” 으로 통일해 주세요)" disabled="disabled">
+                        <input class="upload-name form-control flex-fill mr-4" placeholder="JPG, PNG 파일만 가능합니다.(파일이름은 “OOO사업자등록증” 으로 통일해 주세요)" disabled="disabled">
                         <label for="host_file" class="btn flex-fill w-25 mb-0 bg-yellow">업로드</label>
                         <input type="file" id="host_file" class="upload-hidden">
                     </div>
                 </div>
+            </form>
             </div>
+
 
             <!-- checkbox -->
             <div class="d-flex mb-4 custom-inputs">
@@ -335,7 +339,7 @@
 
             <!-- button -->
             <div class="custom-inputs-sub not">
-                <button type="button" id="send" class="btn btn-block bg-yellow">사업자 회원가입 신청하기</button>
+                <button type="button" id="send" onClick="sendFormAjax();" class="btn btn-block bg-yellow">사업자 회원가입 신청하기</button>
             </div>
         </div>
     </main>
@@ -369,98 +373,141 @@
             </div>
         </div>
     </footer>
-</body>
 
-<script>
-    $(function () {
-        var fileTarget = $('.custom-inputs-sub not .upload-hidden');
-        fileTarget.on('change', function() {
-            // 값이 변경되면
-            if(window.FileReader){ // modern browser
-                var filename = $(this)[0].files[0].name;
-            } else { // old IE
-                var filename = $(this).val().split('/').pop().split('\\').pop(); // 파일명만 추출
-            }
-            // 추출한 파일명 삽입
-            $(this).siblings('.upload-name').val(filename);
-        });
-    })
-
-   
-    $("#send").click(function (event) {
-        alert("2");
-        event.preventDefault();
-        var form = $('#upload_form')[0];
-        var formData = new FormData(form);
-        $("#send").prop("disabled", true);
-
-        $.ajax({
-            xhr: function() {
-               var xhr = new window.XMLHttpRequest();
-
-               xhr.upload.addEventListener("progress", function(evt) {
-                   if (evt.lengthComputable) {
-                      var percentComplete = evt.loaded / evt.total;
-                      percentComplete = parseInt(percentComplete * 100);
-                      percentShown = percentComplete*0.98;
-                      showProgress(percentShown);
-                   }
-               }, false);
-
-               return xhr;
-           },
-            type: "POST",
-            enctype: 'multipart/form-data',
-            url: 'http://3.34.150.116:3000/user/apply',
-            data: formData,
-            processData: false,
-            contentType: false,
-            cache: false,
-            timeout: 600000,
-            success: function (data) {
-                alert("가입되었습니다.");
-                $("#send").prop("disabled", false);
-            },
-            error: function (e) {
-                console.log("ERROR : ", e);
-                $("#send").prop("disabled", false);
-                alert("fail");
-            }
-        });
-    });
+<script type="text/javascript">
 
     document.getElementById("is_dup").addEventListener('click', function(){
-        var email = document.getElementById("host_id").value;
-        // sendAjax('http://3.34.140.226:3000/is_duplicated', email);
-    })
-
-    function sendAjax(url, data){
-  
-        var data = {'email' : data};
-        data = JSON.stringify(data);
-
+        var email =  document.getElementById("host_id").value;
         var xhr = new XMLHttpRequest();
-        xhr.open('POST', url);
-        xhr.setRequestHeader('Content-type', "application/json");
 
-        xhr.send(data);
-
-        xhr.addEventListener('load', function(){
-            console.log(xhr.responseText);
-            var result = JSON.parse(xhr.responseText);
-            if(result !== 'ok') {
-                alert("사용 할 수 있는 아이디 입니다.");
+        xhr.onreadystatechange = function() { 
+            if (xhr.readyState === xhr.DONE) { 
+                if (xhr.status === 200 || xhr.status === 201) {
+                    var result = JSON.parse(xhr.responseText);
+                    if(result.result=="false"){
+                        alert("이미 사용중인 아이디 입니다.");
+                        document.getElementById("host_id").value = "";
+                        document.getElementById("host_id").focus();
+                    }
+                    else{
+                        alert("사용 할 수 있는 아이디 입니다.");
+                    }
+                } else {
+                }
             }
             else{
-                alert("이미 사용중인 아이디 입니다.");
-                document.getElementById("host_id").value = "";
             }
-        });
-    }
-    
-    document.getElementById("get_num").addEventListener('click', function(){
-         console.log(Math.floor(Math.random() * 99999 + 1));
+        };
+        
+        xhr.open('POST', 'http://3.34.150.116:3000/user/verify');
+        xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+        xhr.send("email="+ email); 
     })
+    
+    function sendFormAjax(){
+        if(CheckForm()){
+        var host_id = document.getElementById("host_id").value;
+        var host_pw = document.getElementById("host_pw").value;
+        var host_name = document.getElementById("host_name").value;
+        var host_nickname = document.getElementById("host_nickname").value;
+        var host_phone = document.getElementById("host_phone").value;
+        var host_type = document.getElementById("host_type").value;
+        var host_co_name = document.getElementById("host_co_name").value;
+        var host_safe_no = document.getElementById("host_safe_no").value;
+        var host_no = document.getElementById("host_no").value;
+        var host_ceo = document.getElementById("host_ceo").value;
+        var host_address = document.getElementById("host_address").value + " , " + document.getElementById("host_address2").value + " , " + document.getElementById("host_zipcode").value;
+        var host_sector = document.getElementById("host_sector").value;
+        var host_sector2 = document.getElementById("host_sector2").value;
+        var host_bank = document.getElementById("host_bank").value;
+        var host_bank_account = document.getElementById("host_bank_account").value;
+        var host_bank_no = document.getElementById("host_bank_no").value;
+        var host_file = document.getElementById("host_file").value;
+       
+        var xhr = new XMLHttpRequest();
+        xhr.onreadystatechange = function() {
+            if (xhr.readyState === xhr.DONE) { 
+                if (xhr.status === 200 || xhr.status === 201) {
+                    alert(xhr.responseText);
+                    window.location.href = "../index.html";
+                } else {
+                    alert("회원가입이 정상적으로 이루어지지 않았습니다. 다시 시도해주세요.");
+                    console.error(xhr.responseText);
+                }
+            }else{
+            }
+        };
+        xhr.open('POST', 'http://3.34.150.116:3000/host/apply');
+        xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+        // xhr.send("host_id="+host_id+"&host_pw="+host_pw+"&host_name="+host_name+"&host_nickname="+host_nickname+"&host_phone="+host_phone+"&host_safe_no="+host_safe_no
+        // +"&host_type="+host_type+"&host_co_name="+host_co_name+"&host_no="+host_no+"&host_ceo="+host_ceo+"&host_address="+host_address+"&host_sector="+host_sector
+        // +"&host_sector2="+host_sector2+"&host_bank="+host_bank+"&host_bank_account="+host_bank_account+"&host_bank_no="+host_bank_no+"&host_file="+host_file); 
+        xhr.send("host_id="+host_id+"&host_pw="+host_pw+"&host_name="+host_name+"&host_nickname="+host_nickname+"&host_phone="+host_phone+"&host_safe_no="+host_safe_no
+        +"&host_type="+1+"&host_co_name="+host_co_name+"&host_no="+host_no+"&host_ceo="+host_ceo+"&host_address="+host_address+"&host_sector="+host_sector
+        +"&host_sector2="+host_sector2+"&host_bank="+1+"&host_bank_account="+host_bank_account+"&host_bank_no="+host_bank_no+"&host_file="+1); 
+
+    }
+}
+
+    // $(function () {
+    //     var fileTarget = $('.custom-inputs-sub not .upload-hidden');
+    //     fileTarget.on('change', function() {
+    //         // 값이 변경되면
+    //         if(window.FileReader){ // modern browser
+    //             var filename = $(this)[0].files[0].name;
+    //         } else { // old IE
+    //             var filename = $(this).val().split('/').pop().split('\\').pop(); // 파일명만 추출
+    //         }
+    //         // 추출한 파일명 삽입
+    //         $(this).siblings('.upload-name').val(filename);
+    //     });
+    // })
+
+    // $("#send").click(function (event) {
+    //     // alert("2");
+    //     event.preventDefault();
+    //     var form = $('#upload_form')[0];
+    //     var formData = new FormData(form);
+    //     $("#send").prop("disabled", true);
+
+    //     $.ajax({
+    //         xhr: function() {
+    //            var xhr = new window.XMLHttpRequest();
+
+    //            xhr.upload.addEventListener("progress", function(evt) {
+    //                if (evt.lengthComputable) {
+    //                   var percentComplete = evt.loaded / evt.total;
+    //                   percentComplete = parseInt(percentComplete * 100);
+    //                   percentShown = percentComplete*0.98;
+    //                   showProgress(percentShown);
+    //                }
+    //            }, false);
+
+    //            return xhr;
+    //        },
+    //         type: "POST",
+    //         enctype: 'multipart/form-data',
+    //         url: 'http://3.34.150.116:3000/user/apply',
+    //         data: formData,
+    //         processData: false,
+    //         contentType: false,
+    //         cache: false,
+    //         timeout: 600000,
+    //         success: function (data) {
+    //             alert("가입되었습니다.");
+    //             $("#send").prop("disabled", false);
+    //         },
+    //         error: function (e) {
+    //             console.log("ERROR : ", e);
+    //             $("#send").prop("disabled", false);
+    //             alert("fail");
+    //         }
+    //     });
+    // });
+
+    // document.getElementById("get_num").addEventListener('click', function(){
+    //      console.log(Math.floor(Math.random() * 99999 + 1));
+    // })
  
     function CheckForm(){
         var host_id = document.getElementById("host_id").value;
@@ -484,8 +531,8 @@
         var host_bank_account = document.getElementById("host_bank_account").value;
         var host_bank_no = document.getElementById("host_bank_no").value;
         var host_file = document.getElementById("host_file").value;
-        var all_agree = document.getElementById("all_agree").value;
-        
+        var all_agree = document.getElementById("all_agree");
+      
         if(host_id == ""){
             alert("아이디를 입력해주세요.");
             document.getElementById("host_id").focus();
@@ -531,11 +578,16 @@
             document.getElementById("host_auth").focus();
             return false;
         }
-        if(host_type == ""){
-            alert("사업자 유형을 선택해주세요.");
-            document.getElementById("host_type").focus();
+        if(host_safe_no == ""){
+            alert("안심번호를 입력해주세요.");
+            document.getElementById("host_safe_no").focus();
             return false;
         }
+        // if(host_type == ""){
+        //     alert("사업자 유형을 선택해주세요.");
+        //     document.getElementById("host_type").focus();
+        //     return false;
+        // }
         if(host_co_name == ""){
             alert("상호명을 입력해주세요.");
             document.getElementById("host_co_name").focus();
@@ -576,11 +628,11 @@
             document.getElementById("host_sector2").focus();
             return false;
         }
-        if(host_bank == ""){
-            alert("계좌은행을 선택해주세요.");
-            document.getElementById("host_bank").focus();
-            return false;
-        }
+        // if(host_bank == ""){
+        //     alert("계좌은행을 선택해주세요.");
+        //     document.getElementById("host_bank").focus();
+        //     return false;
+        // }
         if(host_bank_account == ""){
             alert("예금주를 입력해주세요.");
             document.getElementById("host_bank_account").focus();
@@ -591,11 +643,11 @@
             document.getElementById("host_bank_no").focus();
             return false;
         }
-        if(host_file == ""){
-            alert("사업자등록증 사본을 등록해주세요.");
-            document.getElementById("host_file").focus();
-            return false;
-        }
+        // if(host_file == ""){
+        //     alert("사업자등록증 사본을 등록해주세요.");
+        //     document.getElementById("host_file").focus();
+        //     return false;
+        // }
         if(all_agree.checked){
             return true ;
         }else{
@@ -605,5 +657,5 @@
     }
  
 </script>
-
+</body>
 </html>
