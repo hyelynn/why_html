@@ -282,7 +282,7 @@
 
     document.getElementById("is_dup").addEventListener('click', function(){
             var email =  document.getElementById("user_id").value;
-            var regEmail = /^[a-zA-Z0-9]+@[a-zA-Z0-9]+$/;
+            var regEmail = /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i;
             if (!regEmail.test(email)) {
                 alert('아이디가 형식에 맞지 않습니다'); 
                 document.getElementById("user_id").focus();
