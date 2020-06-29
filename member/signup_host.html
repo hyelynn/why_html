@@ -10,7 +10,7 @@
     <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
-    
+    <script src="https://sdk.amazonaws.com/js/aws-sdk-2.283.1.min.js"></script>
     <!-- Custom -->
     <link rel="stylesheet" href="../css/custom.css">
     <script src="../js/custom.js"></script>
@@ -261,6 +261,11 @@
                             <label for="host_type" class="d-block text-gray">사업자유형</label>
                             <select name="host_type" id="host_type" class="form-control">
                                 <option value="">선택해 주세요.</option>
+                                <option value="">간이과세자</option>
+                                <option value="">일반과세자</option>
+                                <option value="">법인사업자</option>
+                                <option value="">면세사업자</option>
+                                <option value="">기타사업자</option>
                             </select>
                         </div>
                         <div class="flex-fill w-75">
@@ -304,6 +309,29 @@
                         <label for="host_bank" class="d-block text-gray">계좌 은행</label>
                         <select name="host_bank" id="host_bank" class="form-control">
                             <option value="">선택해 주세요.</option>
+                            <option value="한국은행">한국은행</option>
+                            <option value="부산은행">부산은행</option>
+                            <option value="한국씨티은행">한국씨티은행</option>
+                            <option value="대구은행">대구은행</option>
+                            <option value="우체국">우체국</option>
+                            <option value="하나은행">하나은행</option>
+                            <option value="기업은행">기업은행</option>
+                            <option value="전북은행">전북은행</option>
+                            <option value="제주은행">제주은행</option>
+                            <option value="카카오뱅크">카카오뱅크</option>
+                            <option value="케이뱅크">케이뱅크</option>
+                            <option value="산업은행">산업은행</option>
+                            <option value="국민은행">국민은행</option>
+                            <option value="외환은행">외환은행</option>
+                            <option value="광주은행">광주은행</option>
+                            <option value="경남은행">경남은행</option>
+                            <option value="새마을금고">새마을금고</option>
+                            <option value="농협">농협</option>
+                            <option value="SC 제일은행">SC 제일은행</option>
+                            <option value="신협 중앙회">신협 중앙회</option>
+                            <option value="신한은행">신한은행</option>
+                            <option value="수협중앙회">수협중앙회</option>
+                            <option value="우리은행">우리은행</option>
                         </select>
                     </div>
                     <div class="col-lg-6 custom-inputs-sub not">
@@ -319,9 +347,9 @@
                 <div class="custom-inputs-sub not mb-4">
                     <span class="d-block mb-2 text-gray">사업자등록증 사본</span>
                     <div class="d-flex custom-file">
-                        <input class="upload-name form-control flex-fill mr-4" placeholder="JPG, PNG 파일만 가능합니다.(파일이름은 “OOO사업자등록증” 으로 통일해 주세요)" disabled="disabled">
+                        <input id="file_name" class="upload-name form-control flex-fill mr-4" placeholder="JPG, PNG 파일만 가능합니다.(파일이름은 “OOO사업자등록증” 으로 통일해 주세요)" disabled="disabled">
                         <label for="host_file" class="btn flex-fill w-25 mb-0 bg-yellow">업로드</label>
-                        <input type="file" id="host_file" class="upload-hidden">
+                        <input type="file" id="host_file" class="upload-hidden" onchange="addFile(this.files);">
                     </div>
                 </div>
             </form>
@@ -375,9 +403,61 @@
     </footer>
 
 <script type="text/javascript">
+    var emailFlag = false;
+    var albumBucketName = 'biz-cetificate';
+    var bucketRegion = 'ap-northeast-2';
+    var IdentityPoolId = 'ap-northeast-2:5de34811-ed49-42bb-8378-726186756855';
+
+    AWS.config.update({
+        region: bucketRegion,
+        credentials: new AWS.CognitoIdentityCredentials({
+            IdentityPoolId: IdentityPoolId
+        })
+    });
+
+    var s3 = new AWS.S3({
+        apiVersion: '2006-03-01',
+        params: {Bucket: albumBucketName}
+    });
+
+    function addFile(albumName) {
+        var files = document.getElementById('host_file').files;
+        if (!files.length) {
+            return alert('업로드할 파일을 선택해주세요.');
+        }
+        var file = files[0];
+        var fileName = file.name;
+        document.getElementById('file_name').value = fileName;
+        // fileName = document.getElementById('host_id').value;
+        var photoKey = fileName;
+        s3.upload({
+            Key: photoKey,
+            Body: file,
+            ACL: 'public-read'
+        }, function(err, data) {
+            if (err) {
+                return alert('파일 업로드 실패: ', err, data);
+                console.log(err, data);
+            }
+            alert('파일 업로드 성공');
+            viewAlbum(albumName);
+        });
+    }
+
+    
+    document.getElementById("host_id").addEventListener('input', function(){
+        emailFlag = false;
+        document.getElementById("is_dup").disabled = false;
+    });
 
     document.getElementById("is_dup").addEventListener('click', function(){
         var email =  document.getElementById("host_id").value;
+        var regEmail = /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i;
+        if (!regEmail.test(email)) {
+            alert('아이디가 형식에 맞지 않습니다'); 
+            document.getElementById("host_id").focus();
+            return false;
+        }
         var xhr = new XMLHttpRequest();
 
         xhr.onreadystatechange = function() { 
@@ -391,6 +471,8 @@
                     }
                     else{
                         alert("사용 할 수 있는 아이디 입니다.");
+                        emailFlag = true;
+                        document.getElementById("is_dup").disabled = true;
                     }
                 } else {
                 }
@@ -411,7 +493,8 @@
         var host_name = document.getElementById("host_name").value;
         var host_nickname = document.getElementById("host_nickname").value;
         var host_phone = document.getElementById("host_phone").value;
-        var host_type = document.getElementById("host_type").value;
+        var host_type_sel = document.getElementById("host_type");
+        var host_type = host_type_sel.options[host_type_sel.selectedIndex].value;
         var host_co_name = document.getElementById("host_co_name").value;
         var host_safe_no = document.getElementById("host_safe_no").value;
         var host_no = document.getElementById("host_no").value;
@@ -419,16 +502,17 @@
         var host_address = document.getElementById("host_address").value + " , " + document.getElementById("host_address2").value + " , " + document.getElementById("host_zipcode").value;
         var host_sector = document.getElementById("host_sector").value;
         var host_sector2 = document.getElementById("host_sector2").value;
-        var host_bank = document.getElementById("host_bank").value;
+        var host_bank_sel = document.getElementById("host_bank");
+        var host_bank = host_bank_sel.options[host_bank_sel.selectedIndex].value;
         var host_bank_account = document.getElementById("host_bank_account").value;
         var host_bank_no = document.getElementById("host_bank_no").value;
-        var host_file = document.getElementById("host_file").value;
+        var files = document.getElementById('host_file').files;
+        var host_file = files[0].name;
        
         var xhr = new XMLHttpRequest();
         xhr.onreadystatechange = function() {
             if (xhr.readyState === xhr.DONE) { 
                 if (xhr.status === 200 || xhr.status === 201) {
-                    alert(xhr.responseText);
                     window.location.href = "../index.html";
                 } else {
                     alert("회원가입이 정상적으로 이루어지지 않았습니다. 다시 시도해주세요.");
@@ -439,13 +523,9 @@
         };
         xhr.open('POST', 'http://3.34.150.116:3000/host/apply');
         xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
-        // xhr.send("host_id="+host_id+"&host_pw="+host_pw+"&host_name="+host_name+"&host_nickname="+host_nickname+"&host_phone="+host_phone+"&host_safe_no="+host_safe_no
-        // +"&host_type="+host_type+"&host_co_name="+host_co_name+"&host_no="+host_no+"&host_ceo="+host_ceo+"&host_address="+host_address+"&host_sector="+host_sector
-        // +"&host_sector2="+host_sector2+"&host_bank="+host_bank+"&host_bank_account="+host_bank_account+"&host_bank_no="+host_bank_no+"&host_file="+host_file); 
         xhr.send("host_id="+host_id+"&host_pw="+host_pw+"&host_name="+host_name+"&host_nickname="+host_nickname+"&host_phone="+host_phone+"&host_safe_no="+host_safe_no
-        +"&host_type="+1+"&host_co_name="+host_co_name+"&host_no="+host_no+"&host_ceo="+host_ceo+"&host_address="+host_address+"&host_sector="+host_sector
-        +"&host_sector2="+host_sector2+"&host_bank="+1+"&host_bank_account="+host_bank_account+"&host_bank_no="+host_bank_no+"&host_file="+1); 
-
+        +"&host_type="+host_type+"&host_co_name="+host_co_name+"&host_no="+host_no+"&host_ceo="+host_ceo+"&host_address="+host_address+"&host_sector="+host_sector
+        +"&host_sector2="+host_sector2+"&host_bank="+host_bank+"&host_bank_account="+host_bank_account+"&host_bank_no="+host_bank_no+"&host_file="+host_file); 
     }
 }
 
@@ -518,7 +598,7 @@
         var host_phone = document.getElementById("host_phone").value;
         var host_auth = document.getElementById("host_auth").value;
         var host_safe_no = document.getElementById("host_safe_no").value;
-        var host_type = document.getElementById("host_type").value;
+        var host_type = document.getElementById("host_type");
         var host_co_name = document.getElementById("host_co_name").value;
         var host_no = document.getElementById("host_no").value;
         var host_ceo = document.getElementById("host_ceo").value;
@@ -527,21 +607,37 @@
         var host_address2 = document.getElementById("host_address2").value;
         var host_sector = document.getElementById("host_sector").value;
         var host_sector2 = document.getElementById("host_sector2").value;
-        var host_bank = document.getElementById("host_bank").value;
+        var host_bank = document.getElementById("host_bank");
         var host_bank_account = document.getElementById("host_bank_account").value;
         var host_bank_no = document.getElementById("host_bank_no").value;
         var host_file = document.getElementById("host_file").value;
         var all_agree = document.getElementById("all_agree");
-      
+        var regPw = /^[A-Za-z0-9+]*$/;
+        var regPhone = /^\d{2,3}-\d{3,4}-\d{4}$/;
+
         if(host_id == ""){
             alert("아이디를 입력해주세요.");
             document.getElementById("host_id").focus();
+            return false;
+        }
+        if(!emailFlag){
+            alert("아이디를 인증해주세요");
             return false;
         }
         if(host_pw == ""){
             alert("비밀번호를 입력해주세요.");
             document.getElementById("host_pw").focus();
             return false;
+        }
+        if(host_pw.length < 6 || host_pw.length > 14){
+            alert("비밀번호는 6~14자리 입력해주세요.");
+            document.getElementById("host_pw").focus();
+            return false;
+        }
+        if (!regPw.test(document.getElementById('host_pw').value)) {
+            alert('비밀번호가 형식에 맞지 않습니다'); 
+            document.getElementById("host_pw").focus();
+             return false;
         }
         if(host_pw2 == ""){
             alert("비밀번호 확인을 입력해주세요.");
@@ -568,6 +664,11 @@
             document.getElementById("host_phone").focus();
             return false;
         }
+        if (!regPhone.test(document.getElementById('host_phone').value)) {
+             alert('전화번호가 형식에 맞지 않습니다'); 
+            document.getElementById("host_phone").focus();
+             return false;
+        }
         if(host_auth == ""){
             alert("인증번호를 입력해주세요.");
             document.getElementById("host_auth").focus();
@@ -583,11 +684,11 @@
             document.getElementById("host_safe_no").focus();
             return false;
         }
-        // if(host_type == ""){
-        //     alert("사업자 유형을 선택해주세요.");
-        //     document.getElementById("host_type").focus();
-        //     return false;
-        // }
+        if(host_type.options[host_type.selectedIndex].text == ""){
+            alert("사업자 유형을 선택해주세요.");
+            document.getElementById("host_type").focus();
+            return false;
+        }
         if(host_co_name == ""){
             alert("상호명을 입력해주세요.");
             document.getElementById("host_co_name").focus();
@@ -628,11 +729,11 @@
             document.getElementById("host_sector2").focus();
             return false;
         }
-        // if(host_bank == ""){
-        //     alert("계좌은행을 선택해주세요.");
-        //     document.getElementById("host_bank").focus();
-        //     return false;
-        // }
+        if(host_bank.options[host_bank.selectedIndex].text == ""){
+            alert("계좌은행을 선택해주세요.");
+            document.getElementById("host_bank").focus();
+            return false;
+        }
         if(host_bank_account == ""){
             alert("예금주를 입력해주세요.");
             document.getElementById("host_bank_account").focus();
@@ -643,11 +744,11 @@
             document.getElementById("host_bank_no").focus();
             return false;
         }
-        // if(host_file == ""){
-        //     alert("사업자등록증 사본을 등록해주세요.");
-        //     document.getElementById("host_file").focus();
-        //     return false;
-        // }
+        if(host_file == ""){
+            alert("사업자등록증 사본을 등록해주세요.");
+            document.getElementById("host_file").focus();
+            return false;
+        }
         if(all_agree.checked){
             return true ;
         }else{

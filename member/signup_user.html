@@ -282,6 +282,12 @@
 
     document.getElementById("is_dup").addEventListener('click', function(){
             var email =  document.getElementById("user_id").value;
+            var regEmail = /^[a-zA-Z0-9]+@[a-zA-Z0-9]+$/;
+            if (!regEmail.test(email)) {
+                alert('아이디가 형식에 맞지 않습니다'); 
+                document.getElementById("user_id").focus();
+                return false;
+            }
             var xhr = new XMLHttpRequest();
     
             xhr.onreadystatechange = function() { 
@@ -357,20 +363,34 @@
         var user_auth = document.getElementById("user_auth").value;
         var all_agree = document.getElementById("all_agree");
 
+        var regEmail = /^[a-zA-Z0-9]+@[a-zA-Z0-9]+$/;
+        var regPw = /^[A-Za-z0-9+]*$/;
+        var regPhone = /^\d{2,3}-\d{3,4}-\d{4}$/;
+
         if(user_id == ""){
             alert("아이디를 입력해주세요.");
             document.getElementById("user_id").focus();
             return false;
+        }
+        if (!regEmail.test(document.getElementById('user_id').value)) {
+             alert('아이디가 형식에 맞지 않습니다'); 
+            document.getElementById("user_id").focus();
+             return false;
         }
         if(user_pw == ""){
             alert("비밀번호를 입력해주세요.");
             document.getElementById("user_pw").focus();
             return false;
         }
-        if(user_pw.length > 6 ){
+        if(user_pw.length < 6 || user_pw.length > 14){
             alert("비밀번호는 6~14자리 입력해주세요.");
             document.getElementById("user_pw").focus();
             return false;
+        }
+        if (!regPw.test(document.getElementById('user_pw').value)) {
+             alert('비밀번호가 형식에 맞지 않습니다'); 
+            document.getElementById("user_pw").focus();
+             return false;
         }
         if(user_pw2 == ""){
             alert("비밀번호 확인을 입력해주세요.");
@@ -396,6 +416,11 @@
             alert("연락처를 입력해주세요.");
             document.getElementById("user_phone").focus();
             return false;
+        }
+        if (!regPhone.test(document.getElementById('user_phone').value)) {
+             alert('전화번호가 형식에 맞지 않습니다'); 
+            document.getElementById("user_phone").focus();
+             return false;
         }
         if(user_auth == ""){
             alert("인증번호를 입력해주세요.");
