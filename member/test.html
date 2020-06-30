@@ -10,7 +10,8 @@
     <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
-
+    <!-- <script type="text/javascript" src="http://code.jquery.com/jquery-latest.min.js"></script>
+    <script type="text/javascript" src="js/jquery.ajax-cross-origin.min.js"></script> -->
     <!-- Custom -->
     <link rel="stylesheet" href="../css/custom.css">
     <script src="../js/custom.js"></script>
@@ -19,19 +20,17 @@
     <link rel="stylesheet" href="../css/fontawesome/css/all.min.css">
 
 
-    <!-- KaKao SDK -->
+        <!-- KaKao SDK -->
 
     <script src="../js/kakao_sdk.js"></script>
     <script>
-        // SDK를 초기화 합니다. 사용할 앱의 JavaScript 키를 설정해 주세요.
+            // SDK를 초기화 합니다. 사용할 앱의 JavaScript 키를 설정해 주세요.
         Kakao.init('d88bea310f4a39afbea3146fe1c0fa72');
-
-        // SDK 초기화 여부를 판단합니다.
+            // SDK 초기화 여부를 판단합니다.
         console.log(Kakao.isInitialized());
     </script>
 
-
-
+    <script src="../js/kakao_login.js"></script>
 </head>
 
 <body>
@@ -55,7 +54,7 @@
                     <button type="button" class="btn btn-block bg-hot-pink text-white">로그인</button>
 
                     <div class="border-top mt-3 mb-4 pt-3">
-                        <button id ="kakao_login" type="button" class="btn btn-block bg-kakao"><img src="../img/logo_kakao.svg" class="mr-3" width="20px">카카오계정으로 로그인</button>
+                        <button type="button" class="btn btn-block bg-kakao"><img src="../img/logo_kakao.svg" class="mr-3" width="20px">카카오계정으로 로그인</button>
                         <button type="button" class="btn btn-block text-white bg-naver"><img src="../img/logo_naver.svg" class="mr-3" width="20px">네이버계정으로 로그인</button>
                         <!-- <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                         <button type="button" class="btn btn-primary">Save changes</button> -->
@@ -200,84 +199,55 @@
 
     <main role="main">
         <div class="container py-lg-5 py-4">
-            <h3 class="mb-4">회원가입</h3>
-            <!-- terms -->
+            <h3 class="mb-4">개인 회원가입</h3>
+            <!-- form -->
             <div class="mb-2">
-                <!-- tab pages -->
-                <ul class="nav nav-pills nav-fill custom-nav-tabs light">
-                    <li class="nav-item">
-                        <a class="nav-link active" data-toggle="tab" href="#terms">이용약관 <span class="text-red">(필수)</span></a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" data-toggle="tab" href="#privacy">개인정보처리방침 <span class="text-red">(필수)</span></a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" data-toggle="tab" href="#location">위치정보수집약관 <span class="text-red">(필수)</span></a>
-                    </li>
-                </ul>
-
-                <div class="tab-content">
-                    <!-- tab 1 -->
-                    <div class="tab-pane fade show active " id="terms">
-                        <div class="border border-top-0 p-4 mb-lg-4 mb-2">
-                            <p class="font-weight-light mb-0 font-size-s">
-                                그들을 동력은 우리의 공자는 굳세게 구하지 낙원을 그들의 이것이다. 위하여, 얼음과 꽃이 사는가 새 하였으며, 끝에 것이다. 청춘의 착목한는 얼음이 따뜻한
-                                할지니, 천자만홍이 원대하고, 그들에게 굳세게 것이다.<br><br>
-                                할지니, 군영과 이상 꾸며 힘있다. 인생을 밥을 쓸쓸한 더운지라 황금시대다. 할지니, 우리 청춘의 이것을 가치를 무엇을 있으며, 것이다. 이상의 시들어 이상의
-                                굳세게 대한 약동하다. 이상, 싶이 목숨이 두기 방황하여도, 풍부하게 쓸쓸한 것이다.<br><br>
-                                가슴이 것은 모래뿐일 끓는 살 수 이것이다. 피고, 위하여서 반짝이는 안고, 같지 뼈 우리의 황금시대다
-                            </p>
-                        </div>
-
-                        <!-- checkbox -->
-                        <div class="d-flex mb-4 custom-inputs">
-                            <input type="checkbox" class="custom-checkbox mr-2" id="all_agree">
-                            <label for="all_agree" class="mb-0">위 약관을 이해하였으며 이에 동의합니다.</label>
+                <div class="custom-inputs-sub not mb-3">
+                    <label for="user_id" class="d-block text-gray">아이디(이메일)</label>
+                    <div class="d-flex">
+                        <input type="text" class="form-control flex-fill mr-4" id="user_id" placeholder="example@example.com">
+                        <button type="button" id="is_dup" class="btn flex-fill w-25 bg-yellow">중복확인</button>
+                    </div>
+                </div>
+                <div class="row mb-3">
+                    <div class="col-lg-6 custom-inputs-sub not mb-lg-0 mb-3">
+                        <label for="user_name" class="d-block text-gray">이름</label>
+                        <input type="text" class="form-control" id="user_name" placeholder="이름">
+                    </div>
+                    <div class="col-lg-6 custom-inputs-sub not">
+                        <label for="user_nickname" class="d-block text-gray">닉네임</label>
+                        <input type="text" class="form-control" id="user_nickname" placeholder="아트바이어스">
+                    </div>
+                </div>
+                <div class="row mb-3">
+                    <div class="col-lg-6 custom-inputs-sub not mb-lg-0 mb-3">
+                        <label for="user_phone" class="d-block text-gray">연락처</label>
+                        <div class="d-flex">
+                            <div class="flex-fill mr-4">
+                                <input type="text" class="form-control" id="user_phone" placeholder="010-1234-5678">
+                            </div>
+                            <button type="button" class="btn flex-fill w-25 bg-yellow">인증번호 발송</button>
                         </div>
                     </div>
-                    <!-- tab 2 -->
-                    <div class="tab-pane fade" id="privacy">
-                        <div class="border border-top-0 p-4 mb-lg-4 mb-2">
-                            <p class="font-weight-light mb-0 font-size-s">
-                                그들을 동력은 우리의 공자는 굳세게 구하지 낙원을 그들의 이것이다. 위하여, 얼음과 꽃이 사는가 새 하였으며, 끝에 것이다. 청춘의 착목한는 얼음이 따뜻한
-                                할지니, 천자만홍이 원대하고, 그들에게 굳세게 것이다.<br><br>
-                                할지니, 군영과 이상 꾸며 힘있다. 인생을 밥을 쓸쓸한 더운지라 황금시대다. 할지니, 우리 청춘의 이것을 가치를 무엇을 있으며, 것이다. 이상의 시들어 이상의
-                                굳세게 대한 약동하다. 이상, 싶이 목숨이 두기 방황하여도, 풍부하게 쓸쓸한 것이다.<br><br>
-                                가슴이 것은 모래뿐일 끓는 살 수 이것이다. 피고, 위하여서 반짝이는 안고, 같지 뼈 우리의 황금시대다
-                            </p>
-                        </div>
-
-                        <!-- checkbox -->
-                        <div class="d-flex mb-4 custom-inputs">
-                            <input type="checkbox" class="custom-checkbox mr-2" id="all_agree">
-                            <label for="all_agree" class="mb-0">위 약관을 이해하였으며 이에 동의합니다.</label>
-                        </div>
-                    </div>
-                    <!-- tab 3 -->
-                    <div class="tab-pane fade" id="location">
-                        <div class="border border-top-0 p-4 mb-lg-4 mb-2">
-                            <p class="font-weight-light mb-0 font-size-s">
-                                그들을 동력은 우리의 공자는 굳세게 구하지 낙원을 그들의 이것이다. 위하여, 얼음과 꽃이 사는가 새 하였으며, 끝에 것이다. 청춘의 착목한는 얼음이 따뜻한
-                                할지니, 천자만홍이 원대하고, 그들에게 굳세게 것이다.<br><br>
-                                할지니, 군영과 이상 꾸며 힘있다. 인생을 밥을 쓸쓸한 더운지라 황금시대다. 할지니, 우리 청춘의 이것을 가치를 무엇을 있으며, 것이다. 이상의 시들어 이상의
-                                굳세게 대한 약동하다. 이상, 싶이 목숨이 두기 방황하여도, 풍부하게 쓸쓸한 것이다.<br><br>
-                                가슴이 것은 모래뿐일 끓는 살 수 이것이다. 피고, 위하여서 반짝이는 안고, 같지 뼈 우리의 황금시대다
-                            </p>
-                        </div>
-
-                        <!-- checkbox -->
-                        <div class="d-flex mb-4 custom-inputs">
-                            <input type="checkbox" class="custom-checkbox mr-2" id="all_agree">
-                            <label for="all_agree" class="mb-0">위 약관을 이해하였으며 이에 동의합니다.</label>
-                        </div>
+                    <div class="col-lg-6 custom-inputs-sub not">
+                        <label for="user_auth" class="d-block text-gray">인증번호</label>
+                        <input type="text" class="form-control" id="user_auth" placeholder="인증번호">
                     </div>
                 </div>
             </div>
 
-            <!-- buttons -->
-            <div class="d-flex justify-content-center">
-                <a href="../member/signup_user.html" class="btn rounded-0 py-lg-4 px-lg-5 py-2 px-3 mr-2 bg-yellow font-size-s">개인 회원가입</a>
-                <a href="../member/signup_host.html" class="btn rounded-0 py-lg-4 px-lg-5 py-2 px-3 ml-2 text-white bg-sky font-size-s">사업자 회원가입</a>
+            <!-- checkbox -->
+            <div class="d-flex mb-4 custom-inputs">
+                <input type="checkbox" class="custom-checkbox mr-2" id="all_agree">
+                <label for="all_agree" class="mb-0">
+                    개인 회원 약관 및 개인정보이용방안을 이해하였으며 이에 동의합니다.
+                    <a href="../sub/terms.html" class="text-dark" target="_blank">(보기)</a>
+                </label>
+            </div>
+
+            <!-- button -->
+            <div class="custom-inputs-sub not">
+                <button type="button" id="signup" onClick="sendFormAjax();" class="btn btn-block bg-yellow">회원가입 완료</button>
             </div>
         </div>
     </main>
@@ -311,11 +281,168 @@
             </div>
         </div>
     </footer>
+    <script type="text/javascript">
 
+    document.getElementById("is_dup").addEventListener('click', function(){
+            var email =  document.getElementById("user_id").value;
+            var regEmail = /^[a-zA-Z0-9]+@[a-zA-Z0-9]+$/;
+            if (!regEmail.test(email)) {
+                alert('아이디가 형식에 맞지 않습니다'); 
+                document.getElementById("user_id").focus();
+                return false;
+            }
+            var xhr = new XMLHttpRequest();
+    
+            xhr.onreadystatechange = function() { 
+                if (xhr.readyState === xhr.DONE) { 
+                    if (xhr.status === 200 || xhr.status === 201) {
+                        var result = JSON.parse(xhr.responseText);
+                        if(result.result=="false"){
+                            alert("이미 사용중인 아이디 입니다.");
+                            document.getElementById("user_id").value = "";
+                            document.getElementById("user_id").focus();
+                        }
+                        else{
+                            alert("사용 할 수 있는 아이디 입니다.");
+                        }
+                    } else {
+                    }
+                }
+                else{
+                }
+            };
+            
+            xhr.open('POST', 'http://3.34.150.116:3000/user/verify');
+            xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+            xhr.send("email="+ email); 
+        })
 
-   
+    function sendFormAjax(){
+        if(CheckForm()){
+            var user_id_t = document.getElementById("user_id").value;
+            var user_pw_t = document.getElementById("user_pw").value;
+            var user_name_t = document.getElementById("user_name").value;
+            var user_nickname_t = document.getElementById("user_nickname").value;
+            var user_phone_t = document.getElementById("user_phone").value;
+            // var dataStuff = {
+            //     user_id:user_id_t,
+            //     user_pw:user_pw_t,
+            //     user_name:user_name_t,
+            //     user_nickname:user_nickname_t,
+            //     user_phone:user_phone_t
+            // }
+            var xhr = new XMLHttpRequest();
+            xhr.onreadystatechange = function() {
+                if (xhr.readyState === xhr.DONE) { 
+                    if (xhr.status === 200 || xhr.status === 201) {
+                        alert(xhr.responseText);
+                        window.location.href = "../index.html";
+                    } else {
+                        alert("회원가입이 정상적으로 이루어지지 않았습니다. 다시 시도해주세요.");
+                        console.error(xhr.responseText);
+                    }
+                }else{
+                }
+            };
+            xhr.open('POST', 'http://3.34.150.116:3000/user/apply',true);
+            xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+            xhr.send("user_id="+user_id_t+"&user_pw="+user_pw_t+"&user_name="+user_name_t+"&user_nickname="+user_nickname_t+"&user_phone="+user_phone_t); 
+            // xhr.send(dataStuff);
+        }
+            
+    }
+        
+    //     document.getElementById("get_num").addEventListener('click', function(){
+    //          console.log(Math.floor(Math.random() * 99999 + 1));
+    //     })
+     
+    function CheckForm(){
+        var user_id = document.getElementById("user_id").value;
+        var user_pw = document.getElementById("user_pw").value;
+        var user_pw2 = document.getElementById("user_pw2").value;
+        var user_name = document.getElementById("user_name").value;
+        var user_nickname = document.getElementById("user_nickname").value;
+        var user_phone = document.getElementById("user_phone").value;
+        var user_auth = document.getElementById("user_auth").value;
+        var all_agree = document.getElementById("all_agree");
+
+        var regEmail = /^[a-zA-Z0-9]+@[a-zA-Z0-9]+$/;
+        var regPw = /^[A-Za-z0-9+]*$/;
+        var regPhone = /^\d{2,3}-\d{3,4}-\d{4}$/;
+
+        if(user_id == ""){
+            alert("아이디를 입력해주세요.");
+            document.getElementById("user_id").focus();
+            return false;
+        }
+        if (!regEmail.test(document.getElementById('user_id').value)) {
+             alert('아이디가 형식에 맞지 않습니다'); 
+            document.getElementById("user_id").focus();
+             return false;
+        }
+        if(user_pw == ""){
+            alert("비밀번호를 입력해주세요.");
+            document.getElementById("user_pw").focus();
+            return false;
+        }
+        if(user_pw.length < 6 || user_pw.length > 14){
+            alert("비밀번호는 6~14자리 입력해주세요.");
+            document.getElementById("user_pw").focus();
+            return false;
+        }
+        if (!regPw.test(document.getElementById('user_pw').value)) {
+             alert('비밀번호가 형식에 맞지 않습니다'); 
+            document.getElementById("user_pw").focus();
+             return false;
+        }
+        if(user_pw2 == ""){
+            alert("비밀번호 확인을 입력해주세요.");
+            document.getElementById("user_pw2").focus();
+            return false;
+        }
+        if(user_pw != user_pw2){
+            alert("비밀번호가 서로 일치하지 않습니다.");
+            document.getElementById("user_pw2").focus();
+            return false;
+        }
+        if(user_name == ""){
+            alert("이름을 입력해주세요.");
+            document.getElementById("user_name").focus();
+            return false;
+        }
+        if(user_nickname == ""){
+            alert("닉네임을 입력해주세요.");
+            document.getElementById("user_nickname").focus();
+            return false;
+        }
+        if(user_phone == ""){
+            alert("연락처를 입력해주세요.");
+            document.getElementById("user_phone").focus();
+            return false;
+        }
+        if (!regPhone.test(document.getElementById('user_phone').value)) {
+             alert('전화번호가 형식에 맞지 않습니다'); 
+            document.getElementById("user_phone").focus();
+             return false;
+        }
+        if(user_auth == ""){
+            alert("인증번호를 입력해주세요.");
+            document.getElementById("user_auth").focus();
+            return false;
+        }
+        if(user_auth != 1234){
+            alert("인증번호가 맞지 않습니다.");
+            document.getElementById("user_auth").focus();
+            return false;
+        }
+        if(all_agree.checked){
+            return true;
+        }else{
+            alert("동의를 해주세요.");
+            return false;
+        }
+    }
+    </script>
 </body>
-
-<script src="../js/kakao_login.js"></script>
 
 </html>
