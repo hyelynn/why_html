@@ -12,17 +12,8 @@
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
     <script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
+    <script src="/js/include.js"></script>
     <!-- Custom -->
-    <script type="text/javascript">
-        $(document).ready(function(){
-            if(sessionStorage.getItem('id')!= null){
-               $("#nav_div").load("login.html");
-            }
-            else{
-                $("#nav_div").load("logout.html");
-            }
-        });
-    </script>
 
     <link rel="stylesheet" href="css/custom.css">
     <script src="js/custom.js"></script>
@@ -32,6 +23,7 @@
 </head>
 
 <body>
+    <header include-html="/include/header.html"></header>
     <!-- Login Modal -->
     <div class="modal fade" id="loginModal" tabindex="-1" role="dialog" aria-labelledby="loginModalLabel" aria-hidden="true">
         <div class="modal-dialog custom-modal" role="document">
@@ -331,7 +323,7 @@
             </div>
         </div>
 
-        <div class="container mb-xl-14 mb-5 slide-container">
+        <!-- 클래스부분 <div class="container mb-xl-14 mb-5 slide-container">
             <h2 class="mb-3 mb-md-5 px-2">지금 핫한 클래스</h2>
 
             <div id="carouselList2" class="carousel slide carousel-multiple-slide" data-ride="carousel">
@@ -458,9 +450,9 @@
                 <h2 class="mb-3">제목의 한 줄만 가능하게 작성하세요</h2>
                 <p class="mb-0 font-weight-light font-size-s">열매를 봄날의 같이 아니다. 낙원을 싹이 용기가 되려니와, 우는 것이다. 커다란 청춘의 그들의 끝까지 거친 얼마나 과실이 무엇을 충분히 때문이다. 넣는 할지니, 같이 보배를 이상의 운다.</p>
             </div>
-        </div>
+        </div> -->
 
-        <div class="container mb-xl-14 mb-5 slide-container">
+        <!-- 오디션 부분 <div class="container mb-xl-14 mb-5 slide-container">
             <h2 class="mb-3 mb-md-5 px-2">자신의 끼를 발휘할 수 있는 추천 오디션</h2>
 
             <div id="carouselList3" class="carousel slide carousel-multiple-slide" data-ride="carousel">
@@ -556,39 +548,10 @@
                     <span class="sr-only">Next</span>
                 </a>
             </div>
-        </div>
+        </div> -->
     </main>
 
-    <footer class="bg-light">
-        <div class="container py-lg-5 py-4">
-            <div class="d-lg-flex align-items-center justify-content-between mb-lg-4 mb-3">
-                <a href="index.html"><img src="img/logo.png" srcset="img/logo@2x.png 2x, img/logo@3x.png 3x"></a>
-                <ul class="d-flex list-unstyled mb-0 font-weight-light footer-menu font-size-x mt-lg-0 mt-3">
-                    <li class="px-md-2 px-1 position-relative"><a href="sub/terms.html" class="text-muted text-decoration-none">이용약관</a></li>
-                    <li class="px-md-2 px-1 position-relative"><a href="#x" class="text-muted text-decoration-none">서비스정보</a></li>
-                    <li class="px-md-2 px-1 position-relative"><a href="sub/board_notice.html" class="text-muted text-decoration-none">공지사항</a></li>
-                    <li class="px-md-2 px-1 position-relative"><a href="#x" class="text-muted text-decoration-none">도움말</a></li>
-                    <li class="px-md-2 px-1 position-relative"><a href="#x" class="text-muted text-decoration-none">광고신청하기</a></li>
-                    <li class="px-md-2 px-1 position-relative"><a href="#x" class="text-muted text-decoration-none">호스트등록</a></li>
-                </ul>
-            </div>
-
-            <div class="border-top text-muted font-weight-light pt-lg-4 pt-3 font-size-x">
-                <p class="mb-0">상호명 : 아트바이어스<span class="text-divider"></span>대표 : 정성원<span class="text-divider"></span>사업자등록번호 : 166-16-01163<span class="text-divider"></span>통신판매업신고번호 : 2018-서울관악-12345<span class="text-divider"></span>
-                    <a href="#x" class="text-dark text-decoration-none font-weight-normal">사업자등록정보 ></a></p>
-                <p>영업소재지 : 경기도 광주시 오포읍 새말길 93, 103동 1204호(현대모닝사이드2차)<span class="text-divider"></span>이메일 : artbyus2020@gmail.com<span class="text-divider"></span>대표전화 : 010-3767-1447 (평일 오전 9시 ~ 오후 6시, 공휴일 제외)</p>
-
-                <div class="d-lg-flex mb-3">
-                    <a href="#x" class="text-dark text-decoration-none font-weight-normal mr-2">온라인 1:1문의 바로가기</a>
-                    <span>(평일 2시 ~ 오후 6시) * 공간에 대한 문의사항은 해당 공간 호스트에게 직접 문의해 주세요.</span>
-                </div>
-
-                <p>아트바이어스는 통신판매중개자이며 통신판매의 당사자가 아닙니다. 따라서 아트바이어스는 공간 거래정보 및 거래에 대해 책임지지 않습니다.</p>
-                <p class="text-right font-weight-light text-light-gray">Copyright ART BY US crop. All Right Reserved.</p>
-            </div>
-        </div>
-    </footer>
-
+    <footer include-html="/include/footer.html"></footer>
 <script type="text/javascript">
   
     // carousel multiple item slide
