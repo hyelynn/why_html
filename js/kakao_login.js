@@ -16,7 +16,7 @@ $("#kakao_login").on("click", function() {
 
           access_token = response.access_token;
           refresh_token = response.refresh_token;
-          location.href = "http://localhost:8080/why_html/member/test.html";
+          location.href = "http://artbyus.co.kr/member/test.html";
           
         },
         fail: function(error) {
