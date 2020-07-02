@@ -9,8 +9,6 @@ var naverLogin = new naver.LoginWithNaverId(
 
 /* 설정정보를 초기화하고 연동을 준비 */
 naverLogin.init();
-
-
 naverLogin.getLoginStatus(function (status) {
     if (status) {
         var email = naverLogin.user.getEmail();
