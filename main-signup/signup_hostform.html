@@ -1,0 +1,102 @@
+<!-- form : 사업자정보 -->
+<h5 class="mb-4">사업자정보 입력</h5>
+<div class="mb-2">
+    <div class="custom-inputs-sub mb-3">
+        <div class="d-lg-flex">
+            <div class="flex-fill w-25 mr-4">
+                <label for="host_type" class="d-block text-gray">사업자유형</label>
+                <select name="host_type" id="host_type" class="form-control">
+                    <option value="">선택해 주세요.</option>
+                    <option value="">간이과세자</option>
+                    <option value="">일반과세자</option>
+                    <option value="">법인사업자</option>
+                    <option value="">면세사업자</option>
+                    <option value="">기타사업자</option>
+                </select>
+            </div>
+            <div class="flex-fill w-75">
+                <label for="host_co_name" class="d-block text-gray">상호명</label>
+                <input type="text" class="form-control" id="host_co_name" placeholder="사업자등록증에 있는 상호명으로 입력해 주세요.">
+            </div>
+        </div>
+    </div>
+    <div class="custom-inputs-sub mb-3">
+        <div class="d-lg-flex">
+            <div class="flex-fill w-75 mr-4 mb-lg-0 mb-3">
+                <label for="host_no" class="d-block text-gray">사업자 등록번호</label>
+                <input type="text" class="form-control" id="host_no" placeholder="예) 123-45-67890">
+            </div>
+            <div class="flex-fill w-25">
+                <label for="host_ceo" class="d-block text-gray">대표자명</label>
+                <input type="text" class="form-control" id="host_ceo" placeholder="예) 홍길동">
+            </div>
+        </div>
+    </div>
+    <div class="custom-inputs-sub mb-3">
+        <label for="host_zipcode" class="d-block text-gray">사업장 주소</label>
+        <div class="d-lg-flex">
+            <input type="text" class="form-control flex-fill w-25 mr-4 mb-lg-0 mb-3" id="host_zipcode"  placeholder="우편번호">
+            <input type="text" class="form-control flex-fill w-75" id="host_address" placeholder="기본주소">
+        </div>
+        <input type="text" class="form-control mt-3" id="host_address2"  placeholder="상세주소">
+    </div>
+    <div class="row mb-3">
+        <div class="col-lg-6 custom-inputs-sub not mb-lg-0 mb-3">
+            <label for="host_sector" class="d-block text-gray">업종</label>
+            <input type="text" class="form-control" id="host_sector" placeholder="연습실">
+        </div>
+        <div class="col-lg-6 custom-inputs-sub not">
+            <label for="host_sector2" class="d-block text-gray">업태</label>
+            <input type="text" class="form-control" id="host_sector2" placeholder="공간 공유업">
+        </div>
+    </div>
+    <div class="row mb-3">
+        <div class="col-lg-6 custom-inputs-sub not mb-lg-0 mb-3">
+            <label for="host_bank" class="d-block text-gray">계좌 은행</label>
+            <select name="host_bank" id="host_bank" class="form-control">
+                <option value="">선택해 주세요.</option>
+                <option value="한국은행">한국은행</option>
+                <option value="부산은행">부산은행</option>
+                <option value="한국씨티은행">한국씨티은행</option>
+                <option value="대구은행">대구은행</option>
+                <option value="우체국">우체국</option>
+                <option value="하나은행">하나은행</option>
+                <option value="기업은행">기업은행</option>
+                <option value="전북은행">전북은행</option>
+                <option value="제주은행">제주은행</option>
+                <option value="카카오뱅크">카카오뱅크</option>
+                <option value="케이뱅크">케이뱅크</option>
+                <option value="산업은행">산업은행</option>
+                <option value="국민은행">국민은행</option>
+                <option value="외환은행">외환은행</option>
+                <option value="광주은행">광주은행</option>
+                <option value="경남은행">경남은행</option>
+                <option value="새마을금고">새마을금고</option>
+                <option value="농협">농협</option>
+                <option value="SC 제일은행">SC 제일은행</option>
+                <option value="신협 중앙회">신협 중앙회</option>
+                <option value="신한은행">신한은행</option>
+                <option value="수협중앙회">수협중앙회</option>
+                <option value="우리은행">우리은행</option>
+            </select>
+        </div>
+        <div class="col-lg-6 custom-inputs-sub not">
+            <label for="host_bank_account" class="d-block text-gray">예금주</label>
+            <input type="text" class="form-control" id="host_bank_account" placeholder="예금주">
+        </div>
+    </div>
+    <div class="custom-inputs-sub not mb-3">
+        <label for="host_bank_no" class="d-block text-gray">계좌번호</label>
+        <input type="text" class="form-control" id="host_bank_no" placeholder="예) 1234567890">
+    </div>
+    <form id="theForm" method="POST" enctype="multipart/form-data" >
+    <div class="custom-inputs-sub not mb-4">
+        <span class="d-block mb-2 text-gray">사업자등록증 사본</span>
+        <div class="d-flex custom-file">
+            <input id="file_name" class="upload-name form-control flex-fill mr-4" placeholder="JPG, PNG 파일만 가능합니다.(파일이름은 “OOO사업자등록증” 으로 통일해 주세요)" disabled="disabled">
+            <label for="host_file" class="btn flex-fill w-25 mb-0 bg-yellow">업로드</label>
+            <input type="file" id="host_file" class="upload-hidden" onchange="addFile(this.files);">
+        </div>
+    </div>
+</form>
+</div>

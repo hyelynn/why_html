@@ -13,19 +13,23 @@
     <script type="text/javascript" src="https://static.nid.naver.com/js/naveridlogin_js_sdk_2.0.0.js" charset="utf-8"></script>
     
     <!-- Custom -->
-    <link rel="stylesheet" href="../css/custom.css">
-    <script src="../js/custom.js"></script>
-    <script src="../js/kakao_sdk.js"></script>
+    <link rel="stylesheet" href="/why_html/css/custom.css">
+    <script src="/why_html/js/custom.js"></script>
+    <script src="/why_html/js/kakao_sdk.js"></script>
     
     <!-- Fontawesome -->
-    <link rel="stylesheet" href="../css/fontawesome/css/all.min.css">
+    <link rel="stylesheet" href="/why_html/css/fontawesome/css/all.min.css">
 
-    <!-- KaKao SDK -->
-    
+    <!-- Custom -->
+    <script type="text/javascript" src="https://static.nid.naver.com/js/naveridlogin_js_sdk_2.0.0.js" charset="utf-8"></script>
+    <script src="/why_html/js/kakao_sdk.js"></script>
 
-    
-
-
+     <script>
+         // SDK를 초기화 합니다. 사용할 앱의 JavaScript 키를 설정해 주세요.
+         Kakao.init('d88bea310f4a39afbea3146fe1c0fa72');
+         // SDK 초기화 여부를 판단합니다.
+         console.log(Kakao.isInitialized());
+     </script>
 </head>
 
 <body>
@@ -54,7 +58,7 @@
                         <button type="button" class="btn btn-primary">Save changes</button> -->
                     </div>
                     <div class="text-center">
-                        <a href="../member/signup.html" class="text-decoration-none font-weight-light d-block text-light-gray mb-2">아직 아트바이어스의 회원이 아니신가요?</a>
+                        <a href="/why_html/member/signup.html" class="text-decoration-none font-weight-light d-block text-light-gray mb-2">아직 아트바이어스의 회원이 아니신가요?</a>
                         <a href="#x" class="text-decoration-none font-weight-light d-block text-light-gray">계정 정보 찾기</a>
                     </div>
                 </div>
@@ -69,11 +73,11 @@
 
     <nav class="navbar navbar-expand-lg navbar-light py-lg-3 py-1">
         <div class="container">
-            <a class="navbar-brand" href="../index.html"><img src="http://artbyus.co.kr/why_html/img/logo.png" srcset="http://artbyus.co.kr/why_html/img/logo@2x.png 2x, http://artbyus.co.kr/why_html/img/logo@3x.png 3x"></a>
+            <a class="navbar-brand" href="/why_html/index.html"><img src="http://artbyus.co.kr/why_html/img/logo.png" srcset="http://artbyus.co.kr/why_html/img/logo@2x.png 2x, http://artbyus.co.kr/why_html/img/logo@3x.png 3x"></a>
             <div class="ml-auto align-items-center d-lg-none d-flex">
-                <a class="text-dark mr-3 font-size-sm" href="../member/calendar.html"><i class="far fa-calendar-alt"></i></a>
-                <a class="text-dark mr-3 font-size-sm" href="../member/recent_list.html"><i class="far fa-clock"></i></a>
-                <a class="text-dark mr-2 font-size-sm" href="../member/cart.html"><i class="fas fa-shopping-cart"></i></a>
+                <a class="text-dark mr-3 font-size-sm" href="/why_html/member/calendar.html"><i class="far fa-calendar-alt"></i></a>
+                <a class="text-dark mr-3 font-size-sm" href="/why_html/member/recent_list.html"><i class="far fa-clock"></i></a>
+                <a class="text-dark mr-2 font-size-sm" href="/why_html/member/cart.html"><i class="fas fa-shopping-cart"></i></a>
             </div>
             <button class="navbar-toggler border-0 font-size-md text-dark" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
                 <i class="fas fa-bars"></i>
@@ -127,7 +131,7 @@
                         <a class="nav-link" href="#x">채팅</a>
                     </li>
                     <li class="nav-item mx-lg-3 mx-2">
-                        <a class="nav-link" href="../member/chat_user.html">1:1 문의<span class="ml-2 d-inline-block rounded-pill align-top mt-1 bg-hot-pink nav-notify"></span></a>
+                        <a class="nav-link" href="/why_html/member/chat_user.html">1:1 문의<span class="ml-2 d-inline-block rounded-pill align-top mt-1 bg-hot-pink nav-notify"></span></a>
                     </li>
                     <div class="dropdown-divider"></div>
                     <li class="nav-item mx-lg-3 mx-2">
@@ -146,13 +150,13 @@
                 <!-- user - lg -->
                 <ul class="navbar-nav ml-auto align-items-center d-none d-lg-flex">
                     <li class="nav-item mr-2 font-size-md">
-                        <a class="nav-link text-dark" href="../member/calendar.html"><i class="far fa-calendar-alt"></i></a>
+                        <a class="nav-link text-dark" href="/why_html/member/calendar.html"><i class="far fa-calendar-alt"></i></a>
                     </li>
                     <li class="nav-item mr-2 font-size-md">
-                        <a class="nav-link text-dark" href="../member/recent_list.html"><i class="far fa-clock"></i></a>
+                        <a class="nav-link text-dark" href="/why_html/member/recent_list.html"><i class="far fa-clock"></i></a>
                     </li>
                     <li class="nav-item mr-3 font-size-md">
-                        <a class="nav-link text-dark" href="../member/cart.html"><i class="fas fa-shopping-cart"></i></a>
+                        <a class="nav-link text-dark" href="/why_html/member/cart.html"><i class="fas fa-shopping-cart"></i></a>
                     </li>
                     <li class="nav-item">
                         <!-- Login -->
@@ -177,7 +181,7 @@
                                 <a class="dropdown-item" href="#x">찜 리스트</a>
                                 <a class="dropdown-item" href="#x">나의 이용 후기</a>
                                 <a class="dropdown-item" href="#x">채팅</a>
-                                <a class="dropdown-item" href="../member/chat_user.html">1:1 문의<span class="ml-2 d-inline-block rounded-pill align-top mt-1 bg-hot-pink nav-notify"></span></a>
+                                <a class="dropdown-item" href="/why_html/member/chat_user.html">1:1 문의<span class="ml-2 d-inline-block rounded-pill align-top mt-1 bg-hot-pink nav-notify"></span></a>
                                 <div class="dropdown-divider"></div>
                                 <a class="dropdown-item" href="#x">회원 정보 관리</a>
                                 <a class="dropdown-item" href="#x">호스트 전환</a>
@@ -270,47 +274,17 @@
 
             <!-- buttons -->
             <div class="d-flex justify-content-center">
-                <a href="../member/signup_user.html" class="btn rounded-0 py-lg-4 px-lg-5 py-2 px-3 mr-2 bg-yellow font-size-s">개인 회원가입</a>
-                <a href="../member/signup_host.html" class="btn rounded-0 py-lg-4 px-lg-5 py-2 px-3 ml-2 text-white bg-sky font-size-s">사업자 회원가입</a>
+                <a href="/why_html/member/signup_user.html" class="btn rounded-0 py-lg-4 px-lg-5 py-2 px-3 mr-2 bg-yellow font-size-s">개인 회원가입</a>
+                <a href="/why_html/member/signup_host.html" class="btn rounded-0 py-lg-4 px-lg-5 py-2 px-3 ml-2 text-white bg-sky font-size-s">사업자 회원가입</a>
             </div>
         </div>
     </main>
 
-    <footer class="bg-light">
-        <div class="container py-lg-5 py-4">
-            <div class="d-lg-flex align-items-center justify-content-between mb-lg-4 mb-3">
-                <a href="../index.html"><img src="http://artbyus.co.kr/why_html/img/logo.png" srcset="http://artbyus.co.kr/why_html/img/logo@2x.png 2x, http://artbyus.co.kr/why_html/img/logo@3x.png 3x"></a>
-                <ul class="d-flex list-unstyled mb-0 font-weight-light footer-menu font-size-x mt-lg-0 mt-3">
-                    <li class="px-md-2 px-1 position-relative"><a href="../sub/terms.html" class="text-muted text-decoration-none">이용약관</a></li>
-                    <li class="px-md-2 px-1 position-relative"><a href="#x" class="text-muted text-decoration-none">서비스정보</a></li>
-                    <li class="px-md-2 px-1 position-relative"><a href="../sub/board_notice.html" class="text-muted text-decoration-none">공지사항</a></li>
-                    <li class="px-md-2 px-1 position-relative"><a href="#x" class="text-muted text-decoration-none">도움말</a></li>
-                    <li class="px-md-2 px-1 position-relative"><a href="#x" class="text-muted text-decoration-none">광고신청하기</a></li>
-                    <li class="px-md-2 px-1 position-relative"><a href="#x" class="text-muted text-decoration-none">호스트등록</a></li>
-                </ul>
-            </div>
-
-            <div class="border-top text-muted font-weight-light pt-lg-4 pt-3 font-size-x">
-                <p class="mb-0">상호명 : 아트바이어스<span class="text-divider"></span>대표 : 김사람<span class="text-divider"></span>사업자등록번호 : 123-45-67890<span class="text-divider"></span>통신판매업신고번호 : 2018-서울관악-12345<span class="text-divider"></span>
-                    <a href="#x" class="text-dark text-decoration-none font-weight-normal">사업자등록정보 ></a></p>
-                <p>영업소재지 : 서울특별시 강남구 테헤란로 123<span class="text-divider"></span>이메일 : info@artbyus.com<span class="text-divider"></span>대표전화 : 02-123-4567 (평일 오전 9시 ~ 오후 6시, 공휴일 제외)</p>
-
-                <div class="d-lg-flex mb-3">
-                    <a href="#x" class="text-dark text-decoration-none font-weight-normal mr-2">온라인 1:1문의 바로가기</a>
-                    <span>(평일 2시 ~ 오후 6시) * 공간에 대한 문의사항은 해당 공간 호스트에게 직접 문의해 주세요.</span>
-                </div>
-
-                <p>아트바이어스는 통신판매중개자이며 통신판매의 당사자가 아닙니다. 따라서 아트바이어스는 공간 거래정보 및 거래에 대해 책임지지 않습니다.</p>
-                <p class="text-right font-weight-light text-light-gray">Copyright ART BY US crop. All Right Reserved.</p>
-            </div>
-        </div>
-    </footer>
-
-
-   
+    <footer include-html="../include/footer.html"></footer>
+    <script>includeHTML();</script>
 </body>
 
-<script src="../js/kakao_login.js"></script>
-<script src="../js/naver_login.js"></script>
+<script src="/why_html/js/kakao_login.js"></script>
+<script src="/why_html/js/naver_login.js"></script>
 
 </html>

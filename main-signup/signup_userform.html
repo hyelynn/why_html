@@ -1,0 +1,62 @@
+<h3 class="mb-4">개인 회원가입</h3>
+            <h5 class="mb-4">기본정보</h5>
+            <div class="mb-4">
+                <div class="custom-inputs-sub not mb-3">
+                    <label for="host_id" class="d-block text-gray">아이디(이메일) <span class="d-block d-md-inline-block text-red font-size-xs">* 정산 정보와 예약 내역 등, 알림메일을 발송해 드립니다.</span></label>
+                    <div class="d-flex">
+                        <input type="text" class="form-control flex-fill mr-4" id="host_id" placeholder="example@example.com">
+                        <button type="button" id="is_dup" class="btn flex-fill w-25 bg-yellow">중복확인</button>
+                    </div>
+                </div>
+                <div class="row mb-3">
+                    <div class="col-lg-6 custom-inputs-sub not mb-lg-0 mb-3">
+                        <label for="host_pw" class="d-block text-gray">비밀번호</label>
+                        <input type="password" class="form-control" id="host_pw" placeholder="6~14자리 이상의 영문, 숫자">
+                    </div>
+                    <div class="col-lg-6 custom-inputs-sub not">
+                        <label for="host_pw2" class="d-block text-gray">비밀번호 확인</label>
+                        <input type="password" class="form-control" id="host_pw2" placeholder="비밀번호 확인">
+                    </div>
+                </div>
+                <div class="row mb-3">
+                    <div class="col-lg-6 custom-inputs-sub not mb-lg-0 mb-3">
+                        <label for="host_name" class="d-block text-gray">이름</label>
+                        <input type="text" class="form-control" id="host_name" placeholder="이름">
+                    </div>
+                    <div class="col-lg-6 custom-inputs-sub not">
+                        <label for="host_nickname" class="d-block text-gray">닉네임</label>
+                        <input type="text" class="form-control" id="host_nickname" placeholder="아트바이어스">
+                    </div>
+                </div>
+                <div class="row mb-3">
+                    <div class="col-lg-6 custom-inputs-sub not mb-lg-0 mb-3">
+                        <label for="host_phone" class="d-block text-gray">연락처</label>
+                        <div class="d-flex">
+                            <div class="flex-fill mr-4">
+                                <input type="text" class="form-control" id="host_phone" placeholder="010-1234-5678">
+                            </div>
+                            <button type="button" class="btn flex-fill w-25 bg-yellow">인증번호 발송</button>
+                        </div>
+                    </div>
+                    <div class="col-lg-6 custom-inputs-sub not">
+                        <label for="host_auth" class="d-block text-gray">인증번호</label>
+                        <input type="text" class="form-control" id="host_auth" placeholder="인증번호">
+                    </div>
+                </div>
+
+                <label for="host_safe_no" class="d-block text-gray">안심번호입력</label>
+                <div class="row align-items-center">
+                    <div class="col-lg-6 custom-inputs-sub not">
+                        <div class="d-flex">
+                            <div class="flex-fill mr-lg-4 mr-2">
+                                <input type="text" class="form-control" id="host_safe_no" placeholder="예) 0507-1234-5678">
+                            </div>
+                            <button type="button" class="btn flex-fill w-md-25 bg-yellow whitespace-nowrap">안심번호 생성</button>
+                        </div>
+        </div>
+                    <!--div class="col-lg-6">
+                        <span class="text-red">잠시 후 다시 시도해 주세요.</span>
+                        <span class="text-light-gray">사용할 수 있는 전화번호 입니다.</span>
+                    </div-->
+    </div>
+</div>
