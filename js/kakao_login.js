@@ -2,10 +2,7 @@ var access_token;
 var refresh_token;
 var email;
 
-
-
 $("#kakao_login").on("click", function() {
-
   console.log('asdfasfaewrgheiosjrksf');
     Kakao.Auth.login({
         scope: 'account_email',
@@ -22,7 +19,7 @@ $("#kakao_login").on("click", function() {
       });
 });
 
-/*
+
 Kakao.API.request({
     url: '/v2/user/me',
     success: function(response) {
@@ -35,4 +32,4 @@ Kakao.API.request({
     fail: function(error) {
 
     }
-});*/
+});
