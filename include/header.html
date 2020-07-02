@@ -2,6 +2,83 @@
 <script type="text/javascript" src="https://static.nid.naver.com/js/naveridlogin_js_sdk_2.0.0.js" charset="utf-8"></script>
 <script src="/why_html/js/kakao_sdk.js"></script>
 
+<script>
+    var access_token;
+    var refresh_token;
+    var email;
+
+    // SDK를 초기화 합니다. 사용할 앱의 JavaScript 키를 설정해 주세요.
+    Kakao.init('d88bea310f4a39afbea3146fe1c0fa72');
+
+    // SDK 초기화 여부를 판단합니다.
+    console.log(Kakao.isInitialized());
+
+    $("#kakao_login").on("click", function() {
+
+    console.log('asdfasfaewrgheiosjrksf');
+        Kakao.Auth.login({
+            scope: 'account_email',
+            success: function(response) {
+
+            access_token = response.access_token;
+            refresh_token = response.refresh_token;
+            location.href = "http://artbyus.co.kr/why_html/member/test.html";
+            
+            },
+            fail: function(error) {
+        
+            },
+        });
+    });
+
+
+    Kakao.API.request({
+        url: '/v2/user/me',
+        success: function(response) {
+            
+            $('#user_id').val(response.kakao_account.email);
+            $('#user_nickname').val(response.properties.nickname);
+
+
+        },
+        fail: function(error) {
+
+        }
+    });
+</script>
+
+<script>
+var naverLogin = new naver.LoginWithNaverId(
+    {
+        clientId: "hZjBhAXkL54BXTOXsjWw",
+        callbackUrl: "http://artbyus.co.kr/why_html/member/test.html",
+        isPopup: true, /* 팝업을 통한 연동처리 여부 */
+        callbackHandle: true /* callback 페이지가 분리되었을 경우에 callback 페이지에서는 callback처리를 해줄수 있도록 설정합니다. */
+    }
+);
+
+/* 설정정보를 초기화하고 연동을 준비 */
+naverLogin.init();
+
+
+naverLogin.getLoginStatus(function (status) {
+    if (status) {
+        var email = naverLogin.user.getEmail();
+        
+        $('#user_id').val(naverLogin.user.getEmail()); //이메일 가져오기
+        $('#user_nickname').val(naverLogin.user.getNickName()); //nickname 가져오기
+        
+        console.log(email);			
+        var uniqId = naverLogin.user.getId();
+        
+    } else {
+        console.log("AccessToken이 올바르지 않습니다.");
+    }
+});
+
+
+</script>
+
 <div class="modal fade" id="loginModal" tabindex="-1" role="dialog" aria-labelledby="loginModalLabel" aria-hidden="true">
     <div class="modal-dialog custom-modal" role="document">
         <div class="modal-content px-lg-10 px-5 py-lg-5 py-5">
@@ -114,5 +191,6 @@
 </nav>
 
 
-<script src="/why_html/js/kakao_login.js"></script>
-<script src="/why_html/js/naver_login.js"></script>
+<!--<script src="/why_html/js/kakao_login.js"></script>
+<script src="/why_html/js/naver_login.js"></script>-->
+
