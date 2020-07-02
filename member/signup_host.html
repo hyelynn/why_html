@@ -49,9 +49,172 @@
 
     <main role="main">
         <div class="container py-lg-5 py-4">
-            <div include-html="/why_html/main-signup/signup_userform.html"></div>
-            <div include-html="/why_html/main-signup/signup_hostform.html"></div>
-            
+            <h3 class="mb-4">개인 회원가입</h3>
+            <!-- form : 기본정보 -->
+            <h5 class="mb-4">기본정보</h5>
+            <div class="mb-4">
+                <div class="custom-inputs-sub not mb-3">
+                    <label for="host_id" class="d-block text-gray">아이디(이메일) <span class="d-block d-md-inline-block text-red font-size-xs">* 정산 정보와 예약 내역 등, 알림메일을 발송해 드립니다.</span></label>
+                    <div class="d-flex">
+                        <input type="text" class="form-control flex-fill mr-4" id="host_id" placeholder="example@example.com">
+                        <button type="button" id="is_dup" class="btn flex-fill w-25 bg-yellow">중복확인</button>
+                    </div>
+                </div>
+                <div class="row mb-3">
+                    <div class="col-lg-6 custom-inputs-sub not mb-lg-0 mb-3">
+                        <label for="host_pw" class="d-block text-gray">비밀번호</label>
+                        <input type="password" class="form-control" id="host_pw" placeholder="6~14자리 이상의 영문, 숫자">
+                    </div>
+                    <div class="col-lg-6 custom-inputs-sub not">
+                        <label for="host_pw2" class="d-block text-gray">비밀번호 확인</label>
+                        <input type="password" class="form-control" id="host_pw2" placeholder="비밀번호 확인">
+                    </div>
+                </div>
+                <div class="row mb-3">
+                    <div class="col-lg-6 custom-inputs-sub not mb-lg-0 mb-3">
+                        <label for="host_name" class="d-block text-gray">이름</label>
+                        <input type="text" class="form-control" id="host_name" placeholder="이름">
+                    </div>
+                    <div class="col-lg-6 custom-inputs-sub not">
+                        <label for="host_nickname" class="d-block text-gray">닉네임</label>
+                        <input type="text" class="form-control" id="host_nickname" placeholder="아트바이어스">
+                    </div>
+                </div>
+                <div class="row mb-3">
+                    <div class="col-lg-6 custom-inputs-sub not mb-lg-0 mb-3">
+                        <label for="host_phone" class="d-block text-gray">연락처</label>
+                        <div class="d-flex">
+                            <div class="flex-fill mr-4">
+                                <input type="text" class="form-control" id="host_phone" placeholder="010-1234-5678">
+                            </div>
+                            <button type="button" class="btn flex-fill w-25 bg-yellow">인증번호 발송</button>
+                        </div>
+                    </div>
+                    <div class="col-lg-6 custom-inputs-sub not">
+                        <label for="host_auth" class="d-block text-gray">인증번호</label>
+                        <input type="text" class="form-control" id="host_auth" placeholder="인증번호">
+                    </div>
+                </div>
+
+                <label for="host_safe_no" class="d-block text-gray">안심번호입력</label>
+                <div class="row align-items-center">
+                    <div class="col-lg-6 custom-inputs-sub not">
+                        <div class="d-flex">
+                            <div class="flex-fill mr-lg-4 mr-2">
+                                <input type="text" class="form-control" id="host_safe_no" placeholder="예) 0507-1234-5678">
+                            </div>
+                            <button type="button" class="btn flex-fill w-md-25 bg-yellow whitespace-nowrap">안심번호 생성</button>
+                        </div>
+                    </div>
+                    <!--div class="col-lg-6">
+                        <span class="text-red">잠시 후 다시 시도해 주세요.</span>
+                        <span class="text-light-gray">사용할 수 있는 전화번호 입니다.</span>
+                    </div-->
+                </div>
+            </div>
+
+            <!-- form : 사업자정보 -->
+            <h5 class="mb-4">사업자정보 입력</h5>
+            <div class="mb-2">
+                <div class="custom-inputs-sub mb-3">
+                    <div class="d-lg-flex">
+                        <div class="flex-fill w-25 mr-4">
+                            <label for="host_type" class="d-block text-gray">사업자유형</label>
+                            <select name="host_type" id="host_type" class="form-control">
+                                <option value="">선택해 주세요.</option>
+                                <option value="">간이과세자</option>
+                                <option value="">일반과세자</option>
+                                <option value="">법인사업자</option>
+                                <option value="">면세사업자</option>
+                                <option value="">기타사업자</option>
+                            </select>
+                        </div>
+                        <div class="flex-fill w-75">
+                            <label for="host_co_name" class="d-block text-gray">상호명</label>
+                            <input type="text" class="form-control" id="host_co_name" placeholder="사업자등록증에 있는 상호명으로 입력해 주세요.">
+                        </div>
+                    </div>
+                </div>
+                <div class="custom-inputs-sub mb-3">
+                    <div class="d-lg-flex">
+                        <div class="flex-fill w-75 mr-4 mb-lg-0 mb-3">
+                            <label for="host_no" class="d-block text-gray">사업자 등록번호</label>
+                            <input type="text" class="form-control" id="host_no" placeholder="예) 123-45-67890">
+                        </div>
+                        <div class="flex-fill w-25">
+                            <label for="host_ceo" class="d-block text-gray">대표자명</label>
+                            <input type="text" class="form-control" id="host_ceo" placeholder="예) 홍길동">
+                        </div>
+                    </div>
+                </div>
+                <div class="custom-inputs-sub mb-3">
+                    <label for="host_zipcode" class="d-block text-gray">사업장 주소</label>
+                    <div class="d-lg-flex">
+                        <input type="text" class="form-control flex-fill w-25 mr-4 mb-lg-0 mb-3" id="host_zipcode"  placeholder="우편번호">
+                        <input type="text" class="form-control flex-fill w-75" id="host_address" placeholder="기본주소">
+                    </div>
+                    <input type="text" class="form-control mt-3" id="host_address2"  placeholder="상세주소">
+                </div>
+                <div class="row mb-3">
+                    <div class="col-lg-6 custom-inputs-sub not mb-lg-0 mb-3">
+                        <label for="host_sector" class="d-block text-gray">업종</label>
+                        <input type="text" class="form-control" id="host_sector" placeholder="연습실">
+                    </div>
+                    <div class="col-lg-6 custom-inputs-sub not">
+                        <label for="host_sector2" class="d-block text-gray">업태</label>
+                        <input type="text" class="form-control" id="host_sector2" placeholder="공간 공유업">
+                    </div>
+                </div>
+                <div class="row mb-3">
+                    <div class="col-lg-6 custom-inputs-sub not mb-lg-0 mb-3">
+                        <label for="host_bank" class="d-block text-gray">계좌 은행</label>
+                        <select name="host_bank" id="host_bank" class="form-control">
+                            <option value="">선택해 주세요.</option>
+                            <option value="한국은행">한국은행</option>
+                            <option value="부산은행">부산은행</option>
+                            <option value="한국씨티은행">한국씨티은행</option>
+                            <option value="대구은행">대구은행</option>
+                            <option value="우체국">우체국</option>
+                            <option value="하나은행">하나은행</option>
+                            <option value="기업은행">기업은행</option>
+                            <option value="전북은행">전북은행</option>
+                            <option value="제주은행">제주은행</option>
+                            <option value="카카오뱅크">카카오뱅크</option>
+                            <option value="케이뱅크">케이뱅크</option>
+                            <option value="산업은행">산업은행</option>
+                            <option value="국민은행">국민은행</option>
+                            <option value="외환은행">외환은행</option>
+                            <option value="광주은행">광주은행</option>
+                            <option value="경남은행">경남은행</option>
+                            <option value="새마을금고">새마을금고</option>
+                            <option value="농협">농협</option>
+                            <option value="SC 제일은행">SC 제일은행</option>
+                            <option value="신협 중앙회">신협 중앙회</option>
+                            <option value="신한은행">신한은행</option>
+                            <option value="수협중앙회">수협중앙회</option>
+                            <option value="우리은행">우리은행</option>
+                        </select>
+                    </div>
+                    <div class="col-lg-6 custom-inputs-sub not">
+                        <label for="host_bank_account" class="d-block text-gray">예금주</label>
+                        <input type="text" class="form-control" id="host_bank_account" placeholder="예금주">
+                    </div>
+                </div>
+                <div class="custom-inputs-sub not mb-3">
+                    <label for="host_bank_no" class="d-block text-gray">계좌번호</label>
+                    <input type="text" class="form-control" id="host_bank_no" placeholder="예) 1234567890">
+                </div>
+                <form id="theForm" method="POST" enctype="multipart/form-data" >
+                <div class="custom-inputs-sub not mb-4">
+                    <span class="d-block mb-2 text-gray">사업자등록증 사본</span>
+                    <div class="d-flex custom-file">
+                        <input id="file_name" class="upload-name form-control flex-fill mr-4" placeholder="JPG, PNG 파일만 가능합니다.(파일이름은 “OOO사업자등록증” 으로 통일해 주세요)" disabled="disabled">
+                        <label for="host_file" class="btn flex-fill w-25 mb-0 bg-yellow">업로드</label>
+                        <input type="file" id="host_file" class="upload-hidden" onchange="addFile(this.files);">
+                    </div>
+                </div>
+            </form>
+            </div>
 
 
             <!-- checkbox -->
@@ -202,6 +365,67 @@
         +"&host_sector2="+host_sector2+"&host_bank="+host_bank+"&host_bank_account="+host_bank_account+"&host_bank_no="+host_bank_no+"&host_file="+host_file); 
     }
 }
+
+    // $(function () {
+    //     var fileTarget = $('.custom-inputs-sub not .upload-hidden');
+    //     fileTarget.on('change', function() {
+    //         // 값이 변경되면
+    //         if(window.FileReader){ // modern browser
+    //             var filename = $(this)[0].files[0].name;
+    //         } else { // old IE
+    //             var filename = $(this).val().split('/').pop().split('\\').pop(); // 파일명만 추출
+    //         }
+    //         // 추출한 파일명 삽입
+    //         $(this).siblings('.upload-name').val(filename);
+    //     });
+    // })
+
+    // $("#send").click(function (event) {
+    //     // alert("2");
+    //     event.preventDefault();
+    //     var form = $('#upload_form')[0];
+    //     var formData = new FormData(form);
+    //     $("#send").prop("disabled", true);
+
+    //     $.ajax({
+    //         xhr: function() {
+    //            var xhr = new window.XMLHttpRequest();
+
+    //            xhr.upload.addEventListener("progress", function(evt) {
+    //                if (evt.lengthComputable) {
+    //                   var percentComplete = evt.loaded / evt.total;
+    //                   percentComplete = parseInt(percentComplete * 100);
+    //                   percentShown = percentComplete*0.98;
+    //                   showProgress(percentShown);
+    //                }
+    //            }, false);
+
+    //            return xhr;
+    //        },
+    //         type: "POST",
+    //         enctype: 'multipart/form-data',
+    //         url: 'http://3.34.150.116:3000/user/apply',
+    //         data: formData,
+    //         processData: false,
+    //         contentType: false,
+    //         cache: false,
+    //         timeout: 600000,
+    //         success: function (data) {
+    //             alert("가입되었습니다.");
+    //             $("#send").prop("disabled", false);
+    //         },
+    //         error: function (e) {
+    //             console.log("ERROR : ", e);
+    //             $("#send").prop("disabled", false);
+    //             alert("fail");
+    //         }
+    //     });
+    // });
+
+    // document.getElementById("get_num").addEventListener('click', function(){
+    //      console.log(Math.floor(Math.random() * 99999 + 1));
+    // })
+ 
     function CheckForm(){
         var host_id = document.getElementById("host_id").value;
         var host_pw = document.getElementById("host_pw").value;

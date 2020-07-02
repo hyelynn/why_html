@@ -36,8 +36,52 @@
 
     <main role="main">
         <div class="container py-lg-5 py-4">
-            <div include-html="/why_html/main-signup/signup_userform.html"></div>
-            
+            <h3 class="mb-4">개인 회원가입</h3>
+            <!-- form -->
+            <div class="mb-2">
+                <div class="custom-inputs-sub not mb-3">
+                    <label for="user_id" class="d-block text-gray">아이디(이메일)</label>
+                    <div class="d-flex">
+                        <input type="text" class="form-control flex-fill mr-4" id="user_id" placeholder="example@example.com">
+                        <button type="button" id="is_dup" class="btn flex-fill w-25 bg-yellow">중복확인</button>
+                    </div>
+                </div>
+                <div class="row mb-3">
+                    <div class="col-lg-6 custom-inputs-sub not">
+                        <label for="user_pw" class="d-block text-gray">비밀번호</label>
+                        <input type="password" class="form-control" id="user_pw" placeholder="6~14자리 이상의 영문, 숫자">
+                    </div>
+                    <div class="col-lg-6 custom-inputs-sub not">
+                        <label for="user_pw2" class="d-block text-gray">비밀번호 확인</label>
+                        <input type="password" class="form-control" id="user_pw2" placeholder="비밀번호 확인">
+                    </div>
+                </div>
+                <div class="row mb-3">
+                    <div class="col-lg-6 custom-inputs-sub not mb-lg-0 mb-3">
+                        <label for="user_name" class="d-block text-gray">이름</label>
+                        <input type="text" class="form-control" id="user_name" placeholder="이름">
+                    </div>
+                    <div class="col-lg-6 custom-inputs-sub not">
+                        <label for="user_nickname" class="d-block text-gray">닉네임</label>
+                        <input type="text" class="form-control" id="user_nickname" placeholder="아트바이어스">
+                    </div>
+                </div>
+                <div class="row mb-3">
+                    <div class="col-lg-6 custom-inputs-sub not mb-lg-0 mb-3">
+                        <label for="user_phone" class="d-block text-gray">연락처</label>
+                        <div class="d-flex">
+                            <div class="flex-fill mr-4">
+                                <input type="text" class="form-control" id="user_phone" placeholder="010-1234-5678">
+                            </div>
+                            <button type="button" class="btn flex-fill w-25 bg-yellow">인증번호 발송</button>
+                        </div>
+                    </div>
+                    <div class="col-lg-6 custom-inputs-sub not">
+                        <label for="user_auth" class="d-block text-gray">인증번호</label>
+                        <input type="text" class="form-control" id="user_auth" placeholder="인증번호">
+                    </div>
+                </div>
+            </div>
 
             <!-- checkbox -->
             <div class="d-flex mb-4 custom-inputs">
