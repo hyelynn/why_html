@@ -10,13 +10,14 @@ console.log(Kakao.isInitialized());
 
 $("#kakao_login").on("click", function() {
 
+  console.log('asdfasfaewrgheiosjrksf');
     Kakao.Auth.login({
         scope: 'account_email',
         success: function(response) {
 
           access_token = response.access_token;
           refresh_token = response.refresh_token;
-          location.href = "http://artbyus.co.kr/member/test.html";
+          location.href = "http://artbyus.co.kr/why_html/member/test.html";
           
         },
         fail: function(error) {
