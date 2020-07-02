@@ -17,6 +17,17 @@
     <script type="text/javascript" src="https://static.nid.naver.com/js/naveridlogin_js_sdk_2.0.0.js" charset="utf-8"></script>
     <script src="/why_html/js/kakao_sdk.js"></script>
 
+     <!-- KaKao SDK -->
+     <script src="/why_html/js/kakao_sdk.js"></script>
+     <script>
+         // SDK를 초기화 합니다. 사용할 앱의 JavaScript 키를 설정해 주세요.
+         Kakao.init('d88bea310f4a39afbea3146fe1c0fa72');
+ 
+         // SDK 초기화 여부를 판단합니다.
+         console.log(Kakao.isInitialized());
+     </script>
+ 
+
     <link rel="stylesheet" href="css/custom.css">
     <script src="js/custom.js"></script>
       
@@ -38,7 +49,7 @@
 
     <footer include-html="include/footer.html"></footer>
     <script>includeHTML();</script>
-    
+
     <script src="/why_html/js/kakao_login.js"></script>
     <script src="/why_html/js/naver_login.js"></script>
 <script type="text/javascript">
