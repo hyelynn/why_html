@@ -20,16 +20,16 @@ function kakao_login(){
 }
 
 
-Kakao.API.request({
-    url: '/v2/user/me',
-    success: function(response) {
+// Kakao.API.request({
+//     url: '/v2/user/me',
+//     success: function(response) {
         
-        $('#user_id').val(response.kakao_account.email);
-        $('#user_nickname').val(response.properties.nickname);
+//         $('#user_id').val(response.kakao_account.email);
+//         $('#user_nickname').val(response.properties.nickname);
 
 
-    },
-    fail: function(error) {
+//     },
+//     fail: function(error) {
 
-    }
-});
+//     }
+// });
