@@ -176,7 +176,7 @@
         var user_auth = document.getElementById("user_auth").value;
         var all_agree = document.getElementById("all_agree");
 
-        var regEmail = /^[a-zA-Z0-9]+@[a-zA-Z0-9]+$/;
+        var regEmail = /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i;
         var regPw = /^[A-Za-z0-9+]*$/;
         var regPhone = /^\d{2,3}-\d{3,4}-\d{4}$/;
 

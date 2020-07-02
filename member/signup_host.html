@@ -83,11 +83,21 @@
                         <input type="text" class="form-control" id="host_auth" placeholder="인증번호">
                     </div>
                 </div>
-                <div class="row">
+
+                <label for="host_safe_no" class="d-block text-gray">안심번호입력</label>
+                <div class="row align-items-center">
                     <div class="col-lg-6 custom-inputs-sub not">
-                        <label for="host_safe_no" class="d-block text-gray">안심번호입력</label>
-                        <input type="text" class="form-control" id="host_safe_no" placeholder="예) 0507-1234-5678">
+                        <div class="d-flex">
+                            <div class="flex-fill mr-lg-4 mr-2">
+                                <input type="text" class="form-control" id="host_safe_no" placeholder="예) 0507-1234-5678">
+                            </div>
+                            <button type="button" class="btn flex-fill w-md-25 bg-yellow whitespace-nowrap">안심번호 생성</button>
+                        </div>
                     </div>
+                    <!--div class="col-lg-6">
+                        <span class="text-red">잠시 후 다시 시도해 주세요.</span>
+                        <span class="text-light-gray">사용할 수 있는 전화번호 입니다.</span>
+                    </div-->
                 </div>
             </div>
 
