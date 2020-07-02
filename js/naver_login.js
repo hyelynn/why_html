@@ -8,18 +8,20 @@ var naverLogin = new naver.LoginWithNaverId(
 );
 
 /* 설정정보를 초기화하고 연동을 준비 */
-naverLogin.init();
-naverLogin.getLoginStatus(function (status) {
-    if (status) {
-        var email = naverLogin.user.getEmail();
-        
-        $('#user_id').val(naverLogin.user.getEmail()); //이메일 가져오기
-        $('#user_nickname').val(naverLogin.user.getNickName()); //nickname 가져오기
-        
-        console.log(email);			
-        var uniqId = naverLogin.user.getId();
-        
-    } else {
-        console.log("AccessToken이 올바르지 않습니다.");
-    }
-});
+function naver_login() {
+    naverLogin.init();
+    naverLogin.getLoginStatus(function (status) {
+        if (status) {
+            var email = naverLogin.user.getEmail();
+            
+            $('#user_id').val(naverLogin.user.getEmail()); //이메일 가져오기
+            $('#user_nickname').val(naverLogin.user.getNickName()); //nickname 가져오기
+            
+            console.log(email);			
+            var uniqId = naverLogin.user.getId();
+            
+        } else {
+            console.log("AccessToken이 올바르지 않습니다.");
+        }
+    });
+}
