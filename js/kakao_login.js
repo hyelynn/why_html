@@ -22,7 +22,7 @@ $("#kakao_login").on("click", function() {
       });
 });
 
-
+/*
 Kakao.API.request({
     url: '/v2/user/me',
     success: function(response) {
@@ -35,4 +35,4 @@ Kakao.API.request({
     fail: function(error) {
 
     }
-});
+});*/
