@@ -291,7 +291,7 @@ button:focus {
 }
 /* named upload */
 .custom-inputs-sub .custom-file .upload-name {
-    -webkit-appearance: none; /* 네이티브 외형 감추기 */
+    -webkit-appearance: none; /* �ㅼ씠�곕툕 �명삎 媛먯텛湲� */
     -moz-appearance: none; appearance: none;
     background-color: #fff;
 }
@@ -611,7 +611,7 @@ select::-ms-expand {
     -webkit-transform: translateY(0px);
     transform: translateY(0px);
     top: 0;
-    /* 임시 */
+    /* �꾩떆 */
     /* top: 0;
     left: 0;
     opacity: 1;*/
