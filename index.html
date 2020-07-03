@@ -34,7 +34,6 @@
 
 <body>
     <header include-html="include/header.html"></header>
-    <!-- Login Modal -->
 
     <main role="main">
         <div include-html="main/advertise.html"></div>
@@ -45,13 +44,15 @@
     </main>
 
     <footer include-html="include/footer.html"></footer>
-    <script>includeHTML();</script>
 
     <script src="/why_html/js/kakao_login.js"></script>
     <script src="/why_html/js/naver_login.js"></script>
     <script src="/why_html/js/login.js"></script>
-<script type="text/javascript">
+    <script src="/why_html/js/header.js"></script>
 
+    <script>includeHTML();</script>
+
+<script type="text/javascript">
     function onLogout() {
        sessionStorage.clear();
     }
@@ -74,8 +75,6 @@
             next.children(':first-child').clone().appendTo($(this));
         }
     });
-   
-    
 </script>
 </body>
 
