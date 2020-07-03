@@ -1,6 +1,8 @@
 
 $(document).ready(function(){
     var nickname = sessionStorage.getItem("nickname");
+    console.log(nickname);
+    
     if (nickname != "undefined") {
         $("#navbar").append(
             $("<ul class='navbar-nav border-top pt-3 m-lg-auto mt-2 font-size-xs d-block d-lg-none'></ul>"+
@@ -35,7 +37,5 @@ $(document).ready(function(){
             "<button class='btn border text-dark dropdown-toggle bg-white rounded-xl' type='button' data-toggle='modal' data-target='#loginModal'><span>로그인</span>"+
             "</button></li></ul>"
         ));
-
-        
     }       
 })
