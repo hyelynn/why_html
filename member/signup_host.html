@@ -238,6 +238,7 @@
     <script>includeHTML();</script>
     <script src="/why_html/js/kakao_login.js"></script>
     <script src="/why_html/js/naver_login.js"></script>
+    <script src="/why_html/js/login.js"></script>
 
 <script type="text/javascript">
     var emailFlag = false;
@@ -366,66 +367,6 @@
         +"&host_sector2="+host_sector2+"&host_bank="+host_bank+"&host_bank_account="+host_bank_account+"&host_bank_no="+host_bank_no+"&host_file="+host_file); 
     }
 }
-
-    // $(function () {
-    //     var fileTarget = $('.custom-inputs-sub not .upload-hidden');
-    //     fileTarget.on('change', function() {
-    //         // 값이 변경되면
-    //         if(window.FileReader){ // modern browser
-    //             var filename = $(this)[0].files[0].name;
-    //         } else { // old IE
-    //             var filename = $(this).val().split('/').pop().split('\\').pop(); // 파일명만 추출
-    //         }
-    //         // 추출한 파일명 삽입
-    //         $(this).siblings('.upload-name').val(filename);
-    //     });
-    // })
-
-    // $("#send").click(function (event) {
-    //     // alert("2");
-    //     event.preventDefault();
-    //     var form = $('#upload_form')[0];
-    //     var formData = new FormData(form);
-    //     $("#send").prop("disabled", true);
-
-    //     $.ajax({
-    //         xhr: function() {
-    //            var xhr = new window.XMLHttpRequest();
-
-    //            xhr.upload.addEventListener("progress", function(evt) {
-    //                if (evt.lengthComputable) {
-    //                   var percentComplete = evt.loaded / evt.total;
-    //                   percentComplete = parseInt(percentComplete * 100);
-    //                   percentShown = percentComplete*0.98;
-    //                   showProgress(percentShown);
-    //                }
-    //            }, false);
-
-    //            return xhr;
-    //        },
-    //         type: "POST",
-    //         enctype: 'multipart/form-data',
-    //         url: 'http://3.34.150.116:3000/user/apply',
-    //         data: formData,
-    //         processData: false,
-    //         contentType: false,
-    //         cache: false,
-    //         timeout: 600000,
-    //         success: function (data) {
-    //             alert("가입되었습니다.");
-    //             $("#send").prop("disabled", false);
-    //         },
-    //         error: function (e) {
-    //             console.log("ERROR : ", e);
-    //             $("#send").prop("disabled", false);
-    //             alert("fail");
-    //         }
-    //     });
-    // });
-
-    // document.getElementById("get_num").addEventListener('click', function(){
-    //      console.log(Math.floor(Math.random() * 99999 + 1));
-    // })
  
     function CheckForm(){
         var host_id = document.getElementById("host_id").value;
