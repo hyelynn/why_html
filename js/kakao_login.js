@@ -1,34 +1,19 @@
-var access_token;
-var refresh_token;
-var email;
-
 function kakao_login(){
-    Kakao.Auth.login({
-        scope: 'account_email',
-        success: function(response) {
+  var access_token;
+  var refresh_token;
+  var email;
+  
+  Kakao.Auth.login({
+      scope: 'account_email',
+      success: function(response) {
 
-          access_token = response.access_token;
-          refresh_token = response.refresh_token;
-          location.href = "http://artbyus.co.kr/why_html/member/test.html";
-          
-        },
-        fail: function(error) {
-     
-        },
-      });
-}
-
-
-Kakao.API.request({
-     url: '/v2/user/me',
-     success: function(response) {
+        access_token = response.access_token;
+        refresh_token = response.refresh_token;
+        location.href = "http://artbyus.co.kr/why_html/member/test.html";
         
-         $('#user_id').val(response.kakao_account.email);
-         $('#user_nickname').val(response.properties.nickname);
-
-
-     },
-     fail: function(error) {
-
-     }
- });
+      },
+      fail: function(error) {
+   
+      },
+    });
+}
