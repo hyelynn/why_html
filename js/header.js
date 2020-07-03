@@ -2,9 +2,9 @@
 $(document).ready(function(){
     var nickname = sessionStorage.getItem("nickname");
     console.log(nickname);
-    
-    if (nickname != "undefined") {
-        $("#navbar").append(
+
+    if (nickname != null) {
+        $("#navbarNavDropdown").append(
             $("<ul class='navbar-nav border-top pt-3 m-lg-auto mt-2 font-size-xs d-block d-lg-none'></ul>"+
             "<li class='nav-item mx-lg-3 mx-2 mb-2'>"+
             "<div class='d-flex'>"+
@@ -25,7 +25,7 @@ $(document).ready(function(){
             "<button class='nav-link text-hot-pink' href='#x' onclick='onLogout();'>로그아웃</button></li></ul>"
         ));
     } else {
-        $("#navbar").append(
+        $("#navbarNavDropdown").append(
             $("<ul class='navbar-nav ml-auto align-items-center d-none d-lg-flex'>"+
             "<li class='nav-item mr-2 font-size-md'>"+
             "<a class='nav-link text-dark' href='/why_html/member/calendar.html'><i class='far fa-calendar-alt'></i></a></li>"+
