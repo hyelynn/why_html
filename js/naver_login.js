@@ -1,9 +1,8 @@
-
-var access_token;
-var refresh_token;
-var email;
-
 function kakao_login(){
+    var access_token;
+    var refresh_token;
+    var email;
+    
     Kakao.Auth.login({
         scope: 'account_email',
         success: function(response) {
@@ -19,7 +18,7 @@ function kakao_login(){
       });
 }
 
-function login(){
+function normal_login(){
     var email = document.getElementById("login_email").value;
     var pw = document.getElementById("login_pwd").value;
     // var data = {'email' : mail, 'pwd' : pwd};
