@@ -111,7 +111,7 @@
 
     <footer include-html="/why_html/include/footer.html"></footer>
     <script>includeHTML();</script>
-    
+
     <script src="/why_html/js/kakao_login.js"></script>
     <script src="/why_html/js/naver_login.js"></script>
     <script src="/why_html/js/login.js"></script>
@@ -119,10 +119,7 @@
 </body>
 
 <script>
-
-
-
-    // datepicker
+ // datepicker
     $(function () {
         // $('#datePicker').daterangepicker({
         //     timePicker: true,
@@ -141,14 +138,44 @@
 
         $('#datePicker').datepicker({
             language: 'ko',
-            multipleDatesSeparator: ' ~ ',
-            range: true,
+            // multipleDatesSeparator: ' ~ ',
+            range: false,
+            // timepicker: true,    // timeslide
             navTitles: {
                 days: '<span class="font-weight-bold mr-2">M</span> MM, <i>yyyy</i>'
             },
             prevHtml: '<i class="fas fa-chevron-left"></i>',
             nextHtml: '<i class="fas fa-chevron-right"></i>',
-            timepicker: true
+            onShow: function () {
+                if ($('.datepicker .btn').length > 0) {
+                    return false;
+                } else {
+                    let timePicker = '<div class="mx-4 py-lg-4 py-3 border-top datepicker-timepicker">' +
+                                        '<div class="row">' +
+                                            '<div class="col-6 custom-inputs">' +
+                                                '<p class="mb-lg-3 mb-2">시작시간</p>' +
+                                                '<select name="" id="" class="form-control">' +
+                                                    '<option value="08:00">08:00</option>' +
+                                                    '<option value="09:00">09:00</option>' +
+                                                    '<option value="10:00">10:00</option>' +
+                                                '</select>' +
+                                            '</div>' +
+                                            '<div class="col-6 custom-inputs">' +
+                                                '<p class="mb-lg-3 mb-2">종료시간</p>' +
+                                                '<select name="" id="" class="form-control">' +
+                                                    '<option value="13:00">13:00</option>' +
+                                                    '<option value="14:00">14:00</option>' +
+                                                    '<option value="15:00">15:00</option>' +
+                                                '</select>' +
+                                            '</div>' +
+                                        '</div>' +
+                                    '</div>';
+                    let btn = '<button type="button" class="btn btn-block py-3 border-0 rounded-0 font-weight-light bg-yellow">검색</button>';
+                    $('.datepicker')
+                        .append(timePicker)
+                        .append(btn);
+                }
+            }
         })
     });
 
