@@ -1,10 +1,9 @@
 
 function login_header(){
     var nickname = sessionStorage.getItem("nickname");
-    alert('asdf');
-    console.log(nickname);
 
     if (nickname != null) {
+        alert('asdf');
         $("#navbarNavDropdown").append(
             $("<ul class='navbar-nav border-top pt-3 m-lg-auto mt-2 font-size-xs d-block d-lg-none'></ul>"+
             "<li class='nav-item mx-lg-3 mx-2 mb-2'>"+
@@ -26,6 +25,7 @@ function login_header(){
             "<button class='nav-link text-hot-pink' href='#x' onclick='onLogout();'>로그아웃</button></li></ul>"
         ));
     } else {
+        alert('asdaf');
         $("#navbarNavDropdown").append(
             $("<ul class='navbar-nav ml-auto align-items-center d-none d-lg-flex'>"+
             "<li class='nav-item mr-2 font-size-md'>"+
