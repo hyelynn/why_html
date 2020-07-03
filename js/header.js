@@ -4,7 +4,7 @@ function login_header(){
 
     if (nickname != null) {
         alert('asdf');
-        $("#navbarNavDropdown").append(
+        $("#navbarNavDropdown").load("/why_html/include/header.html").append(
             $("<ul class='navbar-nav border-top pt-3 m-lg-auto mt-2 font-size-xs d-block d-lg-none'></ul>"+
             "<li class='nav-item mx-lg-3 mx-2 mb-2'>"+
             "<div class='d-flex'>"+
@@ -26,7 +26,7 @@ function login_header(){
         ));
     } else {
         alert('asdaf');
-        $("#navbarNavDropdown").append(
+        $("#navbarNavDropdown").load("/why_html/include/header.html").append(
             $("<ul class='navbar-nav ml-auto align-items-center d-none d-lg-flex'>"+
             "<li class='nav-item mr-2 font-size-md'>"+
             "<a class='nav-link text-dark' href='/why_html/member/calendar.html'><i class='far fa-calendar-alt'></i></a></li>"+
