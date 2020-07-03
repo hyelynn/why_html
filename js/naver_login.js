@@ -18,6 +18,9 @@ function kakao_login(){
       });
 }
 
+
+
+
 /* 설정정보를 초기화하고 연동을 준비 */
 function naver_login() {
     var naverLogin = new naver.LoginWithNaverId(
