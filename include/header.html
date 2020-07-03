@@ -85,7 +85,7 @@
 
                 <!-- Login했을 때에만 출력 -->
                 <li class="nav-item mx-lg-3 mx-2">
-                    <a class="nav-link text-hot-pink" href="#x">로그아웃</a>
+                    <button class="nav-link text-hot-pink" href="#x" onclick="onLogout();">로그아웃</button>
                 </li>
             </ul>
 
@@ -113,4 +113,13 @@
 
 
 <!---->
+<script type="text/javascript">
+$(document).ready(function() {
+    var nickname = sessionStorage.getItem("nickname");
+    console.log(nickname);
+})
 
+function onLogout() {
+    sessionStorage.clear();
+}
+</script>

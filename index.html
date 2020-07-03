@@ -58,8 +58,8 @@
         var xhr = new XMLHttpRequest();       
         xhr.onreadystatechange = function() {
             if (xhr.readyState === xhr.DONE) { 
-                if (xhr.status === 200 || xhr.status === 201) {
-                    var result = JSON.parse(xhr.responseText);
+                var result = JSON.parse(xhr.responseText);
+                if ((xhr.status === 200 || xhr.status === 201) && result.result == "true"){
                     alert(result.user_nickname);
                     sessionStorage.setItem('id',result.user_key);
                     sessionStorage.setItem('nickname',result.user_nickname);
@@ -70,8 +70,6 @@
                     document.getElementById("login_pwd").value = "";
                     document.getElementById("login_email").focus();
                 }
-            }else{
-                // alert("0::"+xhr.status);
             }
         };
 
