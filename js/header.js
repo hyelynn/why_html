@@ -44,8 +44,3 @@ function login_header(){
         ));
     }       
 }
-
-function onLogout() {
-    sessionStorage.clear();
-    location.href = "index.html";
-}

@@ -66,7 +66,6 @@
             <div class="collapse navbar-collapse" id="navbarNavDropdown"></div>
         </div>
     </nav>
-    <script src="/why_html/js/header.js"></script>
 
 
     <header include-html="/why_html/include/header.html"></header>
@@ -84,30 +83,30 @@
     <script src="/why_html/js/kakao_login.js"></script>
     <script src="/why_html/js/naver_login.js"></script>
     <script src="/why_html/js/login.js"></script>
+    <script src="/why_html/js/header.js"></script>
 
     <script>includeHTML({});</script>
-    <script>function slide() {
-            $('.main-item-slide').slick({
-                slidesToShow: 4,
-                slidesToScroll: 1,
-                autoplay: true,
-                autoplaySpeed: 2000,
-                arrows: true,
-                prevArrow: '<button type="button" class="btn slide-prev"><span class="slide-prev-icon" aria-hidden="true"></span><span class="sr-only">Previous</span></button>',
-                nextArrow: '<button type="button" class="btn slide-next"><span class="slide-next-icon" aria-hidden="true"></span><span class="sr-only">Next</span></button>',
-                responsive: [
-                    {
-                        breakpoint: 992,
-                        settings: {
-                            slidesToShow: 2,
-                            slidesToScroll: 2,
-                        }
-                    }
-                ]
-            });
-        }</script>
 
     <script type="text/javascript">
+        $('.main-item-slide').slick({
+            slidesToShow: 4,
+            slidesToScroll: 1,
+            autoplay: true,
+            autoplaySpeed: 2000,
+            arrows: true,
+            prevArrow: '<button type="button" class="btn slide-prev"><span class="slide-prev-icon" aria-hidden="true"></span><span class="sr-only">Previous</span></button>',
+            nextArrow: '<button type="button" class="btn slide-next"><span class="slide-next-icon" aria-hidden="true"></span><span class="sr-only">Next</span></button>',
+            responsive: [
+                {
+                    breakpoint: 992,
+                    settings: {
+                        slidesToShow: 2,
+                        slidesToScroll: 2,
+                    }
+                }
+            ]
+        });
+
         // carousel multiple item slide
         $('.carousel-multiple-slide .carousel-item').each(function () {
             var minPerSlide = 4;
@@ -126,6 +125,11 @@
                 next.children(':first-child').clone().appendTo($(this));
             }
         });
+
+        function onLogout() {
+            sessionStorage.clear();
+            location.href = "index.html";
+        }
     </script>
 </body>
 
