@@ -55,10 +55,10 @@ $(document).ready(function () {
         );
         
         var info = "";
-        var splitInfo = JSON.stringify(result[0].studio_info).split('.');
+        var splitInfo = JSON.stringify(result[0].studio_info).split('.|\\r|\\t');
         
         console.log(splitInfo);
-        for (var s in splitInfo) { info += splitInfo + "<br>"; }
+        for (var s in splitInfo) { info += s + "<br>"; }
 
         $("#info").append(
           $(
