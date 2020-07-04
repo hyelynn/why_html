@@ -233,8 +233,8 @@
 
                         <div class="card rounded-0 border-bottom-0">
                             <div class="card-body">
-                                <h6>감성을 그립니다, 고고일러스트의 샤프로 그리는 인물드로잉</h6>
-                                <p class="font-weight-bold mb-4 text-red font-size-l">35,000원/1일</p>
+                                <div id="title_purchase"></div>
+                                
 
                                 <!-- Calendar -->
                                 <div class="py- border-bottom">
@@ -269,19 +269,11 @@
                                     <div class="row">
                                         <div class="col-6 custom-inputs">
                                             <p>시작시간</p>
-                                            <select name="" id="" class="form-control">
-                                                <option value="08:00">08:00</option>
-                                                <option value="09:00">09:00</option>
-                                                <option value="10:00">10:00</option>
-                                            </select>
+                                            <select name=""  id="start_times" class="form-control"> </select>
                                         </div>
                                         <div class="col-6 custom-inputs">
                                             <p>종료시간</p>
-                                            <select name="" id="" class="form-control">
-                                                <option value="13:00">13:00</option>
-                                                <option value="14:00">14:00</option>
-                                                <option value="15:00">15:00</option>
-                                            </select>
+                                            <select name=""  id="end_times" class="form-control"> </select>
                                         </div>
                                     </div>
                                 </div>
@@ -290,9 +282,9 @@
                                 <div class="py-4 border-bottom">
                                     <p>인원수</p>
                                     <div class="d-flex justify-content-between custom-inputs custom-inputs-sub">
-                                        <button type="button" id="increaseQuantity" class="btn border" style="width: 50px;">+</button>
-                                        <input type="text" id="numberUpDown" value="1" class="text-center form-control border-right-0 border-left-0" style="width: calc(100% - 100px);">
                                         <button type="button" id="decreaseQuantity" class="btn border" style="width: 50px;">-</button>
+                                        <input type="text" id="numberUpDown" value="1" class="text-center form-control border-right-0 border-left-0" style="width: calc(100% - 100px);">
+                                        <button type="button" id="increaseQuantity" class="btn border" style="width: 50px;">+</button>
                                     </div>
                                 </div>
 

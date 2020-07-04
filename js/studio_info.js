@@ -90,6 +90,25 @@ $(document).ready(function () {
               "<button type='button' class='btn rounded-pill px-lg-5 px-3 py-2 border-yellow font-size-xs'>메시지 전송</button></div></div>"
           )
         );
+
+        $("#title_purchase").append(
+          $(
+            "<h6>감성을 그립니다, 고고일러스트의 샤프로 그리는 인물드로잉</h6>"+
+            "<p class='font-weight-bold mb-4 text-red font-size-l'>"+result[0].studio_price+"원/1"+result[0].studio_price_type+"</p>"
+          )
+        )
+        for(var i = 0; i < 23; i++) {
+          var start = i+":00";
+          var end = (i+1)+":00";
+
+          $("start_times").append(
+            $("<option value='"+start+"'>"+start+"</option>")
+          )
+          $("end_times").append(
+            $("<option value='"+end+"'>"+end+"</option>")
+          )
+        }
+        
       } else {
         alert("접속 오류");
         location.href = "studio.html"; //잘못된 접속 시 페이지 강제 이동
