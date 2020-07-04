@@ -53,13 +53,18 @@ $(document).ready(function () {
               "</p>"
           )
         );
+        
+        var info = "";
+        var splitInfo = result[0].studio_info;
+
+        for (var s in splitInfo) { info += splitInfo + "<br>"; }
 
         $("#info").append(
           $(
             "<div class='my-5'>" +
               "<h4 class='mb-4 text-bullet'>소개</h4>" +
               "<p class='font-weight-light font-size-s'>" +
-              result[0].studio_info +
+              info +
               "</p></div>" +
               "<div class='my-5'>" +
               "<h4 class='mb-4 text-bullet'>편의시설</h4>" +
