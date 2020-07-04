@@ -120,19 +120,16 @@ $(document).ready(function () {
           )
         );
 
+        var start = "<p>시작시간</p>"+ "<select name='' class='form-control'>" ;
+        var end = "<p>종료시간</p>"+ "<select name='' class='form-control'>" ;
+        var suffix = "</select>";
         for (var i = 0; i < 23; i++) {
-          var start = i + ":00";
-          var end = i + 1 + ":00";
-
-          $("start_times").append(
-            $("<option value='" + start + "'>" + start + "</option>")
-          );
-          $("end_times").append(
-            $("<option value='" + end + "'>" + end + "</option>")
-          );
-
-          console.log(end);
+          start += "<option value='" + (i+":00") + "'>" + (i+":00") + "</option>";
+          end += "<option value='" + ((i+1)+":00") + "'>" + ((i+1)+":00") + "</option>";
         }
+
+        $("start_times").append($(start+suffix));
+        $("end_times").append($(end+suffix));
       } else {
         alert("접속 오류");
         location.href = "studio.html"; //잘못된 접속 시 페이지 강제 이동
