@@ -17,12 +17,15 @@ var url = location.href;
                 if (xhr.readyState === xhr.DONE) { 
                     if (xhr.status === 200 || xhr.status === 201) {
                         var result = JSON.parse(xhr.responseText);
-                        console.log(result);
-
-                       
-
-
-
+                        console.log(result[0]);
+                        $("#info").append(
+                        $("<div class='my-5'>"+
+                        "<h4 class='mb-4 text-bullet'>소개</h4>"+
+                        "<p class='font-weight-light font-size-s'>"+result+"</p></div>"+
+                        "<div class='my-5'>"+
+                        "<h4 class='mb-4 text-bullet'>편의시설</h4>"+
+                        "<div class='d-flex-fill font-weight-light font-size-s'>"+
+                        "<span class='mr-2'>"+result+"</span></div></div>"));
                     } else {
 
                     }
@@ -31,8 +34,7 @@ var url = location.href;
                 }
             };
             
-            xhr.open('POST', 'http://3.34.150.116:3000/studio/info');
-            xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
-            xhr.send("studio_key="+ value); 
-
+        xhr.open('POST', 'http://3.34.150.116:3000/studio/info');
+        xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+        xhr.send("studio_key="+ value); 
     })
