@@ -6,11 +6,11 @@ function login_header(){
         $("#navbarNavDropdown").append(
             $("<ul class='navbar-nav ml-auto align-items-center d-none d-lg-flex'>"+
             "<li class='nav-item mr-2 font-size-md'>"+
-            "<a class='nav-link text-dark' href='../member/calendar.html'><i class='far fa-calendar-alt'></i></a></li>"+
+            "<a class='nav-link text-dark' href='/why_html/member/calendar.html'><i class='far fa-calendar-alt'></i></a></li>"+
             "<li class='nav-item mr-2 font-size-md'>"+
-            "<a class='nav-link text-dark' href='../member/recent_list.html'><i class='far fa-clock'></i></a></li>"+
+            "<a class='nav-link text-dark' href='/why_html/member/recent_list.html'><i class='far fa-clock'></i></a></li>"+
             "<li class='nav-item mr-3 font-size-md'>"+
-            "<a class='nav-link text-dark' href='../member/cart.html'><i class='fas fa-shopping-cart'></i></a></li>"+
+            "<a class='nav-link text-dark' href='/why_html/member/cart.html'><i class='fas fa-shopping-cart'></i></a></li>"+
             "<li class='nav-item'><div class='dropdown'>"+
             "<button class='btn border text-dark dropdown-toggle bg-white rounded-xl' type='button' id='dropdownMenuButton' data-toggle='dropdown' aria-haspopup='true' aria-expanded='false'>"+
             "<div class='d-flex'>"+
@@ -43,4 +43,9 @@ function login_header(){
             "</button></li></ul>"
         ));
     }       
+}
+
+function onLogout() {
+    sessionStorage.clear();
+    location.href = "index.html";
 }
