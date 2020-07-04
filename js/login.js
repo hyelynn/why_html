@@ -22,6 +22,6 @@ function normal_login(){
     }
 
     xhr.open('POST', 'http://3.34.150.116:3000/user/login');
-        xhr.setRequestHeader('Content-type', "application/x-www-form-urlencoded");
-        xhr.send("user_id="+email+"&user_pw="+pw);
+    xhr.setRequestHeader('Content-type', "application/x-www-form-urlencoded");
+    xhr.send("user_id="+email+"&user_pw="+pw);
 }

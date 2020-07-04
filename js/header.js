@@ -4,7 +4,7 @@ function login_header(){
 
     if (nickname != null) {
         $("#navbarNavDropdown").append(
-            $("<ul class='navbar-nav border-top pt-3 m-lg-auto mt-2 font-size-xs d-block d-lg-none'></ul>"+
+            $("<ul class='navbar-nav border-top pt-3 m-lg-auto mt-2 font-size-xs d-block d-lg-none'>"+
             "<li class='nav-item mx-lg-3 mx-2 mb-2'>"+
             "<div class='d-flex'>"+
             "<div class='position-relative mr-2 nav-user-profile'>"+
