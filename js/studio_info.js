@@ -15,8 +15,7 @@ $(document).ready(function () {
     if (xhr.readyState === xhr.DONE) {
       if (xhr.status === 200 || xhr.status === 201) {
         var result = JSON.parse(xhr.responseText);
-        for(i in result.length) {
-            console.log(result[i]);
+        for(var i = 0; i < result.length; i++) {
             $("#indicator").append(
                 $("<li data-target='#carouselStudioView' data-slide-to='"+i+"' class='active'></li>")
             );
@@ -25,7 +24,7 @@ $(document).ready(function () {
                 $("<div class='carousel-item active'><img src='"+result[i].studio_images+"' class='d-block w-100' alt='...'></div>")
             );
         }
-        
+
         $("#title").append(
           $(
             "<h2 class='my-4'>" + result[0].studio_name +"</h2>" +
