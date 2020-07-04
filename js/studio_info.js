@@ -137,6 +137,8 @@ $(document).ready(function () {
 
         $("start_times").append($(start+suffix));
         $("end_times").append($(end+suffix));
+
+        console.log(start+suffix);
       } else {
         alert("접속 오류");
         location.href = "studio.html"; //잘못된 접속 시 페이지 강제 이동
