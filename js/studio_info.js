@@ -93,6 +93,7 @@ $(document).ready(function () {
     if (xhr.readyState === xhr.DONE) {
       if (xhr.status === 200 || xhr.status === 201) {
         var result = JSON.parse(xhr.responseText);
+        console.log(result);
         for(i in result.length) {
             console.log(result[i]);
             $("#indicator").append(
