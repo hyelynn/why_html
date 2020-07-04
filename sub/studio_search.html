@@ -42,7 +42,34 @@
 </head>
 
 <body>
-    <header include-html="/why_html/include/header.html"></header>
+    <modal include-html="/why_html/include/header.html"></modal>
+    <div class="py-md-3 px-5 py-2 text-center text-white bg-deep-dark top-notice">
+        <span class="font-weight-light">코로나19에 대한 아트바이어스의 대책 및 환불 정책에 대한 최신 정보를 확인하세요.</span>
+        <a href="#x" class="text-white d-lg-inline-block d-block">자세히 알아보기</a>
+    </div>
+
+    <nav class="navbar navbar-expand-lg navbar-light py-lg-3 py-1">
+        <div class="container">
+            <a class="navbar-brand" href="/why_html/index.html"><img src="http://artbyus.co.kr/why_html/img/logo.png"
+                    srcset="http://artbyus.co.kr/why_html/img/logo@2x.png 2x, http://artbyus.co.kr/why_html/img/logo@3x.png 3x"></a>
+            <div class="ml-auto align-items-center d-lg-none d-flex">
+                <a class="text-dark mr-3 font-size-sm" href="/why_html/member/calendar.html"><i
+                        class="far fa-calendar-alt"></i></a>
+                <a class="text-dark mr-3 font-size-sm" href="/why_html/member/recent_list.html"><i
+                        class="far fa-clock"></i></a>
+                <a class="text-dark mr-2 font-size-sm" href="/why_html/member/purchase.html"><i
+                        class="fas fa-shopping-cart"></i></a>
+            </div>
+            <button class="navbar-toggler border-0 font-size-md text-dark" type="button" data-toggle="collapse"
+                data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false"
+                aria-label="Toggle navigation">
+                <i class="fas fa-bars"></i>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarNavDropdown"></div>
+        </div>
+    </nav>
+    <script src="/why_html/js/header.js"></script>
 
     <main role="main">
         <div class="container mb-5">
@@ -426,7 +453,6 @@
     <footer include-html="include/footer.html"></footer>
     <script>includeHTML();</script>
 
-    <script src="/why_html/js/kakao_login.js"></script>
     <script src="/why_html/js/naver_login.js"></script>
 </body>
 

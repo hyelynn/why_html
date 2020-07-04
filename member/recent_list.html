@@ -12,15 +12,42 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
 
     <!-- Custom -->
-    <link rel="stylesheet" href="../css/custom.css">
-    <script src="../js/custom.js"></script>
+    <link rel="stylesheet" href="/why_html/css/custom.css">
+    <script src="/why_html/js/custom.js"></script>
 
     <!-- Fontawesome -->
-    <link rel="stylesheet" href="../css/fontawesome/css/all.min.css">
+    <link rel="stylesheet" href="/why_html/css/fontawesome/css/all.min.css">
 </head>
 
 <body>
-    <header include-html="include/header_sub.html"></header>
+    <modal include-html="/why_html/include/header.html"></modal>
+    <div class="py-md-3 px-5 py-2 text-center text-white bg-deep-dark top-notice">
+        <span class="font-weight-light">코로나19에 대한 아트바이어스의 대책 및 환불 정책에 대한 최신 정보를 확인하세요.</span>
+        <a href="#x" class="text-white d-lg-inline-block d-block">자세히 알아보기</a>
+    </div>
+
+    <nav class="navbar navbar-expand-lg navbar-light py-lg-3 py-1">
+        <div class="container">
+            <a class="navbar-brand" href="/why_html/index.html"><img src="http://artbyus.co.kr/why_html/img/logo.png"
+                    srcset="http://artbyus.co.kr/why_html/img/logo@2x.png 2x, http://artbyus.co.kr/why_html/img/logo@3x.png 3x"></a>
+            <div class="ml-auto align-items-center d-lg-none d-flex">
+                <a class="text-dark mr-3 font-size-sm" href="/why_html/member/calendar.html"><i
+                        class="far fa-calendar-alt"></i></a>
+                <a class="text-dark mr-3 font-size-sm" href="/why_html/member/recent_list.html"><i
+                        class="far fa-clock"></i></a>
+                <a class="text-dark mr-2 font-size-sm" href="/why_html/member/purchase.html"><i
+                        class="fas fa-shopping-cart"></i></a>
+            </div>
+            <button class="navbar-toggler border-0 font-size-md text-dark" type="button" data-toggle="collapse"
+                data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false"
+                aria-label="Toggle navigation">
+                <i class="fas fa-bars"></i>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarNavDropdown"></div>
+        </div>
+    </nav>
+    <script src="/why_html/js/header.js"></script>
 
     <div class="py-md-3 px-5 py-2 text-center text-white bg-deep-dark top-notice">
         <span class="font-weight-light">코로나19에 대한 아트바이어스의 대책 및 환불 정책에 대한 최신 정보를 확인하세요.</span>
@@ -29,11 +56,11 @@
 
     <nav class="navbar navbar-expand-lg navbar-light py-lg-3 py-1">
         <div class="container">
-            <a class="navbar-brand" href="../index.html"><img src="../img/logo.png" srcset="../img/logo@2x.png 2x, ../img/logo@3x.png 3x"></a>
+            <a class="navbar-brand" href="/why_html/index.html"><img src="/why_html/img/logo.png" srcset="/why_html/img/logo@2x.png 2x, /why_html/img/logo@3x.png 3x"></a>
             <div class="ml-auto align-items-center d-lg-none d-flex">
-                <a class="text-dark mr-3 font-size-sm" href="../member/calendar.html"><i class="far fa-calendar-alt"></i></a>
-                <a class="text-dark mr-3 font-size-sm" href="../member/recent_list.html"><i class="far fa-clock"></i></a>
-                <a class="text-dark mr-2 font-size-sm" href="../member/cart.html"><i class="fas fa-shopping-cart"></i></a>
+                <a class="text-dark mr-3 font-size-sm" href="/why_html/member/calendar.html"><i class="far fa-calendar-alt"></i></a>
+                <a class="text-dark mr-3 font-size-sm" href="/why_html/member/recent_list.html"><i class="far fa-clock"></i></a>
+                <a class="text-dark mr-2 font-size-sm" href="/why_html/member/cart.html"><i class="fas fa-shopping-cart"></i></a>
             </div>
             <button class="navbar-toggler border-0 font-size-md text-dark" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
                 <i class="fas fa-bars"></i>
@@ -55,7 +82,7 @@
                 <ul class="navbar-nav m-auto font-weight-light sub-nav">
                     <li class="nav-item mx-lg-3 mx-2 active">
                         <div class="d-flex justify-content-between">
-                            <a class="nav-link text-dark" href="../sub/studio.html" id="menu1">Studio</a>
+                            <a class="nav-link text-dark" href="/why_html/sub/studio.html" id="menu1">Studio</a>
                             <button class="navbar-toggler border-0 font-size-md text-dark" type="button" data-toggle="collapse" data-target="#subNavDropdown1" aria-controls="subNavDropdown1" aria-expanded="false" aria-label="Toggle navigation">
                                 <i class="fas fa-chevron-down"></i>
                             </button>
@@ -64,18 +91,18 @@
                         <!-- sub menu : mobile -->
                         <div class="collapse navbar-collapse sub-nav-dropdown" id="subNavDropdown1">
                             <ul class="navbar-nav m-auto font-weight-light">
-                                <li class="nav-item border-bottom p-2"><a href="../sub/studio.html" class="text-decoration-none text-dark">무용</a></li>
-                                <li class="nav-item border-bottom p-2"><a href="../sub/studio.html" class="text-decoration-none text-dark">연기</a></li>
-                                <li class="nav-item border-bottom p-2"><a href="../sub/studio.html" class="text-decoration-none text-dark">음악</a></li>
-                                <li class="nav-item border-bottom p-2"><a href="../sub/studio.html" class="text-decoration-none text-dark">보컬</a></li>
-                                <li class="nav-item border-bottom p-2"><a href="../sub/studio.html" class="text-decoration-none text-dark">댄스</a></li>
-                                <li class="nav-item p-2"><a href="../sub/studio.html" class="text-decoration-none text-dark">촬영스튜디오</a></li>
+                                <li class="nav-item border-bottom p-2"><a href="/why_html/sub/studio.html" class="text-decoration-none text-dark">무용</a></li>
+                                <li class="nav-item border-bottom p-2"><a href="/why_html/sub/studio.html" class="text-decoration-none text-dark">연기</a></li>
+                                <li class="nav-item border-bottom p-2"><a href="/why_html/sub/studio.html" class="text-decoration-none text-dark">음악</a></li>
+                                <li class="nav-item border-bottom p-2"><a href="/why_html/sub/studio.html" class="text-decoration-none text-dark">보컬</a></li>
+                                <li class="nav-item border-bottom p-2"><a href="/why_html/sub/studio.html" class="text-decoration-none text-dark">댄스</a></li>
+                                <li class="nav-item p-2"><a href="/why_html/sub/studio.html" class="text-decoration-none text-dark">촬영스튜디오</a></li>
                             </ul>
                         </div>
                     </li>
                     <li class="nav-item mx-lg-3 mx-2">
                         <div class="d-flex justify-content-between">
-                            <a class="nav-link text-dark" href="../sub/class.html" id="menu2">Class</a>
+                            <a class="nav-link text-dark" href="/why_html/sub/class.html" id="menu2">Class</a>
                             <button class="navbar-toggler border-0 font-size-md text-dark" type="button" data-toggle="collapse" data-target="#subNavDropdown2" aria-controls="subNavDropdown2" aria-expanded="false" aria-label="Toggle navigation">
                                 <i class="fas fa-chevron-down"></i>
                             </button>
@@ -84,20 +111,20 @@
                         <!-- sub menu : mobile -->
                         <div class="collapse navbar-collapse sub-nav-dropdown" id="subNavDropdown2">
                             <ul class="navbar-nav m-auto font-weight-light">
-                                <li class="nav-item border-bottom p-2"><a href="../sub/class.html" class="text-decoration-none text-dark">특강</a></li>
-                                <li class="nav-item border-bottom p-2"><a href="../sub/class.html" class="text-decoration-none text-dark">무용</a></li>
-                                <li class="nav-item border-bottom p-2"><a href="../sub/class.html" class="text-decoration-none text-dark">연기</a></li>
-                                <li class="nav-item border-bottom p-2"><a href="../sub/class.html" class="text-decoration-none text-dark">클래식</a></li>
-                                <li class="nav-item border-bottom p-2"><a href="../sub/class.html" class="text-decoration-none text-dark">음악</a></li>
-                                <li class="nav-item border-bottom p-2"><a href="../sub/class.html" class="text-decoration-none text-dark">댄스</a></li>
-                                <li class="nav-item border-bottom p-2"><a href="../sub/class.html" class="text-decoration-none text-dark">보컬</a></li>
-                                <li class="nav-item border-bottom p-2"><a href="../sub/class.html" class="text-decoration-none text-dark">그외</a></li>
+                                <li class="nav-item border-bottom p-2"><a href="/why_html/sub/class.html" class="text-decoration-none text-dark">특강</a></li>
+                                <li class="nav-item border-bottom p-2"><a href="/why_html/sub/class.html" class="text-decoration-none text-dark">무용</a></li>
+                                <li class="nav-item border-bottom p-2"><a href="/why_html/sub/class.html" class="text-decoration-none text-dark">연기</a></li>
+                                <li class="nav-item border-bottom p-2"><a href="/why_html/sub/class.html" class="text-decoration-none text-dark">클래식</a></li>
+                                <li class="nav-item border-bottom p-2"><a href="/why_html/sub/class.html" class="text-decoration-none text-dark">음악</a></li>
+                                <li class="nav-item border-bottom p-2"><a href="/why_html/sub/class.html" class="text-decoration-none text-dark">댄스</a></li>
+                                <li class="nav-item border-bottom p-2"><a href="/why_html/sub/class.html" class="text-decoration-none text-dark">보컬</a></li>
+                                <li class="nav-item border-bottom p-2"><a href="/why_html/sub/class.html" class="text-decoration-none text-dark">그외</a></li>
                             </ul>
                         </div>
                     </li>
                     <li class="nav-item mx-lg-3 mx-2">
                         <div class="d-flex justify-content-between">
-                            <a class="nav-link text-dark" href="../sub/performance.html" id="menu3">Performance</a>
+                            <a class="nav-link text-dark" href="/why_html/sub/performance.html" id="menu3">Performance</a>
                             <button class="navbar-toggler border-0 font-size-md text-dark" type="button" data-toggle="collapse" data-target="#subNavDropdown3" aria-controls="subNavDropdown3" aria-expanded="false" aria-label="Toggle navigation">
                                 <i class="fas fa-chevron-down"></i>
                             </button>
@@ -106,20 +133,20 @@
                         <!-- sub menu : mobile -->
                         <div class="collapse navbar-collapse sub-nav-dropdown" id="subNavDropdown3">
                             <ul class="navbar-nav m-auto font-weight-light">
-                                <li class="nav-item border-bottom p-2"><a href="../sub/performance.html" class="text-decoration-none text-dark">뮤지컬</a></li>
-                                <li class="nav-item border-bottom p-2"><a href="../sub/performance.html" class="text-decoration-none text-dark">연극</a></li>
-                                <li class="nav-item border-bottom p-2"><a href="../sub/performance.html" class="text-decoration-none text-dark">콘서트</a></li>
-                                <li class="nav-item border-bottom p-2"><a href="../sub/performance.html" class="text-decoration-none text-dark">무용</a></li>
-                                <li class="nav-item border-bottom p-2"><a href="../sub/performance.html" class="text-decoration-none text-dark">클래식</a></li>
-                                <li class="nav-item border-bottom p-2"><a href="../sub/performance.html" class="text-decoration-none text-dark">오페라</a></li>
-                                <li class="nav-item border-bottom p-2"><a href="../sub/performance.html" class="text-decoration-none text-dark">마술</a></li>
-                                <li class="nav-item border-bottom p-2"><a href="../sub/performance.html" class="text-decoration-none text-dark">그외</a></li>
+                                <li class="nav-item border-bottom p-2"><a href="/why_html/sub/performance.html" class="text-decoration-none text-dark">뮤지컬</a></li>
+                                <li class="nav-item border-bottom p-2"><a href="/why_html/sub/performance.html" class="text-decoration-none text-dark">연극</a></li>
+                                <li class="nav-item border-bottom p-2"><a href="/why_html/sub/performance.html" class="text-decoration-none text-dark">콘서트</a></li>
+                                <li class="nav-item border-bottom p-2"><a href="/why_html/sub/performance.html" class="text-decoration-none text-dark">무용</a></li>
+                                <li class="nav-item border-bottom p-2"><a href="/why_html/sub/performance.html" class="text-decoration-none text-dark">클래식</a></li>
+                                <li class="nav-item border-bottom p-2"><a href="/why_html/sub/performance.html" class="text-decoration-none text-dark">오페라</a></li>
+                                <li class="nav-item border-bottom p-2"><a href="/why_html/sub/performance.html" class="text-decoration-none text-dark">마술</a></li>
+                                <li class="nav-item border-bottom p-2"><a href="/why_html/sub/performance.html" class="text-decoration-none text-dark">그외</a></li>
                             </ul>
                         </div>
                     </li>
                     <li class="nav-item mx-lg-3 mx-2">
                         <div class="d-flex justify-content-between">
-                            <a class="nav-link text-dark" href="../sub/audition.html" id="menu4">Audition</a>
+                            <a class="nav-link text-dark" href="/why_html/sub/audition.html" id="menu4">Audition</a>
                             <button class="navbar-toggler border-0 font-size-md text-dark" type="button" data-toggle="collapse" data-target="#subNavDropdown4" aria-controls="subNavDropdown4" aria-expanded="false" aria-label="Toggle navigation">
                                 <i class="fas fa-chevron-down"></i>
                             </button>
@@ -128,18 +155,18 @@
                         <!-- sub menu : mobile -->
                         <div class="collapse navbar-collapse sub-nav-dropdown" id="subNavDropdown4">
                             <ul class="navbar-nav m-auto font-weight-light">
-                                <li class="nav-item border-bottom p-2"><a href="../sub/audition.html" class="text-decoration-none text-dark">뮤지컬</a></li>
-                                <li class="nav-item border-bottom p-2"><a href="../sub/audition.html" class="text-decoration-none text-dark">영화</a></li>
-                                <li class="nav-item border-bottom p-2"><a href="../sub/audition.html" class="text-decoration-none text-dark">무용</a></li>
-                                <li class="nav-item border-bottom p-2"><a href="../sub/audition.html" class="text-decoration-none text-dark">음악</a></li>
-                                <li class="nav-item border-bottom p-2"><a href="../sub/audition.html" class="text-decoration-none text-dark">엔터테인먼트</a></li>
-                                <li class="nav-item border-bottom p-2"><a href="../sub/audition.html" class="text-decoration-none text-dark">오디션 캘린더</a></li>
+                                <li class="nav-item border-bottom p-2"><a href="/why_html/sub/audition.html" class="text-decoration-none text-dark">뮤지컬</a></li>
+                                <li class="nav-item border-bottom p-2"><a href="/why_html/sub/audition.html" class="text-decoration-none text-dark">영화</a></li>
+                                <li class="nav-item border-bottom p-2"><a href="/why_html/sub/audition.html" class="text-decoration-none text-dark">무용</a></li>
+                                <li class="nav-item border-bottom p-2"><a href="/why_html/sub/audition.html" class="text-decoration-none text-dark">음악</a></li>
+                                <li class="nav-item border-bottom p-2"><a href="/why_html/sub/audition.html" class="text-decoration-none text-dark">엔터테인먼트</a></li>
+                                <li class="nav-item border-bottom p-2"><a href="/why_html/sub/audition.html" class="text-decoration-none text-dark">오디션 캘린더</a></li>
                             </ul>
                         </div>
                     </li>
                     <li class="nav-item mx-lg-3 mx-2">
                         <div class="d-flex justify-content-between">
-                            <a class="nav-link text-dark" href="../sub/store.html" id="menu5">Store</a>
+                            <a class="nav-link text-dark" href="/why_html/sub/store.html" id="menu5">Store</a>
                             <button class="navbar-toggler border-0 font-size-md text-dark" type="button" data-toggle="collapse" data-target="#subNavDropdown5" aria-controls="subNavDropdown5" aria-expanded="false" aria-label="Toggle navigation">
                                 <i class="fas fa-chevron-down"></i>
                             </button>
@@ -148,10 +175,10 @@
                         <!-- sub menu : mobile -->
                         <div class="collapse navbar-collapse sub-nav-dropdown" id="subNavDropdown5">
                             <ul class="navbar-nav m-auto font-weight-light">
-                                <li class="nav-item border-bottom p-2"><a href="../sub/store.html" class="text-decoration-none text-dark">교육</a></li>
-                                <li class="nav-item border-bottom p-2"><a href="../sub/store.html" class="text-decoration-none text-dark">공연</a></li>
-                                <li class="nav-item border-bottom p-2"><a href="../sub/store.html" class="text-decoration-none text-dark">판매점</a></li>
-                                <li class="nav-item border-bottom p-2"><a href="../sub/store.html" class="text-decoration-none text-dark">제작</a></li>
+                                <li class="nav-item border-bottom p-2"><a href="/why_html/sub/store.html" class="text-decoration-none text-dark">교육</a></li>
+                                <li class="nav-item border-bottom p-2"><a href="/why_html/sub/store.html" class="text-decoration-none text-dark">공연</a></li>
+                                <li class="nav-item border-bottom p-2"><a href="/why_html/sub/store.html" class="text-decoration-none text-dark">판매점</a></li>
+                                <li class="nav-item border-bottom p-2"><a href="/why_html/sub/store.html" class="text-decoration-none text-dark">제작</a></li>
                             </ul>
                         </div>
                     </li>
@@ -173,7 +200,7 @@
                         <div class="d-flex">
                             <div class="position-relative mr-2 nav-user-profile">
                                 <span class="position-absolute rounded-pill bg-hot-pink nav-user-notify"></span>
-                                <img src="../img/profile-photo@3x.jpg" class="rounded-circle nav-user-profile-img" alt="김민범님">
+                                <img src="/why_html/img/profile-photo@3x.jpg" class="rounded-circle nav-user-profile-img" alt="김민범님">
                             </div>
                             <span class="align-self-center">김민범</span>
                         </div>
@@ -192,7 +219,7 @@
                         <a class="nav-link" href="#x">채팅</a>
                     </li>
                     <li class="nav-item mx-lg-3 mx-2">
-                        <a class="nav-link" href="../member/chat_user.html">1:1 문의<span class="ml-2 d-inline-block rounded-pill align-top mt-1 bg-hot-pink nav-notify"></span></a>
+                        <a class="nav-link" href="/why_html/member/chat_user.html">1:1 문의<span class="ml-2 d-inline-block rounded-pill align-top mt-1 bg-hot-pink nav-notify"></span></a>
                     </li>
                     <div class="dropdown-divider"></div>
                     <li class="nav-item mx-lg-3 mx-2">
@@ -212,13 +239,13 @@
                 <!-- index, chat 페이지 ml-auto 추가 -->
                 <ul class="navbar-nav ml-auto_ align-items-center d-none d-lg-flex">
                     <li class="nav-item mr-2 font-size-md">
-                        <a class="nav-link text-dark" href="../member/calendar.html"><i class="far fa-calendar-alt"></i></a>
+                        <a class="nav-link text-dark" href="/why_html/member/calendar.html"><i class="far fa-calendar-alt"></i></a>
                     </li>
                     <li class="nav-item mr-2 font-size-md">
-                        <a class="nav-link text-dark" href="../member/recent_list.html"><i class="far fa-clock"></i></a>
+                        <a class="nav-link text-dark" href="/why_html/member/recent_list.html"><i class="far fa-clock"></i></a>
                     </li>
                     <li class="nav-item mr-3 font-size-md">
-                        <a class="nav-link text-dark" href="../member/cart.html"><i class="fas fa-shopping-cart"></i></a>
+                        <a class="nav-link text-dark" href="/why_html/member/cart.html"><i class="fas fa-shopping-cart"></i></a>
                     </li>
                     <li class="nav-item">
                         <!-- Login -->
@@ -234,7 +261,7 @@
                                 <div class="d-flex">
                                     <div class="position-relative mr-2 nav-user-profile">
                                         <span class="position-absolute rounded-pill bg-hot-pink nav-user-notify"></span>
-                                        <img src="../img/profile-photo@3x.jpg" class="rounded-circle nav-user-profile-img" alt="김민범님">
+                                        <img src="/why_html/img/profile-photo@3x.jpg" class="rounded-circle nav-user-profile-img" alt="김민범님">
                                     </div>
                                     <span>김민범</span>
                                 </div>
@@ -244,7 +271,7 @@
                                 <a class="dropdown-item" href="#x">찜 리스트</a>
                                 <a class="dropdown-item" href="#x">나의 이용 후기</a>
                                 <a class="dropdown-item" href="#x">채팅</a>
-                                <a class="dropdown-item" href="../member/chat_user.html">1:1 문의<span class="ml-2 d-inline-block rounded-pill align-top mt-1 bg-hot-pink nav-notify"></span></a>
+                                <a class="dropdown-item" href="/why_html/member/chat_user.html">1:1 문의<span class="ml-2 d-inline-block rounded-pill align-top mt-1 bg-hot-pink nav-notify"></span></a>
                                 <div class="dropdown-divider"></div>
                                 <a class="dropdown-item" href="#x">회원 정보 관리</a>
                                 <a class="dropdown-item" href="#x">호스트 전환</a>
@@ -261,22 +288,22 @@
                     <div class="container">
                         <ul class="nav justify-content-center py-2">
                             <li class="nav-item">
-                                <a href="../sub/studio.html" class="nav-link px-5 text-decoration-none text-dark">무용</a>
+                                <a href="/why_html/sub/studio.html" class="nav-link px-5 text-decoration-none text-dark">무용</a>
                             </li>
                             <li class="nav-item">
-                                <a href="../sub/studio.html" class="nav-link px-5 text-decoration-none text-dark">연기</a>
+                                <a href="/why_html/sub/studio.html" class="nav-link px-5 text-decoration-none text-dark">연기</a>
                             </li>
                             <li class="nav-item">
-                                <a href="../sub/studio.html" class="nav-link px-5 text-decoration-none text-dark">음악</a>
+                                <a href="/why_html/sub/studio.html" class="nav-link px-5 text-decoration-none text-dark">음악</a>
                             </li>
                             <li class="nav-item">
-                                <a href="../sub/studio.html" class="nav-link px-5 text-decoration-none text-dark">보컬</a>
+                                <a href="/why_html/sub/studio.html" class="nav-link px-5 text-decoration-none text-dark">보컬</a>
                             </li>
                             <li class="nav-item">
-                                <a href="../sub/studio.html" class="nav-link px-5 text-decoration-none text-dark">댄스</a>
+                                <a href="/why_html/sub/studio.html" class="nav-link px-5 text-decoration-none text-dark">댄스</a>
                             </li>
                             <li class="nav-item">
-                                <a href="../sub/studio.html" class="nav-link px-5 text-decoration-none text-dark">촬영스튜디오</a>
+                                <a href="/why_html/sub/studio.html" class="nav-link px-5 text-decoration-none text-dark">촬영스튜디오</a>
                             </li>
                         </ul>
                     </div>
@@ -285,28 +312,28 @@
                     <div class="container">
                         <ul class="nav justify-content-center py-2">
                             <li class="nav-item">
-                                <a href="../sub/class.html" class="nav-link px-5 text-decoration-none text-dark">특강</a>
+                                <a href="/why_html/sub/class.html" class="nav-link px-5 text-decoration-none text-dark">특강</a>
                             </li>
                             <li class="nav-item">
-                                <a href="../sub/class.html" class="nav-link px-5 text-decoration-none text-dark">무용</a>
+                                <a href="/why_html/sub/class.html" class="nav-link px-5 text-decoration-none text-dark">무용</a>
                             </li>
                             <li class="nav-item">
-                                <a href="../sub/class.html" class="nav-link px-5 text-decoration-none text-dark">연기</a>
+                                <a href="/why_html/sub/class.html" class="nav-link px-5 text-decoration-none text-dark">연기</a>
                             </li>
                             <li class="nav-item">
-                                <a href="../sub/class.html" class="nav-link px-5 text-decoration-none text-dark">클래식</a>
+                                <a href="/why_html/sub/class.html" class="nav-link px-5 text-decoration-none text-dark">클래식</a>
                             </li>
                             <li class="nav-item">
-                                <a href="../sub/class.html" class="nav-link px-5 text-decoration-none text-dark">음악</a>
+                                <a href="/why_html/sub/class.html" class="nav-link px-5 text-decoration-none text-dark">음악</a>
                             </li>
                             <li class="nav-item">
-                                <a href="../sub/class.html" class="nav-link px-5 text-decoration-none text-dark">댄스</a>
+                                <a href="/why_html/sub/class.html" class="nav-link px-5 text-decoration-none text-dark">댄스</a>
                             </li>
                             <li class="nav-item">
-                                <a href="../sub/class.html" class="nav-link px-5 text-decoration-none text-dark">보컬</a>
+                                <a href="/why_html/sub/class.html" class="nav-link px-5 text-decoration-none text-dark">보컬</a>
                             </li>
                             <li class="nav-item">
-                                <a href="../sub/class.html" class="nav-link px-5 text-decoration-none text-dark">그외</a>
+                                <a href="/why_html/sub/class.html" class="nav-link px-5 text-decoration-none text-dark">그외</a>
                             </li>
                         </ul>
                     </div>
@@ -315,28 +342,28 @@
                     <div class="container">
                         <ul class="nav justify-content-center py-2">
                             <li class="nav-item">
-                                <a href="../sub/performance.html" class="nav-link px-5 text-decoration-none text-dark">뮤지컬</a>
+                                <a href="/why_html/sub/performance.html" class="nav-link px-5 text-decoration-none text-dark">뮤지컬</a>
                             </li>
                             <li class="nav-item">
-                                <a href="../sub/performance.html" class="nav-link px-5 text-decoration-none text-dark">연극</a>
+                                <a href="/why_html/sub/performance.html" class="nav-link px-5 text-decoration-none text-dark">연극</a>
                             </li>
                             <li class="nav-item">
-                                <a href="../sub/performance.html" class="nav-link px-5 text-decoration-none text-dark">콘서트</a>
+                                <a href="/why_html/sub/performance.html" class="nav-link px-5 text-decoration-none text-dark">콘서트</a>
                             </li>
                             <li class="nav-item">
-                                <a href="../sub/performance.html" class="nav-link px-5 text-decoration-none text-dark">무용</a>
+                                <a href="/why_html/sub/performance.html" class="nav-link px-5 text-decoration-none text-dark">무용</a>
                             </li>
                             <li class="nav-item">
-                                <a href="../sub/performance.html" class="nav-link px-5 text-decoration-none text-dark">클래식</a>
+                                <a href="/why_html/sub/performance.html" class="nav-link px-5 text-decoration-none text-dark">클래식</a>
                             </li>
                             <li class="nav-item">
-                                <a href="../sub/performance.html" class="nav-link px-5 text-decoration-none text-dark">오페라</a>
+                                <a href="/why_html/sub/performance.html" class="nav-link px-5 text-decoration-none text-dark">오페라</a>
                             </li>
                             <li class="nav-item">
-                                <a href="../sub/performance.html" class="nav-link px-5 text-decoration-none text-dark">마술</a>
+                                <a href="/why_html/sub/performance.html" class="nav-link px-5 text-decoration-none text-dark">마술</a>
                             </li>
                             <li class="nav-item">
-                                <a href="../sub/performance.html" class="nav-link px-5 text-decoration-none text-dark">그외</a>
+                                <a href="/why_html/sub/performance.html" class="nav-link px-5 text-decoration-none text-dark">그외</a>
                             </li>
                         </ul>
                     </div>
@@ -345,22 +372,22 @@
                     <div class="container">
                         <ul class="nav justify-content-center py-2">
                             <li class="nav-item">
-                                <a href="../sub/audition.html" class="nav-link px-5 text-decoration-none text-dark">뮤지컬</a>
+                                <a href="/why_html/sub/audition.html" class="nav-link px-5 text-decoration-none text-dark">뮤지컬</a>
                             </li>
                             <li class="nav-item">
-                                <a href="../sub/audition.html" class="nav-link px-5 text-decoration-none text-dark">영화</a>
+                                <a href="/why_html/sub/audition.html" class="nav-link px-5 text-decoration-none text-dark">영화</a>
                             </li>
                             <li class="nav-item">
-                                <a href="../sub/audition.html" class="nav-link px-5 text-decoration-none text-dark">무용</a>
+                                <a href="/why_html/sub/audition.html" class="nav-link px-5 text-decoration-none text-dark">무용</a>
                             </li>
                             <li class="nav-item">
-                                <a href="../sub/audition.html" class="nav-link px-5 text-decoration-none text-dark">음악</a>
+                                <a href="/why_html/sub/audition.html" class="nav-link px-5 text-decoration-none text-dark">음악</a>
                             </li>
                             <li class="nav-item">
-                                <a href="../sub/audition.html" class="nav-link px-5 text-decoration-none text-dark">엔터테인먼트</a>
+                                <a href="/why_html/sub/audition.html" class="nav-link px-5 text-decoration-none text-dark">엔터테인먼트</a>
                             </li>
                             <li class="nav-item">
-                                <a href="../sub/audition.html" class="nav-link px-5 text-decoration-none text-dark">오디션 캘린더</a>
+                                <a href="/why_html/sub/audition.html" class="nav-link px-5 text-decoration-none text-dark">오디션 캘린더</a>
                             </li>
                         </ul>
                     </div>
@@ -369,16 +396,16 @@
                     <div class="container">
                         <ul class="nav justify-content-center py-2">
                             <li class="nav-item">
-                                <a href="../sub/store.html" class="nav-link px-5 text-decoration-none text-dark">교육</a>
+                                <a href="/why_html/sub/store.html" class="nav-link px-5 text-decoration-none text-dark">교육</a>
                             </li>
                             <li class="nav-item">
-                                <a href="../sub/store.html" class="nav-link px-5 text-decoration-none text-dark">공연</a>
+                                <a href="/why_html/sub/store.html" class="nav-link px-5 text-decoration-none text-dark">공연</a>
                             </li>
                             <li class="nav-item">
-                                <a href="../sub/store.html" class="nav-link px-5 text-decoration-none text-dark">판매점</a>
+                                <a href="/why_html/sub/store.html" class="nav-link px-5 text-decoration-none text-dark">판매점</a>
                             </li>
                             <li class="nav-item">
-                                <a href="../sub/store.html" class="nav-link px-5 text-decoration-none text-dark">제작</a>
+                                <a href="/why_html/sub/store.html" class="nav-link px-5 text-decoration-none text-dark">제작</a>
                             </li>
                         </ul>
                     </div>
@@ -408,7 +435,7 @@
                             <button type="button" class="float-right bg-transparent border-0 p-0 text-white font-size-md" onclick="addWishList(this);"><i class="far fa-heart"></i></button>
                         </div>
 
-                        <img src="../img/section-1-photo.jpg" class="card-img-top rounded-0" srcset="../img/section-1-photo@2x.jpg 2x, ../img/section-1-photo@3x.jpg 3x" alt="">
+                        <img src="/why_html/img/section-1-photo.jpg" class="card-img-top rounded-0" srcset="/why_html/img/section-1-photo@2x.jpg 2x, /why_html/img/section-1-photo@3x.jpg 3x" alt="">
 
                         <h5 class="mt-lg-3 mt-2">타이틀은 한줄부터 두줄까지 가능합니다.</h5>
                         <p class="font-weight-light border-bottom pb-2 mb-2 font-size-xs">설명은 짧게는 한줄 다 채워 주시고, 두 줄도 가능합니다.</p>
@@ -426,7 +453,7 @@
                             <button type="button" class="float-right bg-transparent border-0 p-0 text-white font-size-md" onclick="addWishList(this);"><i class="far fa-heart"></i></button>
                         </div>
 
-                        <img src="../img/section-2-photo.jpg" class="card-img-top rounded-0" srcset="../img/section-2-photo@2x.jpg 2x, ../img/section-2-photo@3x.jpg 3x" alt="">
+                        <img src="/why_html/img/section-2-photo.jpg" class="card-img-top rounded-0" srcset="/why_html/img/section-2-photo@2x.jpg 2x, /why_html/img/section-2-photo@3x.jpg 3x" alt="">
 
                         <h5 class="mt-lg-3 mt-2">타이틀은 한줄부터 두줄까지 가능합니다.</h5>
                         <p class="font-weight-light border-bottom pb-2 mb-2 font-size-xs">설명은 짧게는 한줄 다 채워 주시고, 두 줄도 가능합니다.</p>
@@ -444,7 +471,7 @@
                             <button type="button" class="float-right bg-transparent border-0 p-0 text-white font-size-md" onclick="addWishList(this);"><i class="far fa-heart"></i></button>
                         </div>
 
-                        <img src="../img/section-3-photo.jpg" class="card-img-top rounded-0" srcset="../img/section-3-photo@2x.jpg 2x, ../img/section-3-photo@3x.jpg 3x" alt="">
+                        <img src="/why_html/img/section-3-photo.jpg" class="card-img-top rounded-0" srcset="/why_html/img/section-3-photo@2x.jpg 2x, /why_html/img/section-3-photo@3x.jpg 3x" alt="">
 
                         <h5 class="mt-lg-3 mt-2">타이틀은 한줄부터 두줄까지 가능합니다.</h5>
                         <p class="font-weight-light border-bottom pb-2 mb-2 font-size-xs">설명은 짧게는 한줄 다 채워 주시고, 두 줄도 가능합니다.</p>
@@ -462,7 +489,7 @@
                             <button type="button" class="float-right bg-transparent border-0 p-0 text-white font-size-md" onclick="addWishList(this);"><i class="far fa-heart"></i></button>
                         </div>
 
-                        <img src="../img/section-4-photo.jpg" class="card-img-top rounded-0" srcset="../img/section-4-photo@2x.jpg 2x, ../img/section-4-photo@3x.jpg 3x" alt="">
+                        <img src="/why_html/img/section-4-photo.jpg" class="card-img-top rounded-0" srcset="/why_html/img/section-4-photo@2x.jpg 2x, /why_html/img/section-4-photo@3x.jpg 3x" alt="">
 
                         <h5 class="mt-lg-3 mt-2">타이틀은 한줄부터 두줄까지 가능합니다.</h5>
                         <p class="font-weight-light border-bottom pb-2 mb-2 font-size-xs">설명은 짧게는 한줄 다 채워 주시고, 두 줄도 가능합니다.</p>
@@ -483,7 +510,7 @@
                             <button type="button" class="float-right bg-transparent border-0 p-0 text-white font-size-md" onclick="addWishList(this);"><i class="far fa-heart"></i></button>
                         </div>
 
-                        <img src="../img/section-1-photo.jpg" class="card-img-top rounded-0" srcset="../img/section-1-photo@2x.jpg 2x, ../img/section-1-photo@3x.jpg 3x" alt="">
+                        <img src="/why_html/img/section-1-photo.jpg" class="card-img-top rounded-0" srcset="/why_html/img/section-1-photo@2x.jpg 2x, /why_html/img/section-1-photo@3x.jpg 3x" alt="">
 
                         <h5 class="mt-lg-3 mt-2">타이틀은 한줄부터 두줄까지 가능합니다.</h5>
                         <p class="font-weight-light border-bottom pb-2 mb-2 font-size-xs">설명은 짧게는 한줄 다 채워 주시고, 두 줄도 가능합니다.</p>
@@ -501,7 +528,7 @@
                             <button type="button" class="float-right bg-transparent border-0 p-0 text-white font-size-md" onclick="addWishList(this);"><i class="far fa-heart"></i></button>
                         </div>
 
-                        <img src="../img/section-2-photo.jpg" class="card-img-top rounded-0" srcset="../img/section-2-photo@2x.jpg 2x, ../img/section-2-photo@3x.jpg 3x" alt="">
+                        <img src="/why_html/img/section-2-photo.jpg" class="card-img-top rounded-0" srcset="/why_html/img/section-2-photo@2x.jpg 2x, /why_html/img/section-2-photo@3x.jpg 3x" alt="">
 
                         <h5 class="mt-lg-3 mt-2">타이틀은 한줄부터 두줄까지 가능합니다.</h5>
                         <p class="font-weight-light border-bottom pb-2 mb-2 font-size-xs">설명은 짧게는 한줄 다 채워 주시고, 두 줄도 가능합니다.</p>
@@ -519,7 +546,7 @@
                             <button type="button" class="float-right bg-transparent border-0 p-0 text-white font-size-md" onclick="addWishList(this);"><i class="far fa-heart"></i></button>
                         </div>
 
-                        <img src="../img/section-3-photo.jpg" class="card-img-top rounded-0" srcset="../img/section-3-photo@2x.jpg 2x, ../img/section-3-photo@3x.jpg 3x" alt="">
+                        <img src="/why_html/img/section-3-photo.jpg" class="card-img-top rounded-0" srcset="/why_html/img/section-3-photo@2x.jpg 2x, /why_html/img/section-3-photo@3x.jpg 3x" alt="">
 
                         <h5 class="mt-lg-3 mt-2">타이틀은 한줄부터 두줄까지 가능합니다.</h5>
                         <p class="font-weight-light border-bottom pb-2 mb-2 font-size-xs">설명은 짧게는 한줄 다 채워 주시고, 두 줄도 가능합니다.</p>
@@ -537,7 +564,7 @@
                             <button type="button" class="float-right bg-transparent border-0 p-0 text-white font-size-md" onclick="addWishList(this);"><i class="far fa-heart"></i></button>
                         </div>
 
-                        <img src="../img/section-4-photo.jpg" class="card-img-top rounded-0" srcset="../img/section-4-photo@2x.jpg 2x, ../img/section-4-photo@3x.jpg 3x" alt="">
+                        <img src="/why_html/img/section-4-photo.jpg" class="card-img-top rounded-0" srcset="/why_html/img/section-4-photo@2x.jpg 2x, /why_html/img/section-4-photo@3x.jpg 3x" alt="">
 
                         <h5 class="mt-lg-3 mt-2">타이틀은 한줄부터 두줄까지 가능합니다.</h5>
                         <p class="font-weight-light border-bottom pb-2 mb-2 font-size-xs">설명은 짧게는 한줄 다 채워 주시고, 두 줄도 가능합니다.</p>
@@ -553,11 +580,11 @@
     <footer class="bg-light">
         <div class="container py-lg-5 py-4">
             <div class="d-lg-flex align-items-center justify-content-between mb-lg-4 mb-3">
-                <a href="../index.html"><img src="../img/logo.png" srcset="../img/logo@2x.png 2x, ../img/logo@3x.png 3x"></a>
+                <a href="/why_html/index.html"><img src="/why_html/img/logo.png" srcset="/why_html/img/logo@2x.png 2x, /why_html/img/logo@3x.png 3x"></a>
                 <ul class="d-flex list-unstyled mb-0 font-weight-light footer-menu font-size-x mt-lg-0 mt-3">
-                    <li class="px-md-2 px-1 position-relative"><a href="../sub/terms.html" class="text-muted text-decoration-none">이용약관</a></li>
+                    <li class="px-md-2 px-1 position-relative"><a href="/why_html/sub/terms.html" class="text-muted text-decoration-none">이용약관</a></li>
                     <li class="px-md-2 px-1 position-relative"><a href="#x" class="text-muted text-decoration-none">서비스정보</a></li>
-                    <li class="px-md-2 px-1 position-relative"><a href="../sub/board_notice.html" class="text-muted text-decoration-none">공지사항</a></li>
+                    <li class="px-md-2 px-1 position-relative"><a href="/why_html/sub/board_notice.html" class="text-muted text-decoration-none">공지사항</a></li>
                     <li class="px-md-2 px-1 position-relative"><a href="#x" class="text-muted text-decoration-none">도움말</a></li>
                     <li class="px-md-2 px-1 position-relative"><a href="#x" class="text-muted text-decoration-none">광고신청하기</a></li>
                     <li class="px-md-2 px-1 position-relative"><a href="#x" class="text-muted text-decoration-none">호스트등록</a></li>

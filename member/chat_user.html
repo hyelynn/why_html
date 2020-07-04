@@ -12,48 +12,16 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
 
     <!-- Custom -->
-    <link rel="stylesheet" href="../css/custom.css">
-    <script src="../js/custom.js"></script>
+    <link rel="stylesheet" href="/why_html/css/custom.css">
+    <script src="/why_html/js/custom.js"></script>
 
+    <script src="/why_html/js/include.js"></script>
     <!-- Fontawesome -->
-    <link rel="stylesheet" href="../css/fontawesome/css/all.min.css">
+    <link rel="stylesheet" href="/why_html/css/fontawesome/css/all.min.css">
 </head>
 
 <body>
-    <!-- Login Modal -->
-    <div class="modal fade" id="loginModal" tabindex="-1" role="dialog" aria-labelledby="loginModalLabel" aria-hidden="true">
-        <div class="modal-dialog custom-modal" role="document">
-            <div class="modal-content px-lg-10 px-5 py-lg-5 py-5">
-                <div class="modal-header p-0 mb-4 border-0 justify-content-center">
-                    <h5 class="modal-title text-center" id="loginModalLabel"><img src="../img/logo.png" srcset="../img/logo@2x.png 2x, ../img/logo@3x.png 3x"></h5>
-                    <!-- <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button> -->
-                </div>
-                <div class="modal-body p-0 custom-inputs">
-                    <div class="input-group mb-2">
-                        <input type="text" class="form-control" placeholder="E-mail">
-                    </div>
-                    <div class="input-group mb-2">
-                        <input type="password" class="form-control" placeholder="비밀번호">
-                    </div>
-                    <button type="button" class="btn btn-block bg-hot-pink text-white">로그인</button>
-
-                    <div class="border-top mt-3 mb-4 pt-3">
-                        <button type="button" class="btn btn-block bg-kakao"><img src="../img/logo_kakao.svg" class="mr-3" width="20px">카카오계정으로 로그인</button>
-                        <button type="button" class="btn btn-block text-white bg-naver"><img src="../img/logo_naver.svg" class="mr-3" width="20px">네이버계정으로 로그인</button>
-                        <!-- <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                        <button type="button" class="btn btn-primary">Save changes</button> -->
-                    </div>
-                    <div class="text-center">
-                        <a href="../member/signup.html" class="text-decoration-none font-weight-light d-block text-light-gray mb-2">아직 아트바이어스의 회원이 아니신가요?</a>
-                        <a href="#x" class="text-decoration-none font-weight-light d-block text-light-gray">계정 정보 찾기</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
+    <modal include-html="/why_html/include/header.html"></modal>
     <div class="py-md-3 px-5 py-2 text-center text-white bg-deep-dark top-notice">
         <span class="font-weight-light">코로나19에 대한 아트바이어스의 대책 및 환불 정책에 대한 최신 정보를 확인하세요.</span>
         <a href="#x" class="text-white d-lg-inline-block d-block">자세히 알아보기</a>
@@ -61,129 +29,26 @@
 
     <nav class="navbar navbar-expand-lg navbar-light py-lg-3 py-1">
         <div class="container">
-            <a class="navbar-brand" href="../index.html"><img src="../img/logo.png" srcset="../img/logo@2x.png 2x, ../img/logo@3x.png 3x"></a>
-            <h3 class="mb-0 font-size-l">1:1문의</h3>
+            <a class="navbar-brand" href="/why_html/index.html"><img src="http://artbyus.co.kr/why_html/img/logo.png"
+                    srcset="http://artbyus.co.kr/why_html/img/logo@2x.png 2x, http://artbyus.co.kr/why_html/img/logo@3x.png 3x"></a>
             <div class="ml-auto align-items-center d-lg-none d-flex">
-                <a class="text-dark mr-3 font-size-sm" href="../member/calendar.html"><i class="far fa-calendar-alt"></i></a>
-                <a class="text-dark mr-3 font-size-sm" href="member/recent_list.html"><i class="far fa-clock"></i></a>
-                <a class="text-dark mr-2 font-size-sm" href="../member/cart.html"><i class="fas fa-shopping-cart"></i></a>
+                <a class="text-dark mr-3 font-size-sm" href="/why_html/member/calendar.html"><i
+                        class="far fa-calendar-alt"></i></a>
+                <a class="text-dark mr-3 font-size-sm" href="/why_html/member/recent_list.html"><i
+                        class="far fa-clock"></i></a>
+                <a class="text-dark mr-2 font-size-sm" href="/why_html/member/purchase.html"><i
+                        class="fas fa-shopping-cart"></i></a>
             </div>
-            <button class="navbar-toggler border-0 font-size-md text-dark" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+            <button class="navbar-toggler border-0 font-size-md text-dark" type="button" data-toggle="collapse"
+                data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false"
+                aria-label="Toggle navigation">
                 <i class="fas fa-bars"></i>
             </button>
 
-            <div class="collapse navbar-collapse" id="navbarNavDropdown">
-                <!-- <ul class="navbar-nav m-auto font-weight-light top-nav">
-                    <li class="nav-item mx-lg-3 mx-2 active">
-                        <a class="nav-link text-dark" href="#x">캘린더</a>
-                    </li>
-                    <li class="nav-item mx-lg-3 mx-2">
-                        <a class="nav-link text-dark" href="#x">최근 본 리스트</a>
-                    </li>
-                    <li class="nav-item mx-lg-3 mx-2">
-                        <a class="nav-link text-dark" href="#x">장바구니</a>
-                    </li>
-                </ul> -->
-
-                <!-- user -->
-                <ul class="navbar-nav border-top pt-3 m-lg-auto mt-2 font-size-xs d-block d-lg-none">
-                    <!-- Login -->
-                    <li class="nav-item mx-lg-3 mx-2 mb-2">
-                        <button class="btn btn-block border text-dark dropdown-toggle p-2 bg-white rounded-xl" type="button" data-toggle="modal" data-target="#loginModal">
-                            <span>로그인</span>
-                        </button>
-                    </li>
-
-                    <!-- Login - user -->
-                    <!--
-                    <li class="nav-item mx-lg-3 mx-2 mb-2">
-                        <div class="d-flex">
-                            <div class="position-relative mr-2 nav-user-profile">
-                                <span class="position-absolute rounded-pill bg-hot-pink nav-user-notify"></span>
-                                <img src="../img/profile-photo@3x.jpg" class="rounded-circle nav-user-profile-img" alt="김민범님">
-                            </div>
-                            <span class="align-self-center">김민범</span>
-                        </div>
-                    </li>
-                    -->
-
-                    <li class="nav-item mx-lg-3 mx-2">
-                        <a class="nav-link" href="#x">예약 리스트</a>
-                    </li>
-                    <li class="nav-item mx-lg-3 mx-2">
-                        <a class="nav-link" href="#x">찜 리스트</a>
-                    </li>
-                    <li class="nav-item mx-lg-3 mx-2">
-                        <a class="nav-link" href="#x">나의 이용 후기</a>
-                    </li>
-                    <li class="nav-item mx-lg-3 mx-2">
-                        <a class="nav-link" href="#x">채팅</a>
-                    </li>
-                    <li class="nav-item mx-lg-3 mx-2">
-                        <a class="nav-link" href="../member/chat_user.html">1:1 문의<span class="ml-2 d-inline-block rounded-pill align-top mt-1 bg-hot-pink nav-notify"></span></a>
-                    </li>
-                    <div class="dropdown-divider"></div>
-                    <li class="nav-item mx-lg-3 mx-2">
-                        <a class="nav-link" href="#x">회원 정보 관리</a>
-                    </li>
-                    <li class="nav-item mx-lg-3 mx-2">
-                        <a class="nav-link" href="#x">호스트 전환</a>
-                    </li>
-
-                    <!-- Login했을 때에만 출력 -->
-                    <li class="nav-item mx-lg-3 mx-2">
-                        <a class="nav-link text-hot-pink" href="#x">로그아웃</a>
-                    </li>
-                </ul>
-
-                <!-- user - lg -->
-                <!-- index, chat 페이지 ml-auto 추가 -->
-                <ul class="navbar-nav ml-auto align-items-center d-none d-lg-flex">
-                    <li class="nav-item mr-2 font-size-md">
-                        <a class="nav-link text-dark" href="../member/calendar.html"><i class="far fa-calendar-alt"></i></a>
-                    </li>
-                    <li class="nav-item mr-2 font-size-md">
-                        <a class="nav-link text-dark" href="../member/recent_list.html"><i class="far fa-clock"></i></a>
-                    </li>
-                    <li class="nav-item mr-3 font-size-md">
-                        <a class="nav-link text-dark" href="../member/cart.html"><i class="fas fa-shopping-cart"></i></a>
-                    </li>
-                    <li class="nav-item">
-                        <!-- Login -->
-                        <button class="btn border text-dark dropdown-toggle bg-white rounded-xl" type="button" data-toggle="modal" data-target="#loginModal">
-                            <span>로그인</span>
-                        </button>
-
-                        <!-- Login - user -->
-                        <!--
-                        <div class="dropdown">
-                            <button class="btn border text-dark dropdown-toggle bg-white rounded-xl" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <div class="d-flex">
-                                    <div class="position-relative mr-2 nav-user-profile">
-                                        <span class="position-absolute rounded-pill bg-hot-pink nav-user-notify"></span>
-                                        <img src="../img/profile-photo@3x.jpg" class="rounded-circle nav-user-profile-img" alt="김민범님">
-                                    </div>
-                                    <span>김민범</span>
-                                </div>
-                            </button>
-                            <div class="dropdown-menu dropdown-menu-lg-right rounded-xl" aria-labelledby="dropdownMenuButton">
-                                <a class="dropdown-item" href="#x">예약 리스트</a>
-                                <a class="dropdown-item" href="#x">찜 리스트</a>
-                                <a class="dropdown-item" href="#x">나의 이용 후기</a>
-                                <a class="dropdown-item" href="#x">채팅</a>
-                                <a class="dropdown-item" href="../member/chat_user.html">1:1 문의<span class="ml-2 d-inline-block rounded-pill align-top mt-1 bg-hot-pink nav-notify"></span></a>
-                                <div class="dropdown-divider"></div>
-                                <a class="dropdown-item" href="#x">회원 정보 관리</a>
-                                <a class="dropdown-item" href="#x">호스트 전환</a>
-                                <a class="dropdown-item text-hot-pink" href="#x">로그아웃</a>
-                            </div>
-                        </div>
-                        -->
-                    </li>
-                </ul>
-            </div>
+            <div class="collapse navbar-collapse" id="navbarNavDropdown"></div>
         </div>
     </nav>
+    <script src="/why_html/js/header.js"></script>
 
     <main role="main">
         <div class="container-fluid border-top custom-chat">
@@ -192,7 +57,7 @@
                 <div class="col-xl-4 col-5 border-right px-0">
                     <div class="d-flex align-items-start p-3 position-relative chat-item active">
                         <div class="d-lg-flex d-none justify-content-center rounded-circle overflow-hidden mr-lg-4 mr-2 user-bg">
-                            <img src="../img/studio-host.jpg" class="align-self-center w-100 h-100" alt="">
+                            <img src="/why_html/img/studio-host.jpg" class="align-self-center w-100 h-100" alt="">
                         </div>
                         <div class="font-weight-light">
                             <p class="mb-1">사당안무연습실 호스트</p>
@@ -203,7 +68,7 @@
                     </div>
                     <div class="d-flex align-items-start p-3 position-relative">
                         <div class="d-lg-flex d-none justify-content-center rounded-circle overflow-hidden mr-lg-4 mr-2 user-bg">
-                            <!-- <img src="../img/studio-host.jpg" class="align-self-center w-100 h-100" alt=""> -->
+                            <!-- <img src="/why_html/img/studio-host.jpg" class="align-self-center w-100 h-100" alt=""> -->
                         </div>
                         <div class="font-weight-light">
                             <p class="mb-1">토즈 평촌R&D센터점 호스트</p>
@@ -214,7 +79,7 @@
                     </div>
                     <div class="d-flex align-items-start p-3 position-relative">
                         <div class="d-lg-flex d-none justify-content-center rounded-circle overflow-hidden mr-lg-4 mr-2 user-bg">
-                            <!-- <img src="../img/studio-host.jpg" class="align-self-center w-100 h-100" alt=""> -->
+                            <!-- <img src="/why_html/img/studio-host.jpg" class="align-self-center w-100 h-100" alt=""> -->
                         </div>
                         <div class="font-weight-light">
                             <p class="mb-1">스터디공간 경리단길점 호스트</p>
@@ -225,7 +90,7 @@
                     </div>
                     <div class="d-flex align-items-start p-3 position-relative">
                         <div class="d-lg-flex d-none justify-content-center rounded-circle overflow-hidden mr-lg-4 mr-2 user-bg">
-                            <!-- <img src="../img/studio-host.jpg" class="align-self-center w-100 h-100" alt=""> -->
+                            <!-- <img src="/why_html/img/studio-host.jpg" class="align-self-center w-100 h-100" alt=""> -->
                         </div>
                         <div class="font-weight-light">
                             <p class="mb-1">서울대 오렌지카페 호스트</p>
@@ -236,7 +101,7 @@
                     </div>
                     <div class="d-flex align-items-start p-3 position-relative">
                         <div class="d-lg-flex d-none justify-content-center rounded-circle overflow-hidden mr-lg-4 mr-2 user-bg">
-                            <!-- <img src="../img/studio-host.jpg" class="align-self-center w-100 h-100" alt=""> -->
+                            <!-- <img src="/why_html/img/studio-host.jpg" class="align-self-center w-100 h-100" alt=""> -->
                         </div>
                         <div class="font-weight-light">
                             <p class="mb-1">한남동 파티룸 [&] 호스트</p>
@@ -247,7 +112,7 @@
                     </div>
                     <div class="d-flex align-items-start p-3 position-relative">
                         <div class="d-lg-flex d-none justify-content-center rounded-circle overflow-hidden mr-lg-4 mr-2 user-bg">
-                            <!-- <img src="../img/studio-host.jpg" class="align-self-center w-100 h-100" alt=""> -->
+                            <!-- <img src="/why_html/img/studio-host.jpg" class="align-self-center w-100 h-100" alt=""> -->
                         </div>
                         <div class="font-weight-light">
                             <p class="mb-1">종합연습실 인헌시장점</p>
@@ -273,7 +138,7 @@
                         <div class="d-flex justify-content-end mb-3">
                             <div class="ml-auto font-weight-light user-msg">
                                 <div class="bg-sky rounded-xl p-md-3 p-2 mb-2 text-white chat-msg">
-                                    <img src="../img/section-2-photo.jpg" alt="" class="w-100 mb-2">
+                                    <img src="/why_html/img/section-2-photo.jpg" alt="" class="w-100 mb-2">
                                     <p class="mb-2">사당 안무연습실 예약 요청이 되었습니다.<br>호스트의 답변을 기다려주세요.</p>
                                     <p class="mb-0">예약자 : 김민범<br>호실 : G1<br>예약일시 : 2020-05-03 18:00 ~ 2020-05-04 20:00</p>
                                 </div>
@@ -286,7 +151,7 @@
                             <div class="mr-auto font-weight-light user-msg">
                                 <div class="d-flex mb-2">
                                     <div class="d-flex justify-content-center rounded-circle overflow-hidden mr-2 user-bg sm">
-                                        <img src="../img/studio-host.jpg" class="align-self-center w-100 h-100" alt="">
+                                        <img src="/why_html/img/studio-host.jpg" class="align-self-center w-100 h-100" alt="">
                                     </div>
                                     <p class="mb-0">사당안무연습실 호스트</p>
                                 </div>
@@ -324,11 +189,11 @@
     <footer class="bg-light">
         <div class="container py-lg-5 py-4">
             <div class="d-lg-flex align-items-center justify-content-between mb-lg-4 mb-3">
-                <a href="../index.html"><img src="../img/logo.png" srcset="../img/logo@2x.png 2x, ../img/logo@3x.png 3x"></a>
+                <a href="/why_html/index.html"><img src="/why_html/img/logo.png" srcset="/why_html/img/logo@2x.png 2x, /why_html/img/logo@3x.png 3x"></a>
                 <ul class="d-flex list-unstyled mb-0 font-weight-light footer-menu font-size-x mt-lg-0 mt-3">
-                    <li class="px-md-2 px-1 position-relative"><a href="../sub/terms.html" class="text-muted text-decoration-none">이용약관</a></li>
+                    <li class="px-md-2 px-1 position-relative"><a href="/why_html/sub/terms.html" class="text-muted text-decoration-none">이용약관</a></li>
                     <li class="px-md-2 px-1 position-relative"><a href="#x" class="text-muted text-decoration-none">서비스정보</a></li>
-                    <li class="px-md-2 px-1 position-relative"><a href="../sub/board_notice.html" class="text-muted text-decoration-none">공지사항</a></li>
+                    <li class="px-md-2 px-1 position-relative"><a href="/why_html/sub/board_notice.html" class="text-muted text-decoration-none">공지사항</a></li>
                     <li class="px-md-2 px-1 position-relative"><a href="#x" class="text-muted text-decoration-none">도움말</a></li>
                     <li class="px-md-2 px-1 position-relative"><a href="#x" class="text-muted text-decoration-none">광고신청하기</a></li>
                     <li class="px-md-2 px-1 position-relative"><a href="#x" class="text-muted text-decoration-none">호스트등록</a></li>
