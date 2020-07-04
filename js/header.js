@@ -8,7 +8,7 @@ function login_header(){
             "<li class='nav-item mx-lg-3 mx-2 mb-2'><div class='d-flex'>"+
             "<div class='position-relative mr-2 nav-user-profile'>"+
             "<span class='position-absolute rounded-pill bg-hot-pink nav-user-notify'></span>"+
-            "<img src='../img/profile-photo@3x.jpg' class='rounded-circle nav-user-profile-img' alt='김민범님'></div>"+
+            "<img src='/why_html/img/profile-photo@3x.jpg' class='rounded-circle nav-user-profile-img' alt='김민범님'></div>"+
             "<span class='align-self-center'>"+sessionStorage.getItem("nickname")+"</span></div></li>"+
             "<li class='nav-item mx-lg-3 mx-2'><a class='nav-link' href='#x'>예약 리스트</a></li>"+
             "<li class='nav-item mx-lg-3 mx-2'><a class='nav-link' href='#x'>찜 리스트</a></li>"+
