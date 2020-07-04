@@ -15,25 +15,42 @@ $(document).ready(function () {
     if (xhr.readyState === xhr.DONE) {
       if (xhr.status === 200 || xhr.status === 201) {
         var result = JSON.parse(xhr.responseText);
-        for(var i = 0; i < result.length; i++) {
-            var indi="", img="";
-            
-            if (i == 0) { 
-                indi = "<li data-target='#carouselStudioView' data-slide-to='"+i+"' class='active'></li>";
-                img = "<div class='carousel-item active'><img src='"+result[i].studio_images+"' class='d-block w-100' alt='...'></div>";
-            } else {
-                indi = "<li data-target='#carouselStudioView' data-slide-to='"+i+"'></li>";
-                img = "<div class='carousel-item'><img src='"+result[i].studio_images+"' class='d-block w-100' alt='...'></div>";
-            }
+        for (var i = 0; i < result.length; i++) {
+          var indi = "",
+            img = "";
 
-            $("#indicator").append($(indi));
-            $("#carousel").append($(img));
+          if (i == 0) {
+            indi =
+              "<li data-target='#carouselStudioView' data-slide-to='" +
+              i +
+              "' class='active'></li>";
+            img =
+              "<div class='carousel-item active'><img src='" +
+              result[i].studio_images +
+              "' class='d-block w-100' alt='...'></div>";
+          } else {
+            indi =
+              "<li data-target='#carouselStudioView' data-slide-to='" +
+              i +
+              "'></li>";
+            img =
+              "<div class='carousel-item'><img src='" +
+              result[i].studio_images +
+              "' class='d-block w-100' alt='...'></div>";
+          }
+
+          $("#indicator").append($(indi));
+          $("#carousel").append($(img));
         }
 
         $("#title").append(
           $(
-            "<h2 class='my-4'>" + result[0].studio_name +"</h2>" +
-            "<p class='font-weight-light mb-4 text-light-gray font-size-s'>" + result[0].studio_subname + "</p>"
+            "<h2 class='my-4'>" +
+              result[0].studio_name +
+              "</h2>" +
+              "<p class='font-weight-light mb-4 text-light-gray font-size-s'>" +
+              result[0].studio_subname +
+              "</p>"
           )
         );
 
@@ -42,7 +59,8 @@ $(document).ready(function () {
             "<div class='my-5'>" +
               "<h4 class='mb-4 text-bullet'>소개</h4>" +
               "<p class='font-weight-light font-size-s'>" +
-              result[0].studio_info + "</p></div>" +
+              result[0].studio_info +
+              "</p></div>" +
               "<div class='my-5'>" +
               "<h4 class='mb-4 text-bullet'>편의시설</h4>" +
               "<div class='d-flex-fill font-weight-light font-size-s'>" +
@@ -93,22 +111,28 @@ $(document).ready(function () {
 
         $("#title_purchase").append(
           $(
-            "<h6>감성을 그립니다, 고고일러스트의 샤프로 그리는 인물드로잉</h6>"+
-            "<p class='font-weight-bold mb-4 text-red font-size-l'>"+result[0].studio_price+"원/1"+result[0].studio_price_type+"</p>"
+            "<h6>"+result[0].studio_name+"</h6>" +
+              "<p class='font-weight-bold mb-4 text-red font-size-l'>" +
+              result[0].studio_price +
+              "원/1" +
+              result[0].studio_price_type +
+              "</p>"
           )
-        )
-        for(var i = 0; i < 23; i++) {
-          var start = i+":00";
-          var end = (i+1)+":00";
+        );
+
+        for (var i = 0; i < 23; i++) {
+          var start = i + ":00";
+          var end = i + 1 + ":00";
 
           $("start_times").append(
-            $("<option value='"+start+"'>"+start+"</option>")
-          )
+            $("<option value='" + start + "'>" + start + "</option>")
+          );
           $("end_times").append(
-            $("<option value='"+end+"'>"+end+"</option>")
-          )
+            $("<option value='" + end + "'>" + end + "</option>")
+          );
+
+          console.log(end);
         }
-        
       } else {
         alert("접속 오류");
         location.href = "studio.html"; //잘못된 접속 시 페이지 강제 이동
@@ -120,5 +144,4 @@ $(document).ready(function () {
   xhr.open("POST", "http://3.34.150.116:3000/studio/info");
   xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
   xhr.send("studio_key=" + value);
-
 });
