@@ -18,12 +18,8 @@ $(document).ready(function () {
 
         $("#title").append(
           $(
-            "<h2 class='my-4'>" +
-              result[0].studio_name +
-              "</h2>" +
-              "<p class='font-weight-light mb-4 text-light-gray font-size-s'>+" +
-              result[0].studio_subname +
-              "+</p>"
+            "<h2 class='my-4'>" + result[0].studio_name +"</h2>" +
+            "<p class='font-weight-light mb-4 text-light-gray font-size-s'>" + result[0].studio_subname + "</p>"
           )
         );
 
@@ -32,8 +28,7 @@ $(document).ready(function () {
             "<div class='my-5'>" +
               "<h4 class='mb-4 text-bullet'>소개</h4>" +
               "<p class='font-weight-light font-size-s'>" +
-              result[0].studio_info +
-              "</p></div>" +
+              result[0].studio_info + "</p></div>" +
               "<div class='my-5'>" +
               "<h4 class='mb-4 text-bullet'>편의시설</h4>" +
               "<div class='d-flex-fill font-weight-light font-size-s'>" +
@@ -99,6 +94,7 @@ $(document).ready(function () {
       if (xhr.status === 200 || xhr.status === 201) {
         var result = JSON.parse(xhr.responseText);
         for(i in result.length) {
+            console.log(result[i]);
             $("#indicator").append(
                 $("<li data-target='#carouselStudioView' data-slide-to='"+i+"' class='active'></li>")
             );
@@ -112,7 +108,7 @@ $(document).ready(function () {
       }
     }
   };
-  xhrimg.open("POST", "http://3.34.150.116:3000/studio/images");
+  xhrimg.open("POST", "http://3.34.150.116:3000/studio/image");
   xhrimg.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
   xhrimg.send("studio_key=" + value);
 });
