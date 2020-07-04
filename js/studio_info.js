@@ -55,7 +55,7 @@ $(document).ready(function () {
         );
         
         var info = "";
-        var splitInfo = result[0].studio_info;
+        var splitInfo = result[0].studio_info.split('.');
 
         for (var s in splitInfo) { info += splitInfo + "<br>"; }
 
