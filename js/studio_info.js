@@ -18,6 +18,7 @@ var url = location.href;
                     if (xhr.status === 200 || xhr.status === 201) {
                         var result = JSON.parse(xhr.responseText);
                         console.log(result[0]);
+                        
                         $("#info").append(
                         $("<div class='my-5'>"+
                         "<h4 class='mb-4 text-bullet'>소개</h4>"+
