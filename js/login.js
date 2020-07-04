@@ -28,8 +28,3 @@ function normal_login() {
   xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
   xhr.send("user_id=" + email + "&user_pw=" + pw);
 }
-
-function onLogout() {
-  sessionStorage.clear();
-  location.href = "index.html";
-}

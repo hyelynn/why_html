@@ -80,7 +80,6 @@
 
     <footer include-html="/why_html/include/footer.html"></footer>
 
-    <script src="/why_html/js/kakao_login.js"></script>
     <script src="/why_html/js/naver_login.js"></script>
     <script src="/why_html/js/login.js"></script>
     <script src="/why_html/js/header.js"></script>
@@ -88,6 +87,13 @@
     <script>includeHTML({});</script>
 
     <script type="text/javascript">
+
+        function onLogout() {
+            sessionStorage.clear();
+            location.href = "index.html";
+        }
+
+
         $('.main-item-slide').slick({
             slidesToShow: 4,
             slidesToScroll: 1,
@@ -125,8 +131,6 @@
                 next.children(':first-child').clone().appendTo($(this));
             }
         });
-
-        
     </script>
 </body>
 
