@@ -55,17 +55,18 @@ $(document).ready(function () {
         );
         
         var info = "";
-        var splitInfo = JSON.stringify(result[0].studio_info).split('.|\\r|\\t');
-        
-        console.log(splitInfo);
-        for (var s in splitInfo) { info += s + "<br>"; }
+        var splitInfo = result[0].studio_info;
+
+        for (var s in splitInfo) {
+          info += s + "<br>";
+        }
 
         $("#info").append(
           $(
             "<div class='my-5'>" +
               "<h4 class='mb-4 text-bullet'>소개</h4>" +
               "<p class='font-weight-light font-size-s'>" +
-              info +
+              splitInfo +
               "</p></div>" +
               "<div class='my-5'>" +
               "<h4 class='mb-4 text-bullet'>편의시설</h4>" +
