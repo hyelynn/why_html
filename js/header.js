@@ -4,7 +4,7 @@ function login_header(){
 
     if (nickname != null) {
         $("#navbarNavDropdown").append(
-            $("<ul class='navbar-nav ml-auto align-items-center d-none d-lg-flex'>+
+            $("<ul class='navbar-nav ml-auto align-items-center d-none d-lg-flex'>"+
             "<li class='nav-item mr-2 font-size-md'>"+
             "<a class='nav-link text-dark' href='../member/calendar.html'><i class='far fa-calendar-alt'></i></a></li>"+
             "<li class='nav-item mr-2 font-size-md'>"+
