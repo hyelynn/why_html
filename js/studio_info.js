@@ -16,13 +16,18 @@ $(document).ready(function () {
       if (xhr.status === 200 || xhr.status === 201) {
         var result = JSON.parse(xhr.responseText);
         for(var i = 0; i < result.length; i++) {
-            $("#indicator").append(
-                $("<li data-target='#carouselStudioView' data-slide-to='"+i+"' class='active'></li>")
-            );
+            var indi="", img="";
+            
+            if (i == 0) { 
+                indi = "<li data-target='#carouselStudioView' data-slide-to='"+i+"' class='active'></li>";
+                img = "<div class='carousel-item active'><img src='"+result[i].studio_images+"' class='d-block w-100' alt='...'></div>";
+            } else {
+                indi = "<li data-target='#carouselStudioView' data-slide-to='"+i+"'></li>";
+                img = "<div class='carousel-item'><img src='"+result[i].studio_images+"' class='d-block w-100' alt='...'></div>";
+            }
 
-            $("#carousel").append(
-                $("<div class='carousel-item active'><img src='"+result[i].studio_images+"' class='d-block w-100' alt='...'></div>")
-            );
+            $("#indicator").append($(indi));
+            $("#carousel").append($(img));
         }
 
         $("#title").append(
