@@ -15,7 +15,17 @@ $(document).ready(function () {
     if (xhr.readyState === xhr.DONE) {
       if (xhr.status === 200 || xhr.status === 201) {
         var result = JSON.parse(xhr.responseText);
+        for(i in result.length) {
+            console.log(result[i]);
+            $("#indicator").append(
+                $("<li data-target='#carouselStudioView' data-slide-to='"+i+"' class='active'></li>")
+            );
 
+            $("#carousel").append(
+                $("<div class='carousel-item active'><img src='"+result[i].studio_images+"' class='d-block w-100' alt='...'></div>")
+            );
+        }
+        
         $("#title").append(
           $(
             "<h2 class='my-4'>" + result[0].studio_name +"</h2>" +
@@ -88,28 +98,4 @@ $(document).ready(function () {
   xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
   xhr.send("studio_key=" + value);
 
-  var xhrimg = new XMLHttpRequest();
-  xhrimg.onreadystatechange = function () {
-    if (xhr.readyState === xhr.DONE) {
-      if (xhr.status === 200 || xhr.status === 201) {
-        var result = JSON.parse(xhr.responseText);
-        console.log(result);
-        for(i in result.length) {
-            console.log(result[i]);
-            $("#indicator").append(
-                $("<li data-target='#carouselStudioView' data-slide-to='"+i+"' class='active'></li>")
-            );
-
-            $("#carousel").append(
-                $("<div class='carousel-item active'><img src='"+result[i].studio_images+"' class='d-block w-100' alt='...'></div>")
-            );
-        }
-      } else {
-        alert("이미지 오류");
-      }
-    }
-  };
-  xhrimg.open("POST", "http://3.34.150.116:3000/studio/image");
-  xhrimg.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-  xhrimg.send("studio_key=" + value);
 });
