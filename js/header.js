@@ -16,7 +16,7 @@ function login_header(){
             "<div class='d-flex'>"+
             "<div class='position-relative mr-2 nav-user-profile'>"+
             "<span class='position-absolute rounded-pill bg-hot-pink nav-user-notify'></span>"+
-            "<img src='../img/profile-photo@3x.jpg' class='rounded-circle nav-user-profile-img' alt='김민범님'></div>"+
+            "<img src='/why_html/img/profile-photo@3x.jpg' class='rounded-circle nav-user-profile-img'></div>"+
             "<span>"+sessionStorage.getItem("nickname")+"</span></div></button>"+
             "<div class='dropdown-menu dropdown-menu-lg-right rounded-xl' aria-labelledby='dropdownMenuButton'>"+
             "<a class='dropdown-item' href='#x'>예약 리스트</a>"+
