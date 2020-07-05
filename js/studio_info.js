@@ -3,6 +3,9 @@ var value = url.slice(url.indexOf("?") + 1, url.length).split("&");
 var price = 0;
 var max = 0;
 var people_price = 0;
+var img_link = "";
+var title = "";
+var curr_price = 0;
 
 $(document).ready(function () {
   var valnum = Number(value);
@@ -25,7 +28,8 @@ $(document).ready(function () {
           price = parseInt(result[0].studio_price);
           max = parseInt(result[0].studio_max);
           people_price = parseInt(result[0].studio_people_price);
-
+          title = result[0].studio_name;
+          
           if (i == 0) {
             indi =
               "<li data-target='#carouselStudioView' data-slide-to='" +
@@ -35,6 +39,7 @@ $(document).ready(function () {
               "<div class='carousel-item active'><img src='" +
               result[i].studio_images +
               "' class='d-block w-100' alt='...'></div>";
+            img_link = result[i].studio_images;
           } else {
             indi =
               "<li data-target='#carouselStudioView' data-slide-to='" +
@@ -48,6 +53,7 @@ $(document).ready(function () {
 
           $("#indicator").append($(indi));
           $("#carousel").append($(img));
+          
         }
 
         $("#title").append(
@@ -167,7 +173,8 @@ function price_maker() {
   var num = parseInt(stat, 10);
   var start = $('#start_times option:selected').val();
   var end = $('#end_times option:selected').val();
-  var curr_price = 0;
+  var date = $('#datePicker').datepicker.selectDate;
+  
 
   if (start != null && end != null) curr_price += (end - start) * price;
   if (num > max && max != 0) curr_price += num * people_price;
@@ -187,16 +194,23 @@ function addCart() {
   var cart = [];
 
   for (var item in cartInfo) {
-    item.
+    cart.push(item);
   }
 
-  sessionStorage.setItem("id", result.user_key);
-  sessionStorage.setItem("nickname", result.user_nickname);
+  cart.push({
+    img: img_link,
+    title: title,
+    price: curr_price,
+    date : "예약일시"+$('#datePicker').datepicker.selectDate+" "+$('#start_times option:selected' ).text()+" ~ "+$('#end_times option:selected').text()
+  })
+
+  console.log(cart);
   alert('장바구니에 상품이 담겼습니다');
 }
 
 function purchase() {
   addCart();
+  location.href = "http://artbyus.co.kr/why_html/member/purchase.html";
 }
 
 // <li class="mb-3">
