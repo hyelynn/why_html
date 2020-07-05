@@ -196,12 +196,11 @@ function addCart() {
   var cart = [];
 
   for (var item in cartInfo) {
-    console.log(item);
       cart.push({
-        img: item.img,
-        title: item.title,
-        price: item.price,
-        date: item.date
+        img: cartInfo[item].img,
+        title: cartInfo[item].title,
+        price: cartInfo[item].price,
+        date: cartInfo[item].date
     });
   }
 
