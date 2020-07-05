@@ -57,6 +57,8 @@ function payment() {
         });
     }
 
+    console.log(product);
+
     BootPay.request({
         price: total_price, //실제 결제되는 가격
         application_id: "5ed87b408f0751001efcd31d",
