@@ -191,6 +191,17 @@ function price_maker() {
 }
 
 function addCart() {
+  var stat = $('#numberUpDown').val();
+  var num = parseInt(stat, 10);
+  var start = $('#start_times option:selected').val();
+  var end = $('#end_times option:selected').val();
+  var date = $('#datePicker').datepicker.selectDate;
+  
+
+  if (start != null && end != null) curr_price = (end - start) * price;
+  if (curr_price < 0) curr_price = 0;
+  else { if (num > max && max != 0) curr_price += num * people_price; }
+
   if (curr_price <= 0) {
     alert('상품을 다시한번 확인해주세요');
     break;
@@ -207,7 +218,7 @@ function addCart() {
       img: img_link,
       title: title,
       price: curr_price,
-      date: "예약일시" + $('#datePicker').datepicker.selectDate + " " + $('#start_times option:selected').text() + " ~ " + $('#end_times option:selected').text()
+      date: "예약일시 : " + date + " " + $('#start_times option:selected').text() + " ~ " + $('#end_times option:selected').text()
   })
 
   sessionStorage.setItem("cart", JSON.stringify(cart));
