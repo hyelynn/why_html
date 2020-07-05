@@ -177,7 +177,9 @@ function price_maker() {
   
 
   if (start != null && end != null) curr_price = (end - start) * price;
-  if (num > max && max != 0) curr_price += num * people_price;
+  if (curr_price < 0) curr_price = 0;
+  else { if (num > max && max != 0) curr_price += num * people_price; }
+
   $("#priceinfo").empty();
   $("#priceinfo").prepend(
     $(
@@ -189,6 +191,11 @@ function price_maker() {
 }
 
 function addCart() {
+  if (curr_price <= 0) {
+    alert('상품을 다시한번 확인해주세요');
+    break;
+  }
+
   var cartInfo = JSON.parse(sessionStorage.getItem("cart"));
   var cart = [];
 
