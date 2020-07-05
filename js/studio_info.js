@@ -171,7 +171,7 @@ function price_maker() {
 
   if (start != null && end != null) curr_price += (end - start) * price;
   if (num > max && max != 0) curr_price += num * people_price;
-  
+  $("#priceinfo").empty();
   $("#priceinfo").append(
     $(
       "<p>예약내용</p>"+"<p class='mb-0 font-weight-light font-size-xs'>"+ $('#start_times').text()+"</p>"+

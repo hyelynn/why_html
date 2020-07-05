@@ -74,7 +74,15 @@
     <main role="main">
         <div include-html="main/advertise.html"></div>
         <div include-html="main/search.html"></div>
-        <div include-html="main/place.html"></div>
+
+        <!--place slider-->
+        <div class="container mb-xl-14 mb-5 slide-container">
+            <h2 class="mb-3 mb-md-5 px-2">이 주변, 가장 핫한 장소</h2>
+            <div class="slide-wrapper position-relative">
+                <div class="main-item-slide"></div>
+            </div>
+        </div>
+
         <div include-html="main/class.html"></div>
         <div include-html="main/perform.html"></div>
     </main>
@@ -83,11 +91,19 @@
 
     <script src="/why_html/js/naver_login.js"></script>
     <script src="/why_html/js/login.js"></script>
+    <script src="/why_html/main/place.js"></script>
 
     <script>includeHTML({});</script>
     <script>login_header();</script>
-    <script>function slide() {
-            $('.main-item-slide').slick({
+
+    <script type="text/javascript">
+
+        function onLogout() {
+            sessionStorage.clear();
+            location.href = "index.html";
+        }
+
+        $('.main-item-slide').slick({
                 slidesToShow: 4,
                 slidesToScroll: 1,
                 autoplay: true,
@@ -105,16 +121,6 @@
                     }
                 ]
             });
-        }</script>
-
-    <script type="text/javascript">
-
-        function onLogout() {
-            sessionStorage.clear();
-            location.href = "index.html";
-        }
-
-
 
         // carousel multiple item slide
         $('.carousel-multiple-slide .carousel-item').each(function () {

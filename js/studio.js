@@ -73,10 +73,3 @@ $(document).ready(function(){
 
 })
 
-
-$("#viewmore").on("click", function() {
-
-        $("#showview").show();
-        $("#viewmore").hide();
-
-});
