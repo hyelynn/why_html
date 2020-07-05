@@ -267,8 +267,14 @@
                                 <!-- Time -->
                                 <div class="py-4 border-bottom">
                                     <div class="row">
-                                        <div class="col-6 custom-inputs" id="start_times"></div>
-                                        <div class="col-6 custom-inputs" id="end_times"></div>
+                                        <div class="col-6 custom-inputs">
+                                            <p>시작시간</p> 
+                                            <select name="" id="start_times" class="form-control"></select>
+                                        </div>
+                                        <div class="col-6 custom-inputs">
+                                            <p>종료시간</p> 
+                                            <select name="" id="end_times" class="form-control"></select>
+                                        </div>
                                     </div>
                                 </div>
 
@@ -283,12 +289,8 @@
                                 </div>
 
                                 <!-- Info -->
-                                <div class="pt-4">
-                                    <p>예약내용</p>
-                                    <p class="mb-0 font-weight-light font-size-xs">2020년 01월 24일 08:30</p>
-                                    <p class="font-weight-light font-size-xs">- 2020년 01월 27일 13:00</p>
-                                    <p class="font-weight-bold text-red font-size-l">173,000원 <span class="font-weight-light font-size-xs text-light-gray-more">(VAT포함)</span></p>
-                                    <button type="button" class="btn btn-block border rounded-0 py-2 font-weight-light"><i class="fas fa-shopping-cart mr-2"></i>장바구니</button>
+                                <div id="priceinfo" class="pt-4">
+                                    
                                 </div>
                             </div>
                         </div>
@@ -309,6 +311,8 @@
     <footer include-html="/why_html/include/footer.html"></footer>
     <script>includeHTML({});</script>
     <script>login_header();</script>
+    <script>time_picker();</script>
+    <script>price_maker();</script>
 
     <script src="/why_html/js/naver_login.js"></script>
     <script src="/why_html/js/login.js"></script>

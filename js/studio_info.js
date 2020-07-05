@@ -1,5 +1,8 @@
 var url = location.href;
 var value = url.slice(url.indexOf("?") + 1, url.length).split("&");
+var price = 0;
+var max = 0;
+var people_price = 0;
 
 $(document).ready(function () {
   var valnum = Number(value);
@@ -18,6 +21,10 @@ $(document).ready(function () {
         for (var i = 0; i < result.length; i++) {
           var indi = "",
             img = "";
+
+          price = parseInt(result[0].studio_price);
+          max = parseInt(result[0].studio_max);
+          people_price = parseInt(result[0].studio_people_price);
 
           if (i == 0) {
             indi =
@@ -109,8 +116,8 @@ $(document).ready(function () {
               "</p></div>" +
               "<div class='my-5 border bg-white d-flex p-4'><div class='d-flex justify-content-center rounded-circle overflow-hidden mr-lg-5 mr-3 card-host'>" +
               "<img src='/why_html/img/studio-host.jpg' class='align-self-center' alt=''></div>" +
-              "<div><h4 class='font-size-m'>호스트 이름을 표현하는 공간</h4>" +
-              "<p class='text-light-gray font-size-xs'>한줄 자기소개로 자신을 알릴 수 있습니다. </p>" +
+              "<div><h4 class='font-size-m'>"+result[0].biz_title+"</h4>" +
+              "<p class='text-light-gray font-size-xs'>"+result[0].biz_introduce+"</p>" +
               "<button type='button' class='btn rounded-pill px-lg-5 px-3 py-2 border-yellow font-size-xs mr-2'>전화하기</button>" +
               "<button type='button' class='btn rounded-pill px-lg-5 px-3 py-2 border-yellow font-size-xs'>메시지 전송</button></div></div>"
           )
@@ -127,18 +134,7 @@ $(document).ready(function () {
           )
         );
 
-        var start = "<p>시작시간</p>"+ "<select name='' class='form-control'>" ;
-        var end = "<p>종료시간</p>"+ "<select name='' class='form-control'>" ;
-        var suffix = "</select>";
-        for (var i = 0; i < 23; i++) {
-          start += "<option value='" + (i+":00") + "'>" + (i+":00") + "</option>";
-          end += "<option value='" + ((i+1)+":00") + "'>" + ((i+1)+":00") + "</option>";
-        }
-
-        $("start_times").append($(start+suffix));
-        $("end_times").append($(end+suffix));
-
-        console.log(start+suffix);
+        console.log(max + ", " + price + ", " + people_price);
       } else {
         alert("접속 오류");
         location.href = "studio.html"; //잘못된 접속 시 페이지 강제 이동
@@ -151,3 +147,36 @@ $(document).ready(function () {
   xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
   xhr.send("studio_key=" + value);
 });
+
+function time_picker() {
+  var start = "";
+  var end = "";
+  for (var i = 0; i < 23; i++) {
+    start += "<option value='" + (i+":00") + "'>" + (i+":00") + "</option>";
+    end += "<option value='" + ((i+1)+":00") + "'>" + ((i+1)+":00") + "</option>";
+  }
+
+  $("start_times").append($(start));
+  $("end_times").append($(end));
+}
+
+function price_maker() {
+  var stat = $('#numberUpDown').val();
+  var num = parseInt(stat, 10);
+  var start = parseInt($('#start_times').val().split(':')[0]);
+  var end = parseInt($('#end_times').val().split(':')[0]);
+  var curr_price = (end - start) * price;
+
+  if (num > max && max != 0) curr_price += num * people_price;
+  
+
+  $("#priceinfo").append(
+    $(
+      "<p>예약내용</p>"+"<p class='mb-0 font-weight-light font-size-xs'>"+ $('#start_times').val()+"</p>"+
+      "<p class='font-weight-light font-size-xs'>- "+$('#end_times').val()+"</p>"+
+      "<p class='font-weight-bold text-red font-size-l'>"+curr_price+"원<span class='font-weight-light font-size-xs text-light-gray-more'>(VAT포함)</span></p>"+
+      "<button type='button' class='btn btn-block border rounded-0 py-2 font-weight-light'><i class='fas fa-shopping-cart mr-2'  onclick='onPurchase();'></i>장바구니</button>"
+    )
+  );
+  
+}
