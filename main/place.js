@@ -1,7 +1,7 @@
 
 $(document).ready(function(){
     
-    $('.main-item-slide').slick({
+    $('.main-item-slide').click({
         slidesToShow: 4,
         slidesToScroll: 1,
         autoplay: true,
@@ -19,7 +19,7 @@ $(document).ready(function(){
             }
         ]
     });
-    
+
     //Get Room information
     $.ajax({
 
