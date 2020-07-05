@@ -241,7 +241,7 @@
                                     <div class="row">
                                         <div class="col-6 custom-inputs">
                                             <p>시작시간</p>
-                                            <select name="" id="start_times" class="form-control">
+                                            <select name="" id="start_times" class="form-control" onchange="price_maker();">
                                                 <option value=0>00:00</option>
                                                 <option value=1>01:00</option>
                                                 <option value=2>02:00</option>
@@ -270,7 +270,7 @@
                                         </div>
                                         <div class="col-6 custom-inputs">
                                             <p>종료시간</p>
-                                            <select name="" id="end_times" class="form-control">
+                                            <select name="" id="end_times" class="form-control" onchange="price_maker();">
                                                 <option value=1>01:00</option>
                                                 <option value=2>02:00</option>
                                                 <option value=3>03:00</option>
@@ -316,7 +316,7 @@
 
                                 <!-- Info -->
                                 <div id="priceinfo" class="pt-4">
-                                    <button type='button' class='btn btn-block border rounded-0 py-2 font-weight-light'><i class='fas fa-shopping-cart mr-2' onclick='addCart();'></i>장바구니</button>
+                                    <button type='button' class='btn btn-block border rounded-0 py-2 font-weight-light'><i class='fas fa-shopping-cart mr-2' onclick="addCart();"></i>장바구니</button>
                                 </div>
                             </div>
                         </div>
@@ -341,7 +341,6 @@
     <footer include-html="/why_html/include/footer.html"></footer>
     <script>includeHTML({});</script>
     <script>login_header();</script>
-    <script>time_picker();</script>
     <script>price_maker();</script>
 
     <script src="/why_html/js/naver_login.js"></script>
@@ -391,9 +390,6 @@
             price_maker();
         });
     });
-
-
-    
 </script>
 
 </html>
