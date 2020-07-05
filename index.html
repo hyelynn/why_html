@@ -91,6 +91,7 @@
 
     <script src="/why_html/js/naver_login.js"></script>
     <script src="/why_html/js/login.js"></script>
+    <script src="/why_html/main/place.js"></script>
 
     <script>includeHTML({});</script>
     <script>login_header();</script>
@@ -101,27 +102,30 @@
             sessionStorage.clear();
             location.href = "index.html";
         }
-
-        // carousel multiple item slide
-        $('.carousel-multiple-slide .carousel-item').each(function () {
-            var minPerSlide = 4;
-            var next = $(this).next();
-            if (!next.length) {
-                next = $(this).siblings(':first');
-            }
-            next.children(':first-child').clone().appendTo($(this));
-
-            for (var i = 0; i < minPerSlide; i++) {
-                next = next.next();
-                if (!next.length) {
-                    next = $(this).siblings(':first');
-                }
-
-                next.children(':first-child').clone().appendTo($(this));
-            }
-        });
     </script>
-    <script src="/why_html/main/place.js"></script>
+
+    <script>
+    $(document).ready( function() {
+        $('.main-item-slide').slick({
+            slidesToShow: 4,
+            slidesToScroll: 1,
+            autoplay: true,
+            autoplaySpeed: 2000,
+            arrows: true,
+            prevArrow: '<button type="button" class="btn slide-prev"><span class="slide-prev-icon" aria-hidden="true"></span><span class="sr-only">Previous</span></button>',
+            nextArrow: '<button type="button" class="btn slide-next"><span class="slide-next-icon" aria-hidden="true"></span><span class="sr-only">Next</span></button>',
+            responsive: [
+                {
+                    breakpoint: 992,
+                    settings: {
+                        slidesToShow: 2,
+                        slidesToScroll: 2,
+                  }
+                }
+            ]
+        });
+    });
+    </script>
 </body>
 
 </html>
