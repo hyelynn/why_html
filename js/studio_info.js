@@ -171,7 +171,7 @@ function price_maker() {
   var num = parseInt(stat, 10);
   var start = $('#start_times option:selected').val();
   var end = $('#end_times option:selected').val();
-  var date = $('#datePicker').datepicker.selectDate;
+  var date = $('#datePicker').value;
   
 
   if (start != null && end != null) curr_price = (end - start) * price;
@@ -196,14 +196,19 @@ function addCart() {
   var cart = [];
 
   for (var item in cartInfo) {
-      cart.push(item);
+      cart.push({
+        img: item.img,
+        title: item.title,
+        price: item.price,
+        date: item.date
+    });
   }
 
   cart.push({
       img: img_link,
       title: title,
       price: curr_price,
-      date: "예약일시 : " + $('#datePicker').datepicker.selectDate + " " + $('#start_times option:selected').text() + " ~ " + $('#end_times option:selected').text()
+      date: "예약일시 : " + $('#datePicker').value + " " + $('#start_times option:selected').text() + " ~ " + $('#end_times option:selected').text()
   })
 
   sessionStorage.setItem("cart", JSON.stringify(cart));
