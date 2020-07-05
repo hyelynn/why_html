@@ -196,6 +196,7 @@ function addCart() {
   var cart = [];
 
   for (var item in cartInfo) {
+    console.log(item);
       cart.push({
         img: item.img,
         title: item.title,
