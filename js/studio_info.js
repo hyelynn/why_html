@@ -214,7 +214,7 @@ function addCart() {
 
 function purchase() {
   addCart();
-  location.href = "http://artbyus.co.kr/why_html/member/purchase.html";
+  //location.href = "http://artbyus.co.kr/why_html/member/purchase.html";
 }
 
 
