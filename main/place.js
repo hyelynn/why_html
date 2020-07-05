@@ -29,7 +29,7 @@ $(document).ready(function(){
                 "<img src='img/section-2-photo.jpg' class='card-img-top rounded-0' srcset='img/section-2-photo@2x.jpg 2x, img/section-2-photo@3x.jpg 3x' alt=''>"+
                 "<h5 class='mt-lg-3 mt-2'>"+item.studio_name+"</h5>"+
                 "<p class='font-weight-light border-bottom pb-2 mb-2 font-size-xs'>"+item.studio_name+"</p>"+
-                "<a href='/sub/studio_view.html?"+item.studio_key+"' class='stretched-link text-decoration-none'>"+
+                "<a href='/why_html/sub/studio_view.html?"+item.studio_key+"' class='stretched-link text-decoration-none'>"+
                 "<span class='text-red font-weight-bold font-size-l'>"+item.studio_price+"</span><span class='text-dark font-weight-light pl-1 font-size-s'>원/" +item.studio_price_type +"</span></a></div></div>"));
         });
 
