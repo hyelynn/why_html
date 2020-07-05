@@ -14,7 +14,8 @@ $(document).ready(function(){
             "<a href='/why_html/sub/studio_view.html' class='text-decoration-none'>"+
             "<h4 class='text-gray cart-item-title'>"+item.title+"</h4></a>"+
             "<p class='font-weight-light text-gray mb-0'>"+item.date+"</p>"+
-            "<p class='font-weight-light text-light-gray mb-0'>추가인원<span class='ml-5'>+10,000</span></p>"+
+            "<p class='font-weight-light text-gray'></p>"+
+            "<p class='font-weight-light text-light-gray mb-0'>추가인원<span class='ml-5'> </span></p>"+
             "<div class='text-right ml-auto'>"+
             "<p class='font-weight-light text-gray mb-0'>합계</p>"+
             "<h2 class='mb-0'>" + item.price + "원</h2><p class='font-weight-light text-light-gray mb-0'>(VAT포함)</p></div></div></li>")
