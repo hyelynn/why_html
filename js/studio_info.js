@@ -139,8 +139,6 @@ $(document).ready(function () {
               "</p>"
           )
         );
-
-        console.log(max + ", " + price + ", " + people_price);
       } else {
         alert("접속 오류");
         location.href = "studio.html"; //잘못된 접속 시 페이지 강제 이동
@@ -185,7 +183,8 @@ function price_maker() {
     $(
       "<p>예약내용</p>"+"<p class='mb-0 font-weight-light font-size-xs'>"+ $('#start_times option:selected' ).text()+"</p>"+
       "<p class='font-weight-light font-size-xs'>- "+$('#end_times option:selected').text()+"</p>"+
-      "<p class='font-weight-bold text-red font-size-l'>"+curr_price+"원<span class='font-weight-light font-size-xs text-light-gray-more'>(VAT포함)</span></p>"
+      "<p class='font-weight-bold text-red font-size-l'>"+curr_price+"원<span class='font-weight-light font-size-xs text-light-gray-more'>(VAT포함)</span></p>"+
+      "<button type='button' class='btn btn-block border rounded-0 py-2 font-weight-light'><i class='fas fa-shopping-cart mr-2' onclick='addCart();'></i>장바구니</button>"
     )
   );
 }
@@ -193,16 +192,6 @@ function price_maker() {
 function addCart() {
   console.log('curr_price');
   
-
-  if (start != null && end != null) curr_price = (end - start) * price;
-  if (curr_price < 0) curr_price = 0;
-  else { if (num > max && max != 0) curr_price += num * people_price; }
-
-  if (curr_price <= 0) {
-    alert('상품을 다시한번 확인해주세요');
-    break;
-  }
-
   var cartInfo = JSON.parse(sessionStorage.getItem("cart"));
   var cart = [];
 
