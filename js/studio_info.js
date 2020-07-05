@@ -179,14 +179,39 @@ function price_maker() {
   if (start != null && end != null) curr_price = (end - start) * price;
   if (num > max && max != 0) curr_price += num * people_price;
   $("#priceinfo").empty();
-  $("#priceinfo").append(
+  $("#priceinfo").prepend(
     $(
       "<p>예약내용</p>"+"<p class='mb-0 font-weight-light font-size-xs'>"+ $('#start_times option:selected' ).text()+"</p>"+
       "<p class='font-weight-light font-size-xs'>- "+$('#end_times option:selected').text()+"</p>"+
-      "<p class='font-weight-bold text-red font-size-l'>"+curr_price+"원<span class='font-weight-light font-size-xs text-light-gray-more'>(VAT포함)</span></p>"+
-      "<button type='button' class='btn btn-block border rounded-0 py-2 font-weight-light'><i class='fas fa-shopping-cart mr-2'  onclick='addCart();'></i>장바구니</button>"
+      "<p class='font-weight-bold text-red font-size-l'>"+curr_price+"원<span class='font-weight-light font-size-xs text-light-gray-more'>(VAT포함)</span></p>"
     )
   );
+}
+
+function addCart() {
+  var cartInfo = JSON.parse(sessionStorage.getItem("cart"));
+  var cart = [];
+
+  for (var item in cartInfo) {
+      cart.push(item);
+  }
+
+  cart.push({
+      img: img_link,
+      title: title,
+      price: curr_price,
+      date: "예약일시" + $('#datePicker').datepicker.selectDate + " " + $('#start_times option:selected').text() + " ~ " + $('#end_times option:selected').text()
+  })
+
+  sessionStorage.setItem("cart", JSON.stringify(cart));
+
+  console.log(cart);
+  alert('장바구니에 상품이 담겼습니다');
+}
+
+function purchase() {
+  addCart();
+  location.href = "http://artbyus.co.kr/why_html/member/purchase.html";
 }
 
 
