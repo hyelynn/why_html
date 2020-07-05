@@ -203,7 +203,7 @@ function addCart() {
       img: img_link,
       title: title,
       price: curr_price,
-      date: "예약일시 : " + $('#datePicker').datepicker.selectDate; + " " + $('#start_times option:selected').text() + " ~ " + $('#end_times option:selected').text()
+      date: "예약일시 : " + $('#datePicker').datepicker.selectDate + " " + $('#start_times option:selected').text() + " ~ " + $('#end_times option:selected').text()
   })
 
   sessionStorage.setItem("cart", JSON.stringify(cart));
