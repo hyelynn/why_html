@@ -25,7 +25,6 @@
     <script type="text/javascript" src="https://static.nid.naver.com/js/naveridlogin_js_sdk_2.0.0.js"
         charset="utf-8"></script>
     <script src="/why_html/js/kakao_sdk.js"></script>
-    <script src="/why_html/main/place.js"></script>
 
     <script>
         // SDK를 초기화 합니다. 사용할 앱의 JavaScript 키를 설정해 주세요.
@@ -80,7 +79,7 @@
         <div class="container mb-xl-14 mb-5 slide-container">
             <h2 class="mb-3 mb-md-5 px-2">이 주변, 가장 핫한 장소</h2>
             <div class="slide-wrapper position-relative">
-                <div class="main-item-slide"></div>
+                <div id="main-item-slide" class="main-item-slide"></div>
             </div>
         </div>
 
@@ -122,6 +121,7 @@
             }
         });
     </script>
+    <script src="/why_html/main/place.js"></script>
 </body>
 
 </html>
