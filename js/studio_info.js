@@ -149,31 +149,33 @@ $(document).ready(function () {
 });
 
 function time_picker() {
-  var start = "";
-  var end = "";
   for (var i = 0; i < 23; i++) {
-    start += "<option value='" + (i+":00") + "'>" + (i+":00") + "</option>";
-    end += "<option value='" + ((i+1)+":00") + "'>" + ((i+1)+":00") + "</option>";
-  }
+    $("start_times").append($("<option></option", {
+      value: i,
+      text: (i+":00")
+    }));
 
-  $("start_times").append($(start));
-  $("end_times").append($(end));
+    $("end_times").append($("<option></option", {
+      value: i+1,
+      text: ((i+1)+":00")
+    }));
+  }
 }
 
 function price_maker() {
   var stat = $('#numberUpDown').val();
   var num = parseInt(stat, 10);
-  var start = parseInt($('#start_times').val().split(':')[0]);
-  var end = parseInt($('#end_times').val().split(':')[0]);
-  var curr_price = (end - start) * price;
+  var start = $('#start_times').val();
+  var end = $('#end_times').val();
+  var curr_price = 0;
 
+  if (start != null && end != null) curr_price += (end - start) * price;
   if (num > max && max != 0) curr_price += num * people_price;
   
-
   $("#priceinfo").append(
     $(
-      "<p>예약내용</p>"+"<p class='mb-0 font-weight-light font-size-xs'>"+ $('#start_times').val()+"</p>"+
-      "<p class='font-weight-light font-size-xs'>- "+$('#end_times').val()+"</p>"+
+      "<p>예약내용</p>"+"<p class='mb-0 font-weight-light font-size-xs'>"+ $('#start_times').text()+"</p>"+
+      "<p class='font-weight-light font-size-xs'>- "+$('#end_times').text()+"</p>"+
       "<p class='font-weight-bold text-red font-size-l'>"+curr_price+"원<span class='font-weight-light font-size-xs text-light-gray-more'>(VAT포함)</span></p>"+
       "<button type='button' class='btn btn-block border rounded-0 py-2 font-weight-light'><i class='fas fa-shopping-cart mr-2'  onclick='onPurchase();'></i>장바구니</button>"
     )
