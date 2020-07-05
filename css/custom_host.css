@@ -1,0 +1,519 @@
+/* header */
+.navbar-host-title {
+    display: none;
+}
+
+/* index */
+.card-menu-list .card-menu-item {
+    position: relative;
+    text-align: center;
+    border-radius: 10px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+}
+.card-menu-list .card-menu-item .card-item-v-img,
+.card-menu-list .card-menu-item .card-item-h-img {
+    height: 60px;
+}
+.card-menu-list .card-menu-item .card-item-v-img img,
+.card-menu-list .card-menu-item .card-item-h-img img {
+    height: 100%;
+}
+
+.card-menu-list .card-menu-item:hover {
+    color: #fff;
+}
+.card-menu-list .card-menu-item .hover-img,
+.card-menu-list .card-menu-item:hover img:first-child {
+    display: none;
+}
+.card-menu-list .card-menu-item:hover .hover-img {
+    display: block;
+}
+.card-menu-list .card-menu-item:hover .card-item-h-img .hover-img {
+    display: inline-block;
+}
+/* .card-menu-list .card-menu-item:hover img {
+    -webkit-filter: invert(1) brightness(100%) contrast(150%);
+    filter: invert(1) brightness(100%) contrast(150%);
+} */
+.card-menu-list.red .card-menu-item:hover {
+    background: #ff3c49;
+}
+.card-menu-list.blue .card-menu-item:hover {
+    background: #49baec;
+}
+.card-menu-list.purple .card-menu-item:hover {
+    background: #793477;
+}
+
+.host-summary-board .large-number {
+    font-size: 1.3rem;
+    font-weight: 500;
+}
+
+.host-top-function .search-bar-solid .btn {
+    width: 100px;
+}
+
+.host-top-function .text-btn,
+.host-top-function select.form-control {
+    width: 50%;
+}
+.host-top-function.host-search-bar select.form-control {
+    width: 160px;
+}
+
+.host-item-list .border,
+.host-item-list .btn {
+    border-radius: 0;
+}
+.host-item-list .item-thumbs {
+    /* width: 150px;
+    height: 150px; */
+    width: 120px;
+    height: 100px;
+}
+.host-item-list .item-texts {
+    max-width: 60%;
+    font-size: 0.8rem;
+}
+.host-item-list .item-btn {
+    width: 80px;
+    height: 40px;
+    font-size: 0.8rem;
+}
+
+.host-item-list .item-btn.block-item {
+    color: #ff3c49;
+}
+.host-item-list .item-btn.block {
+    background: #ff3c49;
+    color: #fff;
+}
+.host-item-list.calc .calc-number .large-number {
+    font-size: 1.2rem;
+}
+
+.host-regist-proc .step {
+    border-bottom: 10px solid #f2f2f2;
+    color: #a7a7a7;
+}
+.host-regist-proc .step.active {
+    border-color: #ffde3b;
+    color: initial;
+}
+.host-regist-proc .row > *:first-child {
+    padding-left: 15px;
+}
+.host-regist-proc .row > *:last-child {
+    padding-right: 15px;
+}
+
+
+/* .host-register-items .item {
+    border: solid 1px #ebebeb;
+    background-color: #f2f2f2;
+    border-radius: 0;
+    width: 100%;
+    height: 40px;
+    color: #a9a9a9;
+    font-weight: 300;
+    font-size: 0.8rem;
+}
+.host-register-items .item:focus {
+    background-color: #ffde3b;
+    color: initial;
+    border-color: #ffde3b;
+} */
+.host-register-items label {
+    margin-bottom: 0;
+}
+.host-register-items .radio-items input[type=radio],
+.host-register-items .checkbox-items input[type=checkbox] {
+    display:none;
+}
+.host-register-items .radio-items,
+.host-register-items .checkbox-items {
+    width: 100%;
+}
+.host-register-items .radio-items input[type=radio] + span,
+.host-register-items .checkbox-items input[type=checkbox] + span,
+.host-register-items .select-items {
+    display:inline-block;
+    text-align:center;
+    cursor:pointer;
+    border: 1px solid #ebebeb;
+    background-color: #f2f2f2;
+    border-radius: 0;
+    width: inherit;
+    height: 40px;
+    color: #5d5d5d;
+    font-weight: 300;
+    /* font-size: inherit; */
+    line-height: 38px;
+}
+.host-register-items.time-table .radio-items input[type=radio] + span,
+.host-register-items.time-table .checkbox-items input[type=checkbox] + span,
+.host-register-items.time-table .select-items {
+    border: 1px solid #eee;
+    background-color: #fff;
+    margin-top: -1px;
+    color: #5d5d5d;
+}
+.host-register-items .radio-items input[type=radio]:checked + span,
+.host-register-items .checkbox-items input[type=checkbox]:checked + span {
+    background-color: #ffde3b;
+    color: initial;
+    border-color: #ffde3b;
+}
+.host-register-items.time-table .radio-items,
+.host-register-items.time-table .checkbox-items {
+    display: block;
+    max-width: 120px;
+    width: 120px;
+}
+.host-register-items.time-table .select-items {
+    text-align: center;
+    background: none;
+    max-width: 120px;
+    width: 120px;
+    position: relative;
+}
+.host-register-items.time-table .select-items * {
+    color: inherit;
+}
+.host-register-items.time-table .select-items > a {
+    display:block;
+    overflow:hidden;
+}
+.host-register-items.time-table .select-items > a:focus {
+    background: #ffde3b;
+}
+.host-register-items.time-table .select-items > ul {
+    background: #f3f3f3;
+    display: none;
+    width: calc(100% + 2px);
+    margin-left: -1px;
+    border: 1px solid #eee;
+    margin-bottom: 0;
+    max-height: 118px;
+    overflow: hidden;
+    overflow-y: scroll;
+    position: relative;
+    z-index: 1;
+}
+.host-register-items.time-table .select-items > ul.drop-top {
+    position: absolute;
+    bottom: 38px;
+}
+.host-register-items.time-table .select-items > ul::-webkit-scrollbar {
+    width: 5px;
+}
+.host-register-items.time-table .select-items > ul::-webkit-scrollbar-thumb {
+    border-radius: 10rem;
+    background-color: #b1b1b1;
+}
+.host-register-items.time-table .select-items > ul > li:not(:last-child) {
+    cursor: pointer;
+    border-bottom: 1px solid #eee;
+}
+.host-register-items .table,
+.host-register-items.time-table-input .table .time-input {
+    color: #5d5d5d;
+}
+.host-register-items.time-table-input .table.left {
+    max-width: 120px;
+    width: 120px;
+}
+.host-register-items .table th,
+.host-register-items .table td {
+    vertical-align: middle;
+    padding: 0;
+    height: 40px;
+}
+.host-register-items .table th {
+    border-bottom: 0;
+    font-weight: normal;
+}
+.host-register-items.time-table-input .table th {
+    color: #fff;
+    background: #575757;
+}
+.host-register-items.time-table-input .table.right {
+    min-width: 800px;
+}
+.host-register-items.time-table-input .table.right .time-inputs td.inactive {
+    background: #f8f8f8;
+}
+.host-register-items.time-table-input .table.right .time-inputs .time-input {
+    width: 100%;
+    height: 100%;
+    border: 0;
+    background: transparent;
+    padding: 0 .5rem;
+    text-align: center;
+}
+.host-register-items .table.color-table th {
+    background: #ffde3b;
+    border-color: #fff;
+}
+.host-register-items .caption-text * {
+    color: inherit;
+    font-size: 0.8rem;
+}
+
+.host-register-form .fnc-btn {
+    min-width: 100px;
+}
+.host-register-form textarea.form-control {
+    height: 100px;
+}
+.host-register-form textarea.form-control.large {
+    height: 180px;
+}
+.host-register-form .sm-btn {
+    height: auto !important;
+}
+
+.host-register-form .overflow-x {
+    padding-top: 1px;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+}
+
+.host-accordion {
+    font-weight: 300;
+    border-bottom: 1px solid #e6e6e6;
+    border-color: #e6e6e6;
+}
+.host-accordion:hover {
+    outline: #ffde3b solid 3px;
+}
+.host-accordion .card-header {
+    background: #fff;
+    border-color: #e6e6e6;
+}
+.host-accordion .state-text {
+    color: #222;
+    vertical-align: middle;
+    font-weight: normal;
+}
+.host-accordion .state-text.complete {
+    color: #49baec;
+}
+.host-accordion .state-text.incomplete {
+    color: #ff3c49;
+}
+.host-accordion .state-text.rating {
+    color: #ffae00;
+}
+.host-accordion .state-text.bottom {
+    color: #a7a7a7;
+    font-weight: inherit;
+}
+.host-accordion .edit-btn {
+    color: inherit;
+    padding: 0;
+}
+.host-accordion .accordion-textarea * {
+    font-size: inherit;
+}
+.host-accordion .accordion-textarea textarea {
+    padding: .75rem 1.25rem;
+}
+.host-accordion .accordion-textarea .btn {
+    min-width: 80px;
+}
+.host-accordion .accordion-btn {
+    font-size: 1.5rem;
+    color: #e2e2e2;
+}
+
+.host-search-tags .tag {
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-pack: justify;
+    justify-content: space-between;
+    -ms-flex-align: center;
+    align-items: center;
+
+    margin-right: 1rem;
+    padding-right: .5rem;
+    padding-left: 1rem;
+    padding-top: .5rem;
+    padding-bottom: .5rem;
+    font-weight: 300;
+    border-radius: 10rem;
+    background-color: #ffde3b;
+}
+.host-search-tags .tag .btn {
+    height: auto;
+    padding-top: 0;
+    padding-bottom: 0;
+}
+
+@media (min-width: 992px) {
+    .navbar-host-title {
+        display: inline-block;
+        vertical-align: top;
+        margin-top: 8px;
+        margin-left: 10px;
+    }
+
+    .host-summary-board .large-number {
+        font-size: 2.5rem;
+    }
+
+    .host-top-function .text-btn {
+        width: 260px;
+    }
+    .host-top-function select.form-control {
+        width: 160px;
+    }
+
+    .host-top-function.host-search-bar .search-bar-solid {
+        width: 550px;
+    }
+
+    .host-register-form .form-control,
+    .host-register-form .fnc-btn {
+        font-size: 1.2rem;
+        height: 60px !important;
+    }
+    .host-register-form .fnc-btn {
+        min-width: 160px;
+    }
+    .host-register-form .number-btn {
+        width: 60px;
+        height: 60px !important;
+    }
+    .host-register-form label.fnc-btn {
+        line-height: 36px;
+    }
+    .host-register-form textarea.form-control {
+        height: 120px !important;
+    }
+    .host-register-form textarea.form-control.large {
+        height: 240px !important;
+    }
+
+    .host-search-tags .tag {
+        font-size: 1.2rem;
+        padding-right: 1rem;
+        padding-left: 1.5rem;
+    }
+
+    .host-register-items.time-table .radio-items,
+    .host-register-items.time-table .checkbox-items,
+    .host-register-items.time-table-input .table.left {
+        max-width: 160px;
+        width: 160px;
+    }
+    .host-register-items.time-table .select-items {
+        max-width: 250px;
+        width: 250px;
+    }
+
+    .host-item-list .item-thumbs {
+        width: 150px;
+        height: 150px;
+    }
+    .host-item-list .item-btn:first-child {
+        border-bottom: 0 !important;
+    }
+    .host-item-list.calc .calc-number .large-number {
+        font-size: 1.5rem;
+    }
+
+    /* .host-register-form .overflow-x {
+        overflow-x: inherit;
+    } */
+
+    .host-regist-proc .row > * {
+        padding-right: 0;
+        padding-left: 0;
+    }
+
+    .host-accordion {
+        font-size: 1.2rem;
+    }
+    .host-accordion .accordion-textarea textarea {
+        min-height: 110px;
+    }
+}
+
+@media (min-width: 768px) {
+    .card-menu-list .card-menu-item {
+        font-size: 1.5rem;
+    }
+    .card-menu-list .card-menu-item .card-item-v-img {
+        width: 100%;
+        height: 140px;
+    }
+    .card-menu-list .card-menu-item .card-item-h-img,
+    .card-menu-list .card-menu-item .card-item-v-img img,
+    .card-menu-list .card-menu-item .card-item-h-img img {
+        height: auto !important;
+    }
+
+    .search-bar-solid .search-text {
+        font-size: 1.2rem;
+    }
+    .search-bar-solid .btn,
+    .host-top-function .text-btn,
+    .host-top-function select.form-control {
+        font-size: 1.1rem;
+    }
+    .host-top-function.custom-inputs-sub .form-control,
+    .host-top-function.custom-inputs-sub .btn {
+        height: 60px !important;
+    }
+
+    .host-item-list .item-texts,
+    .host-item-list .item-btn {
+        font-size: inherit;
+    }
+    .host-item-list .item-btn {
+        width: 100px;
+    }
+
+    .host-register-items .radio-items input[type=radio] + span,
+    .host-register-items .checkbox-items input[type=checkbox] + span,
+    .host-register-items.time-table .select-items {
+        height: 70px;
+        line-height: 68px;
+        font-size: 1.4rem;
+    }
+
+    .host-register-items.time-table .select-items > ul {
+        max-height: 277px;
+    }
+    .host-register-items.time-table .select-items > ul.drop-top {
+        bottom: 68px;
+    }
+
+    .host-register-items .table th,
+    .host-register-items .table td {
+        height: 60px;
+        font-size: 1.4rem;
+    }
+
+    .host-register-items.time-table-input .table.right {
+        min-width: 932px;
+    }
+
+    .host-register-items .table.color-table td {
+        font-size: 1.2rem;
+    }
+
+    .host-register-items .caption-text * {
+        font-size: inherit;
+    }
+
+    .host-accordion .accordion-textarea .btn {
+        min-width: 100px;
+    }
+    .host-accordion .accordion-btn {
+        font-size: 2rem;
+    }
+}

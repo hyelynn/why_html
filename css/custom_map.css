@@ -4,16 +4,16 @@ html, body {
 }
 
 .map-full-area {
-    position: absolute;
+    position: inherit;
     top: 0;
-    height: calc(100% - 500px);
+    height: calc(100% - 300px);
     width: 100%;
 }
 .map-list {
     width: 100%;
-    height: 500px;
+    height: 300px;
     background: #fff;
-    position: absolute;
+    position: inherit;
     z-index: 1031;
     bottom: 0;
 }
@@ -21,7 +21,7 @@ html, body {
     overflow-y: scroll;
     overflow-x: hidden;
     -webkit-overflow-scroll: touch;
-    height: calc(100% - 180px);
+    height: calc(100% - 160px);
 }
 .map-list-item > *:first-child {
     border-top: 0;
@@ -30,8 +30,21 @@ html, body {
     width: 160px;
 }
 .map-thumbs {
-    width: 152px;
-    height: 152px;
+    width: 120px;
+    height: 80px;
+}
+.map-thumbs img {
+    width: inherit !important;
+}
+.item-price-text {
+    font-size: 1rem;
+    text-align: right;
+}
+.item-type-text {
+    font-size: 0.8rem;
+}
+.item-disc-text {
+    font-size: 0.75rem;
 }
 
 @media (min-width: 992px) {
@@ -50,5 +63,16 @@ html, body {
     }
     .map-list-item {
         height: 700px;
+    }
+    .map-thumbs {
+        width: 152px;
+        height: 152px;
+    }
+    .item-price-text {
+        font-size: 1.4rem;
+    }
+    .item-type-text,
+    .item-disc-text {
+        font-size: inherit !important;
     }
 }
