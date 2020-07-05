@@ -176,7 +176,7 @@ function price_maker() {
   var date = $('#datePicker').datepicker.selectDate;
   
 
-  if (start != null && end != null) curr_price += (end - start) * price;
+  if (start != null && end != null) curr_price = (end - start) * price;
   if (num > max && max != 0) curr_price += num * people_price;
   $("#priceinfo").empty();
   $("#priceinfo").append(
@@ -189,29 +189,6 @@ function price_maker() {
   );
 }
 
-function addCart() {
-  var cartInfo = JSON.parse(sessionStorage.getItem("cart"));
-  var cart = [];
-
-  for (var item in cartInfo) {
-    cart.push(item);
-  }
-
-  cart.push({
-    img: img_link,
-    title: title,
-    price: curr_price,
-    date : "예약일시"+$('#datePicker').datepicker.selectDate+" "+$('#start_times option:selected' ).text()+" ~ "+$('#end_times option:selected').text()
-  })
-
-  console.log(cart);
-  alert('장바구니에 상품이 담겼습니다');
-}
-
-function purchase() {
-  addCart();
-  location.href = "http://artbyus.co.kr/why_html/member/purchase.html";
-}
 
 // <li class="mb-3">
 //                                             <div class="d-flex">
