@@ -1,5 +1,5 @@
 $(document).ready(function(){
-    var items = sessionStorage.getItem("cart");
+    var items = JSON.parse(sessionStorage.getItem("cart"));
     console.log(items)
 
     $.each(data, function(index, item){
