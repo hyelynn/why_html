@@ -67,7 +67,7 @@ $(document).ready(function () {
 });
 
 function payment() {
-  if ($("#order_payment").isChecked && $("#order_refund").isChecked) {
+  if (document.getElementById("order_payment").checked && document.getElementById("order_refund").checked) {
     var product = [];
     for (var i in items) {
       product.push({
