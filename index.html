@@ -25,6 +25,7 @@
     <script type="text/javascript" src="https://static.nid.naver.com/js/naveridlogin_js_sdk_2.0.0.js"
         charset="utf-8"></script>
     <script src="/why_html/js/kakao_sdk.js"></script>
+    <script src="/why_html/main/place.js"></script>
 
     <script>
         // SDK를 초기화 합니다. 사용할 앱의 JavaScript 키를 설정해 주세요.
@@ -91,7 +92,6 @@
 
     <script src="/why_html/js/naver_login.js"></script>
     <script src="/why_html/js/login.js"></script>
-    <script src="/why_html/main/place.js"></script>
 
     <script>includeHTML({});</script>
     <script>login_header();</script>
@@ -102,25 +102,6 @@
             sessionStorage.clear();
             location.href = "index.html";
         }
-
-        $('.main-item-slide').slick({
-                slidesToShow: 4,
-                slidesToScroll: 1,
-                autoplay: true,
-                autoplaySpeed: 2000,
-                arrows: true,
-                prevArrow: '<button type="button" class="btn slide-prev"><span class="slide-prev-icon" aria-hidden="true"></span><span class="sr-only">Previous</span></button>',
-                nextArrow: '<button type="button" class="btn slide-next"><span class="slide-next-icon" aria-hidden="true"></span><span class="sr-only">Next</span></button>',
-                responsive: [
-                    {
-                        breakpoint: 992,
-                        settings: {
-                            slidesToShow: 2,
-                            slidesToScroll: 2,
-                        }
-                    }
-                ]
-            });
 
         // carousel multiple item slide
         $('.carousel-multiple-slide .carousel-item').each(function () {
