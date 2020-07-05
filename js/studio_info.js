@@ -191,6 +191,11 @@ function price_maker() {
 
 function addCart() {
   console.log(curr_price);
+
+  if( curr_price <= 0 ) {
+    alert('상품을 확인해 주세요');
+    break;
+  }
   
   var cartInfo = JSON.parse(sessionStorage.getItem("cart"));
   var cart = [];
