@@ -165,8 +165,8 @@ function time_picker() {
 function price_maker() {
   var stat = $('#numberUpDown').val();
   var num = parseInt(stat, 10);
-  var start = $('#start_times').val();
-  var end = $('#end_times').val();
+  var start = $('#start_times option:selected').val();
+  var end = $('#end_times option:selected').val();
   var curr_price = 0;
 
   if (start != null && end != null) curr_price += (end - start) * price;
@@ -174,11 +174,43 @@ function price_maker() {
   $("#priceinfo").empty();
   $("#priceinfo").append(
     $(
-      "<p>예약내용</p>"+"<p class='mb-0 font-weight-light font-size-xs'>"+ $('#start_times').text()+"</p>"+
-      "<p class='font-weight-light font-size-xs'>- "+$('#end_times').text()+"</p>"+
+      "<p>예약내용</p>"+"<p class='mb-0 font-weight-light font-size-xs'>"+ $('#start_times option:selected' ).text()+"</p>"+
+      "<p class='font-weight-light font-size-xs'>- "+$('#end_times option:selected').text()+"</p>"+
       "<p class='font-weight-bold text-red font-size-l'>"+curr_price+"원<span class='font-weight-light font-size-xs text-light-gray-more'>(VAT포함)</span></p>"+
-      "<button type='button' class='btn btn-block border rounded-0 py-2 font-weight-light'><i class='fas fa-shopping-cart mr-2'  onclick='onPurchase();'></i>장바구니</button>"
+      "<button type='button' class='btn btn-block border rounded-0 py-2 font-weight-light'><i class='fas fa-shopping-cart mr-2'  onclick='addCart();'></i>장바구니</button>"
     )
   );
-  
 }
+
+function addCart() {
+  var cartInfo = JSON.parse(sessionStorage.getItem("cart"));
+  var cart = [];
+
+  for (var item in cartInfo) {
+    item.
+  }
+
+  sessionStorage.setItem("id", result.user_key);
+  sessionStorage.setItem("nickname", result.user_nickname);
+  alert('장바구니에 상품이 담겼습니다');
+}
+
+function purchase() {
+  addCart();
+}
+
+// <li class="mb-3">
+//                                             <div class="d-flex">
+//                                                 <div class="mr-lg-4 mr-2">
+//                                                     <span class="d-inline-block rounded-circle user-bg"></span>
+//                                                 </div>
+//                                                 <div class="border-bottom pb-4 mb-4">
+//                                                     <p class="font-size-m">BUMING <span class="float-right font-weight-light font-size-s text-light-gray">★3.5/5</span></p>
+//                                                     <p class="font-weight-light font-size-s text-light-gray">
+//                                                         이네들은 이런 하나 멀리 까닭입니다. 써 이런 못 이름자 거외다. 이름과 봄이 쉬이 피어
+//                                                         나듯이 써 가을 있습니다. 된 오면 그리고 노새, 이름자를 마디씩 까닭입니다.
+//                                                     </p>
+//                                                     <p class="text-light-gray-more font-size-xs">2020.03.20 18:50</p>
+//                                                 </div>
+//                                             </div>
+//                                         </li>
