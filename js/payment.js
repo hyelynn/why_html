@@ -59,6 +59,7 @@ function payment() {
 
     console.log(product);
 
+    
     BootPay.request({
         price: total_price, //실제 결제되는 가격
         application_id: "5ed87b408f0751001efcd31d",
@@ -66,7 +67,7 @@ function payment() {
         pg: 'payapp',
         //method: '', //결제수단, 입력하지 않으면 결제수단 선택부터 화면이 시작합니다.
         show_agree_window: 0, // 부트페이 정보 동의 창 보이기 여부
-        items: product,
+        items: JSON.parse(product),
         user_info: {
             phone: sessionStorage.getItem('phone')
         },
