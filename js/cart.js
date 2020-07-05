@@ -3,7 +3,7 @@ $(document).ready(function(){
     console.log(items)
 
     $.each(items, function(index, item){
-        $('#cart').$append(
+        $('#cart').append(
             $("<li class='list-group-item pr-4 pl-3 py-4'>"+
             "<div class='d-lg-flex align-items-center custom-inputs'>"+
             "<div class='d-flex align-items-lg-center'>"+
