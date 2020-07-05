@@ -2,7 +2,7 @@ $(document).ready(function(){
     var items = JSON.parse(sessionStorage.getItem("cart"));
     console.log(items)
 
-    $.each(data, function(index, item){
+    $.each(items, function(index, item){
         $('#cart').$append(
             $("<li class='list-group-item pr-4 pl-3 py-4'>"+
             "<div class='d-lg-flex align-items-center custom-inputs'>"+
