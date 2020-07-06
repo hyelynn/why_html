@@ -11,11 +11,11 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 
     <!-- Custom -->
-    <link rel="stylesheet" href="../css/custom.css">
-    <link rel="stylesheet" href="../css/custom_host.css">
+    <link rel="stylesheet" href="/why_html/css/custom.css">
+    <link rel="stylesheet" href="/why_html/css/custom_host.css">
 
     <!-- Fontawesome -->
-    <link rel="stylesheet" href="../css/fontawesome/css/all.min.css">
+    <link rel="stylesheet" href="/why_html/css/fontawesome/css/all.min.css">
 
     <script src="/why_html/js/include.js"></script>
     <!-- Custom -->
@@ -123,13 +123,25 @@
         </div>
     </main>
 
-    <footer id="footer"></footer>
+    <footer include-html="/why_html/include/footer.html"></footer>
+
+    <script src="/why_html/js/naver_login.js"></script>
+    <script src="/why_html/js/login.js"></script>
+
+    <script>includeHTML({});</script>
+    <script>login_header();</script>
+
+    <script type="text/javascript">
+        function onLogout() {
+            sessionStorage.clear();
+            location.href = "index.html";
+        }
+    </script>
 
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
 
-    <script src="../js/include_html_host.js"></script>
-    <script src="../js/custom.js"></script>
+    <script src="/why_html/js/custom.js"></script>
 </body>
 
 </html>
