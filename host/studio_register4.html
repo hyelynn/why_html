@@ -1,14 +1,17 @@
 <!DOCTYPE html>
 <html lang="ko">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ART BY US</title>
 
-    <script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"
+        integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
 
     <!-- Bootstrap 4.3.1 -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 
     <!-- Custom -->
     <link rel="stylesheet" href="/why_html/css/custom.css">
@@ -91,8 +94,11 @@
                         </div>
                         <div class="d-flex justify-content-between">
                             <button type="button" id="decreaseQuantity" class="btn border bg-gray number-btn">-</button>
-                            <input type="text" id="numberUpDown" value="1" class="text-center form-control border-right-0 border-left-0" style="width: calc(100% - 100px);">
-                            <button type="button" id="increaseQuantity" class="btn border bg-yellow number-btn">+</button>
+                            <input type="text" id="numberUpDown" value="1"
+                                class="text-center form-control border-right-0 border-left-0"
+                                style="width: calc(100% - 100px);">
+                            <button type="button" id="increaseQuantity"
+                                class="btn border bg-yellow number-btn">+</button>
                         </div>
                     </div>
                     <div class="col-md-6">
@@ -1101,7 +1107,7 @@
                         <!-- 설명 -->
                         <div class="caption-text font-weight-light">
                             <p class="mb-0">예약결제 : 파트너가 직접 예약 내용을 확인한 후 결제를 승인하는 방식입니다. (어스파트너 수수료 10%)</p>
-                            <p class="mb-0">즉시결제 : 사용자가 즉시 예약 확정 및 결제를 진행할 수 있는 방식입니다.  (어스파트너 수수료 10%)</p>
+                            <p class="mb-0">즉시결제 : 사용자가 즉시 예약 확정 및 결제를 진행할 수 있는 방식입니다. (어스파트너 수수료 10%)</p>
                         </div>
                     </div>
                 </div>
@@ -1110,8 +1116,10 @@
 
         <!-- 이전단계(이전페이지에서 입력했던 내용 유지) / 등록완료 -->
         <div class="overflow-hidden mt-lg-5 mt-3">
-            <a href="studio_register3.html" class="btn bg-gray float-left w-50 rounded-0 py-lg-4 py-3 font-size-m">이전 단계로 이동</a>
-            <a href="studio_list.html" class="btn bg-yellow float-right w-50 rounded-0 py-lg-4 py-3 font-size-m">등록 완료</a>
+            <a href="studio_register3.html" class="btn bg-gray float-left w-50 rounded-0 py-lg-4 py-3 font-size-m">이전
+                단계로 이동</a>
+            <a href="studio_list.html" class="btn bg-yellow float-right w-50 rounded-0 py-lg-4 py-3 font-size-m">등록
+                완료</a>
         </div>
     </main>
 
@@ -1130,8 +1138,12 @@
         }
     </script>
 
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+        integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
+        integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
+        crossorigin="anonymous"></script>
 
     <script src="/why_html/js/custom.js"></script>
 </body>
@@ -1140,9 +1152,9 @@
     $(function () {
         // file upload
         var fileTarget = $('.custom-inputs-sub.not .upload-hidden');
-        fileTarget.on('change', function() {
+        fileTarget.on('change', function () {
             // 값이 변경되면
-            if(window.FileReader){ // modern browser
+            if (window.FileReader) { // modern browser
                 var filename = $(this)[0].files[0].name;
             } else { // old IE
                 var filename = $(this).val().split('/').pop().split('\\').pop(); // 파일명만 추출
@@ -1152,7 +1164,7 @@
         });
 
         // number of people
-        $('#decreaseQuantity').click( function(e) {
+        $('#decreaseQuantity').click(function (e) {
             e.preventDefault();
             var stat = $('#numberUpDown').val();
             var num = parseInt(stat, 10);
@@ -1164,7 +1176,7 @@
             $('#numberUpDown').val(num);
         });
 
-        $('#increaseQuantity').click(function(e){
+        $('#increaseQuantity').click(function (e) {
             e.preventDefault();
             var stat = $('#numberUpDown').val();
             var num = parseInt(stat, 10);
@@ -1177,7 +1189,7 @@
         });
 
         // selectbox ul li
-        $('div.select-items > a').click(function() {
+        $('div.select-items > a').click(function () {
             $('div.select-items > a').not($(this)).next('ul').hide();
             $(this).next('ul').toggle();
             return false;
@@ -1187,7 +1199,7 @@
             $('div.select-items > a').next('ul').hide();
         })
 
-        $('div.select-items > ul > li').click(function() {
+        $('div.select-items > ul > li').click(function () {
             $(this).parent().hide().parent('div.select-items').children('a').text($(this).text());
         });
     })

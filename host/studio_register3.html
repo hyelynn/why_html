@@ -1,14 +1,17 @@
 <!DOCTYPE html>
 <html lang="ko">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ART BY US</title>
 
-    <script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"
+        integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
 
     <!-- Bootstrap 4.3.1 -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 
     <!-- Custom -->
     <link rel="stylesheet" href="/why_html/css/custom.css">
@@ -91,8 +94,10 @@
                         <label class="float-left">대표 이미지 (1장)</label>
                     </div>
                     <div class="d-flex custom-file">
-                        <input class="upload-name form-control flex-fill" value="JPG, PNG 파일만 가능합니다." disabled="disabled">
-                        <label for="thumbsFile" class="btn flex-fill fnc-btn mb-0 bg-yellow whitespace-nowrap fnc-btn">업로드</label>
+                        <input class="upload-name form-control flex-fill" value="JPG, PNG 파일만 가능합니다."
+                            disabled="disabled">
+                        <label for="thumbsFile"
+                            class="btn flex-fill fnc-btn mb-0 bg-yellow whitespace-nowrap fnc-btn">업로드</label>
                         <input type="file" id="thumbsFile" class="upload-hidden">
                     </div>
                 </div>
@@ -103,17 +108,22 @@
                         <label class="float-left">추가 이미지 (최대 14장)</label>
                     </div>
                     <div class="d-flex custom-file mb-3">
-                        <input class="upload-name form-control flex-fill" value="최대 14장, JPG, PNG 파일만 가능합니다" disabled="disabled">
-                        <label for="studioImageA1" class="btn flex-fill fnc-btn mb-0 bg-yellow whitespace-nowrap fnc-btn">업로드</label>
+                        <input class="upload-name form-control flex-fill" value="최대 14장, JPG, PNG 파일만 가능합니다"
+                            disabled="disabled">
+                        <label for="studioImageA1"
+                            class="btn flex-fill fnc-btn mb-0 bg-yellow whitespace-nowrap fnc-btn">업로드</label>
                         <input type="file" id="studioImageA1" class="upload-hidden">
                     </div>
                     <div class="d-flex custom-file mb-3">
-                        <input class="upload-name form-control flex-fill" value="최대 14장, JPG, PNG 파일만 가능합니다" disabled="disabled">
-                        <label for="studioImageA2" class="btn flex-fill fnc-btn mb-0 bg-yellow whitespace-nowrap fnc-btn">업로드</label>
+                        <input class="upload-name form-control flex-fill" value="최대 14장, JPG, PNG 파일만 가능합니다"
+                            disabled="disabled">
+                        <label for="studioImageA2"
+                            class="btn flex-fill fnc-btn mb-0 bg-yellow whitespace-nowrap fnc-btn">업로드</label>
                         <input type="file" id="studioImageA2" class="upload-hidden">
                     </div>
                     <!-- 추가버튼 -->
-                    <button type="button" class="btn border font-weight-light font-size-xs sm-btn" onclick="addInputFile(this)">
+                    <button type="button" class="btn border font-weight-light font-size-xs sm-btn"
+                        onclick="addInputFile(this)">
                         <i class="fas fa-plus mr-lg-1 mr-0 text-sky"></i><span class="d-inline-block">추가</span>
                     </button>
                 </div>
@@ -133,7 +143,8 @@
                         <label for="studio_text" class="float-left">스튜디오 상세 소개</label>
                         <span class="float-right">0/700</span>
                     </div>
-                    <textarea name="" id="studioText" cols="30" rows="10" class="form-control large" placeholder="스튜디오 소개글을 작성하세요"></textarea>
+                    <textarea name="" id="studioText" cols="30" rows="10" class="form-control large"
+                        placeholder="스튜디오 소개글을 작성하세요"></textarea>
                 </div>
 
                 <!-- 스튜디오 이용 약관 -->
@@ -142,7 +153,8 @@
                         <label for="studio_terms" class="float-left">스튜디오 이용 약관</label>
                         <span class="float-right">0/700</span>
                     </div>
-                    <textarea name="" id="studioTerms" cols="30" rows="10" class="form-control large" placeholder="사용자가 인지할 수 있는 약관을 작성하세요. ※ 환불규정은 아트바이어스의 공동 환불정책으로 적용됩니다."></textarea>
+                    <textarea name="" id="studioTerms" cols="30" rows="10" class="form-control large"
+                        placeholder="사용자가 인지할 수 있는 약관을 작성하세요. ※ 환불규정은 아트바이어스의 공동 환불정책으로 적용됩니다."></textarea>
                 </div>
 
                 <!-- 추가 이미지(본문) -->
@@ -151,17 +163,22 @@
                         <label class="float-left">추가 이미지 (최대 14장)</label>
                     </div>
                     <div class="d-flex custom-file mb-3">
-                        <input class="upload-name form-control flex-fill" value="최대 14장, JPG, PNG 파일만 가능합니다" disabled="disabled">
-                        <label for="studioImageB1" class="btn flex-fill fnc-btn mb-0 bg-yellow whitespace-nowrap fnc-btn">업로드</label>
+                        <input class="upload-name form-control flex-fill" value="최대 14장, JPG, PNG 파일만 가능합니다"
+                            disabled="disabled">
+                        <label for="studioImageB1"
+                            class="btn flex-fill fnc-btn mb-0 bg-yellow whitespace-nowrap fnc-btn">업로드</label>
                         <input type="file" id="studioImageB1" class="upload-hidden">
                     </div>
                     <div class="d-flex custom-file mb-3">
-                        <input class="upload-name form-control flex-fill" value="최대 14장, JPG, PNG 파일만 가능합니다" disabled="disabled">
-                        <label for="studioImageB2" class="btn flex-fill fnc-btn mb-0 bg-yellow whitespace-nowrap fnc-btn">업로드</label>
+                        <input class="upload-name form-control flex-fill" value="최대 14장, JPG, PNG 파일만 가능합니다"
+                            disabled="disabled">
+                        <label for="studioImageB2"
+                            class="btn flex-fill fnc-btn mb-0 bg-yellow whitespace-nowrap fnc-btn">업로드</label>
                         <input type="file" id="studioImageB2" class="upload-hidden">
                     </div>
                     <!-- 추가버튼 -->
-                    <button type="button" class="btn border font-weight-light font-size-xs sm-btn" onclick="addInputFile(this)">
+                    <button type="button" class="btn border font-weight-light font-size-xs sm-btn"
+                        onclick="addInputFile(this)">
                         <i class="fas fa-plus mr-lg-1 mr-0 text-sky"></i><span class="d-inline-block">추가</span>
                     </button>
                 </div>
@@ -172,7 +189,8 @@
                         <label for="studio_tags">스튜디오 검색 태그</label>
                     </div>
                     <div class="d-flex">
-                        <input type="text" id="studioTag" class="form-control" placeholder="사용자가 검색할 수 있는 키워드를 입력해 주세요.">
+                        <input type="text" id="studioTag" class="form-control"
+                            placeholder="사용자가 검색할 수 있는 키워드를 입력해 주세요.">
                         <button type="button" class="btn bg-yellow fnc-btn" onclick="addTag()">추가하기</button>
                     </div>
 
@@ -180,19 +198,23 @@
                     <div class="d-flex align-content-center flex-wrap host-search-tags">
                         <div class="tag mt-3">
                             <span class="mr-lg-2">서울대</span>
-                            <button type="button" class="btn bg-transparent" onclick="removeTag(this)"><i class="fa fa-times text-red"></i></button>
+                            <button type="button" class="btn bg-transparent" onclick="removeTag(this)"><i
+                                    class="fa fa-times text-red"></i></button>
                         </div>
                         <div class="tag mt-3">
                             <span class="mr-lg-2">서울대입구역</span>
-                            <button type="button" class="btn bg-transparent" onclick="removeTag(this)"><i class="fa fa-times text-red"></i></button>
+                            <button type="button" class="btn bg-transparent" onclick="removeTag(this)"><i
+                                    class="fa fa-times text-red"></i></button>
                         </div>
                         <div class="tag mt-3">
                             <span class="mr-lg-2">밴드연습실</span>
-                            <button type="button" class="btn bg-transparent" onclick="removeTag(this)"><i class="fa fa-times text-red"></i></button>
+                            <button type="button" class="btn bg-transparent" onclick="removeTag(this)"><i
+                                    class="fa fa-times text-red"></i></button>
                         </div>
                         <div class="tag mt-3">
                             <span class="mr-lg-2">기타</span>
-                            <button type="button" class="btn bg-transparent" onclick="removeTag(this)"><i class="fa fa-times text-red"></i></button>
+                            <button type="button" class="btn bg-transparent" onclick="removeTag(this)"><i
+                                    class="fa fa-times text-red"></i></button>
                         </div>
                     </div>
                 </div>
@@ -353,15 +375,18 @@
                     <div class="text-gray font-weight-light">
                         <label for="studioAddr">오시는 길</label>
                     </div>
-                    <textarea name="" id="studioAddr" cols="30" rows="10" class="form-control large" placeholder="예) 601, 5528번 버스를 타고 관악경찰서 하차, 서울대입구역에서 도보 500m"></textarea>
+                    <textarea name="" id="studioAddr" cols="30" rows="10" class="form-control large"
+                        placeholder="예) 601, 5528번 버스를 타고 관악경찰서 하차, 서울대입구역에서 도보 500m"></textarea>
                 </div>
             </div>
         </div>
 
         <!-- 이전단계(이전페이지에서 입력했던 내용 유지) / 다음단계 -->
         <div class="overflow-hidden mt-lg-5 mt-3">
-            <a href="studio_register2.html" class="btn bg-gray float-left w-50 rounded-0 py-lg-4 py-3 font-size-m">이전 단계로 이동</a>
-            <a href="studio_register4.html" class="btn bg-yellow float-right w-50 rounded-0 py-lg-4 py-3 font-size-m">다음으로 이동</a>
+            <a href="studio_register2.html" class="btn bg-gray float-left w-50 rounded-0 py-lg-4 py-3 font-size-m">이전
+                단계로 이동</a>
+            <a href="studio_register4.html"
+                class="btn bg-yellow float-right w-50 rounded-0 py-lg-4 py-3 font-size-m">다음으로 이동</a>
         </div>
     </main>
 
@@ -380,8 +405,12 @@
         }
     </script>
 
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+        integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
+        integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
+        crossorigin="anonymous"></script>
 
     <script src="/why_html/js/custom.js"></script>
 </body>
@@ -389,9 +418,9 @@
 <script>
     $(function () {
         var fileTarget = $('.custom-inputs-sub.not .upload-hidden');
-        fileTarget.on('change', function() {
+        fileTarget.on('change', function () {
             // 값이 변경되면
-            if(window.FileReader){ // modern browser
+            if (window.FileReader) { // modern browser
                 var filename = $(this)[0].files[0].name;
             } else { // old IE
                 var filename = $(this).val().split('/').pop().split('\\').pop(); // 파일명만 추출
@@ -409,7 +438,7 @@
 
         let $last = $(obj).parent().find('div.custom-file:last');
         let id = $last.find('input[type=file]').prop('id').replace(/[1-9]/g, '');
-        let new_id = id + (parseInt( $last.find('input[type=file]').prop('id').match(/\d+/g), 10 ) + 1);
+        let new_id = id + (parseInt($last.find('input[type=file]').prop('id').match(/\d+/g), 10) + 1);
         let $clone = $last.clone(true);
 
         $clone.find('input[type=file]').prop('id', new_id).val('');
