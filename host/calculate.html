@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ART BY US</title>
+
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+
+    <!-- Bootstrap 4.3.1 -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+    <!-- Custom -->
+    <link rel="stylesheet" href="/why_html/css/custom.css">
+    <link rel="stylesheet" href="/why_html/css/custom_host.css">
+
+    <!-- Fontawesome -->
+    <link rel="stylesheet" href="/why_html/css/fontawesome/css/all.min.css">
+
+    <script src="/why_html/js/include.js"></script>
+    <!-- Custom -->
+
+    <script type="text/javascript" src="https://static.nid.naver.com/js/naveridlogin_js_sdk_2.0.0.js"
+        charset="utf-8"></script>
+    <script src="/why_html/js/kakao_sdk.js"></script>
+
+    <script>
+        Kakao.init('d88bea310f4a39afbea3146fe1c0fa72');
+        Kakao.isInitialized();
+    </script>
+</head>
+
+<body>
+    <modal include-html="/why_html/include/header.html"></modal>
+    <div class="py-md-3 px-5 py-2 text-center text-white bg-deep-dark top-notice">
+        <span class="font-weight-light">코로나19에 대한 아트바이어스의 대책 및 환불 정책에 대한 최신 정보를 확인하세요.</span>
+        <a href="#x" class="text-white d-lg-inline-block d-block">자세히 알아보기</a>
+    </div>
+
+    <nav class="navbar navbar-expand-lg navbar-light py-lg-3 py-1">
+        <div class="container">
+            <a class="navbar-brand" href="/why_html/index.html"><img src="http://artbyus.co.kr/why_html/img/logo.png"
+                    srcset="http://artbyus.co.kr/why_html/img/logo@2x.png 2x, http://artbyus.co.kr/why_html/img/logo@3x.png 3x"></a>
+            <div class="ml-auto align-items-center d-lg-none d-flex">
+                <a class="text-dark mr-3 font-size-sm" href="/why_html/member/calendar.html"><i
+                        class="far fa-calendar-alt"></i></a>
+                <a class="text-dark mr-3 font-size-sm" href="/why_html/member/recent_list.html"><i
+                        class="far fa-clock"></i></a>
+                <a class="text-dark mr-2 font-size-sm" href="/why_html/member/purchase.html"><i
+                        class="fas fa-shopping-cart"></i></a>
+            </div>
+            <button class="navbar-toggler border-0 font-size-md text-dark" type="button" data-toggle="collapse"
+                data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false"
+                aria-label="Toggle navigation">
+                <i class="fas fa-bars"></i>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarNavDropdown"></div>
+        </div>
+    </nav>
+    <script src="/why_html/js/header.js"></script>
+    <main role="main">
+        <div id="carouselAdContent" class="carousel slide" data-ride="carousel">
+            <div class="carousel-inner">
+                <div class="carousel-item active">
+                    <img src="/why_html/img/main_carousel_lg.jpg" srcset="/why_html/img/main_carousel_lg@2x.jpg 2x, /why_html/img/main_carousel_lg@3x.jpg 3x" class="d-block w-100" alt="...">
+                </div>
+                <div class="carousel-item">
+                    <img src="/why_html/img/main_carousel_lg.jpg" srcset="/why_html/img/main_carousel_lg@2x.jpg 2x, /why_html/img/main_carousel_lg@3x.jpg 3x" class="d-block w-100" alt="...">
+                </div>
+                <div class="carousel-item">
+                    <img src="/why_html/img/main_carousel_lg.jpg" srcset="/why_html/img/main_carousel_lg@2x.jpg 2x, /why_html/img/main_carousel_lg@3x.jpg 3x" class="d-block w-100" alt="...">
+                </div>
+            </div>
+
+            <a class="carousel-control-prev" href="#carouselAdContent" role="button" data-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="sr-only">Previous</span>
+            </a>
+            <a class="carousel-control-next" href="#carouselAdContent" role="button" data-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="sr-only">Next</span>
+            </a>
+        </div>
+
+        <!-- 정산 요약 -->
+        <div class="text-center mb-lg-5 mb-3 bg-yellow">
+            <div class="container py-lg-5 py-4">
+                <div class="host-summary-board">
+                    <div class="row">
+                        <div class="col-md-4 col-6">
+                            <span class="font-weight-light">이번 달 정산 금액</span>
+                            <p class="mb-0 large-number">800,000원</p>
+                        </div>
+                        <div class="col-md-4 col-6">
+                            <span class="font-weight-light">입금 예정 금액</span>
+                            <p class="mb-0 large-number">7,351,000원</p>
+                        </div>
+                        <div class="col-md-4 col-12 mt-4 mt-md-0">
+                            <span class="font-weight-light">누적 정산 금액</span>
+                            <p class="mb-0 large-number">1,130,900,800원</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 리스트 -->
+        <div class="container">
+            <!-- 검색 및 정렬 -->
+            <div class="d-lg-flex mb-3 custom-inputs-sub host-top-function">
+                <div class="input-group search-bar-solid">
+                    <input type="text" class="form-control text-dark search-text" placeholder="공간명을 검색해주세요" aria-label="공간명을 검색해주세요" aria-describedby="search-studio">
+                    <div class="input-group-append">
+                        <button type="button" class="btn bg-yellow text-gray">검색</button>
+                    </div>
+                </div>
+
+                <div class="d-flex mt-3 mt-lg-0">
+                    <a href="studio_register.html" class="d-flex align-items-center justify-content-center btn font-weight-light bg-yellow mx-lg-3 mr-3 text-btn">
+                        <span>계좌정보 수정</span>
+                    </a>
+                    <select class="form-control font-weight-light">
+                        <option value="">가나다순</option>
+                        <option value="">최신순</option>
+                        <option value="">오름차순</option>
+                        <option value="">내림차순</option>
+                    </select>
+                </div>
+            </div>
+
+            <!-- 리스트 -->
+            <ul class="list-group host-item-list calc">
+                <li class="list-group-item p-3 mb-3 border">
+                    <div class="row align-items-center">
+                        <div class="col-lg-9">
+                            <div class="d-flex align-items-lg-center">
+                                <div class="d-flex justify-content-center overflow-hidden mr-4 item-thumbs">
+                                    <img src="/why_html/img/cart-1.jpg" class="align-self-center h-100" alt="">
+                                </div>
+                                <div class="item-texts">
+                                    <a href="/why_html/sub/studio_view.html" class="text-decoration-none">
+                                        <h4 class="text-gray">사당 G1안무연습실
+                                        <p class="font-size-xs ml-lg-3 ml-2 d-inline-block mb-1 align-middle"><i class="fas fa-heart text-red"></i> <span class="ml-1">1,459</span></p></h4>
+                                    </a>
+                                    <p class="font-weight-light text-light-gray mb-2">하나 피어나듯이 못 무성할 헤는 까닭입니다. 벌써 이웃 위에 봅니다. 벌레는 아스라히 너무나 까닭이요, 별에도 책상을 내일 계십니다.</p>
+                                    <p class="font-weight-light mb-0"><span class="mr-md-4">예약유형 : 바로결제</span><span class="d-md-inline-block d-block">1,500원 / 시간</span></p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-3">
+                            <div class="text-lg-center text-right mt-lg-0 mt-3 calc-number">
+                                <span class="font-weight-light">최종 정산 금액</span>
+                                <p class="mb-0 large-number">21,800,000원</p>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+                <li class="list-group-item p-3 mb-3 border">
+                    <div class="row align-items-center">
+                        <div class="col-lg-9">
+                            <div class="d-flex align-items-lg-center">
+                                <div class="d-flex justify-content-center overflow-hidden mr-4 item-thumbs">
+                                    <img src="/why_html/img/cart-1.jpg" class="align-self-center h-100" alt="">
+                                </div>
+                                <div class="item-texts">
+                                    <a href="/why_html/sub/studio_view.html" class="text-decoration-none">
+                                        <h4 class="text-gray">사당 G1안무연습실
+                                        <p class="font-size-xs ml-lg-3 ml-2 d-inline-block mb-1 align-middle"><i class="fas fa-heart text-red"></i> <span class="ml-1">1,459</span></p></h4>
+                                    </a>
+                                    <p class="font-weight-light text-light-gray mb-2">하나 피어나듯이 못 무성할 헤는 까닭입니다. 벌써 이웃 위에 봅니다. 벌레는 아스라히 너무나 까닭이요, 별에도 책상을 내일 계십니다.</p>
+                                    <p class="font-weight-light mb-0"><span class="mr-md-4">예약유형 : 바로결제</span><span class="d-md-inline-block d-block">1,500원 / 시간</span></p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-3">
+                            <div class="text-lg-center text-right mt-lg-0 mt-3 calc-number">
+                                <span class="font-weight-light">최종 정산 금액</span>
+                                <p class="mb-0 large-number">800,000원</p>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </main>
+
+    <footer include-html="/why_html/include/footer.html"></footer>
+
+    <script src="/why_html/js/naver_login.js"></script>
+    <script src="/why_html/js/login.js"></script>
+
+    <script>includeHTML({});</script>
+    <script>login_header();</script>
+
+    <script type="text/javascript">
+        function onLogout() {
+            sessionStorage.clear();
+            location.href = "index.html";
+        }
+    </script>
+
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+
+    <script src="/why_html/js/custom.js"></script>
+
+    <script>
+        // 수정 input 활성화
+        function handleQna(id) {
+            console.log(id)
+            let answer_text = $.trim($('#' + id).find('p.answer').text());
+
+            // console.log($('#' + id))
+            $('#' + id).find('div.card-body').hide();
+            $('#' + id).find('div.accordion-textarea').show().find('textarea').val(answer_text).focus();
+        }
+
+        // 아코디언 collapse
+        $('.host-accordion').on('show.bs.collapse', function () {
+            $(this).find('i').attr('class', 'fas fa-angle-double-up')
+        })
+        $('.host-accordion').on('hide.bs.collapse', function () {
+            $(this).find('i').attr('class', 'fas fa-angle-double-down')
+        })
+    </script>
+</body>
+
+</html>

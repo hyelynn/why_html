@@ -1,0 +1,443 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ART BY US</title>
+
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+
+    <!-- Bootstrap 4.3.1 -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+    <!-- Custom -->
+    <link rel="stylesheet" href="/why_html/css/custom.css">
+    <link rel="stylesheet" href="/why_html/css/custom_host.css">
+
+    <!-- Fontawesome -->
+    <link rel="stylesheet" href="/why_html/css/fontawesome/css/all.min.css">
+
+    <script src="/why_html/js/include.js"></script>
+    <!-- Custom -->
+
+    <script type="text/javascript" src="https://static.nid.naver.com/js/naveridlogin_js_sdk_2.0.0.js"
+        charset="utf-8"></script>
+    <script src="/why_html/js/kakao_sdk.js"></script>
+
+    <script>
+        Kakao.init('d88bea310f4a39afbea3146fe1c0fa72');
+        Kakao.isInitialized();
+    </script>
+</head>
+
+<body>
+    <modal include-html="/why_html/include/header.html"></modal>
+    <div class="py-md-3 px-5 py-2 text-center text-white bg-deep-dark top-notice">
+        <span class="font-weight-light">코로나19에 대한 아트바이어스의 대책 및 환불 정책에 대한 최신 정보를 확인하세요.</span>
+        <a href="#x" class="text-white d-lg-inline-block d-block">자세히 알아보기</a>
+    </div>
+
+    <nav class="navbar navbar-expand-lg navbar-light py-lg-3 py-1">
+        <div class="container">
+            <a class="navbar-brand" href="/why_html/index.html"><img src="http://artbyus.co.kr/why_html/img/logo.png"
+                    srcset="http://artbyus.co.kr/why_html/img/logo@2x.png 2x, http://artbyus.co.kr/why_html/img/logo@3x.png 3x"></a>
+            <div class="ml-auto align-items-center d-lg-none d-flex">
+                <a class="text-dark mr-3 font-size-sm" href="/why_html/member/calendar.html"><i
+                        class="far fa-calendar-alt"></i></a>
+                <a class="text-dark mr-3 font-size-sm" href="/why_html/member/recent_list.html"><i
+                        class="far fa-clock"></i></a>
+                <a class="text-dark mr-2 font-size-sm" href="/why_html/member/purchase.html"><i
+                        class="fas fa-shopping-cart"></i></a>
+            </div>
+            <button class="navbar-toggler border-0 font-size-md text-dark" type="button" data-toggle="collapse"
+                data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false"
+                aria-label="Toggle navigation">
+                <i class="fas fa-bars"></i>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarNavDropdown"></div>
+        </div>
+    </nav>
+    <script src="/why_html/js/header.js"></script>
+
+    <main role="main">
+        <div class="container overflow-hidden my-md-5 my-4 px-md-0">
+            <!-- 등록 프로세스 : 글자 줄바꿈 현상 때문에 min-width 992px(lg)에서 해당 프로세스 글자만 출력 -->
+            <div class="mb-md-5 mb-4 font-weight-light host-regist-proc">
+                <div class="row">
+                    <div class="col-lg-3 col-12 d-lg-block d-none">
+                        <p class="mb-0 pb-2 step active">01. 카테고리 선택</p>
+                    </div>
+                    <div class="col-lg-3 col-12 d-lg-block d-none">
+                        <p class="mb-0 pb-2 step active">02. 소개 입력</p>
+                    </div>
+                    <div class="col-lg-3 col-12">
+                        <p class="mb-0 pb-2 step active">03. 세부 정보 입력</p>
+                    </div>
+                    <div class="col-lg-3 col-12 d-lg-block d-none">
+                        <p class="mb-0 pb-2 step">04. 요금 체계 및 시간 설정</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 스튜디오 소개입력 -->
+            <h3 class="mb-md-4 mb-3">스튜디오 소개를 입력해 주세요</h3>
+
+            <!-- form -->
+            <div class="custom-inputs-sub not host-register-form">
+                <!-- 대표 이미지 -->
+                <div class="mb-lg-5 mb-3">
+                    <div class="text-gray font-weight-light">
+                        <label class="float-left">대표 이미지 (1장)</label>
+                    </div>
+                    <div class="d-flex custom-file">
+                        <input class="upload-name form-control flex-fill" value="JPG, PNG 파일만 가능합니다." disabled="disabled">
+                        <label for="thumbsFile" class="btn flex-fill fnc-btn mb-0 bg-yellow whitespace-nowrap fnc-btn">업로드</label>
+                        <input type="file" id="thumbsFile" class="upload-hidden">
+                    </div>
+                </div>
+
+                <!-- 추가 이미지 -->
+                <div class="mb-lg-5 mb-3">
+                    <div class="text-gray font-weight-light">
+                        <label class="float-left">추가 이미지 (최대 14장)</label>
+                    </div>
+                    <div class="d-flex custom-file mb-3">
+                        <input class="upload-name form-control flex-fill" value="최대 14장, JPG, PNG 파일만 가능합니다" disabled="disabled">
+                        <label for="studioImageA1" class="btn flex-fill fnc-btn mb-0 bg-yellow whitespace-nowrap fnc-btn">업로드</label>
+                        <input type="file" id="studioImageA1" class="upload-hidden">
+                    </div>
+                    <div class="d-flex custom-file mb-3">
+                        <input class="upload-name form-control flex-fill" value="최대 14장, JPG, PNG 파일만 가능합니다" disabled="disabled">
+                        <label for="studioImageA2" class="btn flex-fill fnc-btn mb-0 bg-yellow whitespace-nowrap fnc-btn">업로드</label>
+                        <input type="file" id="studioImageA2" class="upload-hidden">
+                    </div>
+                    <!-- 추가버튼 -->
+                    <button type="button" class="btn border font-weight-light font-size-xs sm-btn" onclick="addInputFile(this)">
+                        <i class="fas fa-plus mr-lg-1 mr-0 text-sky"></i><span class="d-inline-block">추가</span>
+                    </button>
+                </div>
+
+                <!-- 소개 영상 -->
+                <div class="mb-lg-5 mb-3">
+                    <div class="text-gray font-weight-light">
+                        <label for="studio_youtube" class="float-left">소개 영상</label>
+                        <span class="float-right">0/20</span>
+                    </div>
+                    <input type="text" id="studioYoutube" class="form-control" placeholder="YouTube URL로 업로드 해주세요">
+                </div>
+
+                <!-- 스튜디오 상세 소개 -->
+                <div class="mb-lg-5 mb-3">
+                    <div class="text-gray font-weight-light">
+                        <label for="studio_text" class="float-left">스튜디오 상세 소개</label>
+                        <span class="float-right">0/700</span>
+                    </div>
+                    <textarea name="" id="studioText" cols="30" rows="10" class="form-control large" placeholder="스튜디오 소개글을 작성하세요"></textarea>
+                </div>
+
+                <!-- 스튜디오 이용 약관 -->
+                <div class="mb-lg-5 mb-3">
+                    <div class="text-gray font-weight-light">
+                        <label for="studio_terms" class="float-left">스튜디오 이용 약관</label>
+                        <span class="float-right">0/700</span>
+                    </div>
+                    <textarea name="" id="studioTerms" cols="30" rows="10" class="form-control large" placeholder="사용자가 인지할 수 있는 약관을 작성하세요. ※ 환불규정은 아트바이어스의 공동 환불정책으로 적용됩니다."></textarea>
+                </div>
+
+                <!-- 추가 이미지(본문) -->
+                <div class="mb-lg-5 mb-3">
+                    <div class="text-gray font-weight-light">
+                        <label class="float-left">추가 이미지 (최대 14장)</label>
+                    </div>
+                    <div class="d-flex custom-file mb-3">
+                        <input class="upload-name form-control flex-fill" value="최대 14장, JPG, PNG 파일만 가능합니다" disabled="disabled">
+                        <label for="studioImageB1" class="btn flex-fill fnc-btn mb-0 bg-yellow whitespace-nowrap fnc-btn">업로드</label>
+                        <input type="file" id="studioImageB1" class="upload-hidden">
+                    </div>
+                    <div class="d-flex custom-file mb-3">
+                        <input class="upload-name form-control flex-fill" value="최대 14장, JPG, PNG 파일만 가능합니다" disabled="disabled">
+                        <label for="studioImageB2" class="btn flex-fill fnc-btn mb-0 bg-yellow whitespace-nowrap fnc-btn">업로드</label>
+                        <input type="file" id="studioImageB2" class="upload-hidden">
+                    </div>
+                    <!-- 추가버튼 -->
+                    <button type="button" class="btn border font-weight-light font-size-xs sm-btn" onclick="addInputFile(this)">
+                        <i class="fas fa-plus mr-lg-1 mr-0 text-sky"></i><span class="d-inline-block">추가</span>
+                    </button>
+                </div>
+
+                <!-- 스튜디오 검색 태그 -->
+                <div class="mb-lg-5 mb-3">
+                    <div class="text-gray font-weight-light">
+                        <label for="studio_tags">스튜디오 검색 태그</label>
+                    </div>
+                    <div class="d-flex">
+                        <input type="text" id="studioTag" class="form-control" placeholder="사용자가 검색할 수 있는 키워드를 입력해 주세요.">
+                        <button type="button" class="btn bg-yellow fnc-btn" onclick="addTag()">추가하기</button>
+                    </div>
+
+                    <!-- 태그 -->
+                    <div class="d-flex align-content-center flex-wrap host-search-tags">
+                        <div class="tag mt-3">
+                            <span class="mr-lg-2">서울대</span>
+                            <button type="button" class="btn bg-transparent" onclick="removeTag(this)"><i class="fa fa-times text-red"></i></button>
+                        </div>
+                        <div class="tag mt-3">
+                            <span class="mr-lg-2">서울대입구역</span>
+                            <button type="button" class="btn bg-transparent" onclick="removeTag(this)"><i class="fa fa-times text-red"></i></button>
+                        </div>
+                        <div class="tag mt-3">
+                            <span class="mr-lg-2">밴드연습실</span>
+                            <button type="button" class="btn bg-transparent" onclick="removeTag(this)"><i class="fa fa-times text-red"></i></button>
+                        </div>
+                        <div class="tag mt-3">
+                            <span class="mr-lg-2">기타</span>
+                            <button type="button" class="btn bg-transparent" onclick="removeTag(this)"><i class="fa fa-times text-red"></i></button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 스튜디오 편의시설 -->
+                <div class="mb-lg-5 mb-3 custom-inputs">
+                    <div class="text-gray font-weight-light">
+                        <label class="mb-4">편의시설</label>
+                    </div>
+                    <!-- 항목 선택 -->
+                    <div class="row">
+                        <div class="col-lg-6half col-md-4 col-6 d-flex align-items-start mb-4">
+                            <input type="checkbox" class="custom-checkbox mr-2" id="1">
+                            <label for="1" class="mb-0">TV/프로젝트</label>
+                        </div>
+                        <div class="col-lg-6half col-md-4 col-6 d-flex align-items-start mb-4">
+                            <input type="checkbox" class="custom-checkbox mr-2" id="2">
+                            <label for="2" class="mb-0">Wi-fi</label>
+                        </div>
+                        <div class="col-lg-6half col-md-4 col-6 d-flex align-items-start mb-4">
+                            <input type="checkbox" class="custom-checkbox mr-2" id="3">
+                            <label for="3" class="mb-0">유선랜</label>
+                        </div>
+                        <div class="col-lg-6half col-md-4 col-6 d-flex align-items-start mb-4">
+                            <input type="checkbox" class="custom-checkbox mr-2" id="4">
+                            <label for="4" class="mb-0">복합기</label>
+                        </div>
+                        <div class="col-lg-6half col-md-4 col-6 d-flex align-items-start mb-4">
+                            <input type="checkbox" class="custom-checkbox mr-2" id="5">
+                            <label for="5" class="mb-0">스피커</label>
+                        </div>
+                        <div class="col-lg-6half col-md-4 col-6 d-flex align-items-start mb-4">
+                            <input type="checkbox" class="custom-checkbox mr-2" id="6">
+                            <label for="6" class="mb-0">마이크</label>
+                        </div>
+                        <div class="col-lg-6half col-md-4 col-6 d-flex align-items-start mb-4">
+                            <input type="checkbox" class="custom-checkbox mr-2" id="7">
+                            <label for="7" class="mb-0">발레 바</label>
+                        </div>
+                        <div class="col-lg-6half col-md-4 col-6 d-flex align-items-start mb-4">
+                            <input type="checkbox" class="custom-checkbox mr-2" id="8">
+                            <label for="8" class="mb-0">화장실</label>
+                        </div>
+                        <div class="col-lg-6half col-md-4 col-6 d-flex align-items-start mb-4">
+                            <input type="checkbox" class="custom-checkbox mr-2" id="9">
+                            <label for="9" class="mb-0">샤워실</label>
+                        </div>
+                        <div class="col-lg-6half col-md-4 col-6 d-flex align-items-start mb-4">
+                            <input type="checkbox" class="custom-checkbox mr-2" id="10">
+                            <label for="10" class="mb-0">드레스룸</label>
+                        </div>
+                        <div class="col-lg-6half col-md-4 col-6 d-flex align-items-start mb-4">
+                            <input type="checkbox" class="custom-checkbox mr-2" id="11">
+                            <label for="11" class="mb-0">주차</label>
+                        </div>
+                        <div class="col-lg-6half col-md-4 col-6 d-flex align-items-start mb-4">
+                            <input type="checkbox" class="custom-checkbox mr-2" id="12">
+                            <label for="12" class="mb-0">금연</label>
+                        </div>
+                        <div class="col-lg-6half col-md-4 col-6 d-flex align-items-start mb-4">
+                            <input type="checkbox" class="custom-checkbox mr-2" id="13">
+                            <label for="13" class="mb-0">PC</label>
+                        </div>
+                        <div class="col-lg-6half col-md-4 col-6 d-flex align-items-start mb-4">
+                            <input type="checkbox" class="custom-checkbox mr-2" id="14">
+                            <label for="14" class="mb-0">24시간</label>
+                        </div>
+                        <div class="col-lg-6half col-md-4 col-6 d-flex align-items-start mb-4">
+                            <input type="checkbox" class="custom-checkbox mr-2" id="15">
+                            <label for="15" class="mb-0">개인 라커</label>
+                        </div>
+                        <div class="col-lg-6half col-md-4 col-6 d-flex align-items-start mb-4">
+                            <input type="checkbox" class="custom-checkbox mr-2" id="16">
+                            <label for="16" class="mb-0">정수기</label>
+                        </div>
+                        <div class="col-lg-6half col-md-4 col-6 d-flex align-items-start mb-4">
+                            <input type="checkbox" class="custom-checkbox mr-2" id="17">
+                            <label for="17" class="mb-0">냉난방</label>
+                        </div>
+                        <div class="col-lg-6half col-md-4 col-6 d-flex align-items-start mb-4">
+                            <input type="checkbox" class="custom-checkbox mr-2" id="18">
+                            <label for="18" class="mb-0">바닥 난방</label>
+                        </div>
+                        <div class="col-lg-6half col-md-4 col-6 d-flex align-items-start mb-4">
+                            <input type="checkbox" class="custom-checkbox mr-2" id="19">
+                            <label for="19" class="mb-0">개별 냉난방</label>
+                        </div>
+                        <div class="col-lg-6half col-md-4 col-6 d-flex align-items-start mb-4">
+                            <input type="checkbox" class="custom-checkbox mr-2" id="20">
+                            <label for="20" class="mb-0">전신거울</label>
+                        </div>
+                        <div class="col-lg-6half col-md-4 col-6 d-flex align-items-start mb-4">
+                            <input type="checkbox" class="custom-checkbox mr-2" id="21">
+                            <label for="21" class="mb-0">댄스 플로어</label>
+                        </div>
+                        <div class="col-lg-6half col-md-4 col-6 d-flex align-items-start mb-4">
+                            <input type="checkbox" class="custom-checkbox mr-2" id="22">
+                            <label for="22" class="mb-0">마루바닥</label>
+                        </div>
+                        <div class="col-lg-6half col-md-4 col-6 d-flex align-items-start mb-4">
+                            <input type="checkbox" class="custom-checkbox mr-2" id="23">
+                            <label for="23" class="mb-0">필로티 기둥</label>
+                        </div>
+                        <div class="col-lg-6half col-md-4 col-6 d-flex align-items-start mb-4">
+                            <input type="checkbox" class="custom-checkbox mr-2" id="24">
+                            <label for="24" class="mb-0">조명(제어가능)</label>
+                        </div>
+                        <div class="col-lg-6half col-md-4 col-6 d-flex align-items-start mb-4">
+                            <input type="checkbox" class="custom-checkbox mr-2" id="25">
+                            <label for="25" class="mb-0">창문</label>
+                        </div>
+                        <div class="col-lg-6half col-md-4 col-6 d-flex align-items-start mb-4">
+                            <input type="checkbox" class="custom-checkbox mr-2" id="26">
+                            <label for="26" class="mb-0">삼각</label>
+                        </div>
+                        <div class="col-lg-6half col-md-4 col-6 d-flex align-items-start mb-4">
+                            <input type="checkbox" class="custom-checkbox mr-2" id="27">
+                            <label for="27" class="mb-0">센트</label>
+                        </div>
+                        <div class="col-lg-6half col-md-4 col-6 d-flex align-items-start mb-4">
+                            <input type="checkbox" class="custom-checkbox mr-2" id="28">
+                            <label for="28" class="mb-0">CCTV</label>
+                        </div>
+                        <div class="col-lg-6half col-md-4 col-6 d-flex align-items-start mb-4">
+                            <input type="checkbox" class="custom-checkbox mr-2" id="29">
+                            <label for="29" class="mb-0">드럼 제외</label>
+                        </div>
+                        <div class="col-lg-6half col-md-4 col-6 d-flex align-items-start mb-4">
+                            <input type="checkbox" class="custom-checkbox mr-2" id="30">
+                            <label for="30" class="mb-0">셀프 녹음기</label>
+                        </div>
+                        <div class="col-lg-6half col-md-4 col-6 d-flex align-items-start mb-4">
+                            <input type="checkbox" class="custom-checkbox mr-2" id="31">
+                            <label for="31" class="mb-0">제습기</label>
+                        </div>
+                        <div class="col-lg-6half col-md-4 col-6 d-flex align-items-start mb-4">
+                            <input type="checkbox" class="custom-checkbox mr-2" id="32">
+                            <label for="32" class="mb-0">공기 청정기</label>
+                        </div>
+                        <div class="col-lg-6half col-md-4 col-6 d-flex align-items-start mb-4">
+                            <input type="checkbox" class="custom-checkbox mr-2" id="33">
+                            <label for="33" class="mb-0">정기 소독</label>
+                        </div>
+                        <div class="col-lg-6half col-md-4 col-6 d-flex align-items-start mb-4">
+                            <input type="checkbox" class="custom-checkbox mr-2" id="34">
+                            <label for="34" class="mb-0">실측사이즈<br>(가로/세로/천고)</label>
+                        </div>
+                    </div>
+                    <!-- 직접입력 -->
+                    <div class="d-flex justify-content-start align-items-center">
+                        <input type="checkbox" class="custom-checkbox mr-2">
+                        <input type="text" class="form-control w-50" placeholder="직접 입력해 주세요">
+                    </div>
+                </div>
+
+                <!-- 스튜디오 오시는 길 -->
+                <div class="mb-lg-5 mb-3">
+                    <div class="text-gray font-weight-light">
+                        <label for="studioAddr">오시는 길</label>
+                    </div>
+                    <textarea name="" id="studioAddr" cols="30" rows="10" class="form-control large" placeholder="예) 601, 5528번 버스를 타고 관악경찰서 하차, 서울대입구역에서 도보 500m"></textarea>
+                </div>
+            </div>
+        </div>
+
+        <!-- 이전단계(이전페이지에서 입력했던 내용 유지) / 다음단계 -->
+        <div class="overflow-hidden mt-lg-5 mt-3">
+            <a href="studio_register2.html" class="btn bg-gray float-left w-50 rounded-0 py-lg-4 py-3 font-size-m">이전 단계로 이동</a>
+            <a href="studio_register4.html" class="btn bg-yellow float-right w-50 rounded-0 py-lg-4 py-3 font-size-m">다음으로 이동</a>
+        </div>
+    </main>
+
+    <footer include-html="/why_html/include/footer.html"></footer>
+
+    <script src="/why_html/js/naver_login.js"></script>
+    <script src="/why_html/js/login.js"></script>
+
+    <script>includeHTML({});</script>
+    <script>login_header();</script>
+
+    <script type="text/javascript">
+        function onLogout() {
+            sessionStorage.clear();
+            location.href = "index.html";
+        }
+    </script>
+
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+
+    <script src="/why_html/js/custom.js"></script>
+</body>
+
+<script>
+    $(function () {
+        var fileTarget = $('.custom-inputs-sub.not .upload-hidden');
+        fileTarget.on('change', function() {
+            // 값이 변경되면
+            if(window.FileReader){ // modern browser
+                var filename = $(this)[0].files[0].name;
+            } else { // old IE
+                var filename = $(this).val().split('/').pop().split('\\').pop(); // 파일명만 추출
+            }
+            // 추출한 파일명 삽입
+            $(this).siblings('.upload-name').val(filename);
+        });
+    })
+
+    // file input 추가
+    function addInputFile(obj) {
+        if ($(obj).parent().find('div.custom-file').length + 1 > 14) {
+            return;
+        }
+
+        let $last = $(obj).parent().find('div.custom-file:last');
+        let id = $last.find('input[type=file]').prop('id').replace(/[1-9]/g, '');
+        let new_id = id + (parseInt( $last.find('input[type=file]').prop('id').match(/\d+/g), 10 ) + 1);
+        let $clone = $last.clone(true);
+
+        $clone.find('input[type=file]').prop('id', new_id).val('');
+        $clone.find('input.upload-name').val('최대 14장, JPG, PNG 파일만 가능합니다');
+        $clone.find('label').prop('for', new_id);
+
+        $last.after($clone)
+    }
+
+    // tag 추가
+    function addTag() {
+        let tag = $('#studioTag').val();
+
+        if (!tag) {
+            alert('태그를 입력하세요.');
+            $('#studioTag').focus();
+            return;
+        }
+
+        let $clone = $('div.tag:last').clone(true);
+        $clone.find('span').text(tag);
+        $('.host-search-tags').append($clone);
+    }
+
+    // tag 삭제
+    function removeTag(obj) {
+        $(obj).parent().remove();
+    }
+</script>
+
+</html>

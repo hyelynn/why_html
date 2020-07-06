@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ART BY US</title>
+
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+
+    <!-- Bootstrap 4.3.1 -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+    <!-- Custom -->
+    <link rel="stylesheet" href="../css/custom.css">
+    <link rel="stylesheet" href="../css/custom_host.css">
+
+    <!-- Fontawesome -->
+    <link rel="stylesheet" href="../css/fontawesome/css/all.min.css">
+
+    <script src="/why_html/js/include.js"></script>
+    <!-- Custom -->
+
+    <script type="text/javascript" src="https://static.nid.naver.com/js/naveridlogin_js_sdk_2.0.0.js"
+        charset="utf-8"></script>
+    <script src="/why_html/js/kakao_sdk.js"></script>
+
+    <script>
+        Kakao.init('d88bea310f4a39afbea3146fe1c0fa72');
+        Kakao.isInitialized();
+    </script>
+</head>
+
+<body>
+    <modal include-html="/why_html/include/header.html"></modal>
+    <div class="py-md-3 px-5 py-2 text-center text-white bg-deep-dark top-notice">
+        <span class="font-weight-light">코로나19에 대한 아트바이어스의 대책 및 환불 정책에 대한 최신 정보를 확인하세요.</span>
+        <a href="#x" class="text-white d-lg-inline-block d-block">자세히 알아보기</a>
+    </div>
+
+    <nav class="navbar navbar-expand-lg navbar-light py-lg-3 py-1">
+        <div class="container">
+            <a class="navbar-brand" href="/why_html/index.html"><img src="http://artbyus.co.kr/why_html/img/logo.png"
+                    srcset="http://artbyus.co.kr/why_html/img/logo@2x.png 2x, http://artbyus.co.kr/why_html/img/logo@3x.png 3x"></a>
+            <div class="ml-auto align-items-center d-lg-none d-flex">
+                <a class="text-dark mr-3 font-size-sm" href="/why_html/member/calendar.html"><i
+                        class="far fa-calendar-alt"></i></a>
+                <a class="text-dark mr-3 font-size-sm" href="/why_html/member/recent_list.html"><i
+                        class="far fa-clock"></i></a>
+                <a class="text-dark mr-2 font-size-sm" href="/why_html/member/purchase.html"><i
+                        class="fas fa-shopping-cart"></i></a>
+            </div>
+            <button class="navbar-toggler border-0 font-size-md text-dark" type="button" data-toggle="collapse"
+                data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false"
+                aria-label="Toggle navigation">
+                <i class="fas fa-bars"></i>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarNavDropdown"></div>
+        </div>
+    </nav>
+    <script src="/why_html/js/header.js"></script>
+
+    <main role="main">
+        <div class="container overflow-hidden my-md-5 my-4 px-md-0">
+            <!-- 등록 프로세스 : min-width 992에서 글자 줄바꿈 현상 때문에, 해당 프로세스 글자만 출력 -->
+            <div class="mb-md-5 mb-4 font-weight-light host-regist-proc">
+                <div class="row">
+                    <div class="col-lg-3 col-12 d-lg-block d-none">
+                        <p class="mb-0 pb-2 step active">01. 카테고리 선택</p>
+                    </div>
+                    <div class="col-lg-3 col-12">
+                        <p class="mb-0 pb-2 step active">02. 소개 입력</p>
+                    </div>
+                    <div class="col-lg-3 col-12 d-lg-block d-none">
+                        <p class="mb-0 pb-2 step">03. 세부 정보 입력</p>
+                    </div>
+                    <div class="col-lg-3 col-12 d-lg-block d-none">
+                        <p class="mb-0 pb-2 step">04. 요금 체계 및 시간 설정</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 스튜디오 정보입력 -->
+            <h3 class="mb-md-4 mb-3">스튜디오 정보를 입력해 주세요</h3>
+            <div class="custom-inputs-sub host-register-form">
+                <div class="mb-lg-5 mb-3">
+                    <div class="text-gray font-weight-light">
+                        <label for="studio_name" class="float-left">스튜디오 이름</label>
+                        <span class="float-right">0/30</span>
+                    </div>
+                    <input type="text" id="studio_name" class="form-control" placeholder="예) 아트바이어스 밴드연습실">
+                </div>
+                <div class="mb-lg-5 mb-3">
+                    <div class="text-gray font-weight-light">
+                        <label for="studio_room" class="float-left">방 이름 (필수 항목은 아니며 단일 스튜디오면 생략가능합니다.)</label>
+                        <span class="float-right">0/20</span>
+                    </div>
+                    <input type="text" id="studio_room" class="form-control" placeholder="예) 301호">
+                </div>
+                <div class="mb-lg-5 mb-3">
+                    <div class="text-gray font-weight-light">
+                        <label for="studio_addr">스튜디오 주소</label>
+                    </div>
+                    <div class="d-flex">
+                        <input type="text" id="studio_addr" class="form-control" placeholder="주소검색 버튼을 눌러주세요">
+                        <button type="button" class="btn bg-yellow fnc-btn">주소검색</button>
+                    </div>
+                </div>
+                <div class="mb-lg-5 mb-3">
+                    <div class="text-gray font-weight-light">
+                        <label for="studio_intro" class="float-left">스튜디오 간단 소개</label>
+                        <span class="float-right">0/100</span>
+                    </div>
+                    <textarea name="" id="studio_intro" cols="30" rows="10" class="form-control" placeholder="스튜디오를 소개 할 수 있는 간단한 멘트를 작성해 보세요"></textarea>
+                </div>
+            </div>
+        </div>
+
+        <!-- 이전단계(이전페이지에서 입력했던 내용 유지) / 다음단계 -->
+        <div class="overflow-hidden mt-lg-5 mt-3">
+            <a href="studio_register.html" class="btn bg-gray float-left w-50 rounded-0 py-lg-4 py-3 font-size-m">이전 단계로 이동</a>
+            <a href="studio_register3.html" class="btn bg-yellow float-right w-50 rounded-0 py-lg-4 py-3 font-size-m">다음으로 이동</a>
+        </div>
+    </main>
+
+    <footer id="footer"></footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+
+    <script src="../js/include_html_host.js"></script>
+    <script src="../js/custom.js"></script>
+</body>
+
+</html>
