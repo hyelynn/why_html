@@ -18,6 +18,14 @@
     <script src="/why_html/js/include.js"></script>
     <!-- Fontawesome -->
     <link rel="stylesheet" href="/why_html/css/fontawesome/css/all.min.css">
+    <script type="text/javascript" src="https://static.nid.naver.com/js/naveridlogin_js_sdk_2.0.0.js"
+        charset="utf-8"></script>
+    <script src="/why_html/js/kakao_sdk.js"></script>
+
+    <script>
+        Kakao.init('d88bea310f4a39afbea3146fe1c0fa72');
+        Kakao.isInitialized();
+    </script>
 </head>
 
 <body>
@@ -186,35 +194,20 @@
         </div>
     </main>
 
-    <footer class="bg-light">
-        <div class="container py-lg-5 py-4">
-            <div class="d-lg-flex align-items-center justify-content-between mb-lg-4 mb-3">
-                <a href="/why_html/index.html"><img src="/why_html/img/logo.png" srcset="/why_html/img/logo@2x.png 2x, /why_html/img/logo@3x.png 3x"></a>
-                <ul class="d-flex list-unstyled mb-0 font-weight-light footer-menu font-size-x mt-lg-0 mt-3">
-                    <li class="px-md-2 px-1 position-relative"><a href="/why_html/sub/terms.html" class="text-muted text-decoration-none">이용약관</a></li>
-                    <li class="px-md-2 px-1 position-relative"><a href="#x" class="text-muted text-decoration-none">서비스정보</a></li>
-                    <li class="px-md-2 px-1 position-relative"><a href="/why_html/sub/board_notice.html" class="text-muted text-decoration-none">공지사항</a></li>
-                    <li class="px-md-2 px-1 position-relative"><a href="#x" class="text-muted text-decoration-none">도움말</a></li>
-                    <li class="px-md-2 px-1 position-relative"><a href="#x" class="text-muted text-decoration-none">광고신청하기</a></li>
-                    <li class="px-md-2 px-1 position-relative"><a href="#x" class="text-muted text-decoration-none">호스트등록</a></li>
-                </ul>
-            </div>
+    <footer include-html="/why_html/include/footer.html"></footer>
 
-            <div class="border-top text-muted font-weight-light pt-lg-4 pt-3 font-size-x">
-                <p class="mb-0">상호명 : 아트바이어스<span class="text-divider"></span>대표 : 김사람<span class="text-divider"></span>사업자등록번호 : 123-45-67890<span class="text-divider"></span>통신판매업신고번호 : 2018-서울관악-12345<span class="text-divider"></span>
-                    <a href="#x" class="text-dark text-decoration-none font-weight-normal">사업자등록정보 ></a></p>
-                <p>영업소재지 : 서울특별시 강남구 테헤란로 123<span class="text-divider"></span>이메일 : info@artbyus.com<span class="text-divider"></span>대표전화 : 02-123-4567 (평일 오전 9시 ~ 오후 6시, 공휴일 제외)</p>
+    <script src="/why_html/js/naver_login.js"></script>
+    <script src="/why_html/js/login.js"></script>
 
-                <div class="d-lg-flex mb-3">
-                    <a href="#x" class="text-dark text-decoration-none font-weight-normal mr-2">온라인 1:1문의 바로가기</a>
-                    <span>(평일 2시 ~ 오후 6시) * 공간에 대한 문의사항은 해당 공간 호스트에게 직접 문의해 주세요.</span>
-                </div>
+    <script>includeHTML({});</script>
+    <script>login_header();</script>
 
-                <p>아트바이어스는 통신판매중개자이며 통신판매의 당사자가 아닙니다. 따라서 아트바이어스는 공간 거래정보 및 거래에 대해 책임지지 않습니다.</p>
-                <p class="text-right font-weight-light text-light-gray">Copyright ART BY US crop. All Right Reserved.</p>
-            </div>
-        </div>
-    </footer>
+    <script type="text/javascript">
+        function onLogout() {
+            sessionStorage.clear();
+            location.href = "index.html";
+        }
+    </script>
 </body>
 
 </html>
