@@ -12,11 +12,13 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
 
     <!-- Custom -->
-    <link rel="stylesheet" href="../css/custom.css">
-    <script src="../js/custom.js"></script>
+    <link rel="stylesheet" href="/why_html/css/custom.css">
+    <script src="/why_html/js/custom.js"></script>
+    <script src="/why_html/js/include.js"></script>
+    <script src="/why_html/js/cart.js"></script>
 
     <!-- Fontawesome -->
-    <link rel="stylesheet" href="../css/fontawesome/css/all.min.css">
+    <link rel="stylesheet" href="/why_html/css/fontawesome/css/all.min.css">
 </head>
 
 <body>
@@ -48,138 +50,6 @@
         </div>
     </nav>
     <script src="/why_html/js/header.js"></script>
-    <nav class="navbar navbar-expand-lg navbar-light py-lg-3 py-1">
-        <div class="container">
-            <a class="navbar-brand" href="../index.html"><img src="../img/logo.png" srcset="../img/logo@2x.png 2x, ../img/logo@3x.png 3x"></a>
-            <div class="ml-auto align-items-center d-lg-none d-flex">
-                <a class="text-dark mr-3 font-size-sm" href="../member/calendar.html"><i class="far fa-calendar-alt"></i></a>
-                <a class="text-dark mr-3 font-size-sm" href="../member/recent_list.html"><i class="far fa-clock"></i></a>
-                <a class="text-dark mr-2 font-size-sm" href="../member/cart.html"><i class="fas fa-shopping-cart"></i></a>
-            </div>
-            <button class="navbar-toggler border-0 font-size-md text-dark" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
-                <i class="fas fa-bars"></i>
-            </button>
-
-            <div class="collapse navbar-collapse" id="navbarNavDropdown">
-                <!-- <ul class="navbar-nav m-auto font-weight-light top-nav">
-                    <li class="nav-item mx-lg-3 mx-2 active">
-                        <a class="nav-link text-dark" href="#x">캘린더</a>
-                    </li>
-                    <li class="nav-item mx-lg-3 mx-2">
-                        <a class="nav-link text-dark" href="#x">최근 본 리스트</a>
-                    </li>
-                    <li class="nav-item mx-lg-3 mx-2">
-                        <a class="nav-link text-dark" href="#x">장바구니</a>
-                    </li>
-                </ul> -->
-
-                <ul class="navbar-nav m-auto font-weight-light sub-nav">
-                    <li class="nav-item mx-lg-3 mx-2 active">
-                        
-                    </li>
-                </ul>
-
-                <!-- user -->
-                <ul class="navbar-nav border-top pt-3 m-lg-auto mt-2 font-size-xs d-block d-lg-none">
-                    <!-- Login -->
-                    <!--
-                    <li class="nav-item mx-lg-3 mx-2 mb-2">
-                        <button class="btn btn-block border text-dark dropdown-toggle p-2 bg-white rounded-xl" type="button" data-toggle="modal" data-target="#loginModal">
-                            <span>로그인</span>
-                        </button>
-                    </li>
-                    -->
-
-                    <!-- Login - user -->
-                    <li class="nav-item mx-lg-3 mx-2 mb-2">
-                        <div class="d-flex">
-                            <div class="position-relative mr-2 nav-user-profile">
-                                <span class="position-absolute rounded-pill bg-hot-pink nav-user-notify"></span>
-                                <img src="../img/profile-photo@3x.jpg" class="rounded-circle nav-user-profile-img" alt="김민범님">
-                            </div>
-                            <span class="align-self-center">김민범</span>
-                        </div>
-                    </li>
-
-                    <li class="nav-item mx-lg-3 mx-2">
-                        <a class="nav-link" href="#x">예약 리스트</a>
-                    </li>
-                    <li class="nav-item mx-lg-3 mx-2">
-                        <a class="nav-link" href="#x">찜 리스트</a>
-                    </li>
-                    <li class="nav-item mx-lg-3 mx-2">
-                        <a class="nav-link" href="#x">나의 이용 후기</a>
-                    </li>
-                    <li class="nav-item mx-lg-3 mx-2">
-                        <a class="nav-link" href="#x">채팅</a>
-                    </li>
-                    <li class="nav-item mx-lg-3 mx-2">
-                        <a class="nav-link" href="../member/chat_user.html">1:1 문의<span class="ml-2 d-inline-block rounded-pill align-top mt-1 bg-hot-pink nav-notify"></span></a>
-                    </li>
-                    <div class="dropdown-divider"></div>
-                    <li class="nav-item mx-lg-3 mx-2">
-                        <a class="nav-link" href="#x">회원 정보 관리</a>
-                    </li>
-                    <li class="nav-item mx-lg-3 mx-2">
-                        <a class="nav-link" href="#x">호스트 전환</a>
-                    </li>
-
-                    <!-- Login했을 때에만 출력 -->
-                    <li class="nav-item mx-lg-3 mx-2">
-                        <a class="nav-link text-hot-pink" href="#x">로그아웃</a>
-                    </li>
-                </ul>
-
-                <!-- user - lg -->
-                <!-- index, chat 페이지 ml-auto 추가 -->
-                <ul class="navbar-nav ml-auto_ align-items-center d-none d-lg-flex">
-                    <li class="nav-item mr-2 font-size-md">
-                        <a class="nav-link text-dark" href="../member/calendar.html"><i class="far fa-calendar-alt"></i></a>
-                    </li>
-                    <li class="nav-item mr-2 font-size-md">
-                        <a class="nav-link text-dark" href="../member/recent_list.html"><i class="far fa-clock"></i></a>
-                    </li>
-                    <li class="nav-item mr-3 font-size-md">
-                        <a class="nav-link text-dark" href="../member/cart.html"><i class="fas fa-shopping-cart"></i></a>
-                    </li>
-                    <li class="nav-item">
-                        <!-- Login -->
-                        <!--
-                        <button class="btn border text-dark dropdown-toggle bg-white rounded-xl" type="button" data-toggle="modal" data-target="#loginModal">
-                            <span>로그인</span>
-                        </button>
-                        -->
-
-                        <!-- Login - user -->
-                        <div class="dropdown">
-                            <button class="btn border text-dark dropdown-toggle bg-white rounded-xl" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <div class="d-flex">
-                                    <div class="position-relative mr-2 nav-user-profile">
-                                        <span class="position-absolute rounded-pill bg-hot-pink nav-user-notify"></span>
-                                        <img src="../img/profile-photo@3x.jpg" class="rounded-circle nav-user-profile-img" alt="김민범님">
-                                    </div>
-                                    <span>김민범</span>
-                                </div>
-                            </button>
-                            <div class="dropdown-menu dropdown-menu-lg-right rounded-xl" aria-labelledby="dropdownMenuButton">
-                                <a class="dropdown-item" href="#x">예약 리스트</a>
-                                <a class="dropdown-item" href="#x">찜 리스트</a>
-                                <a class="dropdown-item" href="#x">나의 이용 후기</a>
-                                <a class="dropdown-item" href="#x">채팅</a>
-                                <a class="dropdown-item" href="../member/chat_user.html">1:1 문의<span class="ml-2 d-inline-block rounded-pill align-top mt-1 bg-hot-pink nav-notify"></span></a>
-                                <div class="dropdown-divider"></div>
-                                <a class="dropdown-item" href="#x">회원 정보 관리</a>
-                                <a class="dropdown-item" href="#x">호스트 전환</a>
-                                <a class="dropdown-item text-hot-pink" href="#x">로그아웃</a>
-                            </div>
-                        </div>
-                    </li>
-                </ul>
-            </div>
-
-            </div>
-        </div>
-    </nav>
 
     <main role="main">
         <div class="container my-md-5 my-3">
@@ -187,86 +57,13 @@
 
             <!-- list -->
             <div class="border mb-4">
-                <ul class="list-group list-group-flush cart-list">
-                    <li class="list-group-item pr-4 pl-3 py-4">
-                        <div class="d-lg-flex align-items-center custom-inputs">
-                            <div class="d-flex align-items-lg-center">
-                                <input type="checkbox" class="custom-checkbox mr-3">
-                                <div class="d-flex justify-content-center overflow-hidden mr-sm-4 mr-2 cart-thumbs">
-                                    <img src="../img/cart-1.jpg" class="align-self-center w-100 h-100" alt="">
-                                </div>
-                                <div>
-                                    <span class="d-block font-weight-light text-red cart-item-category">연습실</span>
-                                    <a href="../sub/studio_view.html" class="text-decoration-none">
-                                        <h4 class="text-gray cart-item-title">사당역 제이그라운드 안무연습실</h4>
-                                    </a>
-                                    <p class="font-weight-light text-gray mb-0">예약일시 : 2020-05-28 13 : 05 ~ 2020-05-29 15 : 30</p>
-                                    <p class="font-weight-light text-gray">예약호실 : G101</p>
-                                    <p class="font-weight-light text-light-gray mb-0">추가인원<span class="ml-5">+10,000</span></p>
-                                    <p class="font-weight-light text-light-gray mb-0">추가옵션<span class="ml-5">노트북, 선풍기, 스피커</span></p>
-                                </div>
-                            </div>
-                            <div class="text-right ml-auto">
-                                <p class="font-weight-light text-gray mb-0">합계</p>
-                                <h2 class="mb-0">65,000원</h2>
-                                <p class="font-weight-light text-light-gray mb-0">(VAT포함)</p>
-                            </div>
-                        </div>
-                    </li>
-                    <li class="list-group-item pr-4 pl-3 py-4">
-                        <div class="d-lg-flex align-items-center custom-inputs">
-                            <div class="d-flex align-items-lg-center">
-                                <input type="checkbox" class="custom-checkbox mr-3">
-                                <div class="d-flex justify-content-center overflow-hidden mr-sm-4 mr-2 cart-thumbs">
-                                    <img src="../img/cart-2.jpg" class="align-self-center w-100 h-100" alt="">
-                                </div>
-                                <div>
-                                    <span class="d-block font-weight-light text-red cart-item-category">클래스</span>
-                                    <a href="../sub/class_view.html" class="text-decoration-none">
-                                        <h4 class="text-gray cart-item-title">“너도 손글씨 잘 쓸 수 있어” 김민범의 캘리그라피</h4>
-                                    </a>
-                                    <p class="font-weight-light text-gray mb-0">수업일시 : 2020-05-30 15:00</p>
-                                    <p class="font-weight-light text-gray">수업차수 : 1차시</p>
-                                    <p class="font-weight-light text-light-gray mb-0">붓펜<span class="ml-5">+3,000</span></p>
-                                </div>
-                            </div>
-                            <div class="text-right ml-auto">
-                                <p class="font-weight-light text-gray mb-0">합계</p>
-                                <h2 class="mb-0">150,000원</h2>
-                                <p class="font-weight-light text-light-gray mb-0">(VAT포함)</p>
-                            </div>
-                        </div>
-                    </li>
-                    <li class="list-group-item pr-4 pl-3 py-4">
-                        <div class="d-lg-flex align-items-center custom-inputs">
-                            <div class="d-flex align-items-lg-center">
-                                <input type="checkbox" class="custom-checkbox mr-3">
-                                <div class="d-flex justify-content-center overflow-hidden mr-sm-4 mr-2 cart-thumbs">
-                                    <img src="../img/cart-2.jpg" class="align-self-center w-100 h-100" alt="">
-                                </div>
-                                <div>
-                                    <span class="d-block font-weight-light text-red cart-item-category">클래스</span>
-                                    <a href="../sub/class_view.html" class="text-decoration-none">
-                                        <h4 class="text-gray cart-item-title">“너도 손글씨 잘 쓸 수 있어” 김민범의 캘리그라피</h4>
-                                    </a>
-                                    <p class="font-weight-light text-gray mb-0">수업일시 : 2020-06-01 15:00</p>
-                                    <p class="font-weight-light text-gray">수업차수 : 2차시</p>
-                                </div>
-                            </div>
-                            <div class="text-right ml-auto">
-                                <p class="font-weight-light text-gray mb-0">합계</p>
-                                <h2 class="mb-0">147,000원</h2>
-                                <p class="font-weight-light text-light-gray mb-0">(VAT포함)</p>
-                            </div>
-                        </div>
-                    </li>
-                </ul>
+                <ul class="list-group list-group-flush cart-list" id="cart"></ul>
             </div>
 
             <!-- buttons -->
             <div class="d-flex justify-content-center custom-inputs">
                 <button type="button" class="btn bg-gray w-20 mr-1">선택삭제</button>
-                <a href="../member/purchase.html" class="btn text-decoration-none d-flex justify-content-center align-items-center bg-yellow w-20 ml-1"><span>결제하기</span></a>
+                <a href="/why_html/member/purchase.html" class="btn text-decoration-none d-flex justify-content-center align-items-center bg-yellow w-20 ml-1"><span>결제하기</span></a>
             </div>
         </div>
     </main>
