@@ -216,7 +216,8 @@
         xhr.onreadystatechange = function() {
             if (xhr.readyState === xhr.DONE) { 
                 if (xhr.status === 200 || xhr.status === 201) {
-                    setCookie("s3_id",request.responseText.studio_key,1);
+                    var result = JSON.parse(xhr.responseText);
+                    setCookie("s3_id",result.studio_key,1);
                     alert(getCookie("s3_id"));
                     console.log(getCookie("s3_id"));
                 } else {
