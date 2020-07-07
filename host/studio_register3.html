@@ -440,7 +440,7 @@
         }
         var file = files[0];
         var fileName = file.name;
-        var photoKey = getCookie("s3_id")+idx++;
+        var photoKey = getCookie("s3_id")+"_"+idx+++".jpg";
         s3.upload({
             Key: photoKey,
             Body: file,
@@ -542,7 +542,7 @@
         setCookie("studioAddr",studioAddr,1);
         setCookie("conv",convText,1);
         setCookie("tags",tagText,1);
-        window.location.href = "/why_html//host/studio_register4.html";
+        window.location.href = "/why_html/host/studio_register4.html";
     }
 
     $('#studioTerms').keyup(function (e){
