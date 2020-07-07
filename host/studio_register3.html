@@ -553,6 +553,8 @@
         for(var i=0;i<arr_tags.length;i++){
             tagText.push(arr_tags[i].textContent);
         }
+        alert(tagText);
+        alert(convText);
         var xhr = new XMLHttpRequest();
             xhr.onreadystatechange = function() {
                 if (xhr.readyState === xhr.DONE) { 
@@ -568,7 +570,7 @@
             xhr.open('POST', 'http://3.34.150.116:3000/studio/apply/info',true);
             xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
             xhr.send("key="+getCookie("s3_id")+"&thumbsFile="+thumbsFile+"&studioYoutube="+studioYoutube+"&studioText="+studioText
-            +"&studioTerms="+studioTerms+"&studioAddr="+studioAddr+"&conv="+convText+"&tags="+tagText); 
+            +"&studioTerms="+studioTerms+"&studioAddr="+studioAddr+"&conv="+convText.toString()+"&tags="+tagText.toString()); 
     }
 
     $('#studioTerms').keyup(function (e){
