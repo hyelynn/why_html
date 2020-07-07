@@ -1072,8 +1072,10 @@
     <script src="/why_html/js/custom.js"></script>
 </body>
 <script>
-    function blank_change(day, start, end){
+    function blank_change(day){
         var input_mon = document.getElementsByName("input_"+day);
+        var start = document.getElementsByName("start_"+day);
+        var end = document.getElementsByName("end_"+day);
         for(var i= start;i<end;i++){
             input_mon[i].attr("disabled",false);
         }
