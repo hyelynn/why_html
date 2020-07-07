@@ -1072,7 +1072,8 @@
     <script src="/why_html/js/custom.js"></script>
 </body>
 <script>
-    function blank_change(start, end){
+    function blank_change(day, start, end){
+        var input_mon = document.getElementsByName("input_"+day);
         for(var i= start;i<end;i++){
             input_mon[i].attr("disabled",false);
         }
@@ -1182,6 +1183,7 @@
                 $("#end_"+day).attr("disabled",true); 
                 $('.input_'+day).prop("disabled", true);
             }else{
+                blank_change(day,0,24);
                 $("#start_"+day).attr("disabled",false); 
                 $("#end_"+day).attr("disabled",false); 
                 for(var i= start;i<end;i++){
