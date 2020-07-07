@@ -106,7 +106,7 @@
                             <label>추가 인원당 요금 (1인당)</label>
                         </div>
                         <div class="d-flex justify-content-end align-items-center form-control">
-                            <input type="text" class="bg-transparent border-0 w-100 h-100 text-right text-gray">
+                            <input type="text" id="additional"class="bg-transparent border-0 w-100 h-100 text-right text-gray">
                             <span class="ml-3 text-light-gray">원</span>
                         </div>
                     </div>
@@ -121,31 +121,25 @@
                         <!-- 요일 -->
                         <div class="host-register-items time-table mr-lg-5 mr-3">
                             <label class="checkbox-items">
-                                <input type="checkbox" value="sun">
                                 <span>일</span>
                             </label>
                             <label class="checkbox-items">
-                                <input type="checkbox" value="mon">
+                                
                                 <span>월</span>
                             </label>
                             <label class="checkbox-items">
-                                <input type="checkbox" value="tue">
                                 <span>화</span>
                             </label>
                             <label class="checkbox-items">
-                                <input type="checkbox" value="wed">
                                 <span>수</span>
                             </label>
                             <label class="checkbox-items">
-                                <input type="checkbox" value="thu">
                                 <span>목</span>
                             </label>
                             <label class="checkbox-items">
-                                <input type="checkbox" value="fri">
                                 <span>금</span>
                             </label>
                             <label class="checkbox-items">
-                                <input type="checkbox" value="sat">
                                 <span>토</span>
                             </label>
                         </div>
@@ -162,6 +156,10 @@
                                     <input type="radio" name="time_sun" value="break">
                                     <span>휴무</span>
                                 </label>
+                                <label class="radio-items">
+                                    <input type="radio" name="time_sun" value="setting" checked>
+                                    <span>시간설정</span>
+                                </label>
                             </div>
                             <!-- 월 -->
                             <div class="d-flex">
@@ -172,6 +170,10 @@
                                 <label class="radio-items">
                                     <input type="radio" name="time_mon" value="break">
                                     <span>휴무</span>
+                                </label>
+                                <label class="radio-items">
+                                    <input type="radio" name="time_mon" value="setting" checked>
+                                    <span>시간설정</span>
                                 </label>
                             </div>
                             <!-- 화 -->
@@ -184,6 +186,10 @@
                                     <input type="radio" name="time_tue" value="break">
                                     <span>휴무</span>
                                 </label>
+                                <label class="radio-items">
+                                    <input type="radio" name="time_tue" value="setting" checked>
+                                    <span>시간설정</span>
+                                </label>
                             </div>
                             <!-- 수 -->
                             <div class="d-flex">
@@ -195,16 +201,24 @@
                                     <input type="radio" name="time_wed" value="break">
                                     <span>휴무</span>
                                 </label>
+                                <label class="radio-items">
+                                    <input type="radio" name="time_wed" value="setting" checked>
+                                    <span>시간설정</span>
+                                </label>
                             </div>
                             <!-- 목 -->
                             <div class="d-flex">
                                 <label class="radio-items">
-                                    <input type="radio" name="time_thu" value="all">
+                                    <input type="radio" name="time_thr" value="all">
                                     <span class="border-right-0">24시간</span>
                                 </label>
                                 <label class="radio-items">
-                                    <input type="radio" name="time_thu" value="break">
+                                    <input type="radio" name="time_thr" value="break">
                                     <span>휴무</span>
+                                </label>
+                                <label class="radio-items">
+                                    <input type="radio" name="time_thr" value="setting" checked>
+                                    <span>시간설정</span>
                                 </label>
                             </div>
                             <!-- 금 -->
@@ -217,6 +231,10 @@
                                     <input type="radio" name="time_fri" value="break">
                                     <span>휴무</span>
                                 </label>
+                                <label class="radio-items">
+                                    <input type="radio" name="time_fri" value="setting" checked>
+                                    <span>시간설정</span>
+                                </label>
                             </div>
                             <!-- 토 -->
                             <div class="d-flex">
@@ -228,6 +246,10 @@
                                     <input type="radio" name="time_sat" value="break">
                                     <span>휴무</span>
                                 </label>
+                                <label class="radio-items">
+                                    <input type="radio" name="time_sat" value="setting" checked>
+                                    <span>시간설정</span>
+                                </label>
                             </div>
                         </div>
 
@@ -236,162 +258,64 @@
                             <!-- 일 -->
                             <div class="d-flex">
                                 <div class="select-items text-center mr-lg-5 mr-3">
-                                    <a href="#x" class="d-block text-decoration-none">00:00</a>
-                                    <ul class="list-unstyled">
-                                        <li>00:00</li>
-                                        <li>01:00</li>
-                                        <li>02:00</li>
-                                        <li>03:00</li>
-                                        <li>04:00</li>
-                                    </ul>
+                                    <input type="text" id="start_sun" class="d-block text-decoration-none" value="00:00">
                                 </div>
                                 <div class="select-items text-center">
-                                    <a href="#x" class="d-block text-decoration-none">24:00</a>
-                                    <ul class="list-unstyled">
-                                        <li>20:00</li>
-                                        <li>21:00</li>
-                                        <li>22:00</li>
-                                        <li>23:00</li>
-                                        <li>24:00</li>
-                                    </ul>
+                                    <input type="text"  id="end_sun" class="d-block text-decoration-none"value="00:00" onchange="blank_change();">
                                 </div>
                             </div>
                             <!-- 월 -->
                             <div class="d-flex">
                                 <div class="select-items text-center mr-lg-5 mr-3">
-                                    <a href="#x" class="d-block text-decoration-none">00:00</a>
-                                    <ul class="list-unstyled">
-                                        <li>00:00</li>
-                                        <li>01:00</li>
-                                        <li>02:00</li>
-                                        <li>03:00</li>
-                                        <li>04:00</li>
-                                    </ul>
+                                    <input type="text"  id="start_mon" class="d-block text-decoration-none"value="00:00">
                                 </div>
                                 <div class="select-items text-center">
-                                    <a href="#x" class="d-block text-decoration-none">23:00</a>
-                                    <ul class="list-unstyled">
-                                        <li>19:00</li>
-                                        <li>20:00</li>
-                                        <li>21:00</li>
-                                        <li>22:00</li>
-                                        <li>23:00</li>
-                                    </ul>
+                                    <input type="text"  id="end_mon" class="d-block text-decoration-none"value="00:00">
                                 </div>
                             </div>
                             <!-- 화 -->
                             <div class="d-flex">
                                 <div class="select-items text-center mr-lg-5 mr-3">
-                                    <a href="#x" class="d-block text-decoration-none">00:00</a>
-                                    <ul class="list-unstyled">
-                                        <li>00:00</li>
-                                        <li>01:00</li>
-                                        <li>02:00</li>
-                                        <li>03:00</li>
-                                        <li>04:00</li>
-                                    </ul>
+                                    <input type="text"  id="start_tue" class="d-block text-decoration-none"value="00:00">
                                 </div>
                                 <div class="select-items text-center">
-                                    <a href="#x" class="d-block text-decoration-none">23:00</a>
-                                    <ul class="list-unstyled">
-                                        <li>19:00</li>
-                                        <li>20:00</li>
-                                        <li>21:00</li>
-                                        <li>22:00</li>
-                                        <li>23:00</li>
-                                    </ul>
+                                    <input type="text"  id="end_tue" class="d-block text-decoration-none"value="00:00">
                                 </div>
                             </div>
                             <!-- 수 : 위로 출력 -->
                             <div class="d-flex">
                                 <div class="select-items text-center mr-lg-5 mr-3">
-                                    <a href="#x" class="d-block text-decoration-none">00:00</a>
-                                    <ul class="list-unstyled drop-top">
-                                        <li>00:00</li>
-                                        <li>01:00</li>
-                                        <li>02:00</li>
-                                        <li>03:00</li>
-                                        <li>04:00</li>
-                                    </ul>
+                                    <input type="text"  id="start_wed" class="d-block text-decoration-none"value="00:00">
                                 </div>
                                 <div class="select-items text-center">
-                                    <a href="#x" class="d-block text-decoration-none">23:00</a>
-                                    <ul class="list-unstyled drop-top">
-                                        <li>19:00</li>
-                                        <li>20:00</li>
-                                        <li>21:00</li>
-                                        <li>22:00</li>
-                                        <li>23:00</li>
-                                    </ul>
+                                    <input type="text"  id="end_wed" class="d-block text-decoration-none"value="00:00">
                                 </div>
                             </div>
                             <!-- 목 : 위로 출력 -->
                             <div class="d-flex">
                                 <div class="select-items text-center mr-lg-5 mr-3">
-                                    <a href="#x" class="d-block text-decoration-none">00:00</a>
-                                    <ul class="list-unstyled drop-top">
-                                        <li>00:00</li>
-                                        <li>01:00</li>
-                                        <li>02:00</li>
-                                        <li>03:00</li>
-                                        <li>04:00</li>
-                                    </ul>
+                                    <input type="text"  id="start_thr" class="d-block text-decoration-none"value="00:00">
                                 </div>
                                 <div class="select-items text-center">
-                                    <a href="#x" class="d-block text-decoration-none">23:00</a>
-                                    <ul class="list-unstyled drop-top">
-                                        <li>19:00</li>
-                                        <li>20:00</li>
-                                        <li>21:00</li>
-                                        <li>22:00</li>
-                                        <li>23:00</li>
-                                    </ul>
+                                    <input type="text"  id="end_thr" class="d-block text-decoration-none"value="00:00">
                                 </div>
                             </div>
                             <!-- 금 : 위로 출력 -->
                             <div class="d-flex">
                                 <div class="select-items text-center mr-lg-5 mr-3">
-                                    <a href="#x" class="d-block text-decoration-none">00:00</a>
-                                    <ul class="list-unstyled drop-top">
-                                        <li>00:00</li>
-                                        <li>01:00</li>
-                                        <li>02:00</li>
-                                        <li>03:00</li>
-                                        <li>04:00</li>
-                                    </ul>
+                                    <input type="text"  id="start_fri" class="d-block text-decoration-none"value="00:00">
                                 </div>
                                 <div class="select-items text-center">
-                                    <a href="#x" class="d-block text-decoration-none">23:00</a>
-                                    <ul class="list-unstyled drop-top">
-                                        <li>19:00</li>
-                                        <li>20:00</li>
-                                        <li>21:00</li>
-                                        <li>22:00</li>
-                                        <li>23:00</li>
-                                    </ul>
+                                    <input type="text"  id="end_fri" class="d-block text-decoration-none"value="00:00">
                                 </div>
                             </div>
                             <!-- 토 : 위로 출력 -->
                             <div class="d-flex">
                                 <div class="select-items text-center mr-lg-5 mr-3">
-                                    <a href="#x" class="d-block text-decoration-none">00:00</a>
-                                    <ul class="list-unstyled drop-top">
-                                        <li>00:00</li>
-                                        <li>01:00</li>
-                                        <li>02:00</li>
-                                        <li>03:00</li>
-                                        <li>04:00</li>
-                                    </ul>
+                                    <input type="text"  id="start_sat" class="d-block text-decoration-none"value="00:00">
                                 </div>
                                 <div class="select-items text-center">
-                                    <a href="#x" class="d-block text-decoration-none">23:00</a>
-                                    <ul class="list-unstyled drop-top">
-                                        <li>19:00</li>
-                                        <li>20:00</li>
-                                        <li>21:00</li>
-                                        <li>22:00</li>
-                                        <li>23:00</li>
-                                    </ul>
+                                    <input type="text"  id="end_sat" class="d-block text-decoration-none"value="00:00">
                                 </div>
                             </div>
                         </div>
@@ -405,7 +329,7 @@
                             <label>기준금액</label>
                         </div>
                         <div class="d-flex justify-content-end align-items-center form-control">
-                            <input type="text" class="bg-transparent border-0 w-100 h-100 text-right text-gray">
+                            <input type="text" id="standard" class="bg-transparent border-0 w-100 h-100 text-right text-gray">
                             <span class="ml-3 text-light-gray">원</span>
                         </div>
                     </div>
@@ -515,531 +439,531 @@
                                 <tbody class="time-inputs">
                                     <tr>
                                         <td class="inactive">
-                                            <input type="text" class="time-input" disabled>
+                                            <input type="text" class="input_mon" >
                                         </td>
                                         <td class="inactive">
-                                            <input type="text" class="time-input" disabled>
+                                            <input type="text" class="input_tue" >
                                         </td>
                                         <td class="inactive">
-                                            <input type="text" class="time-input" disabled>
+                                            <input type="text" class="input_wed" >
                                         </td>
                                         <td class="inactive">
-                                            <input type="text" class="time-input" disabled>
+                                            <input type="text" class="input_thr" >
                                         </td>
                                         <td class="inactive">
-                                            <input type="text" class="time-input" disabled>
+                                            <input type="text" class="input_fri"  >
                                         </td>
                                         <td class="inactive">
-                                            <input type="text" class="time-input" disabled>
+                                            <input type="text" class="input_sat"  >
                                         </td>
                                         <td class="inactive">
-                                            <input type="text" class="time-input" disabled>
+                                            <input type="text" class="input_sun"  >
                                         </td>
-                                    </tr>
-                                    <tr>
+                                    </tr> <tr>
                                         <td class="inactive">
-                                            <input type="text" class="time-input" disabled>
+                                            <input type="text" class="input_mon"  >
                                         </td>
                                         <td class="inactive">
-                                            <input type="text" class="time-input" disabled>
+                                            <input type="text" class="input_tue"  >
                                         </td>
                                         <td class="inactive">
-                                            <input type="text" class="time-input" disabled>
+                                            <input type="text" class="input_wed"  >
                                         </td>
                                         <td class="inactive">
-                                            <input type="text" class="time-input" disabled>
+                                            <input type="text" class="input_thr"  >
                                         </td>
                                         <td class="inactive">
-                                            <input type="text" class="time-input" disabled>
+                                            <input type="text" class="input_fri"  >
                                         </td>
                                         <td class="inactive">
-                                            <input type="text" class="time-input" disabled>
+                                            <input type="text" class="input_sat"  >
                                         </td>
                                         <td class="inactive">
-                                            <input type="text" class="time-input" disabled>
+                                            <input type="text" class="input_sun"  >
                                         </td>
-                                    </tr>
-                                    <tr>
+                                    </tr> <tr>
                                         <td class="inactive">
-                                            <input type="text" class="time-input" disabled>
+                                            <input type="text" class="input_mon"  >
                                         </td>
                                         <td class="inactive">
-                                            <input type="text" class="time-input" disabled>
+                                            <input type="text" class="input_tue"  >
                                         </td>
                                         <td class="inactive">
-                                            <input type="text" class="time-input" disabled>
+                                            <input type="text" class="input_wed"  >
                                         </td>
                                         <td class="inactive">
-                                            <input type="text" class="time-input" disabled>
+                                            <input type="text" class="input_thr"  >
                                         </td>
                                         <td class="inactive">
-                                            <input type="text" class="time-input" disabled>
+                                            <input type="text" class="input_fri"  >
                                         </td>
                                         <td class="inactive">
-                                            <input type="text" class="time-input" disabled>
+                                            <input type="text" class="input_sat"  >
                                         </td>
                                         <td class="inactive">
-                                            <input type="text" class="time-input" disabled>
+                                            <input type="text" class="input_sun"  >
                                         </td>
-                                    </tr>
-                                    <tr>
+                                    </tr> <tr>
                                         <td class="inactive">
-                                            <input type="text" class="time-input" disabled>
+                                            <input type="text" class="input_mon"  >
                                         </td>
                                         <td class="inactive">
-                                            <input type="text" class="time-input" disabled>
+                                            <input type="text" class="input_tue"  >
                                         </td>
                                         <td class="inactive">
-                                            <input type="text" class="time-input" disabled>
+                                            <input type="text" class="input_wed"  >
                                         </td>
                                         <td class="inactive">
-                                            <input type="text" class="time-input" disabled>
+                                            <input type="text" class="input_thr"  >
                                         </td>
                                         <td class="inactive">
-                                            <input type="text" class="time-input" disabled>
+                                            <input type="text" class="input_fri"  >
                                         </td>
                                         <td class="inactive">
-                                            <input type="text" class="time-input" disabled>
+                                            <input type="text" class="input_sat"  >
                                         </td>
                                         <td class="inactive">
-                                            <input type="text" class="time-input" disabled>
+                                            <input type="text" class="input_sun"  >
                                         </td>
-                                    </tr>
-                                    <tr>
+                                    </tr> <tr>
                                         <td class="inactive">
-                                            <input type="text" class="time-input" disabled>
+                                            <input type="text" class="input_mon"  >
                                         </td>
                                         <td class="inactive">
-                                            <input type="text" class="time-input" disabled>
+                                            <input type="text" class="input_tue"  >
                                         </td>
                                         <td class="inactive">
-                                            <input type="text" class="time-input" disabled>
+                                            <input type="text" class="input_wed"  >
                                         </td>
                                         <td class="inactive">
-                                            <input type="text" class="time-input" disabled>
+                                            <input type="text" class="input_thr"  >
                                         </td>
                                         <td class="inactive">
-                                            <input type="text" class="time-input" disabled>
+                                            <input type="text" class="input_fri"  >
                                         </td>
                                         <td class="inactive">
-                                            <input type="text" class="time-input" disabled>
+                                            <input type="text" class="input_sat"  >
                                         </td>
                                         <td class="inactive">
-                                            <input type="text" class="time-input" disabled>
+                                            <input type="text" class="input_sun"  >
                                         </td>
-                                    </tr>
-                                    <tr>
+                                    </tr> <tr>
                                         <td class="inactive">
-                                            <input type="text" class="time-input" disabled>
+                                            <input type="text" class="input_mon"  >
                                         </td>
                                         <td class="inactive">
-                                            <input type="text" class="time-input" disabled>
+                                            <input type="text" class="input_tue"  >
                                         </td>
                                         <td class="inactive">
-                                            <input type="text" class="time-input" disabled>
+                                            <input type="text" class="input_wed"  >
                                         </td>
                                         <td class="inactive">
-                                            <input type="text" class="time-input" disabled>
+                                            <input type="text" class="input_thr"  >
                                         </td>
                                         <td class="inactive">
-                                            <input type="text" class="time-input" disabled>
+                                            <input type="text" class="input_fri"  >
                                         </td>
                                         <td class="inactive">
-                                            <input type="text" class="time-input" disabled>
+                                            <input type="text" class="input_sat"  >
                                         </td>
                                         <td class="inactive">
-                                            <input type="text" class="time-input" disabled>
+                                            <input type="text" class="input_sun"  >
                                         </td>
-                                    </tr>
-                                    <tr>
+                                    </tr> <tr>
                                         <td class="inactive">
-                                            <input type="text" class="time-input" disabled>
+                                            <input type="text" class="input_mon"  >
                                         </td>
                                         <td class="inactive">
-                                            <input type="text" class="time-input" disabled>
+                                            <input type="text" class="input_tue"  >
                                         </td>
                                         <td class="inactive">
-                                            <input type="text" class="time-input" disabled>
+                                            <input type="text" class="input_wed"  >
                                         </td>
                                         <td class="inactive">
-                                            <input type="text" class="time-input" disabled>
+                                            <input type="text" class="input_thr"  >
                                         </td>
                                         <td class="inactive">
-                                            <input type="text" class="time-input" disabled>
+                                            <input type="text" class="input_fri"  >
                                         </td>
                                         <td class="inactive">
-                                            <input type="text" class="time-input" disabled>
+                                            <input type="text" class="input_sat"  >
                                         </td>
                                         <td class="inactive">
-                                            <input type="text" class="time-input" disabled>
+                                            <input type="text" class="input_sun"  >
                                         </td>
-                                    </tr>
-                                    <tr>
-                                        <td class="active">
-                                            <input type="text" class="time-input" value="15,000">
+                                    </tr> <tr>
+                                        <td class="inactive">
+                                            <input type="text" class="input_mon"  >
+                                        </td>
+                                        <td class="inactive">
+                                            <input type="text" class="input_tue"  >
+                                        </td>
+                                        <td class="inactive">
+                                            <input type="text" class="input_wed"  >
+                                        </td>
+                                        <td class="inactive">
+                                            <input type="text" class="input_thr"  >
+                                        </td>
+                                        <td class="inactive">
+                                            <input type="text" class="input_fri"  >
+                                        </td>
+                                        <td class="inactive">
+                                            <input type="text" class="input_sat"  >
+                                        </td>
+                                        <td class="inactive">
+                                            <input type="text" class="input_sun"  >
+                                        </td>
+                                    </tr> <tr>
+                                        <td class="inactive">
+                                            <input type="text" class="input_mon"  >
                                         </td>
-                                        <td class="active">
-                                            <input type="text" class="time-input" value="15,000">
+                                        <td class="inactive">
+                                            <input type="text" class="input_tue"  >
                                         </td>
-                                        <td class="active">
-                                            <input type="text" class="time-input" value="15,000">
+                                        <td class="inactive">
+                                            <input type="text" class="input_wed"  >
                                         </td>
-                                        <td class="active">
-                                            <input type="text" class="time-input" value="15,000">
+                                        <td class="inactive">
+                                            <input type="text" class="input_thr"  >
                                         </td>
-                                        <td class="active">
-                                            <input type="text" class="time-input" value="15,000">
+                                        <td class="inactive">
+                                            <input type="text" class="input_fri"  >
                                         </td>
-                                        <td class="active">
-                                            <input type="text" class="time-input" value="15,000">
+                                        <td class="inactive">
+                                            <input type="text" class="input_sat"  >
                                         </td>
-                                        <td class="active">
-                                            <input type="text" class="time-input" value="15,000">
+                                        <td class="inactive">
+                                            <input type="text" class="input_sun"  >
                                         </td>
-                                    </tr>
-                                    <tr>
-                                        <td class="active">
-                                            <input type="text" class="time-input" value="15,000">
+                                    </tr> <tr>
+                                        <td class="inactive">
+                                            <input type="text" class="input_mon"  >
                                         </td>
-                                        <td class="active">
-                                            <input type="text" class="time-input" value="15,000">
+                                        <td class="inactive">
+                                            <input type="text" class="input_tue"  >
                                         </td>
-                                        <td class="active">
-                                            <input type="text" class="time-input" value="15,000">
+                                        <td class="inactive">
+                                            <input type="text" class="input_wed"  >
                                         </td>
-                                        <td class="active">
-                                            <input type="text" class="time-input" value="15,000">
+                                        <td class="inactive">
+                                            <input type="text" class="input_thr"  >
                                         </td>
-                                        <td class="active">
-                                            <input type="text" class="time-input" value="15,000">
+                                        <td class="inactive">
+                                            <input type="text" class="input_fri"  >
                                         </td>
-                                        <td class="active">
-                                            <input type="text" class="time-input" value="15,000">
+                                        <td class="inactive">
+                                            <input type="text" class="input_sat"  >
                                         </td>
-                                        <td class="active">
-                                            <input type="text" class="time-input" value="15,000">
+                                        <td class="inactive">
+                                            <input type="text" class="input_sun"  >
                                         </td>
-                                    </tr>
-                                    <tr>
-                                        <td class="active">
-                                            <input type="text" class="time-input" value="15,000">
+                                    </tr> <tr>
+                                        <td class="inactive">
+                                            <input type="text" class="input_mon"  >
                                         </td>
-                                        <td class="active">
-                                            <input type="text" class="time-input" value="15,000">
+                                        <td class="inactive">
+                                            <input type="text" class="input_tue"  >
                                         </td>
-                                        <td class="active">
-                                            <input type="text" class="time-input" value="15,000">
+                                        <td class="inactive">
+                                            <input type="text" class="input_wed"  >
                                         </td>
-                                        <td class="active">
-                                            <input type="text" class="time-input" value="15,000">
+                                        <td class="inactive">
+                                            <input type="text" class="input_thr"  >
                                         </td>
-                                        <td class="active">
-                                            <input type="text" class="time-input" value="15,000">
+                                        <td class="inactive">
+                                            <input type="text" class="input_fri"  >
                                         </td>
-                                        <td class="active">
-                                            <input type="text" class="time-input" value="15,000">
+                                        <td class="inactive">
+                                            <input type="text" class="input_sat"  >
                                         </td>
-                                        <td class="active">
-                                            <input type="text" class="time-input" value="15,000">
+                                        <td class="inactive">
+                                            <input type="text" class="input_sun"  >
                                         </td>
-                                    </tr>
-                                    <tr>
-                                        <td class="active">
-                                            <input type="text" class="time-input" value="15,000">
+                                    </tr> <tr>
+                                        <td class="inactive">
+                                            <input type="text" class="input_mon"  >
                                         </td>
-                                        <td class="active">
-                                            <input type="text" class="time-input" value="15,000">
+                                        <td class="inactive">
+                                            <input type="text" class="input_tue"  >
                                         </td>
-                                        <td class="active">
-                                            <input type="text" class="time-input" value="15,000">
+                                        <td class="inactive">
+                                            <input type="text" class="input_wed"  >
                                         </td>
-                                        <td class="active">
-                                            <input type="text" class="time-input" value="15,000">
+                                        <td class="inactive">
+                                            <input type="text" class="input_thr"  >
                                         </td>
-                                        <td class="active">
-                                            <input type="text" class="time-input" value="15,000">
+                                        <td class="inactive">
+                                            <input type="text" class="input_fri"  >
                                         </td>
                                         <td class="inactive">
-                                            <input type="text" class="time-input" disabled>
+                                            <input type="text" class="input_sat"  >
                                         </td>
                                         <td class="inactive">
-                                            <input type="text" class="time-input" disabled>
+                                            <input type="text" class="input_sun"  >
                                         </td>
-                                    </tr>
-                                    <tr>
-                                        <td class="active">
-                                            <input type="text" class="time-input" value="15,000">
+                                    </tr> <tr>
+                                        <td class="inactive">
+                                            <input type="text" class="input_mon"  >
                                         </td>
-                                        <td class="active">
-                                            <input type="text" class="time-input" value="15,000">
+                                        <td class="inactive">
+                                            <input type="text" class="input_tue"  >
                                         </td>
-                                        <td class="active">
-                                            <input type="text" class="time-input" value="15,000">
+                                        <td class="inactive">
+                                            <input type="text" class="input_wed"  >
                                         </td>
-                                        <td class="active">
-                                            <input type="text" class="time-input" value="15,000">
+                                        <td class="inactive">
+                                            <input type="text" class="input_thr"  >
                                         </td>
-                                        <td class="active">
-                                            <input type="text" class="time-input" value="15,000">
+                                        <td class="inactive">
+                                            <input type="text" class="input_fri"  >
                                         </td>
                                         <td class="inactive">
-                                            <input type="text" class="time-input" disabled>
+                                            <input type="text" class="input_sat"  >
                                         </td>
                                         <td class="inactive">
-                                            <input type="text" class="time-input" disabled>
+                                            <input type="text" class="input_sun"  >
                                         </td>
-                                    </tr>
-                                    <tr>
-                                        <td class="active">
-                                            <input type="text" class="time-input" value="15,000">
+                                    </tr> <tr>
+                                        <td class="inactive">
+                                            <input type="text" class="input_mon"  >
                                         </td>
-                                        <td class="active">
-                                            <input type="text" class="time-input" value="15,000">
+                                        <td class="inactive">
+                                            <input type="text" class="input_tue"  >
                                         </td>
-                                        <td class="active">
-                                            <input type="text" class="time-input" value="15,000">
+                                        <td class="inactive">
+                                            <input type="text" class="input_wed"  >
                                         </td>
-                                        <td class="active">
-                                            <input type="text" class="time-input" value="15,000">
+                                        <td class="inactive">
+                                            <input type="text" class="input_thr"  >
                                         </td>
-                                        <td class="active">
-                                            <input type="text" class="time-input" value="15,000">
+                                        <td class="inactive">
+                                            <input type="text" class="input_fri"  >
                                         </td>
                                         <td class="inactive">
-                                            <input type="text" class="time-input" disabled>
+                                            <input type="text" class="input_sat"  >
                                         </td>
                                         <td class="inactive">
-                                            <input type="text" class="time-input" disabled>
+                                            <input type="text" class="input_sun"  >
                                         </td>
-                                    </tr>
-                                    <tr>
-                                        <td class="active">
-                                            <input type="text" class="time-input" value="15,000">
+                                    </tr> <tr>
+                                        <td class="inactive">
+                                            <input type="text" class="input_mon"  >
                                         </td>
-                                        <td class="active">
-                                            <input type="text" class="time-input" value="15,000">
+                                        <td class="inactive">
+                                            <input type="text" class="input_tue"  >
                                         </td>
-                                        <td class="active">
-                                            <input type="text" class="time-input" value="15,000">
+                                        <td class="inactive">
+                                            <input type="text" class="input_wed"  >
                                         </td>
-                                        <td class="active">
-                                            <input type="text" class="time-input" value="15,000">
+                                        <td class="inactive">
+                                            <input type="text" class="input_thr"  >
                                         </td>
-                                        <td class="active">
-                                            <input type="text" class="time-input" value="15,000">
+                                        <td class="inactive">
+                                            <input type="text" class="input_fri"  >
                                         </td>
                                         <td class="inactive">
-                                            <input type="text" class="time-input" disabled>
+                                            <input type="text" class="input_sat"  >
                                         </td>
                                         <td class="inactive">
-                                            <input type="text" class="time-input" disabled>
+                                            <input type="text" class="input_sun"  >
                                         </td>
-                                    </tr>
-                                    <tr>
-                                        <td class="active">
-                                            <input type="text" class="time-input" value="15,000">
+                                    </tr> <tr>
+                                        <td class="inactive">
+                                            <input type="text" class="input_mon"  >
                                         </td>
-                                        <td class="active">
-                                            <input type="text" class="time-input" value="15,000">
+                                        <td class="inactive">
+                                            <input type="text" class="input_tue"  >
                                         </td>
-                                        <td class="active">
-                                            <input type="text" class="time-input" value="15,000">
+                                        <td class="inactive">
+                                            <input type="text" class="input_wed"  >
                                         </td>
-                                        <td class="active">
-                                            <input type="text" class="time-input" value="15,000">
+                                        <td class="inactive">
+                                            <input type="text" class="input_thr"  >
                                         </td>
-                                        <td class="active">
-                                            <input type="text" class="time-input" value="15,000">
+                                        <td class="inactive">
+                                            <input type="text" class="input_fri"  >
                                         </td>
                                         <td class="inactive">
-                                            <input type="text" class="time-input" disabled>
+                                            <input type="text" class="input_sat"  >
                                         </td>
                                         <td class="inactive">
-                                            <input type="text" class="time-input" disabled>
+                                            <input type="text" class="input_sun"  >
                                         </td>
-                                    </tr>
-                                    <tr>
-                                        <td class="active">
-                                            <input type="text" class="time-input" value="15,000">
+                                    </tr> <tr>
+                                        <td class="inactive">
+                                            <input type="text" class="input_mon"  >
                                         </td>
-                                        <td class="active">
-                                            <input type="text" class="time-input" value="15,000">
+                                        <td class="inactive">
+                                            <input type="text" class="input_tue"  >
                                         </td>
-                                        <td class="active">
-                                            <input type="text" class="time-input" value="15,000">
+                                        <td class="inactive">
+                                            <input type="text" class="input_wed"  >
                                         </td>
-                                        <td class="active">
-                                            <input type="text" class="time-input" value="15,000">
+                                        <td class="inactive">
+                                            <input type="text" class="input_thr"  >
                                         </td>
-                                        <td class="active">
-                                            <input type="text" class="time-input" value="15,000">
+                                        <td class="inactive">
+                                            <input type="text" class="input_fri"  >
                                         </td>
                                         <td class="inactive">
-                                            <input type="text" class="time-input" disabled>
+                                            <input type="text" class="input_sat"  >
                                         </td>
                                         <td class="inactive">
-                                            <input type="text" class="time-input" disabled>
+                                            <input type="text" class="input_sun"  >
                                         </td>
-                                    </tr>
-                                    <tr>
-                                        <td class="active">
-                                            <input type="text" class="time-input" value="15,000">
+                                    </tr> <tr>
+                                        <td class="inactive">
+                                            <input type="text" class="input_mon"  >
                                         </td>
-                                        <td class="active">
-                                            <input type="text" class="time-input" value="15,000">
+                                        <td class="inactive">
+                                            <input type="text" class="input_tue"  >
                                         </td>
-                                        <td class="active">
-                                            <input type="text" class="time-input" value="15,000">
+                                        <td class="inactive">
+                                            <input type="text" class="input_wed"  >
                                         </td>
-                                        <td class="active">
-                                            <input type="text" class="time-input" value="15,000">
+                                        <td class="inactive">
+                                            <input type="text" class="input_thr"  >
                                         </td>
-                                        <td class="active">
-                                            <input type="text" class="time-input" value="15,000">
+                                        <td class="inactive">
+                                            <input type="text" class="input_fri"  >
                                         </td>
-                                        <td class="active">
-                                            <input type="text" class="time-input" value="15,000">
+                                        <td class="inactive">
+                                            <input type="text" class="input_sat"  >
                                         </td>
-                                        <td class="active">
-                                            <input type="text" class="time-input" value="15,000">
+                                        <td class="inactive">
+                                            <input type="text" class="input_sun"  >
                                         </td>
-                                    </tr>
-                                    <tr>
-                                        <td class="active">
-                                            <input type="text" class="time-input" value="15,000">
+                                    </tr> <tr>
+                                        <td class="inactive">
+                                            <input type="text" class="input_mon"  >
                                         </td>
-                                        <td class="active">
-                                            <input type="text" class="time-input" value="15,000">
+                                        <td class="inactive">
+                                            <input type="text" class="input_tue"  >
                                         </td>
-                                        <td class="active">
-                                            <input type="text" class="time-input" value="15,000">
+                                        <td class="inactive">
+                                            <input type="text" class="input_wed"  >
                                         </td>
-                                        <td class="active">
-                                            <input type="text" class="time-input" value="15,000">
+                                        <td class="inactive">
+                                            <input type="text" class="input_thr"  >
                                         </td>
-                                        <td class="active">
-                                            <input type="text" class="time-input" value="15,000">
+                                        <td class="inactive">
+                                            <input type="text" class="input_fri"  >
                                         </td>
-                                        <td class="active">
-                                            <input type="text" class="time-input" value="15,000">
+                                        <td class="inactive">
+                                            <input type="text" class="input_sat"  >
                                         </td>
-                                        <td class="active">
-                                            <input type="text" class="time-input" value="15,000">
+                                        <td class="inactive">
+                                            <input type="text" class="input_sun"  >
                                         </td>
-                                    </tr>
-                                    <tr>
-                                        <td class="active">
-                                            <input type="text" class="time-input" value="15,000">
+                                    </tr> <tr>
+                                        <td class="inactive">
+                                            <input type="text" class="input_mon"  >
                                         </td>
-                                        <td class="active">
-                                            <input type="text" class="time-input" value="15,000">
+                                        <td class="inactive">
+                                            <input type="text" class="input_tue"  >
                                         </td>
-                                        <td class="active">
-                                            <input type="text" class="time-input" value="15,000">
+                                        <td class="inactive">
+                                            <input type="text" class="input_wed"  >
                                         </td>
-                                        <td class="active">
-                                            <input type="text" class="time-input" value="15,000">
+                                        <td class="inactive">
+                                            <input type="text" class="input_thr"  >
                                         </td>
-                                        <td class="active">
-                                            <input type="text" class="time-input" value="15,000">
+                                        <td class="inactive">
+                                            <input type="text" class="input_fri"  >
                                         </td>
-                                        <td class="active">
-                                            <input type="text" class="time-input" value="15,000">
+                                        <td class="inactive">
+                                            <input type="text" class="input_sat"  >
                                         </td>
-                                        <td class="active">
-                                            <input type="text" class="time-input" value="15,000">
+                                        <td class="inactive">
+                                            <input type="text" class="input_sun"  >
                                         </td>
-                                    </tr>
-                                    <tr>
-                                        <td class="active">
-                                            <input type="text" class="time-input" value="15,000">
+                                    </tr> <tr>
+                                        <td class="inactive">
+                                            <input type="text" class="input_mon"  >
                                         </td>
-                                        <td class="active">
-                                            <input type="text" class="time-input" value="15,000">
+                                        <td class="inactive">
+                                            <input type="text" class="input_tue"  >
                                         </td>
-                                        <td class="active">
-                                            <input type="text" class="time-input" value="15,000">
+                                        <td class="inactive">
+                                            <input type="text" class="input_wed"  >
                                         </td>
-                                        <td class="active">
-                                            <input type="text" class="time-input" value="15,000">
+                                        <td class="inactive">
+                                            <input type="text" class="input_thr"  >
                                         </td>
-                                        <td class="active">
-                                            <input type="text" class="time-input" value="15,000">
+                                        <td class="inactive">
+                                            <input type="text" class="input_fri"  >
                                         </td>
-                                        <td class="active">
-                                            <input type="text" class="time-input" value="15,000">
+                                        <td class="inactive">
+                                            <input type="text" class="input_sat"  >
                                         </td>
-                                        <td class="active">
-                                            <input type="text" class="time-input" value="15,000">
+                                        <td class="inactive">
+                                            <input type="text" class="input_sun"  >
                                         </td>
-                                    </tr>
-                                    <tr>
-                                        <td class="active">
-                                            <input type="text" class="time-input" value="15,000">
+                                    </tr> <tr>
+                                        <td class="inactive">
+                                            <input type="text" class="input_mon"  >
                                         </td>
-                                        <td class="active">
-                                            <input type="text" class="time-input" value="15,000">
+                                        <td class="inactive">
+                                            <input type="text" class="input_tue"  >
                                         </td>
-                                        <td class="active">
-                                            <input type="text" class="time-input" value="15,000">
+                                        <td class="inactive">
+                                            <input type="text" class="input_wed"  >
                                         </td>
-                                        <td class="active">
-                                            <input type="text" class="time-input" value="15,000">
+                                        <td class="inactive">
+                                            <input type="text" class="input_thr"  >
                                         </td>
-                                        <td class="active">
-                                            <input type="text" class="time-input" value="15,000">
+                                        <td class="inactive">
+                                            <input type="text" class="input_fri"  >
                                         </td>
-                                        <td class="active">
-                                            <input type="text" class="time-input" value="15,000">
+                                        <td class="inactive">
+                                            <input type="text" class="input_sat"  >
                                         </td>
-                                        <td class="active">
-                                            <input type="text" class="time-input" value="15,000">
+                                        <td class="inactive">
+                                            <input type="text" class="input_sun"  >
                                         </td>
-                                    </tr>
-                                    <tr>
+                                    </tr> <tr>
                                         <td class="inactive">
-                                            <input type="text" class="time-input" disabled>
+                                            <input type="text" class="input_mon"  >
                                         </td>
                                         <td class="inactive">
-                                            <input type="text" class="time-input" disabled>
+                                            <input type="text" class="input_tue"  >
                                         </td>
                                         <td class="inactive">
-                                            <input type="text" class="time-input" disabled>
+                                            <input type="text" class="input_wed"  >
                                         </td>
                                         <td class="inactive">
-                                            <input type="text" class="time-input" disabled>
+                                            <input type="text" class="input_thr"  >
                                         </td>
                                         <td class="inactive">
-                                            <input type="text" class="time-input" disabled>
+                                            <input type="text" class="input_fri"  >
                                         </td>
                                         <td class="inactive">
-                                            <input type="text" class="time-input" disabled>
+                                            <input type="text" class="input_sat"  >
                                         </td>
                                         <td class="inactive">
-                                            <input type="text" class="time-input" disabled>
+                                            <input type="text" class="input_sun"  >
                                         </td>
-                                    </tr>
-                                    <tr>
+                                    </tr> <tr>
                                         <td class="inactive">
-                                            <input type="text" class="time-input" disabled>
+                                            <input type="text" class="input_mon">
                                         </td>
                                         <td class="inactive">
-                                            <input type="text" class="time-input" disabled>
+                                            <input type="text" class="input_tue">
                                         </td>
                                         <td class="inactive">
-                                            <input type="text" class="time-input" disabled>
+                                            <input type="text" class="input_wed">
                                         </td>
                                         <td class="inactive">
-                                            <input type="text" class="time-input" disabled>
+                                            <input type="text" class="input_thr">
                                         </td>
                                         <td class="inactive">
-                                            <input type="text" class="time-input" disabled>
+                                            <input type="text" class="input_fri"  >
                                         </td>
                                         <td class="inactive">
-                                            <input type="text" class="time-input" disabled>
+                                            <input type="text" class="input_sat"  >
                                         </td>
                                         <td class="inactive">
-                                            <input type="text" class="time-input" disabled>
+                                            <input type="text" class="input_sun"  >
                                         </td>
                                     </tr>
                                 </tbody>
@@ -1116,7 +1040,7 @@
 
         <!-- 이전단계(이전페이지에서 입력했던 내용 유지) / 등록완료 -->
         <div class="overflow-hidden mt-lg-5 mt-3">
-            <a href="studio_register3.html" class="btn bg-gray float-left w-50 rounded-0 py-lg-4 py-3 font-size-m">이전
+            <a href="history.back();" class="btn bg-gray float-left w-50 rounded-0 py-lg-4 py-3 font-size-m">이전
                 단계로 이동</a>
             <a href="studio_list.html" class="btn bg-yellow float-right w-50 rounded-0 py-lg-4 py-3 font-size-m">등록
                 완료</a>
@@ -1148,6 +1072,68 @@
     <script src="/why_html/js/custom.js"></script>
 </body>
 <script>
+    function blank_change(start, end){
+        for(var i= start;i<end;i++){
+            input_mon[i].attr("disabled",false);
+        }
+    }
+
+    function insert(){
+         // 1
+        var category = getCookie("category");
+        var category_depth = getCookie("category_depth");
+        // 2
+        var studio_name = getCookie("studio_name");
+        var studio_room = getCookie("studio_room");
+        var studio_addr = getCookie("studio_addr");
+        var studio_addr2 = getCookie("studio_addr2");
+        var studio_intro = getCookie("studio_intro");
+        // 3
+        var studioYoutube = getCookie("studioYoutube");
+        var studioText = getCookie("studioText");
+        var studioTerms = getCookie("studioTerms");
+        var studioAddr = getCookie("studioAddr");
+        var arr_conv = getCookie("conv");
+        var arr_tags = getCookie("tags");
+        //4
+        var numberUpDown = document.getElementById("numberUpDown").value;
+        var additional = document.getElementById("additional").value;
+        var standard = document.getElementById("standard").value;
+        var reserv_type = document.getElementById("reserv_type");
+        var time_input = document.getElementsByClassName("time-input");
+        var reser_type = "";
+        var reser_time = [];
+        for(var i = 0;i<reserv_type.length;i++){
+            if(reserv_type[i].checked){
+                reser_type = reserv_type[i].value;
+                break;
+            }
+        }
+        for(var i = 0;i<time_input.length;i++){
+            if(time_input[i].checked){
+                reser_time.push(time_input[i].value);
+            }
+        }
+
+
+        var xhr = new XMLHttpRequest();
+        xhr.onreadystatechange = function() {
+            if (xhr.readyState === xhr.DONE) { 
+                if (xhr.status === 200 || xhr.status === 201) {
+                    alert("스튜디오 등록완료");
+                    window.location.href = "/why_html/index.html";
+                } else {
+                    alert("등록이 정상적으로 이루어지지 않았습니다. 다시 시도해주세요.");
+                    console.error(xhr.responseText);
+                }
+            }else{
+            }
+        };
+        xhr.open('POST', 'http://3.34.150.116:3000/user/apply',true);
+        xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+        xhr.send("user_id="+user_id_t+"&user_pw="+user_pw_t+"&user_name="+user_name_t+"&user_nickname="+user_nickname_t+"&user_phone="+user_phone_t); 
+        
+    }
 
     var setCookie = function(name, value, day) {
         var date = new Date();
@@ -1191,6 +1177,60 @@
                 num = 1;
             }
             $('#numberUpDown').val(num);
+        });
+
+        function doRest(day){
+            var time_mon = document.getElementsByName("time_"+day);
+            var start = document.getElementById("start_"+day).value;
+            var end = document.getElementById("end_"+day).value;
+            var input_mon = document.getElementsByName("input_"+day);
+            if(time_mon[0].checked == true){
+                document.getElementById("start_"+day).value = '00:00';
+                document.getElementById("end_"+day).value = '24:00';
+                $("#start_"+day).attr("disabled",true); 
+                $("#end_"+day).attr("disabled",true); 
+                $('.input_'+day).prop("disabled", false);
+            }else if(time_mon[1].checked == true){
+                document.getElementById("start_"+day).value = '00:00';
+                document.getElementById("end_"+day).value = '00:00';
+                $("#start_"+day).attr("disabled",true); 
+                $("#end_"+day).attr("disabled",true); 
+                $('.input_'+day).prop("disabled", true);
+            }else{
+                $("#start_"+day).attr("disabled",false); 
+                $("#end_"+day).attr("disabled",false); 
+                for(var i= start;i<end;i++){
+                    input_mon[i].attr("disabled",false);
+                }
+            }
+        }
+        $("input:radio[name=time_sun]").click(function(){
+            doRest("sun");
+        });
+
+        $("input:radio[name=time_mon]").click(function(){
+           doRest("mon");
+        });
+
+        $("input:radio[name=time_tue]").click(function(){
+            doRest("tue");
+        });
+
+        $("input:radio[name=time_wed]").click(function(){
+            doRest("wed");
+        });
+
+        $("input:radio[name=time_thr]").click(function(){
+            
+            doRest("thr");
+        });
+
+        $("input:radio[name=time_fri]").click(function(){
+            doRest("fri");
+        });
+
+        $("input:radio[name=time_sat]").click(function(){
+            doRest("sat");
         });
 
         $('#increaseQuantity').click(function (e) {

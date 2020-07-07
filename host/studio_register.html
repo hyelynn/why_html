@@ -224,7 +224,7 @@
             var category = document.getElementsByName("category");
             var category_depth = document.getElementsByName("category_depth");
             var cateText = "";
-            var cateDepText = "";
+            var cateDepText = [];
             for(var i = 0;i<category.length;i++){
                 if(category[i].checked){
                     cateText = category[i].value;
@@ -235,10 +235,11 @@
             
             for(var i=0;i<category_depth.length;i++){
                 if(category_depth[i].checked){
-                    cateDepText += ","+category_depth[i].value;
+                    cateDepText.push(category_depth[i].value);
                 }
             }
             setCookie("category_dept",cateDepText,1);
+            window.location.href = "/host/studio_register2.html";
 
         }
 
@@ -252,11 +253,6 @@
             var value = document.cookie.match('(^|;) ?' + name + '=([^;]*)(;|$)');
             return value? value[2] : null;
         };
-        
-        var deleteCookie = function(name) {
-            var date = new Date();
-            document.cookie = name + "= " + "; expires=" + date.toUTCString() + "; path=/";
-        }
     </script>
 </body>
 
