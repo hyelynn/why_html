@@ -1161,7 +1161,6 @@
                 price_sun += "/"+sun[i];
             }
         }
-        alert("mon::"+price_mon);
 
         var xhr = new XMLHttpRequest();
         xhr.onreadystatechange = function() {
@@ -1192,7 +1191,7 @@
         var numberUpDown = document.getElementById("numberUpDown").value;
         var additional = document.getElementById("additional").value;
         var standard = document.getElementById("standard").value;
-        var reserv_type = document.getElementById("reserv_type");
+        var reserv_type = document.getElementsByName("reserv_type");
         var reser_type = "";
         for(var i = 0;i<reserv_type.length;i++){
             if(reserv_type[i].checked){
