@@ -1077,10 +1077,11 @@
         var start = parseInt($("#start_"+day).val());
         var end = parseInt($("#end_"+day).val());
         for(var i= 0;i<start;i++){
+            alert(start);
             input_mon[i].prop("disabled", false);
         }for(var i= start;i<end;i++){
             input_mon[i].prop("disabled", false);
-        }for(var i= end;i<24;i++){
+        }for(var i = end;i<24;i++){
             input_mon[i].prop("disabled", true);
         }
     }
@@ -1112,7 +1113,7 @@
         var price_tue = "";
         var price_wed = "";
         var price_thr = "";
-        var price_fir = "";
+        var price_fri = "";
         var price_sat = "";
         var price_sun = "";
 
