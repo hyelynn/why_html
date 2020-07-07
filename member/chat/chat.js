@@ -1,3 +1,7 @@
+function clicked_chat() {
+    
+}
+
 $(document).ready(function () {
     //Get Room information
     var xhr = new XMLHttpRequest();
@@ -29,8 +33,3 @@ $(document).ready(function () {
     xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
     xhr.send("user_id=" + id);
 });
-  
-
-function clicked_chat() {
-
-}
