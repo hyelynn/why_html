@@ -267,10 +267,10 @@
                             <!-- 월 -->
                             <div class="d-flex">
                                 <div class="select-items text-center mr-lg-5 mr-3">
-                                    <input type="text"  id="start_mon" class="d-block text-decoration-none"text="00:00" onchange="blank_change('mon');">
+                                    <input type="text"  id="start_mon" class="d-block text-decoration-none"value="00:00" onchange="blank_change('mon');">
                                 </div>
                                 <div class="select-items text-center">
-                                    <input type="text"  id="end_mon" class="d-block text-decoration-none"text="00:00" onchange="blank_change('mon');">
+                                    <input type="text"  id="end_mon" class="d-block text-decoration-none"value="00:00" onchange="blank_change('mon');">
                                 </div>
                             </div>
                             <!-- 화 -->
@@ -279,7 +279,7 @@
                                     <input type="text"  id="start_tue" class="d-block text-decoration-none"value="00:00" onchange="blank_change('tue');">
                                 </div>
                                 <div class="select-items text-center">
-                                    <input type="text"  id="end_tue" class="d-block text-decoration-none"text="00:00" onchange="blank_change('tue');">
+                                    <input type="text"  id="end_tue" class="d-block text-decoration-none"value="00:00" onchange="blank_change('tue');">
                                 </div>
                             </div>
                             <!-- 수 : 위로 출력 -->
@@ -1197,7 +1197,6 @@
                 break;
             }
         }
-
         var xhr = new XMLHttpRequest();
         xhr.onreadystatechange = function() {
             if (xhr.readyState === xhr.DONE) { 
@@ -1213,12 +1212,12 @@
         };
         xhr.open('POST', 'http://3.34.150.116:3000/studio/apply/sub',true);
         xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
-        xhr.send("key="+getCookie("s3_id")+"&numberUpDown="+numberUpDown+"&reser_time="+reser_time
-        +"&time_input="+time_input+"&reser_type="+reser_type); 
+        xhr.send("key="+getCookie("s3_id")+"&numberUpDown="+numberUpDown+"&additional="+additional
+        +"&standard="+standard+"&reser_type="+reser_type); 
         
     }
     function insert(){
-        goPrice();
+        // goPrice();
         goSub();
     }
 
