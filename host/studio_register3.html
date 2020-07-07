@@ -419,6 +419,8 @@
     var bucketRegion = 'ap-northeast-2';
     var IdentityPoolId = 'ap-northeast-2:5de34811-ed49-42bb-8378-726186756855';
 
+    var idx = 1;
+
     AWS.config.update({
         region: bucketRegion,
         credentials: new AWS.CognitoIdentityCredentials({
@@ -438,7 +440,7 @@
         }
         var file = files[0];
         var fileName = file.name;
-        var photoKey = fileName;
+        var photoKey = getCookie("s3_id")+idx++;
         s3.upload({
             Key: photoKey,
             Body: file,
@@ -452,6 +454,12 @@
         });
     }
     
+
+    var getCookie = function(name) {
+        var value = document.cookie.match('(^|;) ?' + name + '=([^;]*)(;|$)');
+        return value? value[2] : null;
+    };
+
     $(function () {
         var fileTarget = $('.custom-inputs-sub.not .upload-hidden');
         fileTarget.on('change', function () {
