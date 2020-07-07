@@ -18,6 +18,15 @@
     <script src="/why_html/js/include.js"></script>
     <!-- Fontawesome -->
     <link rel="stylesheet" href="/why_html/css/fontawesome/css/all.min.css">
+    <script type="text/javascript" src="https://static.nid.naver.com/js/naveridlogin_js_sdk_2.0.0.js"
+        charset="utf-8"></script>
+    <script src="/why_html/js/kakao_sdk.js"></script>
+    <script src="/why_html/member/chat/chat.js"></script>
+
+    <script>
+        Kakao.init('d88bea310f4a39afbea3146fe1c0fa72');
+        Kakao.isInitialized();
+    </script>
 </head>
 
 <body>
@@ -52,169 +61,45 @@
 
     <main role="main">
         <div class="container-fluid border-top custom-chat">
-            <div class="row">
+            <div class="row" >
                 <!-- chat list -->
-                <div class="col-xl-4 col-5 border-right px-0">
-                    <div class="d-flex align-items-start p-3 position-relative chat-item active">
-                        <div class="d-lg-flex d-none justify-content-center rounded-circle overflow-hidden mr-lg-4 mr-2 user-bg">
-                            <img src="/why_html/img/studio-host.jpg" class="align-self-center w-100 h-100" alt="">
-                        </div>
-                        <div class="font-weight-light">
-                            <p class="mb-1">사당안무연습실 호스트</p>
-                            <p class="mb-1 d-md-block d-none text-light-gray font-size-xs">최근 메시지는 최대 두 줄 까지 입력이 가능합니다.</p>
-                            <p class="mb-0 text-light-gray font-size-xs">19:00</p>
-                        </div>
-                        <a href="#x" class="stretched-link text-decoration-none"></a>
-                    </div>
-                    <div class="d-flex align-items-start p-3 position-relative">
-                        <div class="d-lg-flex d-none justify-content-center rounded-circle overflow-hidden mr-lg-4 mr-2 user-bg">
-                            <!-- <img src="/why_html/img/studio-host.jpg" class="align-self-center w-100 h-100" alt=""> -->
-                        </div>
-                        <div class="font-weight-light">
-                            <p class="mb-1">토즈 평촌R&D센터점 호스트</p>
-                            <p class="mb-1 d-md-block d-none text-light-gray font-size-xs">최근 메시지는 최대 두 줄 까지 입력이 가능합니다.</p>
-                            <p class="mb-0 text-light-gray font-size-xs">19:00</p>
-                        </div>
-                        <a href="#x" class="stretched-link text-decoration-none"></a>
-                    </div>
-                    <div class="d-flex align-items-start p-3 position-relative">
-                        <div class="d-lg-flex d-none justify-content-center rounded-circle overflow-hidden mr-lg-4 mr-2 user-bg">
-                            <!-- <img src="/why_html/img/studio-host.jpg" class="align-self-center w-100 h-100" alt=""> -->
-                        </div>
-                        <div class="font-weight-light">
-                            <p class="mb-1">스터디공간 경리단길점 호스트</p>
-                            <p class="mb-1 d-md-block d-none text-light-gray font-size-xs">최근 메시지는 최대 두 줄 까지 입력이 가능합니다.</p>
-                            <p class="mb-0 text-light-gray font-size-xs">19:00</p>
-                        </div>
-                        <a href="#x" class="stretched-link text-decoration-none"></a>
-                    </div>
-                    <div class="d-flex align-items-start p-3 position-relative">
-                        <div class="d-lg-flex d-none justify-content-center rounded-circle overflow-hidden mr-lg-4 mr-2 user-bg">
-                            <!-- <img src="/why_html/img/studio-host.jpg" class="align-self-center w-100 h-100" alt=""> -->
-                        </div>
-                        <div class="font-weight-light">
-                            <p class="mb-1">서울대 오렌지카페 호스트</p>
-                            <p class="mb-1 d-md-block d-none text-light-gray font-size-xs">최근 메시지는 최대 두 줄 까지 입력이 가능합니다.</p>
-                            <p class="mb-0 text-light-gray font-size-xs">19:00</p>
-                        </div>
-                        <a href="#x" class="stretched-link text-decoration-none"></a>
-                    </div>
-                    <div class="d-flex align-items-start p-3 position-relative">
-                        <div class="d-lg-flex d-none justify-content-center rounded-circle overflow-hidden mr-lg-4 mr-2 user-bg">
-                            <!-- <img src="/why_html/img/studio-host.jpg" class="align-self-center w-100 h-100" alt=""> -->
-                        </div>
-                        <div class="font-weight-light">
-                            <p class="mb-1">한남동 파티룸 [&] 호스트</p>
-                            <p class="mb-1 d-md-block d-none text-light-gray font-size-xs">최근 메시지는 최대 두 줄 까지 입력이 가능합니다.</p>
-                            <p class="mb-0 text-light-gray font-size-xs">19:00</p>
-                        </div>
-                        <a href="#x" class="stretched-link text-decoration-none"></a>
-                    </div>
-                    <div class="d-flex align-items-start p-3 position-relative">
-                        <div class="d-lg-flex d-none justify-content-center rounded-circle overflow-hidden mr-lg-4 mr-2 user-bg">
-                            <!-- <img src="/why_html/img/studio-host.jpg" class="align-self-center w-100 h-100" alt=""> -->
-                        </div>
-                        <div class="font-weight-light">
-                            <p class="mb-1">종합연습실 인헌시장점</p>
-                            <p class="mb-1 d-md-block d-none text-light-gray font-size-xs">최근 메시지는 최대 두 줄 까지 입력이 가능합니다.</p>
-                            <p class="mb-0 text-light-gray font-size-xs">19:00</p>
-                        </div>
-                        <a href="#x" class="stretched-link text-decoration-none"></a>
-                    </div>
-                </div>
+                <div class="col-xl-4 col-5 border-right px-0" id="chat_list"> </div>
 
                 <!-- chat -->
                 <div class="col-xl-8 col-7 px-0">
                     <!-- date -->
-                    <div class="font-weight-light">
+                    <!-- <div class="font-weight-light">
                         <div class="text-center my-3">
                             <span class="d-inline-block rounded-xl px-3 py-1 bg-light">2020년 05월 01일</span>
                         </div>
-                    </div>
+                    </div> -->
 
                     <!-- msg -->
-                    <div class="px-3">
-                        <!-- Reciever -->
-                        <div class="d-flex justify-content-end mb-3">
-                            <div class="ml-auto font-weight-light user-msg">
-                                <div class="bg-sky rounded-xl p-md-3 p-2 mb-2 text-white chat-msg">
-                                    <img src="/why_html/img/section-2-photo.jpg" alt="" class="w-100 mb-2">
-                                    <p class="mb-2">사당 안무연습실 예약 요청이 되었습니다.<br>호스트의 답변을 기다려주세요.</p>
-                                    <p class="mb-0">예약자 : 김민범<br>호실 : G1<br>예약일시 : 2020-05-03 18:00 ~ 2020-05-04 20:00</p>
-                                </div>
-                                <p class="text-light-gray font-size-xs">14:51</p>
-                            </div>
-                        </div>
-
-                        <!-- Sender -->
-                        <div class="d-flex justify-content-start mb-3">
-                            <div class="mr-auto font-weight-light user-msg">
-                                <div class="d-flex mb-2">
-                                    <div class="d-flex justify-content-center rounded-circle overflow-hidden mr-2 user-bg sm">
-                                        <img src="/why_html/img/studio-host.jpg" class="align-self-center w-100 h-100" alt="">
-                                    </div>
-                                    <p class="mb-0">사당안무연습실 호스트</p>
-                                </div>
-                                <div class="bg-light rounded-xl p-md-3 p-2 mb-2 chat-msg">
-                                    <p class="mb-0">
-                                        안녕하세요 ^^ 사당안무연습실입니다.<br>
-                                        예약 내용 확인되어 예약 확정 진행하려고 합니다.<br>
-                                        괜찮으신가요?
-                                    </p>
-                                </div>
-                                <p class="text-right text-light-gray font-size-xs">19:00</p>
-                            </div>
-                        </div>
-
-                        <!-- Reciever -->
-                        <div class="d-flex justify-content-end mb-3">
-                            <div class="ml-auto font-weight-light user-msg">
-                                <div class="bg-sky rounded-xl p-md-3 p-2 mb-2 text-white chat-msg">
-                                    <p class="mb-0">네, 진행 부탁드립니다.</p>
-                                </div>
-                                <p class="text-light-gray font-size-xs">19:51</p>
-                            </div>
-                        </div>
-                    </div>
+                    <div class="px-3" id="msgs"> </div>
 
                     <!-- input -->
                     <div class="custom-inputs chat-msg-input">
-                        <input type="text" class="form-control border-0 font-size-s" placeholder="여기에 메시지를 입력해 주세요">
+                        <input id="msg" type="text" class="form-control border-0 font-size-s" placeholder="여기에 메시지를 입력해 주세요" onkeydown="">
                     </div>
                 </div>
             </div>
         </div>
     </main>
 
-    <footer class="bg-light">
-        <div class="container py-lg-5 py-4">
-            <div class="d-lg-flex align-items-center justify-content-between mb-lg-4 mb-3">
-                <a href="/why_html/index.html"><img src="/why_html/img/logo.png" srcset="/why_html/img/logo@2x.png 2x, /why_html/img/logo@3x.png 3x"></a>
-                <ul class="d-flex list-unstyled mb-0 font-weight-light footer-menu font-size-x mt-lg-0 mt-3">
-                    <li class="px-md-2 px-1 position-relative"><a href="/why_html/sub/terms.html" class="text-muted text-decoration-none">이용약관</a></li>
-                    <li class="px-md-2 px-1 position-relative"><a href="#x" class="text-muted text-decoration-none">서비스정보</a></li>
-                    <li class="px-md-2 px-1 position-relative"><a href="/why_html/sub/board_notice.html" class="text-muted text-decoration-none">공지사항</a></li>
-                    <li class="px-md-2 px-1 position-relative"><a href="#x" class="text-muted text-decoration-none">도움말</a></li>
-                    <li class="px-md-2 px-1 position-relative"><a href="#x" class="text-muted text-decoration-none">광고신청하기</a></li>
-                    <li class="px-md-2 px-1 position-relative"><a href="#x" class="text-muted text-decoration-none">호스트등록</a></li>
-                </ul>
-            </div>
+    <footer include-html="/why_html/include/footer.html"></footer>
 
-            <div class="border-top text-muted font-weight-light pt-lg-4 pt-3 font-size-x">
-                <p class="mb-0">상호명 : 아트바이어스<span class="text-divider"></span>대표 : 김사람<span class="text-divider"></span>사업자등록번호 : 123-45-67890<span class="text-divider"></span>통신판매업신고번호 : 2018-서울관악-12345<span class="text-divider"></span>
-                    <a href="#x" class="text-dark text-decoration-none font-weight-normal">사업자등록정보 ></a></p>
-                <p>영업소재지 : 서울특별시 강남구 테헤란로 123<span class="text-divider"></span>이메일 : info@artbyus.com<span class="text-divider"></span>대표전화 : 02-123-4567 (평일 오전 9시 ~ 오후 6시, 공휴일 제외)</p>
+    <script src="/why_html/js/naver_login.js"></script>
+    <script src="/why_html/js/login.js"></script>
 
-                <div class="d-lg-flex mb-3">
-                    <a href="#x" class="text-dark text-decoration-none font-weight-normal mr-2">온라인 1:1문의 바로가기</a>
-                    <span>(평일 2시 ~ 오후 6시) * 공간에 대한 문의사항은 해당 공간 호스트에게 직접 문의해 주세요.</span>
-                </div>
+    <script>includeHTML({});</script>
+    <script>login_header();</script>
 
-                <p>아트바이어스는 통신판매중개자이며 통신판매의 당사자가 아닙니다. 따라서 아트바이어스는 공간 거래정보 및 거래에 대해 책임지지 않습니다.</p>
-                <p class="text-right font-weight-light text-light-gray">Copyright ART BY US crop. All Right Reserved.</p>
-            </div>
-        </div>
-    </footer>
+    <script type="text/javascript">
+        function onLogout() {
+            sessionStorage.clear();
+            location.href = "index.html";
+        }
+    </script>
 </body>
 
 </html>

@@ -12,7 +12,7 @@ function normal_login() {
         result.result == "true"
       ) {
         //alert(result.user_nickname);
-        sessionStorage.setItem("id", result.user_key);
+        sessionStorage.setItem("id", result.user_email);
         sessionStorage.setItem("nickname", result.user_nickname);
         sessionStorage.setItem("phone", result.user_phone);
         window.location.href = "index.html";
