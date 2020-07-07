@@ -220,6 +220,12 @@
             
         }
     }
+
+    var getCookie = function(name) {
+        var value = document.cookie.match('(^|;) ?' + name + '=([^;]*)(;|$)');
+        return value? value[2] : null;
+    };
+    
     function CheckForm(studio_name,studio_addr,studio_addr2,studio_intro){
         if(studio_name == ""){
             alert("스튜디오 이름을 입력해주세요.");
