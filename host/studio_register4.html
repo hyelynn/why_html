@@ -1073,15 +1073,19 @@
 </body>
 <script>
     function blank_change(day){
-        var input_mon = document.getElementsByClassName("input_"+day);
-        var start = parseInt($("#start_"+day).val());
-        var end = parseInt($("#end_"+day).val());
-        for(var i= 0;i<start;i++){
-            input_mon[i].prop("disabled", false);
-        }for(var i= start;i<end;i++){
-            input_mon[i].prop("disabled", false);
-        }for(var i = end;i<24;i++){
-            input_mon[i].attr("disabled", true);
+        var input_day = document.getElementsByClassName("input_"+day);
+        
+        var start = parseInt(document.getElementById("start_"+day).value);
+        var end = parseInt(document.getElementById("end_"+day).value);
+
+        for(var i = 0; i < start; i++){
+            input_day[i].disabled = true;
+        }
+        for(var j = start; j < end; j++){
+            input_day[j].disabled = false;
+        }
+        for(var k = end; k < input_day.length; k++){
+            input_day[k].disabled = true;
         }
     }
 
