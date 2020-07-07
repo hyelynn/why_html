@@ -68,60 +68,18 @@
                 <!-- chat -->
                 <div class="col-xl-8 col-7 px-0">
                     <!-- date -->
-                    <div class="font-weight-light">
+                    <!-- <div class="font-weight-light">
                         <div class="text-center my-3">
                             <span class="d-inline-block rounded-xl px-3 py-1 bg-light">2020년 05월 01일</span>
                         </div>
-                    </div>
+                    </div> -->
 
                     <!-- msg -->
-                    <div class="px-3">
-                        <!-- Reciever -->
-                        <div class="d-flex justify-content-end mb-3">
-                            <div class="ml-auto font-weight-light user-msg">
-                                <div class="bg-sky rounded-xl p-md-3 p-2 mb-2 text-white chat-msg">
-                                    <img src="/why_html/img/section-2-photo.jpg" alt="" class="w-100 mb-2">
-                                    <p class="mb-2">사당 안무연습실 예약 요청이 되었습니다.<br>호스트의 답변을 기다려주세요.</p>
-                                    <p class="mb-0">예약자 : 김민범<br>호실 : G1<br>예약일시 : 2020-05-03 18:00 ~ 2020-05-04 20:00</p>
-                                </div>
-                                <p class="text-light-gray font-size-xs">14:51</p>
-                            </div>
-                        </div>
-
-                        <!-- Sender -->
-                        <div class="d-flex justify-content-start mb-3">
-                            <div class="mr-auto font-weight-light user-msg">
-                                <div class="d-flex mb-2">
-                                    <div class="d-flex justify-content-center rounded-circle overflow-hidden mr-2 user-bg sm">
-                                        <img src="/why_html/img/studio-host.jpg" class="align-self-center w-100 h-100" alt="">
-                                    </div>
-                                    <p class="mb-0">사당안무연습실 호스트</p>
-                                </div>
-                                <div class="bg-light rounded-xl p-md-3 p-2 mb-2 chat-msg">
-                                    <p class="mb-0">
-                                        안녕하세요 ^^ 사당안무연습실입니다.<br>
-                                        예약 내용 확인되어 예약 확정 진행하려고 합니다.<br>
-                                        괜찮으신가요?
-                                    </p>
-                                </div>
-                                <p class="text-right text-light-gray font-size-xs">19:00</p>
-                            </div>
-                        </div>
-
-                        <!-- Reciever -->
-                        <div class="d-flex justify-content-end mb-3">
-                            <div class="ml-auto font-weight-light user-msg">
-                                <div class="bg-sky rounded-xl p-md-3 p-2 mb-2 text-white chat-msg">
-                                    <p class="mb-0">네, 진행 부탁드립니다.</p>
-                                </div>
-                                <p class="text-light-gray font-size-xs">19:51</p>
-                            </div>
-                        </div>
-                    </div>
+                    <div class="px-3" id="msgs"> </div>
 
                     <!-- input -->
                     <div class="custom-inputs chat-msg-input">
-                        <input type="text" class="form-control border-0 font-size-s" placeholder="여기에 메시지를 입력해 주세요">
+                        <input id="msg" type="text" class="form-control border-0 font-size-s" placeholder="여기에 메시지를 입력해 주세요" onkeydown="">
                     </div>
                 </div>
             </div>
