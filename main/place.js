@@ -27,7 +27,7 @@ $(document).ready(function () {
           $(
             "<div class='col-lg-3 col-6'><div class='card border-0'>" +
               prefix +
-              "<img src='"+item.studio_thumbnail+"' class='card-img-top rounded-0' srcset='img/section-2-photo@2x.jpg 2x, img/section-2-photo@3x.jpg 3x' alt=''>" +
+              "<img src='"+item.studio_thumbnail+"' class='card-img-top rounded-0'>" +
               "<h5 class='mt-lg-3 mt-2'>" +
               item.studio_name +
               "</h5>" +
@@ -49,7 +49,7 @@ $(document).ready(function () {
           $(
             "<div class='col-lg-3 col-6'><div class='card border-0'>" +
               prefix +
-              "<img src='"+item.studio_thumbnail+"' class='card-img-top rounded-0' srcset='img/section-2-photo@2x.jpg 2x, img/section-2-photo@3x.jpg 3x' alt=''>" +
+              "<img src='"+item.studio_thumbnail+"' class='card-img-top rounded-0'>" +
               "<h5 class='mt-lg-3 mt-2'>" +
               item.studio_name +
               "</h5>" +
@@ -71,7 +71,7 @@ $(document).ready(function () {
           $(
             "<div class='col-lg-3 col-6'><div class='card border-0'>" +
               prefix +
-              "<img src='"+item.studio_thumbnail+"' class='card-img-top rounded-0' srcset='img/section-2-photo@2x.jpg 2x, img/section-2-photo@3x.jpg 3x' alt=''>" +
+              "<img src='"+item.studio_thumbnail+"' class='card-img-top rounded-0'>" +
               "<h5 class='mt-lg-3 mt-2'>" +
               item.studio_name +
               "</h5>" +
