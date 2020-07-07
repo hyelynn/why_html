@@ -1073,11 +1073,10 @@
 </body>
 <script>
     function blank_change(day){
-        var input_mon = $(".input_"+day);
+        var input_mon = document.getElementsByClassName("input_"+day);
         var start = parseInt($("#start_"+day).val());
         var end = parseInt($("#end_"+day).val());
         for(var i= 0;i<start;i++){
-            alert(start);
             input_mon[i].prop("disabled", false);
         }for(var i= start;i<end;i++){
             input_mon[i].prop("disabled", false);
@@ -1118,7 +1117,6 @@
         var price_sun = "";
 
         for(var i = start_mon;i<end_mon;i++){
-            alert(i);
             if(i == start_mon) price_mon = mon[i].value;
             else{
                 price_mon += "/"+mon[i].value;
