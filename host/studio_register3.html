@@ -468,6 +468,12 @@
     }
 
 
+    var setCookie = function(name, value, day) {
+        var date = new Date();
+        date.setTime(date.getTime() + day * 60 * 60 * 24 * 1000);
+        document.cookie = name + '=' + value + ';expires=' + date.toUTCString() + ';path=/';
+    };
+
     function CheckForm(){
         var studioYoutube = document.getElementById("studioYoutube").value;
         var studioText = document.getElementById("studioText").value;
@@ -475,7 +481,12 @@
         var studioAddr = document.getElementById("studioAddr").value;
         var arr_conv = document.getElementsByName("conv[]");
         var arr_tags = document.getElementsByName("tags[]");
-        var convText = "0";
+        var convText = "";
+        var tagText = "";
+        setCookie("studioYoutube",studioYoutube,1);
+        setCookie("studioText",studioText,1);
+        setCookie("studioTerms",studioTerms,1);
+        setCookie("studioAddr",studioAddr,1);
         for(var i=0;i<arr_conv.length;i++){
             if(arr_conv[i].checked == true) {
                 convText += ","+i;
@@ -483,10 +494,10 @@
             }
         }
         for(var i=0;i<arr_tags.length;i++){
-                convText += ","+arr_tags[i].textContent;
+            tagText += ","+arr_tags[i].textContent;
         }
-        alert(convText);
-
+        setCookie("conv",convText,1);
+        setCookie("tags",tagText,1);
     }
 
     $('#studioTerms').keyup(function (e){
