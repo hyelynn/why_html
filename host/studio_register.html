@@ -183,7 +183,7 @@
         </div>
 
         <!-- 다음단계 -->
-        <a href="studio_register2.html"
+        <a id="go_next" onclick="goNext();"
             class="btn bg-yellow btn-block rounded-0 py-lg-4 py-3 mt-lg-5 mt-3 font-size-m">다음으로 이동</a>
     </main>
 
@@ -210,6 +210,71 @@
         crossorigin="anonymous"></script>
 
     <script src="/why_html/js/custom.js"></script>
+    <script>
+        $(document).ready(function (){
+            var xhr = new XMLHttpRequest();
+        xhr.onreadystatechange = function() {
+            if (xhr.readyState === xhr.DONE) { 
+                if (xhr.status === 200 || xhr.status === 201) {
+                    setCookie("s3_id",request.responseText.studio_key,1);
+                    alert("스튜디오 등록완료");
+                } else {
+                    alert("등록이 정상적으로 이루어지지 않았습니다. 다시 시도해주세요.");
+                    console.error(xhr.responseText);
+                }
+            }else{
+            }
+        };
+        xhr.open('POST', 'http://3.34.150.116:3000/studio/create',true);
+        xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+        xhr.send("user_id="+sessionStorage.getItem("id")); 
+        
+        });
+
+
+        $('input[name=category_depth]').on('change', function (e) {
+            if ($("input[name='category_depth']:checked").length > 2) {
+                $(this).prop('checked', false);
+                alert("최대 2개까지 선택 가능합니다.");
+            }else if($("input[name='category_depth']:checked").length <= 0 ){
+                $('#go_next').prop('checked', false);
+            }
+        });
+
+        function goNext(){
+            var category = document.getElementsByName("category");
+            var category_depth = document.getElementsByName("category_depth");
+            var cateText = "";
+            var cateDepText = [];
+            for(var i = 0;i<category.length;i++){
+                if(category[i].checked){
+                    cateText = category[i].value;
+                    setCookie("category",cateText,1);
+                    break;
+                }
+            }
+            
+            for(var i=0;i<category_depth.length;i++){
+                if(category_depth[i].checked){
+                    cateDepText.push(category_depth[i].value);
+                }
+            }
+            setCookie("category_dept",cateDepText,1);
+            window.location.href = "/host/studio_register2.html";
+
+        }
+
+        var setCookie = function(name, value, day) {
+            var date = new Date();
+            date.setTime(date.getTime() + day * 60 * 60 * 24 * 1000);
+            document.cookie = name + '=' + value + ';expires=' + date.toUTCString() + ';path=/';
+        };
+
+        var getCookie = function(name) {
+            var value = document.cookie.match('(^|;) ?' + name + '=([^;]*)(;|$)');
+            return value? value[2] : null;
+        };
+    </script>
 </body>
 
 </html>
