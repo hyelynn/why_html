@@ -217,7 +217,7 @@
             if (xhr.readyState === xhr.DONE) { 
                 if (xhr.status === 200 || xhr.status === 201) {
                     var result = JSON.parse(xhr.responseText);
-                    setCookie("s3_id",result.studio_key,1);
+                    setCookie("s3_id",result[0].studio_key,1);
                     alert(getCookie("s3_id"));
                     console.log(result[0].studio_key + ":::::"+getCookie("s3_id"));
                 } else {
