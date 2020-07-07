@@ -1183,9 +1183,9 @@
                 $("#end_"+day).attr("disabled",true); 
                 $('.input_'+day).prop("disabled", true);
             }else{
-                blank_change(day,0,24);
                 $("#start_"+day).attr("disabled",false); 
                 $("#end_"+day).attr("disabled",false); 
+                blank_change(day,0,24);
                 for(var i= start;i<end;i++){
                     input_mon[i].attr("disabled",false);
                 }

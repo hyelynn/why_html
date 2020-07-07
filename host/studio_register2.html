@@ -205,7 +205,7 @@
             xhr.onreadystatechange = function() {
                 if (xhr.readyState === xhr.DONE) { 
                     if (xhr.status === 200 || xhr.status === 201) {
-                        window.location.href = "/why_html//host/studio_register3.html";
+                        window.location.href = "/why_html/host/studio_register3.html";
                     } else {
                         alert("등록이 정상적으로 이루어지지 않았습니다. 다시 시도해주세요.");
                         console.error(xhr.responseText);
@@ -215,7 +215,7 @@
             };
             xhr.open('POST', 'http://3.34.150.116:3000/studio/apply/name',true);
             xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
-            xhr.send("key="+getCookie("s3_id")+"&studio_name="+studio_name+"&studio_room="+studio_room
+            xhr.send("key="+12+"&studio_name="+studio_name+"&studio_room="+studio_room
             +"&studio_addr="+studio_addr+"&studio_addr2="+studio_addr2+"&studio_intro="+studio_intro); 
             
         }
@@ -241,6 +241,7 @@
             document.getElementById("studio_intro").focus();
             return false;
         }
+        return true;
     }
 
     </script>
