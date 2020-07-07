@@ -1190,10 +1190,10 @@
         var additional = document.getElementById("additional").value;
         var standard = document.getElementById("standard").value;
         var reserv_type = document.getElementsByName("reserv_type");
-        var reser_type = "";
+        var resv = "";
         for(var i = 0;i<reserv_type.length;i++){
             if(reserv_type[i].checked){
-                reser_type = reserv_type[i].value;
+                resv = reserv_type[i].value;
                 break;
             }
         }
@@ -1213,11 +1213,11 @@
         xhr.open('POST', 'http://3.34.150.116:3000/studio/apply/sub',true);
         xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
         xhr.send("key="+getCookie("s3_id")+"&numberUpDown="+numberUpDown+"&additional="+additional
-        +"&standard="+standard+"&reser_type="+reser_type); 
+        +"&standard="+standard+"&resv="+resv); 
         
     }
     function insert(){
-        // goPrice();
+        goPrice();
         goSub();
     }
 
