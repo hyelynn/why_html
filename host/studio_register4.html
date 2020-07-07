@@ -1116,49 +1116,50 @@
         var price_sat = "";
         var price_sun = "";
 
-        for(var i = start_mon;i<end_mon-1;i++){
+        for(var i = start_mon;i<end_mon;i++){
             if(i == start_mon) price_mon = mon[i].value;
             else{
                 price_mon += "/"+mon[i].value;
             }
         }
 
-        for(var i = start_tue;i<end_tue-1;i++){
+        for(var i = start_tue;i<end_tue;i++){
             if(i == start_tue) price_tue = tue[i];
             else{
                 price_tue += "/"+tue[i];
             }
         }
-        for(var i =start_wed;i<end_wed-1;i++){
+        for(var i =start_wed;i<end_wed;i++){
             if(i == start_wed) price_wed = wed[i];
             else{
                 price_wed += "/"+wed[i];
             }
         }
-        for(var i =start_thr;i<end_thr-1;i++){
+        for(var i =start_thr;i<end_thr;i++){
             if(i == start_thr) price_thr = thr[i];
             else{
                 price_thr += "/"+thr[i];
             }
         }
-        for(var i = start_fri;i<end_fri-1;i++){
+        for(var i = start_fri;i<end_fri;i++){
             if(i == start_fri) price_fri = fri[i];
             else{
                 price_fri += "/"+fri[i];
             }
         }
-        for(var i = start_sat;i<end_sat-1;i++){
+        for(var i = start_sat;i<end_sat;i++){
             if(i == start_sat) price_sat = sat[i];
             else{
                 price_sat += "/"+sat[i];
             }
         }
-        for(var i = start_sun;i<end_sun-1;i++){
+        for(var i = start_sun;i<end_sun;i++){
             if(i == start_sun) price_sun = sun[i];
             else{
                 price_sun += "/"+sun[i];
             }
         }
+        alert(price_mon);
 
         var xhr = new XMLHttpRequest();
         xhr.onreadystatechange = function() {
