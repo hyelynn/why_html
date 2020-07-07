@@ -183,7 +183,7 @@
         </div>
 
         <!-- 다음단계 -->
-        <a href="studio_register2.html"
+        <a id="go_next" onclick="goNext();"
             class="btn bg-yellow btn-block rounded-0 py-lg-4 py-3 mt-lg-5 mt-3 font-size-m">다음으로 이동</a>
     </main>
 
@@ -210,6 +210,54 @@
         crossorigin="anonymous"></script>
 
     <script src="/why_html/js/custom.js"></script>
+    <script>
+        $('input[name=category_depth]').on('change', function (e) {
+            if ($("input[name='category_depth']:checked").length > 2) {
+                $(this).prop('checked', false);
+                alert("최대 2개까지 선택 가능합니다.");
+            }else if($("input[name='category_depth']:checked").length <= 0 ){
+                $('#go_next').prop('checked', false);
+            }
+        });
+
+        function goNext(){
+            var category = document.getElementsByName("category");
+            var category_depth = document.getElementsByName("category_depth");
+            var cateText = "";
+            var cateDepText = "";
+            for(var i = 0;i<category.length;i++){
+                if(category[i].checked){
+                    cateText = category[i].value;
+                    setCookie("category",cateText,1);
+                    break;
+                }
+            }
+            
+            for(var i=0;i<category_depth.length;i++){
+                if(category_depth[i].checked){
+                    cateDepText += ","+category_depth[i].value;
+                }
+            }
+            setCookie("category_dept",cateDepText,1);
+
+        }
+
+        var setCookie = function(name, value, day) {
+            var date = new Date();
+            date.setTime(date.getTime() + day * 60 * 60 * 24 * 1000);
+            document.cookie = name + '=' + value + ';expires=' + date.toUTCString() + ';path=/';
+        };
+
+        var getCookie = function(name) {
+            var value = document.cookie.match('(^|;) ?' + name + '=([^;]*)(;|$)');
+            return value? value[2] : null;
+        };
+        
+        var deleteCookie = function(name) {
+            var date = new Date();
+            document.cookie = name + "= " + "; expires=" + date.toUTCString() + "; path=/";
+        }
+    </script>
 </body>
 
 </html>

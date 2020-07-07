@@ -132,7 +132,6 @@
                 <div class="mb-lg-5 mb-3">
                     <div class="text-gray font-weight-light">
                         <label for="studio_youtube" class="float-left">소개 영상</label>
-                        <span class="float-right">0/20</span>
                     </div>
                     <input type="text" id="studioYoutube" class="form-control" placeholder="YouTube URL로 업로드 해주세요">
                 </div>
@@ -141,7 +140,7 @@
                 <div class="mb-lg-5 mb-3">
                     <div class="text-gray font-weight-light">
                         <label for="studio_text" class="float-left">스튜디오 상세 소개</label>
-                        <span class="float-right">0/700</span>
+                        <span class="float-right" id="studioText_cnt">0/700</span>
                     </div>
                     <textarea name="" id="studioText" cols="30" rows="10" class="form-control large"
                         placeholder="스튜디오 소개글을 작성하세요"></textarea>
@@ -151,7 +150,7 @@
                 <div class="mb-lg-5 mb-3">
                     <div class="text-gray font-weight-light">
                         <label for="studio_terms" class="float-left">스튜디오 이용 약관</label>
-                        <span class="float-right">0/700</span>
+                        <span class="float-right" id="studioTerms_cnt">0/700</span>
                     </div>
                     <textarea name="" id="studioTerms" cols="30" rows="10" class="form-control large"
                         placeholder="사용자가 인지할 수 있는 약관을 작성하세요. ※ 환불규정은 아트바이어스의 공동 환불정책으로 적용됩니다."></textarea>
@@ -160,7 +159,7 @@
                 <!-- 추가 이미지(본문) -->
                 <div class="mb-lg-5 mb-3">
                     <div class="text-gray font-weight-light">
-                        <label class="float-left">추가 이미지 (최대 14장)</label>
+                        <label class="float-left">상세 설명 이미지 (최대 14장)</label>
                     </div>
                     <div class="d-flex custom-file mb-3">
                         <input class="upload-name form-control flex-fill" value="최대 14장, JPG, PNG 파일만 가능합니다"
@@ -197,22 +196,22 @@
                     <!-- 태그 -->
                     <div class="d-flex align-content-center flex-wrap host-search-tags">
                         <div class="tag mt-3">
-                            <span class="mr-lg-2">서울대</span>
+                            <span class="mr-lg-2" name="tags[]" value="서울대">서울대</span>
                             <button type="button" class="btn bg-transparent" onclick="removeTag(this)"><i
                                     class="fa fa-times text-red"></i></button>
                         </div>
                         <div class="tag mt-3">
-                            <span class="mr-lg-2">서울대입구역</span>
+                            <span class="mr-lg-2" name="tags[]" value="서울대입구역">서울대입구역</span>
                             <button type="button" class="btn bg-transparent" onclick="removeTag(this)"><i
                                     class="fa fa-times text-red"></i></button>
                         </div>
                         <div class="tag mt-3">
-                            <span class="mr-lg-2">밴드연습실</span>
+                            <span class="mr-lg-2" name="tags[]" value="밴드연습실">밴드연습실</span>
                             <button type="button" class="btn bg-transparent" onclick="removeTag(this)"><i
                                     class="fa fa-times text-red"></i></button>
                         </div>
                         <div class="tag mt-3">
-                            <span class="mr-lg-2">기타</span>
+                            <span class="mr-lg-2" name="tags[]" value="기타">기타</span>
                             <button type="button" class="btn bg-transparent" onclick="removeTag(this)"><i
                                     class="fa fa-times text-red"></i></button>
                         </div>
@@ -227,145 +226,145 @@
                     <!-- 항목 선택 -->
                     <div class="row">
                         <div class="col-lg-6half col-md-4 col-6 d-flex align-items-start mb-4">
-                            <input type="checkbox" class="custom-checkbox mr-2" id="1">
+                            <input type="checkbox" class="custom-checkbox mr-2" name="conv[]">
                             <label for="1" class="mb-0">TV/프로젝트</label>
                         </div>
                         <div class="col-lg-6half col-md-4 col-6 d-flex align-items-start mb-4">
-                            <input type="checkbox" class="custom-checkbox mr-2" id="2">
+                            <input type="checkbox" class="custom-checkbox mr-2" name="conv[]">
                             <label for="2" class="mb-0">Wi-fi</label>
                         </div>
                         <div class="col-lg-6half col-md-4 col-6 d-flex align-items-start mb-4">
-                            <input type="checkbox" class="custom-checkbox mr-2" id="3">
+                            <input type="checkbox" class="custom-checkbox mr-2" name="conv[]">
                             <label for="3" class="mb-0">유선랜</label>
                         </div>
                         <div class="col-lg-6half col-md-4 col-6 d-flex align-items-start mb-4">
-                            <input type="checkbox" class="custom-checkbox mr-2" id="4">
+                            <input type="checkbox" class="custom-checkbox mr-2" name="conv[]">
                             <label for="4" class="mb-0">복합기</label>
                         </div>
                         <div class="col-lg-6half col-md-4 col-6 d-flex align-items-start mb-4">
-                            <input type="checkbox" class="custom-checkbox mr-2" id="5">
+                            <input type="checkbox" class="custom-checkbox mr-2" name="conv[]">
                             <label for="5" class="mb-0">스피커</label>
                         </div>
                         <div class="col-lg-6half col-md-4 col-6 d-flex align-items-start mb-4">
-                            <input type="checkbox" class="custom-checkbox mr-2" id="6">
+                            <input type="checkbox" class="custom-checkbox mr-2" name="conv[]">
                             <label for="6" class="mb-0">마이크</label>
                         </div>
                         <div class="col-lg-6half col-md-4 col-6 d-flex align-items-start mb-4">
-                            <input type="checkbox" class="custom-checkbox mr-2" id="7">
+                            <input type="checkbox" class="custom-checkbox mr-2" name="conv[]">
                             <label for="7" class="mb-0">발레 바</label>
                         </div>
                         <div class="col-lg-6half col-md-4 col-6 d-flex align-items-start mb-4">
-                            <input type="checkbox" class="custom-checkbox mr-2" id="8">
+                            <input type="checkbox" class="custom-checkbox mr-2" name="conv[]">
                             <label for="8" class="mb-0">화장실</label>
                         </div>
                         <div class="col-lg-6half col-md-4 col-6 d-flex align-items-start mb-4">
-                            <input type="checkbox" class="custom-checkbox mr-2" id="9">
+                            <input type="checkbox" class="custom-checkbox mr-2" name="conv[]">
                             <label for="9" class="mb-0">샤워실</label>
                         </div>
                         <div class="col-lg-6half col-md-4 col-6 d-flex align-items-start mb-4">
-                            <input type="checkbox" class="custom-checkbox mr-2" id="10">
+                            <input type="checkbox" class="custom-checkbox mr-2" name="conv[]">
                             <label for="10" class="mb-0">드레스룸</label>
                         </div>
                         <div class="col-lg-6half col-md-4 col-6 d-flex align-items-start mb-4">
-                            <input type="checkbox" class="custom-checkbox mr-2" id="11">
+                            <input type="checkbox" class="custom-checkbox mr-2" name="conv[]">
                             <label for="11" class="mb-0">주차</label>
                         </div>
                         <div class="col-lg-6half col-md-4 col-6 d-flex align-items-start mb-4">
-                            <input type="checkbox" class="custom-checkbox mr-2" id="12">
+                            <input type="checkbox" class="custom-checkbox mr-2" name="conv[]">
                             <label for="12" class="mb-0">금연</label>
                         </div>
                         <div class="col-lg-6half col-md-4 col-6 d-flex align-items-start mb-4">
-                            <input type="checkbox" class="custom-checkbox mr-2" id="13">
+                            <input type="checkbox" class="custom-checkbox mr-2" name="conv[]">
                             <label for="13" class="mb-0">PC</label>
                         </div>
                         <div class="col-lg-6half col-md-4 col-6 d-flex align-items-start mb-4">
-                            <input type="checkbox" class="custom-checkbox mr-2" id="14">
+                            <input type="checkbox" class="custom-checkbox mr-2" name="conv[]">
                             <label for="14" class="mb-0">24시간</label>
                         </div>
                         <div class="col-lg-6half col-md-4 col-6 d-flex align-items-start mb-4">
-                            <input type="checkbox" class="custom-checkbox mr-2" id="15">
+                            <input type="checkbox" class="custom-checkbox mr-2" name="conv[]">
                             <label for="15" class="mb-0">개인 라커</label>
                         </div>
                         <div class="col-lg-6half col-md-4 col-6 d-flex align-items-start mb-4">
-                            <input type="checkbox" class="custom-checkbox mr-2" id="16">
+                            <input type="checkbox" class="custom-checkbox mr-2" name="conv[]">
                             <label for="16" class="mb-0">정수기</label>
                         </div>
                         <div class="col-lg-6half col-md-4 col-6 d-flex align-items-start mb-4">
-                            <input type="checkbox" class="custom-checkbox mr-2" id="17">
+                            <input type="checkbox" class="custom-checkbox mr-2" name="conv[]">
                             <label for="17" class="mb-0">냉난방</label>
                         </div>
                         <div class="col-lg-6half col-md-4 col-6 d-flex align-items-start mb-4">
-                            <input type="checkbox" class="custom-checkbox mr-2" id="18">
+                            <input type="checkbox" class="custom-checkbox mr-2" name="conv[]">
                             <label for="18" class="mb-0">바닥 난방</label>
                         </div>
                         <div class="col-lg-6half col-md-4 col-6 d-flex align-items-start mb-4">
-                            <input type="checkbox" class="custom-checkbox mr-2" id="19">
+                            <input type="checkbox" class="custom-checkbox mr-2" name="conv[]">
                             <label for="19" class="mb-0">개별 냉난방</label>
                         </div>
                         <div class="col-lg-6half col-md-4 col-6 d-flex align-items-start mb-4">
-                            <input type="checkbox" class="custom-checkbox mr-2" id="20">
+                            <input type="checkbox" class="custom-checkbox mr-2" name="conv[]">
                             <label for="20" class="mb-0">전신거울</label>
                         </div>
                         <div class="col-lg-6half col-md-4 col-6 d-flex align-items-start mb-4">
-                            <input type="checkbox" class="custom-checkbox mr-2" id="21">
+                            <input type="checkbox" class="custom-checkbox mr-2" name="conv[]">
                             <label for="21" class="mb-0">댄스 플로어</label>
                         </div>
                         <div class="col-lg-6half col-md-4 col-6 d-flex align-items-start mb-4">
-                            <input type="checkbox" class="custom-checkbox mr-2" id="22">
+                            <input type="checkbox" class="custom-checkbox mr-2" name="conv[]">
                             <label for="22" class="mb-0">마루바닥</label>
                         </div>
                         <div class="col-lg-6half col-md-4 col-6 d-flex align-items-start mb-4">
-                            <input type="checkbox" class="custom-checkbox mr-2" id="23">
+                            <input type="checkbox" class="custom-checkbox mr-2" name="conv[]">
                             <label for="23" class="mb-0">필로티 기둥</label>
                         </div>
                         <div class="col-lg-6half col-md-4 col-6 d-flex align-items-start mb-4">
-                            <input type="checkbox" class="custom-checkbox mr-2" id="24">
+                            <input type="checkbox" class="custom-checkbox mr-2" name="conv[]">
                             <label for="24" class="mb-0">조명(제어가능)</label>
                         </div>
                         <div class="col-lg-6half col-md-4 col-6 d-flex align-items-start mb-4">
-                            <input type="checkbox" class="custom-checkbox mr-2" id="25">
+                            <input type="checkbox" class="custom-checkbox mr-2" name="conv[]">
                             <label for="25" class="mb-0">창문</label>
                         </div>
                         <div class="col-lg-6half col-md-4 col-6 d-flex align-items-start mb-4">
-                            <input type="checkbox" class="custom-checkbox mr-2" id="26">
+                            <input type="checkbox" class="custom-checkbox mr-2" name="conv[]">
                             <label for="26" class="mb-0">삼각</label>
                         </div>
                         <div class="col-lg-6half col-md-4 col-6 d-flex align-items-start mb-4">
-                            <input type="checkbox" class="custom-checkbox mr-2" id="27">
+                            <input type="checkbox" class="custom-checkbox mr-2" name="conv[]">
                             <label for="27" class="mb-0">센트</label>
                         </div>
                         <div class="col-lg-6half col-md-4 col-6 d-flex align-items-start mb-4">
-                            <input type="checkbox" class="custom-checkbox mr-2" id="28">
+                            <input type="checkbox" class="custom-checkbox mr-2" name="conv[]">
                             <label for="28" class="mb-0">CCTV</label>
                         </div>
                         <div class="col-lg-6half col-md-4 col-6 d-flex align-items-start mb-4">
-                            <input type="checkbox" class="custom-checkbox mr-2" id="29">
+                            <input type="checkbox" class="custom-checkbox mr-2" name="conv[]">
                             <label for="29" class="mb-0">드럼 제외</label>
                         </div>
                         <div class="col-lg-6half col-md-4 col-6 d-flex align-items-start mb-4">
-                            <input type="checkbox" class="custom-checkbox mr-2" id="30">
+                            <input type="checkbox" class="custom-checkbox mr-2" name="conv[]">
                             <label for="30" class="mb-0">셀프 녹음기</label>
                         </div>
                         <div class="col-lg-6half col-md-4 col-6 d-flex align-items-start mb-4">
-                            <input type="checkbox" class="custom-checkbox mr-2" id="31">
+                            <input type="checkbox" class="custom-checkbox mr-2" name="conv[]">
                             <label for="31" class="mb-0">제습기</label>
                         </div>
                         <div class="col-lg-6half col-md-4 col-6 d-flex align-items-start mb-4">
-                            <input type="checkbox" class="custom-checkbox mr-2" id="32">
+                            <input type="checkbox" class="custom-checkbox mr-2" name="conv[]">
                             <label for="32" class="mb-0">공기 청정기</label>
                         </div>
                         <div class="col-lg-6half col-md-4 col-6 d-flex align-items-start mb-4">
-                            <input type="checkbox" class="custom-checkbox mr-2" id="33">
+                            <input type="checkbox" class="custom-checkbox mr-2" name="conv[]">
                             <label for="33" class="mb-0">정기 소독</label>
                         </div>
                         <div class="col-lg-6half col-md-4 col-6 d-flex align-items-start mb-4">
-                            <input type="checkbox" class="custom-checkbox mr-2" id="34">
+                            <input type="checkbox" class="custom-checkbox mr-2" name="conv[]">
                             <label for="34" class="mb-0">실측사이즈<br>(가로/세로/천고)</label>
                         </div>
                     </div>
                     <!-- 직접입력 -->
                     <div class="d-flex justify-content-start align-items-center">
-                        <input type="checkbox" class="custom-checkbox mr-2">
+                        <input type="checkbox" class="custom-checkbox mr-2" name="conv[]">
                         <input type="text" class="form-control w-50" placeholder="직접 입력해 주세요">
                     </div>
                 </div>
@@ -385,7 +384,7 @@
         <div class="overflow-hidden mt-lg-5 mt-3">
             <a href="studio_register2.html" class="btn bg-gray float-left w-50 rounded-0 py-lg-4 py-3 font-size-m">이전
                 단계로 이동</a>
-            <a href="studio_register4.html"
+            <a  href="javaScript:CheckForm();"
                 class="btn bg-yellow float-right w-50 rounded-0 py-lg-4 py-3 font-size-m">다음으로 이동</a>
         </div>
     </main>
@@ -467,6 +466,48 @@
     function removeTag(obj) {
         $(obj).parent().remove();
     }
+
+
+    function CheckForm(){
+        var studioYoutube = document.getElementById("studioYoutube").value;
+        var studioText = document.getElementById("studioText").value;
+        var studioTerms = document.getElementById("studioTerms").value;
+        var studioAddr = document.getElementById("studioAddr").value;
+        var arr_conv = document.getElementsByName("conv[]");
+        var arr_tags = document.getElementsByName("tags[]");
+        var convText = "0";
+        for(var i=0;i<arr_conv.length;i++){
+            if(arr_conv[i].checked == true) {
+                convText += ","+i;
+               
+            }
+        }
+        for(var i=0;i<arr_tags.length;i++){
+                convText += ","+arr_tags[i].textContent;
+        }
+        alert(convText);
+
+    }
+
+    $('#studioTerms').keyup(function (e){
+        var content = $(this).val();
+        $('#studioTerms_cnt').html(content.length+"/700"); 
+        if (content.length > 700){
+            alert("최대 700자까지 입력 가능합니다.");
+            $(this).val(content.substring(0, 700));
+            $('#studioTerms_cnt').html("700/700");
+        }
+    });
+
+    $('#studioText').keyup(function (e){
+        var content = $(this).val();
+        $('#studioText_cnt').html(content.length+"/700"); 
+        if (content.length > 700){
+            alert("최대 700자까지 입력 가능합니다.");
+            $(this).val(content.substring(0, 700));
+            $('#studioText_cnt').html("700/700");
+        }
+    });
 </script>
 
 </html>

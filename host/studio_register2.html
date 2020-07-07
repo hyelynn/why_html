@@ -31,6 +31,17 @@
         Kakao.init('d88bea310f4a39afbea3146fe1c0fa72');
         Kakao.isInitialized();
     </script>
+    <script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+    <script>
+        function postLoad(){
+            new daum.Postcode({
+            oncomplete: function(data) {
+                document.getElementById('studio_addr').value = data.address;
+            }
+        }).open();
+        }
+        
+    </script>
 </head>
 
 <body>
@@ -89,14 +100,14 @@
                 <div class="mb-lg-5 mb-3">
                     <div class="text-gray font-weight-light">
                         <label for="studio_name" class="float-left">스튜디오 이름</label>
-                        <span class="float-right">0/30</span>
+                        <span class="float-right" id="name_cnt">0/30</span>
                     </div>
                     <input type="text" id="studio_name" class="form-control" placeholder="예) 아트바이어스 밴드연습실">
                 </div>
                 <div class="mb-lg-5 mb-3">
                     <div class="text-gray font-weight-light">
                         <label for="studio_room" class="float-left">방 이름 (필수 항목은 아니며 단일 스튜디오면 생략가능합니다.)</label>
-                        <span class="float-right">0/20</span>
+                        <span class="float-right" id="room_cnt">0/20</span>
                     </div>
                     <input type="text" id="studio_room" class="form-control" placeholder="예) 301호">
                 </div>
@@ -105,14 +116,17 @@
                         <label for="studio_addr">스튜디오 주소</label>
                     </div>
                     <div class="d-flex">
-                        <input type="text" id="studio_addr" class="form-control" placeholder="주소검색 버튼을 눌러주세요">
-                        <button type="button" class="btn bg-yellow fnc-btn">주소검색</button>
+                        <input type="text" readonly id="studio_addr" class="form-control" placeholder="주소검색 버튼을 눌러주세요">
+                        <button type="button" id="post_btn" onClick="postLoad();" class="btn bg-yellow fnc-btn">주소검색</button>
+                    </div>
+                    <div class="d-flex">
+                        <input type="text" id="studio_addr2" class="form-control" placeholder="상세주소를 입력해주세요">
                     </div>
                 </div>
                 <div class="mb-lg-5 mb-3">
                     <div class="text-gray font-weight-light">
                         <label for="studio_intro" class="float-left">스튜디오 간단 소개</label>
-                        <span class="float-right">0/100</span>
+                        <span class="float-right" id ="intro_cnt">0/100</span>
                     </div>
                     <textarea name="" id="studio_intro" cols="30" rows="10" class="form-control"
                         placeholder="스튜디오를 소개 할 수 있는 간단한 멘트를 작성해 보세요"></textarea>
@@ -124,7 +138,7 @@
         <div class="overflow-hidden mt-lg-5 mt-3">
             <a href="studio_register.html" class="btn bg-gray float-left w-50 rounded-0 py-lg-4 py-3 font-size-m">이전 단계로
                 이동</a>
-            <a href="studio_register3.html"
+            <a id="go_next" onclick="goNext();"
                 class="btn bg-yellow float-right w-50 rounded-0 py-lg-4 py-3 font-size-m">다음으로 이동</a>
         </div>
     </main>
@@ -142,6 +156,81 @@
             sessionStorage.clear();
             location.href = "index.html";
         }
+    </script>
+
+    <script>
+    $('#studio_intro').keyup(function (e){
+        var content = $(this).val();
+        $('#intro_cnt').html(content.length+"/100"); 
+        if (content.length > 100){
+            alert("최대 100자까지 입력 가능합니다.");
+            $(this).val(content.substring(0, 100));
+            $('#intro_cnt').html("100/100");
+        }
+    });
+    $('#studio_name').keyup(function (e){
+        var content = $(this).val();
+        $('#name_cnt').html(content.length+"/30"); 
+        if (content.length > 30){
+            alert("최대 30자까지 입력 가능합니다.");
+            $(this).val(content.substring(0, 30));
+            $('#name_cnt').html("30/30");
+        }
+    });
+    $('#studio_room').keyup(function (e){
+        var content = $(this).val();
+        $('#room_cnt').html(content.length+"/20"); 
+        if (content.length > 20){
+            alert("최대 20자까지 입력 가능합니다.");
+            $(this).val(content.substring(0, 20));
+            $('#room_cnt').html("20/20");
+        }
+    });
+
+
+    var setCookie = function(name, value, day) {
+        var date = new Date();
+        date.setTime(date.getTime() + day * 60 * 60 * 24 * 1000);
+        document.cookie = name + '=' + value + ';expires=' + date.toUTCString() + ';path=/';
+    };
+    
+    function goNext(){
+        var studio_name = document.getElementById("studio_name").value;
+        var studio_room = document.getElementById("studio_room").value;
+        var studio_addr = document.getElementById("studio_addr").value;
+        var studio_addr2 = document.getElementById("studio_addr2").value;
+        var studio_intro = document.getElementById("studio_intro").value;
+        if(CheckForm(studio_name,studio_addr,studio_addr2,studio_intro)){
+            setCookie("studio_name",studio_name,1);
+            setCookie("studio_room",studio_room,1);
+            setCookie("studio_addr",studio_addr,1);
+            setCookie("studio_addr2",studio_addr2,1);
+            setCookie("studio_intro",studio_intro,1);
+        }
+    }
+    function CheckForm(studio_name,studio_addr,studio_addr2,studio_intro){
+        if(studio_name == ""){
+            alert("스튜디오 이름을 입력해주세요.");
+            document.getElementById("studio_name").focus();
+            return false;
+        }
+        if(studio_addr == ""){
+            alert("스튜디오 주소를 입력해주세요.");
+            document.getElementById("studio_addr").focus();
+            return false;
+        }
+        if(studio_addr2 == ""){
+            alert("스튜디오 상세주소를 입력해주세요.");
+            document.getElementById("studio_addr2").focus();
+            return false;
+        }
+        if(studio_intro == ""){
+            alert("스튜디오 간단소개를 입력해주세요.");
+            document.getElementById("studio_intro").focus();
+            return false;
+        }
+    }
+
     </script>
 
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
