@@ -267,10 +267,10 @@
                             <!-- 월 -->
                             <div class="d-flex">
                                 <div class="select-items text-center mr-lg-5 mr-3">
-                                    <input type="text"  id="start_mon" class="d-block text-decoration-none"value="00:00" onchange="blank_change('mon');">
+                                    <input type="text"  id="start_mon" class="d-block text-decoration-none"text="00:00" onchange="blank_change('mon');">
                                 </div>
                                 <div class="select-items text-center">
-                                    <input type="text"  id="end_mon" class="d-block text-decoration-none"value="00:00" onchange="blank_change('mon');">
+                                    <input type="text"  id="end_mon" class="d-block text-decoration-none"text="00:00" onchange="blank_change('mon');">
                                 </div>
                             </div>
                             <!-- 화 -->
@@ -279,7 +279,7 @@
                                     <input type="text"  id="start_tue" class="d-block text-decoration-none"value="00:00" onchange="blank_change('tue');">
                                 </div>
                                 <div class="select-items text-center">
-                                    <input type="text"  id="end_tue" class="d-block text-decoration-none"value="00:00" onchange="blank_change('tue');">
+                                    <input type="text"  id="end_tue" class="d-block text-decoration-none"text="00:00" onchange="blank_change('tue');">
                                 </div>
                             </div>
                             <!-- 수 : 위로 출력 -->
@@ -293,7 +293,7 @@
                             </div>
                             <!-- 목 : 위로 출력 -->
                             <div class="d-flex">
-                                <div class="select-items text-center mr-lg-5 mr-3">
+                                <div class="select-items text-center mr-lg-5 mr-2">
                                     <input type="text"  id="start_thr" class="d-block text-decoration-none"value="00:00" onchange="blank_change('thr');">
                                 </div>
                                 <div class="select-items text-center">
@@ -957,13 +957,13 @@
                                             <input type="text" class="input_thr">
                                         </td>
                                         <td class="inactive">
-                                            <input type="text" class="input_fri"  >
+                                            <input type="text" class="input_fri">
                                         </td>
                                         <td class="inactive">
-                                            <input type="text" class="input_sat"  >
+                                            <input type="text" class="input_sat">
                                         </td>
                                         <td class="inactive">
-                                            <input type="text" class="input_sun"  >
+                                            <input type="text" class="input_sun">
                                         </td>
                                     </tr>
                                 </tbody>
@@ -1073,39 +1073,94 @@
 </body>
 <script>
     function blank_change(day){
-        var input_mon = document.getElementsByName("input_"+day);
-        var start = document.getElementById("start_"+day).value;
-        var end = document.getElementById("end_"+day).value;
+        var input_mon = $(".input_"+day);
+        var start = parseInt($("#start_"+day).val());
+        var end = parseInt($("#end_"+day).val());
         for(var i= 0;i<start;i++){
-            input_mon[i].attr("disabled",true);
+            input_mon[i].prop("disabled", false);
         }for(var i= start;i<end;i++){
-            input_mon[i].attr("disabled",false);
+            input_mon[i].prop("disabled", false);
         }for(var i= end;i<24;i++){
-            input_mon[i].attr("disabled",true);
+            input_mon[i].prop("disabled", true);
         }
     }
 
-    function insert(){
-        //4
-        var numberUpDown = document.getElementById("numberUpDown").value;
-        var additional = document.getElementById("additional").value;
-        var standard = document.getElementById("standard").value;
-        var reserv_type = document.getElementById("reserv_type");
-        var time_input = document.getElementsByClassName("time-input");
-        var reser_type = "";
-        var reser_time = [];
-        for(var i = 0;i<reserv_type.length;i++){
-            if(reserv_type[i].checked){
-                reser_type = reserv_type[i].value;
-                break;
-            }
-        }
-        for(var i = 0;i<time_input.length;i++){
-            if(time_input[i].checked){
-                reser_time.push(time_input[i].value);
+    function goPrice(){
+        var start_mon = parseInt(document.getElementById("start_mon").value);
+        var end_mon = parseInt(document.getElementById("end_mon").value);
+        var start_tue = parseInt(document.getElementById("start_tue").value);
+        var end_tue = parseInt(document.getElementById("end_tue").value);
+        var start_wed = parseInt(document.getElementById("start_wed").value);
+        var end_wed = parseInt(document.getElementById("end_wed").value);
+        var start_thr = parseInt(document.getElementById("start_thr").value);
+        var end_thr = parseInt(document.getElementById("end_thr").value);
+        var start_fri = parseInt(document.getElementById("start_fri").value);
+        var end_fri = parseInt(document.getElementById("end_fri").value);
+        var start_sat = parseInt(document.getElementById("start_sat").value);
+        var end_sat = parseInt(document.getElementById("end_sat").value);
+        var start_sun = parseInt(document.getElementById("start_sun").value)
+        var end_sun = parseInt(document.getElementById("end_sun").value);
+
+        var mon = document.getElementsByClassName("input_mon");
+        var tue = document.getElementsByClassName("input_tue");
+        var wed = document.getElementsByClassName("input_wed");
+        var thr = document.getElementsByClassName("input_thr");
+        var fri = document.getElementsByClassName("input_fri");
+        var sat = document.getElementsByClassName("input_sat");
+        var sun = document.getElementsByClassName("input_sun");
+        var price_mon = "";
+        var price_tue = "";
+        var price_wed = "";
+        var price_thr = "";
+        var price_fir = "";
+        var price_sat = "";
+        var price_sun = "";
+
+        for(var i = start_mon;i<end_mon;i++){
+            alert(i);
+            if(i == start_mon) price_mon = mon[i].value;
+            else{
+                price_mon += "/"+mon[i].value;
             }
         }
 
+        for(var i = start_tue;i<end_tue;i++){
+            if(i == start_tue) price_tue = tue[i];
+            else{
+                price_tue += "/"+tue[i];
+            }
+        }
+        for(var i =start_wed;i<end_wed;i++){
+            if(i == start_wed) price_wed = wed[i];
+            else{
+                price_wed += "/"+wed[i];
+            }
+        }
+        for(var i =start_thr;i<end_thr;i++){
+            if(i == start_thr) price_thr = thr[i];
+            else{
+                price_thr += "/"+thr[i];
+            }
+        }
+        for(var i = start_fri;i<end_fri;i++){
+            if(i == start_fri) price_fri = fri[i];
+            else{
+                price_fri += "/"+fri[i];
+            }
+        }
+        for(var i = start_sat;i<end_sat;i++){
+            if(i == start_sat) price_sat = sat[i];
+            else{
+                price_sat += "/"+sat[i];
+            }
+        }
+        for(var i = start_sun;i<end_sun;i++){
+            if(i == start_sun) price_sun = sun[i];
+            else{
+                price_sun += "/"+sun[i];
+            }
+        }
+        alert("mon::"+price_mon);
 
         var xhr = new XMLHttpRequest();
         xhr.onreadystatechange = function() {
@@ -1122,9 +1177,51 @@
         };
         xhr.open('POST', 'http://3.34.150.116:3000/studio/apply/price',true);
         xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
-        xhr.send("key="+getCookie("s3_id")+"&numberUpDown="+numberUpDown+"&reser_time="+reser_time
-        +"&additional="+additional+"&standard="+standard+"&reserv_type="+reserv_type+"&time_input="+time_input+"&reser_type="+reser_type); 
+        xhr.send("key="+getCookie("s3_id")
+        +"&start_mon="+start_mon+"&end_mon="+end_mon+"&price_mon="+price_mon+
+        +"&start_tue="+start_tue+"&end_tue="+end_tue+"&price_tue="+price_tue+
+        +"&start_wed="+start_wed+"&end_wed="+end_wed+"&price_wed="+price_wed+
+        +"&start_thr="+start_thr+"&end_thr="+end_thr+"&price_thr="+price_thr+
+        +"&start_fri="+start_fri+"&end_fri="+end_fri+"&price_fri="+price_fri+
+        +"&start_sat="+start_sat+"&end_sat="+end_sat+"&price_sat="+price_sat+
+        +"&start_sun="+start_sun+"&end_sun="+end_sun+"&price_sun="+price_sun); 
         
+    }
+    function goSub(){
+        var numberUpDown = document.getElementById("numberUpDown").value;
+        var additional = document.getElementById("additional").value;
+        var standard = document.getElementById("standard").value;
+        var reserv_type = document.getElementById("reserv_type");
+        var reser_type = "";
+        for(var i = 0;i<reserv_type.length;i++){
+            if(reserv_type[i].checked){
+                reser_type = reserv_type[i].value;
+                break;
+            }
+        }
+
+        var xhr = new XMLHttpRequest();
+        xhr.onreadystatechange = function() {
+            if (xhr.readyState === xhr.DONE) { 
+                if (xhr.status === 200 || xhr.status === 201) {
+                    alert("스튜디오 등록완료");
+                    window.location.href = "/why_html/index.html";
+                } else {
+                    alert("등록이 정상적으로 이루어지지 않았습니다. 다시 시도해주세요.");
+                    console.error(xhr.responseText);
+                }
+            }else{
+            }
+        };
+        xhr.open('POST', 'http://3.34.150.116:3000/studio/apply/sub',true);
+        xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+        xhr.send("key="+getCookie("s3_id")+"&numberUpDown="+numberUpDown+"&reser_time="+reser_time
+        +"&time_input="+time_input+"&reser_type="+reser_type); 
+        
+    }
+    function insert(){
+        goPrice();
+        goSub();
     }
 
     var setCookie = function(name, value, day) {
@@ -1191,10 +1288,7 @@
             }else{
                 $("#start_"+day).attr("disabled",false); 
                 $("#end_"+day).attr("disabled",false); 
-                blank_change(day,0,24);
-                for(var i= start;i<end;i++){
-                    input_mon[i].attr("disabled",false);
-                }
+                blank_change(day);
             }
         }
         $("input:radio[name=time_sun]").click(function(){
@@ -1214,7 +1308,6 @@
         });
 
         $("input:radio[name=time_thr]").click(function(){
-            
             doRest("thr");
         });
 
