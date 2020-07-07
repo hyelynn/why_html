@@ -1040,9 +1040,9 @@
 
         <!-- 이전단계(이전페이지에서 입력했던 내용 유지) / 등록완료 -->
         <div class="overflow-hidden mt-lg-5 mt-3">
-            <a href="history.back();" class="btn bg-gray float-left w-50 rounded-0 py-lg-4 py-3 font-size-m">이전
+            <a href="javaScript:window.history.back();" class="btn bg-gray float-left w-50 rounded-0 py-lg-4 py-3 font-size-m">이전
                 단계로 이동</a>
-            <a href="studio_list.html" class="btn bg-yellow float-right w-50 rounded-0 py-lg-4 py-3 font-size-m">등록
+            <a href="javaScript:insert();" class="btn bg-yellow float-right w-50 rounded-0 py-lg-4 py-3 font-size-m">등록
                 완료</a>
         </div>
     </main>
@@ -1079,22 +1079,6 @@
     }
 
     function insert(){
-         // 1
-        var category = getCookie("category");
-        var category_depth = getCookie("category_depth");
-        // 2
-        var studio_name = getCookie("studio_name");
-        var studio_room = getCookie("studio_room");
-        var studio_addr = getCookie("studio_addr");
-        var studio_addr2 = getCookie("studio_addr2");
-        var studio_intro = getCookie("studio_intro");
-        // 3
-        var studioYoutube = getCookie("studioYoutube");
-        var studioText = getCookie("studioText");
-        var studioTerms = getCookie("studioTerms");
-        var studioAddr = getCookie("studioAddr");
-        var arr_conv = getCookie("conv");
-        var arr_tags = getCookie("tags");
         //4
         var numberUpDown = document.getElementById("numberUpDown").value;
         var additional = document.getElementById("additional").value;
@@ -1129,11 +1113,9 @@
             }else{
             }
         };
-        xhr.open('POST', 'http://3.34.150.116:3000/studio/apply',true);
+        xhr.open('POST', 'http://3.34.150.116:3000/studio/apply/price',true);
         xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
-        xhr.send("key="+getCookie("s3_id")+"category="+category+"&category_depth="+category_depth+"&studio_name="+studio_name+"&studio_room="+studio_room
-        +"&studio_addr="+studio_addr+"&studio_addr2="+studio_addr2+"&studio_intro="+studio_intro+"&studioYoutube="+studioYoutube+"&studioText="+studioText
-        +"&studioTerms="+studioTerms+"&studioAddr="+studioAddr+"&arr_conv="+arr_conv+"&arr_tags="+arr_tags+"&numberUpDown="+numberUpDown+"&reser_time="+reser_time
+        xhr.send("key="+getCookie("s3_id")+"&numberUpDown="+numberUpDown+"&reser_time="+reser_time
         +"&additional="+additional+"&standard="+standard+"&reserv_type="+reserv_type+"&time_input="+time_input+"&reser_type="+reser_type); 
         
     }

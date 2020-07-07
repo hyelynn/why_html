@@ -382,7 +382,7 @@
 
         <!-- 이전단계(이전페이지에서 입력했던 내용 유지) / 다음단계 -->
         <div class="overflow-hidden mt-lg-5 mt-3">
-            <a href="studio_register2.html" class="btn bg-gray float-left w-50 rounded-0 py-lg-4 py-3 font-size-m">이전
+            <a href="javaScript:window.history.back();" class="btn bg-gray float-left w-50 rounded-0 py-lg-4 py-3 font-size-m">이전
                 단계로 이동</a>
             <a  href="javaScript:CheckForm();"
                 class="btn bg-yellow float-right w-50 rounded-0 py-lg-4 py-3 font-size-m">다음으로 이동</a>
@@ -449,8 +449,25 @@
             if (err) {
                 return alert('파일 업로드 실패: ', err, data);
                 console.log(err, data);
+            }else{
+                var xhr = new XMLHttpRequest();
+                xhr.onreadystatechange = function() {
+                    if (xhr.readyState === xhr.DONE) { 
+                        if (xhr.status === 200 || xhr.status === 201) {
+                            alert("스튜디오 등록완료");
+                            window.location.href = "/why_html/host/studio_register4.html";
+                        } else {
+                            alert("등록이 정상적으로 이루어지지 않았습니다. 다시 시도해주세요.");
+                            console.error(xhr.responseText);
+                        }
+                    }else{
+                    }
+                };
+                xhr.open('POST', 'http://3.34.150.116:3000/studio/apply/img',true);
+                xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+                xhr.send("key="+getCookie("s3_id")+"&img="+photoKey); 
+        
             }
-            viewAlbum(albumName);
         });
     }
     
@@ -526,6 +543,7 @@
         var studioAddr = document.getElementById("studioAddr").value;
         var arr_conv = document.getElementsByName("conv[]");
         var arr_tags = document.getElementsByName("tags[]");
+        var thumbsFile = getCookie("s3_id")+"_"+idx+".jpg";
         var convText = [];
         var tagText = [];
         for(var i=0;i<arr_conv.length;i++){
@@ -536,13 +554,22 @@
         for(var i=0;i<arr_tags.length;i++){
             tagText.push(arr_tags[i].textContent);
         }
-        setCookie("studioYoutube",studioYoutube,1);
-        setCookie("studioText",studioText,1);
-        setCookie("studioTerms",studioTerms,1);
-        setCookie("studioAddr",studioAddr,1);
-        setCookie("conv",convText,1);
-        setCookie("tags",tagText,1);
-        window.location.href = "/why_html/host/studio_register4.html";
+        var xhr = new XMLHttpRequest();
+            xhr.onreadystatechange = function() {
+                if (xhr.readyState === xhr.DONE) { 
+                    if (xhr.status === 200 || xhr.status === 201) {
+                        window.location.href = "/why_html/host/studio_register4.html";
+                    } else {
+                        alert("등록이 정상적으로 이루어지지 않았습니다. 다시 시도해주세요.");
+                        console.error(xhr.responseText);
+                    }
+                }else{
+                }
+            };
+            xhr.open('POST', 'http://3.34.150.116:3000/studio/apply/info',true);
+            xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+            xhr.send("key="+getCookie("s3_id")+"&thumbsFile="+thumbsFile+"&studioYoutube="+studioYoutube+"&studioText="+studioText
+            +"&studioTerms="+studioTerms+"&studioAddr="+studioAddr+"&conv="+convText+"&tags="+tagText); 
     }
 
     $('#studioTerms').keyup(function (e){

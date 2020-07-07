@@ -219,7 +219,6 @@
                     var result = JSON.parse(xhr.responseText);
                     setCookie("s3_id",result[0].studio_key,1);
                     alert(getCookie("s3_id"));
-                    console.log(result[0].studio_key + ":::::"+getCookie("s3_id"));
                 } else {
                     alert("등록이 정상적으로 이루어지지 않았습니다. 다시 시도해주세요.");
                     console.error(xhr.responseText);
@@ -251,7 +250,6 @@
             for(var i = 0;i<category.length;i++){
                 if(category[i].checked){
                     cateText = category[i].value;
-                    setCookie("category",cateText,1);
                     break;
                 }
             }
@@ -261,9 +259,22 @@
                     cateDepText.push(category_depth[i].value);
                 }
             }
-            setCookie("category_dept",cateDepText,1);
-            window.location.href = "/why_html/host/studio_register2.html";
 
+            var xhr = new XMLHttpRequest();
+            xhr.onreadystatechange = function() {
+                if (xhr.readyState === xhr.DONE) { 
+                    if (xhr.status === 200 || xhr.status === 201) {
+                        window.location.href = "/why_html/host/studio_register2.html";
+                    } else {
+                        alert("등록이 정상적으로 이루어지지 않았습니다. 다시 시도해주세요.");
+                        console.error(xhr.responseText);
+                    }
+                }else{
+                }
+            };
+            xhr.open('POST', 'http://3.34.150.116:3000/studio/apply/category',true);
+            xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+            xhr.send("key="+getCookie("s3_id")+"&category="+cateText+"&category_depth="+cateDepText); 
         }
 
         var setCookie = function(name, value, day) {
