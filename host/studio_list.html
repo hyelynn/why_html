@@ -105,8 +105,6 @@
 
     <script type="text/javascript">
         $(document).ready(function (){
-            
-
             var xhr = new XMLHttpRequest();
             xhr.onreadystatechange = function() {
                 if (xhr.readyState === xhr.DONE) { 
@@ -119,7 +117,7 @@
                                                 +'<div class="col-lg-10">'
                                                     +'<div class="d-flex align-items-lg-center">'
                                                         +'<div class="d-flex justify-content-center overflow-hidden mr-4 item-thumbs">'
-                                                            +'<img src='+studio_temp.studio_thumbnail+' class="align-self-center h-100" alt="">'
+                                                            +'<img src="'+studio_temp.studio_thumbnail+'" class="align-self-center h-100" alt="">'
                                                         +'</div>'
                                                         +'<div class="item-texts">'
                                                             +'<a href="/why_html/sub/studio_view.html" class="text-decoration-none">'
