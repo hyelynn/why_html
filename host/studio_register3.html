@@ -364,8 +364,8 @@
                     </div>
                     <!-- 직접입력 -->
                     <div class="d-flex justify-content-start align-items-center">
-                        <input type="checkbox" class="custom-checkbox mr-2" name="conv[]">
-                        <input type="text" class="form-control w-50" placeholder="직접 입력해 주세요">
+                        <input type="checkbox" class="custom-checkbox mr-2" id="add_conv" name="conv[]">
+                        <input type="text" class="form-control w-50" id="add_conv_text"placeholder="직접 입력해 주세요">
                     </div>
                 </div>
 
@@ -469,7 +469,6 @@
             }
         });
     }
-    
 
     var getCookie = function(name) {
         var value = document.cookie.match('(^|;) ?' + name + '=([^;]*)(;|$)');
@@ -489,6 +488,10 @@
             $(this).siblings('.upload-name').val(filename);
         });
     })
+
+    $("#add_conv_text").change(function(){
+        $("#add_conv").val($("#add_conv_text").val());
+    });
 
     // file input 추가
     function addInputFile(obj) {
@@ -528,7 +531,6 @@
         $(obj).parent().remove();
     }
 
-
     var setCookie = function(name, value, day) {
         var date = new Date();
         date.setTime(date.getTime() + day * 60 * 60 * 24 * 1000);
@@ -553,8 +555,6 @@
         for(var i=0;i<arr_tags.length;i++){
             tagText.push(arr_tags[i].textContent);
         }
-        alert(tagText);
-        alert(convText);
         var xhr = new XMLHttpRequest();
             xhr.onreadystatechange = function() {
                 if (xhr.readyState === xhr.DONE) { 

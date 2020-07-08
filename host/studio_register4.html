@@ -1019,11 +1019,11 @@
                     <div class="host-register-items">
                         <div class="d-flex mb-3">
                             <label class="radio-items">
-                                <input type="radio" name="reserv_type" value="reserv" checked>
+                                <input type="radio" name="reserv_type" value="예약 결제" checked>
                                 <span class="border-0">예약 결제</span>
                             </label>
                             <label class="radio-items">
-                                <input type="radio" name="reserv_type" value="direct">
+                                <input type="radio" name="reserv_type" value="즉시 결제">
                                 <span class="border-0">즉시 결제</span>
                             </label>
                         </div>
@@ -1163,7 +1163,6 @@
                 price_sun += "/"+sun[i];
             }
         }
-        alert(price_mon);
 
         var xhr = new XMLHttpRequest();
         xhr.onreadystatechange = function() {
