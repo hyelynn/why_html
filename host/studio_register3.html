@@ -98,7 +98,7 @@
                             disabled="disabled">
                         <label for="thumbsFile"
                             class="btn flex-fill fnc-btn mb-0 bg-yellow whitespace-nowrap fnc-btn">업로드</label>
-                        <input type="file" id="thumbsFile" class="upload-hidden" onchange="addFile(this.id, this.files);">
+                        <input type="file" id="thumbsFile" class="upload-hidden" onchange="addFile(this.id,'thumb');">
                     </div>
                 </div>
 
@@ -418,7 +418,7 @@
     var albumBucketName = 'studio-images-artbyus';
     var bucketRegion = 'ap-northeast-2';
     var IdentityPoolId = 'ap-northeast-2:5de34811-ed49-42bb-8378-726186756855';
-
+    var thum = 0;
     var idx = 1;
 
     AWS.config.update({
@@ -435,6 +435,7 @@
 
     function addFile(id, albumName) {
         var files = document.getElementById(id).files;
+        if(albumName =='thumb') thumb = idx;
         if (!files.length) {
             return alert('업로드할 파일을 선택해주세요.');
         }
@@ -544,7 +545,7 @@
         var studioAddr = document.getElementById("studioAddr").value;
         var arr_conv = document.getElementsByName("conv[]");
         var arr_tags = document.getElementsByName("tags[]");
-        var thumbsFile = getCookie("s3_id")+"_"+idx+".jpg";
+        var thumbsFile = getCookie("s3_id")+"_"+thumb+".jpg";
         var convText = [];
         var tagText = [];
         for(var i=0;i<arr_conv.length;i++){
