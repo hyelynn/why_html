@@ -11,7 +11,7 @@ $(document).ready(function(){
             "<div class='d-flex justify-content-center overflow-hidden mr-sm-3 mr-2 cart-thumbs'>"+
             "<img src='"+item.img+"' class='align-self-center w-100 h-100' alt=''></div>"+
             "<div><span class='d-block font-weight-light text-red cart-item-category'>연습실</span>"+
-            "<a href='/why_html/sub/studio_view.html' class='text-decoration-none'>"+
+            "<a href='/sub/studio_view.html' class='text-decoration-none'>"+
             "<h4 class='text-gray cart-item-title'>"+item.title+"</h4></a>"+
             "<p class='font-weight-light text-gray mb-0'>"+item.date+"</p>"+
             "<p class='font-weight-light text-gray'></p>"+

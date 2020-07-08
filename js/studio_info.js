@@ -121,7 +121,7 @@ $(document).ready(function () {
               result[0].studio_bus +
               "</p></div>" +
               "<div class='my-5 border bg-white d-flex p-4'><div class='d-flex justify-content-center rounded-circle overflow-hidden mr-lg-5 mr-3 card-host'>" +
-              "<img src='/why_html/img/studio-host.jpg' class='align-self-center' alt=''></div>" +
+              "<img src='/img/studio-host.jpg' class='align-self-center' alt=''></div>" +
               "<div><h4 class='font-size-m'>"+result[0].biz_title+"</h4>" +
               "<p class='text-light-gray font-size-xs'>"+result[0].biz_introduce+"</p>" +
               "<button type='button' class='btn rounded-pill px-lg-5 px-3 py-2 border-yellow font-size-xs mr-2'>전화하기</button>" +
@@ -227,7 +227,7 @@ function addCart() {
 
 function purchase() {
   addCart();
-  //location.href = "http://artbyus.co.kr/why_html/member/purchase.html";
+  //location.href = "http://artbyus.co.kr/member/purchase.html";
 }
 
 

@@ -49,7 +49,7 @@ $(document).ready(function(){
             "</div>"+
             "<button type='button' class='float-right bg-transparent border-0 p-0 text-white font-size-md' onclick='addWishList(this);'><i class='far fa-heart'></i></button>"+
             "</div>"+
-            "<img src='"+item.studio_thumbnail+"' class='card-img-top rounded-0' srcset='/why_html/img/section-1-photo@2x.jpg 2x, /why_html/img/section-1-photo@3x.jpg 3x' alt=''>"+
+            "<img src='"+item.studio_thumbnail+"' class='card-img-top rounded-0' srcset='/img/section-1-photo@2x.jpg 2x, /img/section-1-photo@3x.jpg 3x' alt=''>"+
             "<h5 class='mt-lg-3 mt-2'>"+ item.studio_name +"</h5>"+
             "<p class='font-weight-light border-bottom pb-2 mb-2 font-size-xs'>"+item.studio_subname+"</p>"+
             "<a href='studio_view.html?"+item.studio_key+"' class='stretched-link text-decoration-none'>"+
