@@ -11,7 +11,7 @@ function login_header() {
           "<ul class='navbar-nav border-top pt-3 m-lg-auto mt-2 font-size-xs d-block d-lg-none'>" +
           "<li class='nav-item mx-lg-3 mx-2 mb-2'><div class='d-flex'><div class='position-relative mr-2 nav-user-profile'>" +
           "<span class='position-absolute rounded-pill bg-hot-pink nav-user-notify'></span>" +
-          "<img src='/why_html/img/profile-photo@3x.jpg' class='rounded-circle nav-user-profile-img'></div>" +
+          "<img src='/img/profile-photo@3x.jpg' class='rounded-circle nav-user-profile-img'></div>" +
           "<span class='align-self-center'>" +
           nickname +
           "</span></div></li>" +
@@ -28,17 +28,17 @@ function login_header() {
         append_html =
           "<ul class='navbar-nav ml-auto align-items-center d-none d-lg-flex'>" +
           "<li class='nav-item mr-2 font-size-md'>" +
-          "<a class='nav-link text-dark' href='/why_html/member/calendar.html'><i class='far fa-calendar-alt'></i></a></li>" +
+          "<a class='nav-link text-dark' href='/member/calendar.html'><i class='far fa-calendar-alt'></i></a></li>" +
           "<li class='nav-item mr-2 font-size-md'>" +
-          "<a class='nav-link text-dark' href='/why_html/member/recent_list.html'><i class='far fa-clock'></i></a></li>" +
+          "<a class='nav-link text-dark' href='/member/recent_list.html'><i class='far fa-clock'></i></a></li>" +
           "<li class='nav-item mr-3 font-size-md'>" +
-          "<a class='nav-link text-dark' href='/why_html/member/cart.html'><i class='fas fa-shopping-cart'></i></a></li>" +
+          "<a class='nav-link text-dark' href='/member/cart.html'><i class='fas fa-shopping-cart'></i></a></li>" +
           "<li class='nav-item'><div class='dropdown'>" +
           "<button class='btn border text-dark dropdown-toggle bg-white rounded-xl' type='button' id='dropdownMenuButton' data-toggle='dropdown' aria-haspopup='true' aria-expanded='false'>" +
           "<div class='d-flex'>" +
           "<div class='position-relative mr-2 nav-user-profile'>" +
           "<span class='position-absolute rounded-pill bg-hot-pink nav-user-notify'></span>" +
-          "<img src='/why_html/img/profile-photo@3x.jpg' class='rounded-circle nav-user-profile-img'></div>" +
+          "<img src='/img/profile-photo@3x.jpg' class='rounded-circle nav-user-profile-img'></div>" +
           "<span>" +
           nickname +
           "</span></div></button>" +
@@ -64,11 +64,11 @@ function login_header() {
           "<button class='btn btn-block border text-dark dropdown-toggle p-2 bg-white rounded-xl' type='button' data-toggle='modal' data-target='#loginModal'><span>로그인</span></button></li></ul>" +
           "<ul class='navbar-nav ml-auto align-items-center d-none d-lg-flex'>" +
           "<li class='nav-item mr-2 font-size-md'>" +
-          "<a class='nav-link text-dark' href='/why_html/member/calendar.html'><i class='far fa-calendar-alt'></i></a></li>" +
+          "<a class='nav-link text-dark' href='/member/calendar.html'><i class='far fa-calendar-alt'></i></a></li>" +
           "<li class='nav-item mr-2 font-size-md'>" +
-          "<a class='nav-link text-dark' href='/why_html/member/recent_list.html'><i class='far fa-clock'></i></a></li>" +
+          "<a class='nav-link text-dark' href='/member/recent_list.html'><i class='far fa-clock'></i></a></li>" +
           "<li class='nav-item mr-3 font-size-md'>" +
-          "<a class='nav-link text-dark' href='/why_html/member/purchase.html'><i class='fas fa-shopping-cart'></i></a></li>" +
+          "<a class='nav-link text-dark' href='/member/purchase.html'><i class='fas fa-shopping-cart'></i></a></li>" +
           "<li class='nav-item'>" +
           "<button class='btn border text-dark dropdown-toggle bg-white rounded-xl' type='button' data-toggle='modal' data-target='#loginModal'><span>로그인</span>" +
           "</button></li></ul>"

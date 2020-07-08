@@ -2,7 +2,7 @@
 function naver_login() {
   var naverLogin = new naver.LoginWithNaverId({
     clientId: "hZjBhAXkL54BXTOXsjWw",
-    callbackUrl: "http://artbyus.co.kr/why_html/member/test.html",
+    callbackUrl: "http://artbyus.co.kr/member/test.html",
     isPopup: true /* 팝업을 통한 연동처리 여부 */,
     callbackHandle: true /* callback 페이지가 분리되었을 경우에 callback 페이지에서는 callback처리를 해줄수 있도록 설정합니다. */,
   });
@@ -33,7 +33,7 @@ function kakao_login() {
     success: function (response) {
       access_token = response.access_token;
       refresh_token = response.refresh_token;
-      location.href = "http://artbyus.co.kr/why_html/member/test.html";
+      location.href = "http://artbyus.co.kr/member/test.html";
     },
     fail: function (error) {},
   });
