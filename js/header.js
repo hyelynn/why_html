@@ -54,7 +54,7 @@ function login_header() {
           "<a class='dropdown-item text-hot-pink' href='#x' onclick='onLogout();'>로그아웃</a></div></div></li></ul>";
       }
     }
-
+    console.log(append_html);
     $("#navbarNavDropdown").append($(append_html));
   } else {
     $("#navbarNavDropdown").append(
