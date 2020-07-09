@@ -6,7 +6,7 @@ function login_header() {
 
     if (navigator.platform) {
       var append_html = "";
-      if (0 >= filter.indexOf(navigator.platform.toLowerCase())) {
+      if (true) {
         console.log('PC');
         append_html =
         "<ul class='navbar-nav border-top pt-3 m-lg-auto mt-2 font-size-xs d-block d-lg-none'>" +
