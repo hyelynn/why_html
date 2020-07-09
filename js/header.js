@@ -8,22 +8,21 @@ function login_header() {
       var append_html = "";
       if (0 >= filter.indexOf(navigator.platform.toLowerCase())) {
         append_html =
-          "<ul class='navbar-nav border-top pt-3 m-lg-auto mt-2 font-size-xs d-block d-lg-none'>" +
-          "<li class='nav-item mx-lg-3 mx-2 mb-2'><div class='d-flex'><div class='position-relative mr-2 nav-user-profile'>" +
-          "<span class='position-absolute rounded-pill bg-hot-pink nav-user-notify'></span>" +
-          "<img src='/img/profile-photo@3x.jpg' class='rounded-circle nav-user-profile-img'></div>" +
-          "<span class='align-self-center'>" +
-          nickname +
-          "</span></div></li>" +
-          "<ul class='navbar-nav border-top pt-3 m-lg-auto mt-2 font-size-xs d-block d-lg-none'>" +
-          "<li class='nav-item mx-lg-3 mx-2'><a class='nav-link' href='#x'>예약 리스트</a></li>" +
-          "<li class='nav-item mx-lg-3 mx-2'><a class='nav-link' href='#x'>찜 리스트</a></li>" +
-          "<li class='nav-item mx-lg-3 mx-2'><a class='nav-link' href='#x'>나의 이용 후기</a></li>" +
-          "<li class='nav-item mx-lg-3 mx-2'><a class='nav-link' href='#x'>채팅</a></li>" +
-          "<li class='nav-item mx-lg-3 mx-2'><a class='nav-link' href='../member/chat_user.html'>1:1 문의<span class='ml-2 d-inline-block rounded-pill align-top mt-1 bg-hot-pink nav-notify'></span></a></li>" +
-          "<div class='dropdown-divider'></div><li class='nav-item mx-lg-3 mx-2'><a class='nav-link' href='#x'>회원 정보 관리</a></li>" +
-          "<li class='nav-item mx-lg-3 mx-2'><a class='nav-link' href='#x'>호스트 전환</a></li>" +
-          "<li class='nav-item mx-lg-3 mx-2'><a class='nav-link text-hot-pink' href='#x' onclick='onLogout();'>로그아웃</a></li></ul>";
+        "<ul class='navbar-nav border-top pt-3 m-lg-auto mt-2 font-size-xs d-block d-lg-none'>" +
+        "<li class='nav-item mx-lg-3 mx-2 mb-2'>" +
+        "<div class='d-flex'><div class='position-relative mr-2 nav-user-profile'>" +
+        "<span class='position-absolute rounded-pill bg-hot-pink nav-user-notify'></span>" +
+        "<img src='/img/profile-photo@3x.jpg' class='rounded-circle nav-user-profile-img' alt='"+nickname +"님'></div>" +
+        "<span class='align-self-center'>"+nickname +"</span></div></li>" +
+        "<li class='nav-item mx-lg-3 mx-2'><a class='nav-link' href='#x'>예약 리스트</a></li>" +
+        "<li class='nav-item mx-lg-3 mx-2'><a class='nav-link' href='#x'>찜 리스트</a></li>" +
+        "<li class='nav-item mx-lg-3 mx-2'><a class='nav-link' href='#x'>나의 이용 후기</a></li>" +
+        "<li class='nav-item mx-lg-3 mx-2'><a class='nav-link' href='#x'>채팅</a></li>" +
+        "<li class='nav-item mx-lg-3 mx-2'><a class='nav-link' href='#x'>1:1 문의<span class='ml-2 d-inline-block rounded-pill align-top mt-1 bg-hot-pink nav-notify'></span></a></li>" +
+        "<div class='dropdown-divider'></div>" +
+        "<li class='nav-item mx-lg-3 mx-2'><a class='nav-link' href='#x'>회원 정보 관리</a></li>" +
+        "<li class='nav-item mx-lg-3 mx-2'><a class='nav-link' href='#x'>호스트 전환</a></li>" +
+        "<li class='nav-item mx-lg-3 mx-2'></li><a class='nav-link text-hot-pink' href='#x'>로그아웃</a></li></ul>";
       } else {
         append_html =
           "<ul class='navbar-nav ml-auto align-items-center d-none d-lg-flex'>" +
@@ -38,7 +37,7 @@ function login_header() {
           "<div class='d-flex'>" +
           "<div class='position-relative mr-2 nav-user-profile'>" +
           "<span class='position-absolute rounded-pill bg-hot-pink nav-user-notify'></span>" +
-          "<img src='/img/profile-photo@3x.jpg' class='rounded-circle nav-user-profile-img'></div>" +
+          "<img src='/img/profile-photo@2x.jpg' class='rounded-circle nav-user-profile-img'></div>" +
           "<span>" +
           nickname +
           "</span></div></button>" +
