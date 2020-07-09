@@ -7,7 +7,11 @@ function login_header() {
     if (navigator.platform) {
       var append_html = "";
       if (0 >= filter.indexOf(navigator.platform.toLowerCase())) {
-        append_html =
+        
+      
+      } 
+    }
+    append_html =
         "<ul class='navbar-nav ml-auto align-items-center d-none d-lg-flex'>" +
         "<li class='nav-item mr-2 font-size-md'>" +
         "<a class='nav-link text-dark' href='/member/calendar.html'><i class='far fa-calendar-alt'></i></a></li>" +
@@ -33,12 +37,8 @@ function login_header() {
         "<div class='dropdown-divider'></div>" +
         "<a class='dropdown-item' href='#x'>회원 정보 관리</a>" +
         "<a class='dropdown-item' href='#x'>호스트 전환</a>" +
-        "<a class='dropdown-item text-hot-pink' href='#x' onclick='onLogout();'>로그아웃</a></div></div></li></ul>";
-        
-      } else {
-        console.log('MOBILE');
-        append_html =
-          "<ul class='navbar-nav border-top pt-3 m-lg-auto mt-2 font-size-xs d-block d-lg-none'>" +
+        "<a class='dropdown-item text-hot-pink' href='#x' onclick='onLogout();'>로그아웃</a></div></div></li></ul>" + 
+        "<ul class='navbar-nav border-top pt-3 m-lg-auto mt-2 font-size-xs d-block d-lg-none'>" +
         "<li class='nav-item mx-lg-3 mx-2 mb-2'>" +
         "<div class='d-flex'><div class='position-relative mr-2 nav-user-profile'>" +
         "<span class='position-absolute rounded-pill bg-hot-pink nav-user-notify'></span>" +
@@ -53,8 +53,7 @@ function login_header() {
         "<li class='nav-item mx-lg-3 mx-2'><a class='nav-link' href='#x'>회원 정보 관리</a></li>" +
         "<li class='nav-item mx-lg-3 mx-2'><a class='nav-link' href='#x'>호스트 전환</a></li>" +
         "<li class='nav-item mx-lg-3 mx-2'></li><a class='nav-link text-hot-pink' href='#x'>로그아웃</a></li></ul>";
-      }
-    }
+
     $("#navbarNavDropdown").empty();
     $("#navbarNavDropdown").append($(append_html));
   } else {
