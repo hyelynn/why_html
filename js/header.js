@@ -7,6 +7,7 @@ function login_header() {
     if (navigator.platform) {
       var append_html = "";
       if (0 >= filter.indexOf(navigator.platform.toLowerCase())) {
+        console.log('PC');
         append_html =
         "<ul class='navbar-nav border-top pt-3 m-lg-auto mt-2 font-size-xs d-block d-lg-none'>" +
         "<li class='nav-item mx-lg-3 mx-2 mb-2'>" +
@@ -24,6 +25,7 @@ function login_header() {
         "<li class='nav-item mx-lg-3 mx-2'><a class='nav-link' href='#x'>호스트 전환</a></li>" +
         "<li class='nav-item mx-lg-3 mx-2'></li><a class='nav-link text-hot-pink' href='#x'>로그아웃</a></li></ul>";
       } else {
+        console.log('MOBILE');
         append_html =
           "<ul class='navbar-nav ml-auto align-items-center d-none d-lg-flex'>" +
           "<li class='nav-item mr-2 font-size-md'>" +
