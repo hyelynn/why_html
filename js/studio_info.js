@@ -171,7 +171,7 @@ function price_maker() {
   var num = parseInt(stat, 10);
   var start = $('#start_times option:selected').val();
   var end = $('#end_times option:selected').val();
-  var date = $('#datePicker').value;
+  var date = '';//$('#datePicker').value;
   
 
   if (start != null && end != null) curr_price = (end - start) * price;
