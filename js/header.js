@@ -54,9 +54,10 @@ function login_header() {
           "<a class='dropdown-item text-hot-pink' href='#x' onclick='onLogout();'>로그아웃</a></div></div></li></ul>";
       }
     }
-
+    $("#navbarNavDropdown").empty();
     $("#navbarNavDropdown").append($(append_html));
   } else {
+    $("#navbarNavDropdown").empty();
     $("#navbarNavDropdown").append(
       $(
         "<ul class='navbar-nav border-top pt-3 m-lg-auto mt-2 font-size-xs d-block d-lg-none'>" +
