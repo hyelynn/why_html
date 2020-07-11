@@ -117,12 +117,12 @@
                 </div>
                 <div class="row mb-3">
                     <div class="col-lg-6 custom-inputs-sub not mb-lg-0 mb-3">
-                        <label for="host_phone" class="d-block text-gray">연락처</label>
+                        <label for="host_phone" class="d-block text-gray">연락처( - 빼고 입력해주세요)</label>
                         <div class="d-flex">
                             <div class="flex-fill mr-4">
-                                <input type="text" class="form-control" id="host_phone" placeholder="010-1234-5678">
+                                <input type="text" class="form-control" id="host_phone" placeholder="01012345678">
                             </div>
-                            <button type="button" class="btn flex-fill w-25 bg-yellow">인증번호 발송</button>
+                            <button type="button" class="btn flex-fill w-25 bg-yellow" onclick="goMsg();">인증번호 발송</button>
                         </div>
                     </div>
                     <div class="col-lg-6 custom-inputs-sub not">
@@ -318,7 +318,41 @@
             viewAlbum(albumName);
         });
     }
+    
+    function goMsg(){
+        var phone = document.getElementById("host_phone").value;
+        var code = Math.floor(Math.random() * 9000 + 1000);
+        var jsonData = {
+            message_type:'AT',
+            phn:phone,
+            tmplId:'artbyus-1',
+            msg:code+" ARTBYUS(아트바이어스)에서 보낸 인증번호입니다."
+        };
+        const strObject = JSON.stringify(jsonData);
+        var xhr = new XMLHttpRequest();
 
+        xhr.onreadystatechange = function() { 
+            if (xhr.readyState === xhr.DONE) { 
+                if (xhr.status === 200 || xhr.status === 201) {
+                    var result = JSON.parse(xhr.responseText);
+                    if(result.result=="false"){
+                        alert("이미 사용중인 아이디 입니다.");
+                    }
+                    else{
+                        alert("사용 할 수 있는 아이디 입니다.");
+                    }
+                } else {
+                }
+            }
+            else{
+            }
+        };
+        
+        xhr.open('POST', 'https://alimtalk-api.bizmsg.kr/v2/sender/send');
+        xhr.setRequestHeader('Content-Type', 'application/json');
+        xhr.setRequestHeader('userid', 'artbyus');
+        xhr.send(strObject); 
+    }
     
     document.getElementById("host_id").addEventListener('input', function(){
         emailFlag = false;

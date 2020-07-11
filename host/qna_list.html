@@ -153,9 +153,9 @@
                                                             +'<span class="state-text '+reply+'complete">답변필요</span>'
                                                             +'<span class="ml-2 font-weight-light state-text">작성자 : '+studio_temp.user_id+'</span>'
                                                             +'<p class="my-2"> '+studio_temp.qna_msg+' </p>'
-                                                            // +'<span class="state-text bottom">'+studio_temp.studio_add+' - '+studio_temp.studio_add2
-                                                            //     +'<span class="ml-md-4 d-md-inline-block d-block">'+studio_temp.qna_date+'</span>'
-                                                            // +'</span>'
+                                                            +'<span class="state-text bottom">'+studio_temp.studio_name
+                                                                +'<span class="ml-md-4 d-md-inline-block d-block">'+studio_temp.qna_date+'</span>'
+                                                            +'</span>'
                                                         +'</div>'
                                                         +'<button class="btn accordion-btn" type="button" data-toggle="collapse"'
                                                         +'data-target="#itemCollapse'+i+' aria-expanded="true" aria-controls="itemCollapse'+i+'">'
@@ -201,9 +201,9 @@
                     
                 }
             };
-            xhr.open('POST', 'http://3.34.150.116:3000/studio/review/get',true);
+            xhr.open('POST', 'http://3.34.150.116:3000/studio/qna/host',true);
             xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
-            xhr.send("studio_key="+key);
+            xhr.send("id="+sessionStorage.getItem("id"));
         });
 
         // 아코디언 collapse
