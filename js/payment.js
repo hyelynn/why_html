@@ -17,7 +17,7 @@ $(document).ready(function () {
           item.img +
           "' class='align-self-center w-100 h-100' alt=''></div>" +
           "<div><span class='d-block font-weight-light text-red cart-item-category'>연습실</span>" +
-          "<a href='/why_html/sub/studio_view.html' class='text-decoration-none'>" +
+          "<a href='/sub/studio_view.html' class='text-decoration-none'>" +
           "<h4 class='text-gray cart-item-title'>" +
           item.title +
           "</h4></a>" +

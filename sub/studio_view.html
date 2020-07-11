@@ -10,26 +10,21 @@
     <!-- Bootstrap 4.3.1 -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
         integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    <script src="https://code.jquery.com/jquery-3.4.1.min.js"
-        integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
-        crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
-        integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
-        crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
-        integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
-        crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
     <script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
-    <script src="/why_html/js/include.js"></script>
-    <script src="/why_html/js/studio_info.js"></script>
+    
+    <script src="/js/include.js"></script>
+    <script src="/js/studio_info.js"></script>
     <!-- Custom -->
     <script type="text/javascript" src="https://static.nid.naver.com/js/naveridlogin_js_sdk_2.0.0.js"
         charset="utf-8"></script>
-    <script src="/why_html/js/kakao_sdk.js"></script>
+    <script src="/js/kakao_sdk.js"></script>
 
     <!-- Datepicker -->
-    <link href="/why_html/css/datepicker.css" rel="stylesheet">
-    <script src="/why_html/js/datepicker.js"></script>
+    <link href="/css/datepicker.css" rel="stylesheet">
+    <script src="/js/datepicker.js"></script>
 
     <script>
         // SDK를 초기화 합니다. 사용할 앱의 JavaScript 키를 설정해 주세요.
@@ -39,15 +34,15 @@
     </script>
 
 
-    <link rel="stylesheet" href="/why_html/css/custom.css">
-    <script src="/why_html/js/custom.js"></script>
+    <link rel="stylesheet" href="/css/custom.css">
+    <script src="/js/custom.js"></script>
 
     <!-- Fontawesome -->
-    <link rel="stylesheet" href="/why_html/css/fontawesome/css/all.min.css">
+    <link rel="stylesheet" href="/css/fontawesome/css/all.min.css">
 </head>
 
 <body>
-    <modal include-html="/why_html/include/header.html"></modal>
+    <modal include-html="/include/header.html"></modal>
     <div class="py-md-3 px-5 py-2 text-center text-white bg-deep-dark top-notice">
         <span class="font-weight-light">코로나19에 대한 아트바이어스의 대책 및 환불 정책에 대한 최신 정보를 확인하세요.</span>
         <a href="#x" class="text-white d-lg-inline-block d-block">자세히 알아보기</a>
@@ -55,14 +50,14 @@
 
     <nav class="navbar navbar-expand-lg navbar-light py-lg-3 py-1">
         <div class="container">
-            <a class="navbar-brand" href="/why_html/index.html"><img src="http://artbyus.co.kr/why_html/img/logo.png"
-                    srcset="http://artbyus.co.kr/why_html/img/logo@2x.png 2x, http://artbyus.co.kr/why_html/img/logo@3x.png 3x"></a>
+            <a class="navbar-brand" href="/index.html"><img src="http://artbyus.co.kr/img/logo.png"
+                    srcset="http://artbyus.co.kr/img/logo@2x.png 2x, http://artbyus.co.kr/img/logo@3x.png 3x"></a>
             <div class="ml-auto align-items-center d-lg-none d-flex">
-                <a class="text-dark mr-3 font-size-sm" href="/why_html/member/calendar.html"><i
+                <a class="text-dark mr-3 font-size-sm" href="/member/calendar.html"><i
                         class="far fa-calendar-alt"></i></a>
-                <a class="text-dark mr-3 font-size-sm" href="/why_html/member/recent_list.html"><i
+                <a class="text-dark mr-3 font-size-sm" href="/member/recent_list.html"><i
                         class="far fa-clock"></i></a>
-                <a class="text-dark mr-2 font-size-sm" href="/why_html/member/purchase.html"><i
+                <a class="text-dark mr-2 font-size-sm" href="/member/purchase.html"><i
                         class="fas fa-shopping-cart"></i></a>
             </div>
             <button class="navbar-toggler border-0 font-size-md text-dark" type="button" data-toggle="collapse"
@@ -74,7 +69,7 @@
             <div class="collapse navbar-collapse" id="navbarNavDropdown"></div>
         </div>
     </nav>
-    <script src="/why_html/js/header.js"></script>
+    <script src="/js/header.js"></script>
 
     <main role="main">
         <div class="bg-light-more py-lg-5 py-4">
@@ -114,7 +109,9 @@
                             <div class="tab-pane fade" id="terms"></div>
 
                             <!-- tab 2 -->
-                            <div class="tab-pane fade" id="refund"></div>
+                            <div class="tab-pane fade" id="refund">
+                                <refund include-html="/include/refund.html"></refund>
+                            </div>
 
                             <!-- tab 3 -->
                             <div class="tab-pane fade" id="review">
@@ -337,13 +334,13 @@
         </div>
     </main>
 
-    <footer include-html="/why_html/include/footer.html"></footer>
+    <footer include-html="/include/footer.html"></footer>
     <script>includeHTML({});</script>
     <script>login_header();</script>
     <script>price_maker();</script>
 
-    <script src="/why_html/js/naver_login.js"></script>
-    <script src="/why_html/js/login.js"></script>
+    <script src="/js/naver_login.js"></script>
+    <script src="/js/login.js"></script>
 </body>
 
 
