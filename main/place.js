@@ -34,7 +34,7 @@ $(document).ready(function () {
               "<p class='font-weight-light border-bottom pb-2 mb-2 font-size-xs'>" +
               item.studio_name +
               "</p>" +
-              "<a href='/why_html/sub/studio_view.html?" +
+              "<a href='/sub/studio_view.html?" +
               item.studio_key +
               "' class='stretched-link text-decoration-none'>" +
               "<span class='text-red font-weight-bold font-size-l'>" +
@@ -56,7 +56,7 @@ $(document).ready(function () {
               "<p class='font-weight-light border-bottom pb-2 mb-2 font-size-xs'>" +
               item.studio_name +
               "</p>" +
-              "<a href='/why_html/sub/studio_view.html?" +
+              "<a href='/sub/studio_view.html?" +
               item.studio_key +
               "' class='stretched-link text-decoration-none'>" +
               "<span class='text-red font-weight-bold font-size-l'>" +
@@ -78,7 +78,7 @@ $(document).ready(function () {
               "<p class='font-weight-light border-bottom pb-2 mb-2 font-size-xs'>" +
               item.studio_name +
               "</p>" +
-              "<a href='/why_html/sub/studio_view.html?" +
+              "<a href='/sub/studio_view.html?" +
               item.studio_key +
               "' class='stretched-link text-decoration-none'>" +
               "<span class='text-red font-weight-bold font-size-l'>" +
