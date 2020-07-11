@@ -99,14 +99,14 @@ $(document).ready(function () {
           )
         );
 
-        $("#refund").append(
-          $(
-            "<div class='my-5'><h4 class='mb-4 text-bullet'>환불규정</h4>" +
-              "<p class='font-weight-light font-size-s'>" +
-              result[0].studio_refund +
-              "</p></div>"
-          )
-        );
+        // $("#refund").append(
+        //   $(
+        //     "<div class='my-5'><h4 class='mb-4 text-bullet'>환불규정</h4>" +
+        //       "<p class='font-weight-light font-size-s'>" +
+        //       result[0].studio_refund +
+        //       "</p></div>"
+        //   )
+        // );
 
         $("#contact").append(
           $(
