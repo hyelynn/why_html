@@ -14,18 +14,18 @@
         integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 
     <!-- Custom -->
-    <link rel="stylesheet" href="/why_html/css/custom.css">
-    <link rel="stylesheet" href="/why_html/css/custom_host.css">
+    <link rel="stylesheet" href="/css/custom.css">
+    <link rel="stylesheet" href="/css/custom_host.css">
 
     <!-- Fontawesome -->
-    <link rel="stylesheet" href="/why_html/css/fontawesome/css/all.min.css">
+    <link rel="stylesheet" href="/css/fontawesome/css/all.min.css">
 
-    <script src="/why_html/js/include.js"></script>
+    <script src="/js/include.js"></script>
     <!-- Custom -->
 
     <script type="text/javascript" src="https://static.nid.naver.com/js/naveridlogin_js_sdk_2.0.0.js"
         charset="utf-8"></script>
-    <script src="/why_html/js/kakao_sdk.js"></script>
+    <script src="/js/kakao_sdk.js"></script>
 
     <script>
         Kakao.init('d88bea310f4a39afbea3146fe1c0fa72');
@@ -34,7 +34,7 @@
 </head>
 
 <body>
-    <modal include-html="/why_html/include/header.html"></modal>
+    <modal include-html="/include/header.html"></modal>
     <div class="py-md-3 px-5 py-2 text-center text-white bg-deep-dark top-notice">
         <span class="font-weight-light">코로나19에 대한 아트바이어스의 대책 및 환불 정책에 대한 최신 정보를 확인하세요.</span>
         <a href="#x" class="text-white d-lg-inline-block d-block">자세히 알아보기</a>
@@ -42,14 +42,14 @@
 
     <nav class="navbar navbar-expand-lg navbar-light py-lg-3 py-1">
         <div class="container">
-            <a class="navbar-brand" href="/why_html/index.html"><img src="http://artbyus.co.kr/why_html/img/logo.png"
-                    srcset="http://artbyus.co.kr/why_html/img/logo@2x.png 2x, http://artbyus.co.kr/why_html/img/logo@3x.png 3x"></a>
+            <a class="navbar-brand" href="/index.html"><img src="http://artbyus.co.kr/img/logo.png"
+                    srcset="http://artbyus.co.kr/img/logo@2x.png 2x, http://artbyus.co.kr/img/logo@3x.png 3x"></a>
             <div class="ml-auto align-items-center d-lg-none d-flex">
-                <a class="text-dark mr-3 font-size-sm" href="/why_html/member/calendar.html"><i
+                <a class="text-dark mr-3 font-size-sm" href="/member/calendar.html"><i
                         class="far fa-calendar-alt"></i></a>
-                <a class="text-dark mr-3 font-size-sm" href="/why_html/member/recent_list.html"><i
+                <a class="text-dark mr-3 font-size-sm" href="/member/recent_list.html"><i
                         class="far fa-clock"></i></a>
-                <a class="text-dark mr-2 font-size-sm" href="/why_html/member/purchase.html"><i
+                <a class="text-dark mr-2 font-size-sm" href="/member/purchase.html"><i
                         class="fas fa-shopping-cart"></i></a>
             </div>
             <button class="navbar-toggler border-0 font-size-md text-dark" type="button" data-toggle="collapse"
@@ -61,7 +61,7 @@
             <div class="collapse navbar-collapse" id="navbarNavDropdown"></div>
         </div>
     </nav>
-    <script src="/why_html/js/header.js"></script>
+    <script src="/js/header.js"></script>
 
     <main role="main">
         <div class="container my-md-5 my-4">
@@ -77,7 +77,7 @@
                 </div>
 
                 <div class="d-flex mt-3 mt-lg-0">
-                    <a href="studio_register.html"
+                    <a href="javascript:addStu();"
                         class="d-flex align-items-center justify-content-center btn font-weight-light bg-sky text-white mx-lg-3 mr-3 text-btn">
                         <i class="fas fa-plus mr-1"></i><span>스튜디오 추가</span>
                     </a>
@@ -95,16 +95,17 @@
         </div>
     </main>
 
-    <footer include-html="/why_html/include/footer.html"></footer>
+    <footer include-html="/include/footer.html"></footer>
 
-    <script src="/why_html/js/naver_login.js"></script>
-    <script src="/why_html/js/login.js"></script>
+    <script src="/js/naver_login.js"></script>
+    <script src="/js/login.js"></script>
 
     <script>includeHTML({});</script>
     <script>login_header();</script>
 
     <script type="text/javascript">
-        $(document).ready(function (){
+
+        var writeList = function(){
             var xhr = new XMLHttpRequest();
             xhr.onreadystatechange = function() {
                 if (xhr.readyState === xhr.DONE) { 
@@ -112,7 +113,7 @@
                         var studio_list = JSON.parse(xhr.responseText);
                         for(var i = 0; i<studio_list.length;i++){
                             var studio_temp = studio_list[i];
-                            var studio = '<li class="list-group-item p-3 mb-3 border">'
+                            var studio = '<li id="studio_li_'+studio_temp.studio_key+'" class="list-group-item p-3 mb-3 border">'
                                             +'<div class="row align-items-center">'
                                                 +'<div class="col-lg-10">'
                                                     +'<div class="d-flex align-items-lg-center">'
@@ -120,7 +121,7 @@
                                                             +'<img src="'+studio_temp.studio_thumbnail+'" class="align-self-center h-100" alt="">'
                                                         +'</div>'
                                                         +'<div class="item-texts">'
-                                                            +'<a href="/why_html/sub/studio_view.html" class="text-decoration-none">'
+                                                            +'<a href="/sub/studio_view.html" class="text-decoration-none">'
                                                                 +'<h4 class="text-gray">'+studio_temp.studio_name
                                                                     +'<p class="font-size-xs ml-lg-3 ml-2 d-inline-block mb-1 align-middle">'
                                                                         +'<i class="fas fa-heart text-red"></i>'
@@ -136,8 +137,8 @@
                                                 +'</div>'
                                                 +'<div class="col-lg-2">'
                                                     +'<div class="text-lg-center text-right mt-lg-0 mt-3">'
-                                                        +'<button type="button" class="btn border mr-lg-0 mr-2 item-btn">수정하기</button>'
-                                                        +'<button type="button" id="del_studio" class="btn border bg-red text-white item-btn">공간삭제</button>'
+                                                        +'<button type="button" onclick="modstu('+studio_temp.studio_key+');" class="btn border mr-lg-0 mr-2 item-btn">수정하기</button>'
+                                                        +'<button type="button" onclick="delstu('+studio_temp.studio_key+');" class="btn border bg-red text-white item-btn">공간삭제</button>'
                                                     +'</div>'
                                                 +'</div>'
                                             +'</div>'
@@ -157,18 +158,38 @@
             xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
             xhr.send("user_id=jmnu1203");
 
+        }
+        $(document).ready(function (){
+            writeList();
         });
 
-        $("#del_studio").click(function (){
-            var xhr = new XMLHttpRequest();
+        function modstu(key){
+            if(sessionStorage.getItem("id")!=null){
+             window.location.href = "/host/studio_register.html?key="+key;
+            }else{
+                alert("로그인해주세요.");
+                window.location.href = "/index.html";
+            }
+        }
+
+        function addStu(){
+            if(sessionStorage.getItem("id")!=null){
+                window.location.href = "/host/studio_register.html";
+            }else{
+                alert("로그인해주세요.");
+                window.location.href = "/index.html";
+            }
+        }
+
+        function delstu(key){
+        if(sessionStorage.getItem("id")!=null){
+           var xhr = new XMLHttpRequest();
             xhr.onreadystatechange = function() {
                 if (xhr.readyState === xhr.DONE) { 
                     if (xhr.status === 200 || xhr.status === 201) {
-                        var result = JSON.parse(xhr.responseText);
-                        setCookie("s3_id",result[0].studio_key,1);
-                        alert(getCookie("s3_id"));
+                        $("#studio_li_"+key).remove();
                     } else {
-                        alert("등록이 정상적으로 이루어지지 않았습니다. 다시 시도해주세요.");
+                        alert("삭제가 정상적으로 이루어지지 않았습니다. 다시 시도해주세요.");
                         console.error(xhr.responseText);
                     }
                 }else{
@@ -177,9 +198,13 @@
             };
             xhr.open('POST', 'http://3.34.150.116:3000/studio/delete',true);
             xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
-            xhr.send("user_id="+sessionStorage.getItem("id"));
-        });
-
+            xhr.send("key="+key);
+        }else{
+                alert("로그인해주세요.");
+                window.location.href = "/index.html";
+            }
+        }
+        
         function onLogout() {
             sessionStorage.clear();
             location.href = "index.html";
@@ -193,7 +218,7 @@
         integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
         crossorigin="anonymous"></script>
 
-    <script src="/why_html/js/custom.js"></script>
+    <script src="/js/custom.js"></script>
 </body>
 
 </html>
