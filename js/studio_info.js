@@ -129,6 +129,8 @@ $(document).ready(function () {
           )
         );
 
+       // <h4 class="mb-md-4 mb-2 text-bullet">이용후기 <span class="text-sky font-weight-light ml-3 mr-2">33개</span> 평균 <span class="text-sky font-weight-light">★4.7/5</span></h4>
+
         $("#title_purchase").append(
           $(
             "<h6>"+result[0].studio_name+"</h6>" +
@@ -188,48 +190,6 @@ function price_maker() {
     )
   );
 }
-
-function addCart() {
-  console.log(curr_price);
-  
-  var cartInfo = JSON.parse(sessionStorage.getItem("cart"));
-  var cart = [];
-
-  if (curr_price > 0) {
-    for (var item in cartInfo) {
-      cart.push({
-        img: cartInfo[item].img,
-        title: cartInfo[item].title,
-        price: cartInfo[item].price,
-        date: cartInfo[item].date,
-      });
-    }
-
-    cart.push({
-      img: img_link,
-      title: title,
-      price: curr_price,
-      date:
-        "예약일시 : " +
-        $("#datePicker").value +
-        " " +
-        $("#start_times option:selected").text() +
-        " ~ " +
-        $("#end_times option:selected").text(),
-    });
-
-    sessionStorage.setItem("cart", JSON.stringify(cart));
-
-    console.log(cart);
-    alert("장바구니에 상품이 담겼습니다");
-  }
-}
-
-function purchase() {
-  addCart();
-  //location.href = "http://artbyus.co.kr/member/purchase.html";
-}
-
 
 // <li class="mb-3">
 //                                             <div class="d-flex">

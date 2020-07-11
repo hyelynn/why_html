@@ -14,7 +14,7 @@
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
     <script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
-    
+
     <script src="/js/include.js"></script>
     <script src="/js/studio_info.js"></script>
     <!-- Custom -->
@@ -43,6 +43,7 @@
 
 <body>
     <modal include-html="/include/header.html"></modal>
+    <modal include-html="/include/view_modals.html"></modal>
     <div class="py-md-3 px-5 py-2 text-center text-white bg-deep-dark top-notice">
         <span class="font-weight-light">코로나19에 대한 아트바이어스의 대책 및 환불 정책에 대한 최신 정보를 확인하세요.</span>
         <a href="#x" class="text-white d-lg-inline-block d-block">자세히 알아보기</a>
@@ -55,8 +56,7 @@
             <div class="ml-auto align-items-center d-lg-none d-flex">
                 <a class="text-dark mr-3 font-size-sm" href="/member/calendar.html"><i
                         class="far fa-calendar-alt"></i></a>
-                <a class="text-dark mr-3 font-size-sm" href="/member/recent_list.html"><i
-                        class="far fa-clock"></i></a>
+                <a class="text-dark mr-3 font-size-sm" href="/member/recent_list.html"><i class="far fa-clock"></i></a>
                 <a class="text-dark mr-2 font-size-sm" href="/member/purchase.html"><i
                         class="fas fa-shopping-cart"></i></a>
             </div>
@@ -119,58 +119,22 @@
                                     <!-- >>>> Q&A -->
                                     <div class="mb-10">
                                         <div class="d-flex justify-content-between">
-                                            <h4 class="mb-4 text-bullet">질문과 답변</h4>
+                                            <h4 class="mb-md-4 mb-2 text-bullet">질문과 답변</h4>
+                                
                                             <button type="button"
-                                                class="btn rounded-pill bg-dark text-white font-weight-light px-4 font-size-xs"
-                                                style="height: 40px">질문 작성하기</button>
+                                                    class="btn rounded-pill bg-dark text-white font-weight-light px-lg-4 px-2 font-size-xs btn-sm"
+                                                    data-toggle="modal" data-target="#qnaModal">질문 작성하기</button>
                                         </div>
-
-
-
-                                        <nav aria-label="Page navigation">
-                                            <ul class="pagination justify-content-center custom-navigation">
-                                                <li class="page-item">
-                                                    <a class="page-link" href="#x" aria-label="Previous"><span
-                                                            aria-hidden="true">&laquo;</span></a>
-                                                </li>
-                                                <li class="page-item"><a class="page-link" href="#x">1</a></li>
-                                                <li class="page-item"><a class="page-link" href="#x">2</a></li>
-                                                <li class="page-item"><a class="page-link" href="#x">3</a></li>
-                                                <li class="page-item">
-                                                    <a class="page-link" href="#x" aria-label="Next"><span
-                                                            aria-hidden="true">&raquo;</span></a>
-                                                </li>
-                                            </ul>
-                                        </nav>
                                     </div>
-                                    <!-- Q&A <<<< -->
-
-                                    <!-- >>>> Review -->
-                                    <div class="">
-                                        <h4 class="mb-4 text-bullet">이용후기 <span
-                                                class="text-sky font-weight-light ml-3 mr-2">33개</span> 평균 <span
-                                                class="text-sky font-weight-light">★4.7/5</span></h4>
-
-                                        <!-- list -->
-                                        <ul id="reviews" class="list-unstyled view-type-review"> </ul>
-
-                                        <nav aria-label="Page navigation">
-                                            <ul class="pagination justify-content-center custom-navigation">
-                                                <li class="page-item">
-                                                    <a class="page-link" href="#x" aria-label="Previous"><span
-                                                            aria-hidden="true">&laquo;</span></a>
-                                                </li>
-                                                <li class="page-item"><a class="page-link" href="#x">1</a></li>
-                                                <li class="page-item"><a class="page-link" href="#x">2</a></li>
-                                                <li class="page-item"><a class="page-link" href="#x">3</a></li>
-                                                <li class="page-item">
-                                                    <a class="page-link" href="#x" aria-label="Next"><span
-                                                            aria-hidden="true">&raquo;</span></a>
-                                                </li>
-                                            </ul>
-                                        </nav>
-                                    </div>
+                                    
                                     <!-- Review <<<< -->
+                                    <div class="d-flex justify-content-between" id="review_info">
+                                        <button type="button"
+                                                    class="btn rounded-pill bg-dark text-white font-weight-light px-lg-4 px-2 font-size-xs btn-sm"
+                                                    data-toggle="modal" data-target="#reviewModal">후기 작성하기</button>
+
+                                        <ul id="reviews" class="list-unstyled view-type-review"> </ul>                                                    
+                                    </div>
                                 </div>
                             </div>
                             <div class="tab-pane fade" id="contact"></div>
@@ -202,7 +166,7 @@
 
                                 <!-- Calendar -->
                                 <div class="py- border-bottom">
-                                    <div id="datePicker" class="datepicker-inline mb-4"></div>
+                                    <div id="datePicker" class="datepicker-inline mb-4" onchange="price_maker();"></div>
 
                                     <div class="row mb-4">
                                         <div class="col-4">
@@ -238,7 +202,8 @@
                                     <div class="row">
                                         <div class="col-6 custom-inputs">
                                             <p>시작시간</p>
-                                            <select name="" id="start_times" class="form-control" onchange="price_maker();">
+                                            <select name="" id="start_times" class="form-control"
+                                                onchange="price_maker();">
                                                 <option value=0>00:00</option>
                                                 <option value=1>01:00</option>
                                                 <option value=2>02:00</option>
@@ -267,7 +232,8 @@
                                         </div>
                                         <div class="col-6 custom-inputs">
                                             <p>종료시간</p>
-                                            <select name="" id="end_times" class="form-control" onchange="price_maker();">
+                                            <select name="" id="end_times" class="form-control"
+                                                onchange="price_maker();">
                                                 <option value=1>01:00</option>
                                                 <option value=2>02:00</option>
                                                 <option value=3>03:00</option>
@@ -313,7 +279,7 @@
 
                                 <!-- Info -->
                                 <div id="priceinfo" class="pt-4">
-                                    
+
                                 </div>
                             </div>
                         </div>
@@ -326,7 +292,8 @@
                             <button type="button"
                                 class="btn w-50 py-3 border-0 rounded-0 font-weight-light">전화하기</button>
                             <span class="d-inline-block my-3" style="border-right: 1px solid #fff"></span>
-                            <button type="button" class="btn w-50 py-3 border-0 rounded-0 font-weight-light">1:1 채팅</button>
+                            <button type="button" class="btn w-50 py-3 border-0 rounded-0 font-weight-light">1:1
+                                채팅</button>
                         </div>
                     </div>
                 </div>
@@ -345,6 +312,49 @@
 
 
 <script>
+
+    function addCart() {
+        var cartInfo = JSON.parse(sessionStorage.getItem("cart"));
+        var cart = [];
+
+        if (curr_price > 0) {
+            for (var item in cartInfo) {
+                cart.push({
+                    img: cartInfo[item].img,
+                    title: cartInfo[item].title,
+                    price: cartInfo[item].price,
+                    date: cartInfo[item].date,
+                });
+            }
+
+            cart.push({
+                img: img_link,
+                title: title,
+                price: curr_price,
+                date:
+                    "예약일시 : " +
+                    $("#datePicker").value +
+                    " " +
+                    $("#start_times option:selected").text() +
+                    " ~ " +
+                    $("#end_times option:selected").text(),
+            });
+
+            sessionStorage.setItem("cart", JSON.stringify(cart));
+
+            console.log(cart);
+            alert("장바구니에 상품이 담겼습니다");
+        } else {
+            alert("상품 정보를 선택해주세요");
+        }
+    }
+
+    function purchase() {
+        addCart();
+        location.href = "http://artbyus.co.kr/member/purchase.html";
+    }
+
+
     $(function () {
         // datepicker
         $('#datePicker').datepicker({
