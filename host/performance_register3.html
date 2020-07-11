@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ART BY US</title>
+
+    <!-- Bootstrap 4.3.1 -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+    <!-- Custom -->
+    <link rel="stylesheet" href="../css/custom.css">
+    <link rel="stylesheet" href="../css/custom_host.css">
+
+    <!-- Fontawesome -->
+    <link rel="stylesheet" href="../css/fontawesome/css/all.min.css">
+</head>
+
+<body>
+    <!-- 모달 -->
+    <div id="modals"></div>
+
+    <!-- 서브 헤더 -->
+    <header id="header"></header>
+
+    <main role="main">
+        <div class="container overflow-hidden my-md-5 my-4 px-md-0">
+            <!-- 등록 프로세스 : 글자 줄바꿈 현상 때문에 min-width 992px(lg)에서 해당 프로세스 글자만 출력 -->
+            <div class="mb-md-5 mb-4 font-weight-light host-regist-proc">
+                <div class="row">
+                    <div class="col-lg-4 col-12 d-lg-block d-none">
+                        <p class="mb-0 pb-2 step active">01. 카테고리 선택</p>
+                    </div>
+                    <div class="col-lg-4 col-12 d-lg-block d-none">
+                        <p class="mb-0 pb-2 step active">02. 소개 입력</p>
+                    </div>
+                    <div class="col-lg-4 col-12">
+                        <p class="mb-0 pb-2 step active">03. 세부 정보 입력</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 공연 소개입력 -->
+            <h3 class="mb-md-4 mb-3">퍼포먼스 소개를 입력해 주세요</h3>
+
+            <!-- form -->
+            <div class="custom-inputs-sub not host-register-form">
+                <!-- 대표 이미지 -->
+                <div class="mb-lg-5 mb-3">
+                    <div class="text-gray font-weight-light">
+                        <label class="float-left">대표 이미지 (1장)</label>
+                    </div>
+                    <div class="d-flex custom-file">
+                        <input class="upload-name form-control flex-fill" value="JPG, PNG 파일만 가능합니다." disabled="disabled">
+                        <label for="thumbsFile" class="btn flex-fill fnc-btn mb-0 bg-yellow whitespace-nowrap fnc-btn">업로드</label>
+                        <input type="file" id="thumbsFile" class="upload-hidden">
+                    </div>
+                </div>
+
+                <!-- 추가 이미지 -->
+                <div class="mb-lg-5 mb-3">
+                    <div class="text-gray font-weight-light">
+                        <label class="float-left">추가 이미지 (최대 14장)</label>
+                    </div>
+                    <div class="d-flex custom-file mb-3">
+                        <input class="upload-name form-control flex-fill" value="최대 14장, JPG, PNG 파일만 가능합니다" disabled="disabled">
+                        <label for="performanceImageA1" class="btn flex-fill fnc-btn mb-0 bg-yellow whitespace-nowrap fnc-btn">업로드</label>
+                        <input type="file" id="performanceImageA1" class="upload-hidden">
+                    </div>
+                    <div class="d-flex custom-file mb-3">
+                        <input class="upload-name form-control flex-fill" value="최대 14장, JPG, PNG 파일만 가능합니다" disabled="disabled">
+                        <label for="performanceImageA2" class="btn flex-fill fnc-btn mb-0 bg-yellow whitespace-nowrap fnc-btn">업로드</label>
+                        <input type="file" id="performanceImageA2" class="upload-hidden">
+                    </div>
+                    <!-- 추가버튼 -->
+                    <button type="button" class="btn border font-weight-light font-size-xs sm-btn" onclick="addInputFile(this)">
+                        <i class="fas fa-plus mr-lg-1 mr-0 text-sky"></i><span class="d-inline-block">추가</span>
+                    </button>
+                </div>
+
+                <!-- 소개 영상 -->
+                <div class="mb-lg-5 mb-3">
+                    <div class="text-gray font-weight-light">
+                        <label for="performance_youtube" class="float-left">소개 영상</label>
+                        <span class="float-right">0/20</span>
+                    </div>
+                    <input type="text" id="performance_youtube" class="form-control" placeholder="YouTube URL로 업로드 해주세요">
+                </div>
+
+                <!-- 공연 장소(장소명) -->
+                <div class="mb-lg-5 mb-3">
+                    <div class="text-gray font-weight-light">
+                        <label for="performance_place" class="float-left">공연 장소(장소명)</label>
+                        <span class="float-right">0/20</span>
+                    </div>
+                    <input type="text" id="performance_place" class="form-control" placeholder="예) 샤롯데시어터 아트홀">
+                </div>
+
+                <!-- 금액 -->
+                <div class="mb-lg-5 mb-3">
+                    <div class="text-gray font-weight-light">
+                        <label for="performance_youtube">금액</label>
+                    </div>
+                    <div class="d-md-flex seat-price">
+                        <input type="text" class="form-control mr-md-3 mb-md-0 mb-3 seat" placeholder="좌석명을 입력해 주세요">
+
+                        <div class="d-flex justify-content-end align-items-center form-control mr-md-3 mb-md-0 mb-3">
+                            <input type="text" class="bg-transparent border-0 w-100 h-100 text-right text-gray price">
+                            <span class="ml-3 text-light-gray">원</span>
+                        </div>
+
+                        <button type="button" class="btn bg-yellow fnc-btn" onclick="addPrice()">추가하기</button>
+                    </div>
+
+                    <!-- 금액 -->
+                    <div class="d-flex align-content-center flex-wrap host-search-tags seat-price-tag">
+                        <div class="tag mt-3">
+                            <span class="mr-lg-2">VIP석 - 129,000원</span>
+                            <button type="button" class="btn bg-transparent" onclick="removeTag(this)"><i class="fa fa-times text-red"></i></button>
+                        </div>
+                        <div class="tag mt-3">
+                            <span class="mr-lg-2">R석 - 105,000원</span>
+                            <button type="button" class="btn bg-transparent" onclick="removeTag(this)"><i class="fa fa-times text-red"></i></button>
+                        </div>
+                        <div class="tag mt-3">
+                            <span class="mr-lg-2">S석 - 75,000원</span>
+                            <button type="button" class="btn bg-transparent" onclick="removeTag(this)"><i class="fa fa-times text-red"></i></button>
+                        </div>
+                        <div class="tag mt-3">
+                            <span class="mr-lg-2">장애인석 - 35,000원</span>
+                            <button type="button" class="btn bg-transparent" onclick="removeTag(this)"><i class="fa fa-times text-red"></i></button>
+                        </div>
+                        <div class="tag mt-3">
+                            <span class="mr-lg-2">A석 - 55,000원</span>
+                            <button type="button" class="btn bg-transparent" onclick="removeTag(this)"><i class="fa fa-times text-red"></i></button>
+                        </div>
+                        <div class="tag mt-3">
+                            <span class="mr-lg-2">B석 - 65,000원</span>
+                            <button type="button" class="btn bg-transparent" onclick="removeTag(this)"><i class="fa fa-times text-red"></i></button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 예매 사이트 -->
+                <div class="mb-lg-5 mb-3">
+                    <div class="text-gray font-weight-light">
+                        <label for="performance_site" class="float-left">예매 사이트</label>
+                    </div>
+                    <input type="text" id="performance_site" class="form-control" placeholder="URL로 입력해 주세요">
+                </div>
+
+                <!-- 공연 상세 소개 -->
+                <div class="mb-lg-5 mb-3">
+                    <div class="text-gray font-weight-light">
+                        <label for="performance_text" class="float-left">공연 상세 소개</label>
+                        <span class="float-right">0/700</span>
+                    </div>
+                    <textarea name="" id="performance_text" class="form-control large" placeholder="고객에게 남길 매력적인 소개글을 작성해 보세요"></textarea>
+                </div>
+
+                <!-- 상세 페이지 및 이미지 -->
+                <div class="mb-lg-5 mb-3">
+                    <div class="text-gray font-weight-light">
+                        <label class="float-left">상세 페이지 및 이미지 업로드 (최대 14장)</label>
+                    </div>
+                    <div class="d-flex custom-file mb-3">
+                        <input class="upload-name form-control flex-fill" value="최대 14장, JPG, PNG 파일만 가능합니다" disabled="disabled">
+                        <label for="performanceImageB1" class="btn flex-fill fnc-btn mb-0 bg-yellow whitespace-nowrap fnc-btn">업로드</label>
+                        <input type="file" id="performanceImageB1" class="upload-hidden">
+                    </div>
+                    <div class="d-flex custom-file mb-3">
+                        <input class="upload-name form-control flex-fill" value="최대 14장, JPG, PNG 파일만 가능합니다" disabled="disabled">
+                        <label for="performanceImageB2" class="btn flex-fill fnc-btn mb-0 bg-yellow whitespace-nowrap fnc-btn">업로드</label>
+                        <input type="file" id="performanceImageB2" class="upload-hidden">
+                    </div>
+                    <!-- 추가버튼 -->
+                    <button type="button" class="btn border font-weight-light font-size-xs sm-btn" onclick="addInputFile(this)">
+                        <i class="fas fa-plus mr-lg-1 mr-0 text-sky"></i><span class="d-inline-block">추가</span>
+                    </button>
+                </div>
+
+                <!-- 공연 검색 태그 -->
+                <div class="mb-lg-5 mb-3">
+                    <div class="text-gray font-weight-light">
+                        <label>공연 검색 태그</label>
+                    </div>
+                    <div class="d-flex">
+                        <input type="text" id="tagText" class="form-control" placeholder="사용자가 검색할 수 있는 키워드를 입력해 주세요.">
+                        <button type="button" class="btn bg-yellow fnc-btn" onclick="addTag()">추가하기</button>
+                    </div>
+
+                    <!-- 태그 -->
+                    <div class="d-flex align-content-center flex-wrap host-search-tags tags">
+                        <div class="tag mt-3">
+                            <span class="mr-lg-2">모짜르트</span>
+                            <button type="button" class="btn bg-transparent" onclick="removeTag(this)"><i class="fa fa-times text-red"></i></button>
+                        </div>
+                        <div class="tag mt-3">
+                            <span class="mr-lg-2">세종문화회관</span>
+                            <button type="button" class="btn bg-transparent" onclick="removeTag(this)"><i class="fa fa-times text-red"></i></button>
+                        </div>
+                        <div class="tag mt-3">
+                            <span class="mr-lg-2">광화문역</span>
+                            <button type="button" class="btn bg-transparent" onclick="removeTag(this)"><i class="fa fa-times text-red"></i></button>
+                        </div>
+                        <div class="tag mt-3">
+                            <span class="mr-lg-2">이수</span>
+                            <button type="button" class="btn bg-transparent" onclick="removeTag(this)"><i class="fa fa-times text-red"></i></button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 공연 오시는 길 -->
+                <div class="mb-lg-5 mb-3">
+                    <div class="text-gray font-weight-light">
+                        <label for="performance_addr">오시는 길</label>
+                    </div>
+                    <textarea name="" id="performance_addr" class="form-control large" placeholder="예) 601, 5528번 버스를 타고 관악경찰서 하차, 서울대입구역에서 도보 500m"></textarea>
+                </div>
+            </div>
+        </div>
+
+        <!-- 이전단계 / 다음단계 -->
+        <div class="overflow-hidden mt-lg-5 mt-3">
+            <a href="performance_register2.html" class="btn bg-gray float-left w-50 rounded-0 py-lg-4 py-3 font-size-m" onclick="history.back()">이전 단계로 이동</a>
+            <a href="performance_list.html" class="btn bg-yellow float-right w-50 rounded-0 py-lg-4 py-3 font-size-m">등록 완료 및 검수 신청</a>
+        </div>
+    </main>
+
+    <!-- 서브 푸터 -->
+    <footer id="footer"></footer>
+
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+
+    <script src="../js/include_html_host.js"></script>
+    <!-- <script src="../js/custom.js"></script> -->
+</body>
+
+<script>
+    $(function () {
+        var fileTarget = $('.custom-inputs-sub.not .upload-hidden');
+        fileTarget.on('change', function() {
+            // 값이 변경되면
+            if(window.FileReader){ // modern browser
+                var filename = $(this)[0].files[0].name;
+            } else { // old IE
+                var filename = $(this).val().split('/').pop().split('\\').pop(); // 파일명만 추출
+            }
+            // 추출한 파일명 삽입
+            $(this).siblings('.upload-name').val(filename);
+        });
+    })
+</script>
+
+</html>
