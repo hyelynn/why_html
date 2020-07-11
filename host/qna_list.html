@@ -26,6 +26,7 @@
     <script type="text/javascript" src="https://static.nid.naver.com/js/naveridlogin_js_sdk_2.0.0.js"
         charset="utf-8"></script>
     <script src="/js/kakao_sdk.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
 
     <script>
         Kakao.init('d88bea310f4a39afbea3146fe1c0fa72');
@@ -79,21 +80,19 @@
             <!-- 검색 및 정렬 -->
             <div class="d-lg-flex mb-3 custom-inputs-sub host-top-function host-search-bar">
                 <div class="input-group search-bar-solid">
-                    <input type="text" class="form-control text-dark search-text" placeholder="작성자로 검색해주세요"
+                    <input type="text" id="searchText" class="form-control text-dark search-text" placeholder="작성자로 검색해주세요"
                         aria-label="작성자로 검색해주세요" aria-describedby="search-question">
                     <div class="input-group-append">
-                        <button type="button" class="btn bg-yellow text-gray">검색</button>
+                        <button type="button" onclick="searchWriter();" class="btn bg-yellow text-gray">검색</button>
                     </div>
                 </div>
-                <select class="form-control font-weight-light ml-auto mt-lg-0 mt-3">
-                    <option value="">답변필요순</option>
-                    <option value="">미답변순</option>
-                    <option value="">최신 등록일 순</option>
+                <select id="selectVal" class="form-control font-weight-light ml-auto mt-lg-0 mt-3">
+                    <option value="1">답변완료순</option>
+                    <option value="2">답변필요순</option>
+                    <option value="3">최신 등록일 순</option>
                 </select>
-            </div>
 
-           
-           
+            </div>
         </div>
     </main>
 
@@ -115,6 +114,7 @@
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
         integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
         crossorigin="anonymous"></script>
+
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
         integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
         crossorigin="anonymous"></script>
@@ -122,18 +122,178 @@
     <script src="/js/custom.js"></script>
 
     <script>
+        var qnaList;
+
+        function searchWriter(){
+            var tempList = [];
+            var writer = document.getElementById("searchText").value;
+            for(var i = 0; i<qnaList.length;i++){
+                var studio_temp = qnaList[i];
+                if(studio_temp.user_id.indexOf(writer) == 0){
+                    tempList.push(studio_temp);
+                }
+            }
+
+            $("div[id^='qnaItem']").remove();
+            writeHtml(tempList);
+        }
+
         // 수정 input 활성화
         function handleQna(id) {
             console.log(id)
-            let answer_text = $.trim($('#' + id).find('p.answer').text());
+            let answer_text = $.trim($('#qnaItem' + id).find('p.answer').text());
+            $('#qnaItem' + id).find('div.card-body').hide();
+            $('#qnaItem' + id).find('div.accordion-textarea').show().find('textarea').val(answer_text).focus();
+        }
 
-            // console.log($('#' + id))
-            $('#' + id).find('div.card-body').hide();
-            $('#' + id).find('div.accordion-textarea').show().find('textarea').val(answer_text).focus();
+        function goAns(id){
+            var ans = document.getElementById("ans_"+id).value;
+            var xhr = new XMLHttpRequest();
+            xhr.onreadystatechange = function() {
+                if (xhr.readyState === xhr.DONE) { 
+                    if (xhr.status === 200 || xhr.status === 201) {
+                        location.reload();
+                        $('#qnaItem' + id).find('div.card-body').show();
 
-            //수정
+                    } else {
+                        alert("답변이 등록되지 않았습니다. 다시 시도해 주세요.");
+                    }
+                }else{
+                }
+            };
+            console.log(id + " : " + ans);
+            xhr.open('POST', 'http://3.34.150.116:3000/studio/qna/apply',true);
+            xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+            xhr.send("id="+id+"&answer="+ans); 
+        }
+        
+        function noAnsSort(){
+            var tempList = [];
+            for(var i = 0; i<qnaList.length;i++){
+                var studio_temp = qnaList[i];
+                if(studio_temp.qna_answer == null){
+                    tempList.push(studio_temp);
+                }
+            }
+            for(var i = 0; i<qnaList.length;i++){
+                var studio_temp = qnaList[i];
+                if(studio_temp.qna_answer != null){
+                    tempList.push(studio_temp);
+                }
+            }
+            writeHtml(tempList);
+        }
 
+        function AnsSort(){
+            var tempList = [];
+            for(var i = 0; i<qnaList.length;i++){
+                var studio_temp = qnaList[i];
+                if(studio_temp.qna_answer != null){
+                    tempList.push(studio_temp);
+                }
+            }
+            for(var i = 0; i<qnaList.length;i++){
+                var studio_temp = qnaList[i];
+                if(studio_temp.qna_answer == null){
+                    tempList.push(studio_temp);
+                }
+            }
+            writeHtml(tempList);
+        }
+        
+        function recentSort(a, b) { if(a.qna_date == b.qna_date){ return 0} return a.qna_date < b.qna_date ? 1 : -1; }
 
+        $("#selectVal").change(function (){
+            var num = $("#selectVal option:selected").val();
+            switch(num){
+                case "1":{
+                    $("div[id^='qnaItem']").remove();
+                    AnsSort();
+                    break;
+                }
+                case "2":{
+                    $("div[id^='qnaItem']").remove();
+                    noAnsSort();
+                    break;
+                }
+                default:{
+                    $("div[id^='qnaItem']").remove();
+                    qnaList.sort(recentSort);
+                    writeHtml(qnaList);
+
+                    break;
+                }
+            }
+        });
+
+        function writeHtml(studio_list){
+            for(var i = 0; i<studio_list.length;i++){
+                var studio_temp = studio_list[i];
+                var re_studio = '';
+                console.log(studio_temp.qna_answer);
+                if(studio_temp.qna_answer == null ){
+                    re_studio ='<div class="accordion host-accordion text-gray mb-lg-5 mb-3" id="qnaItem'+studio_temp.qna_no+'">'
+                                    +'<div class="card">'
+                                        +'<div class="card-header d-flex justify-content-between align-items-center" id="itemHeading'+studio_temp.qna_no+'">'
+                                            +'<div class="mr-lg-5 mr-3">'
+                                                +'<span class="state-text incomplete">답변필요</span>'
+                                                +'<span class="ml-2 font-weight-light state-text">작성자 : '+studio_temp.user_id+'</span>'
+                                                +'<p class="my-2"> '+studio_temp.qna_msg+' </p>'
+                                                +'<span class="state-text bottom">'+studio_temp.studio_name
+                                                    +'<span class="ml-md-4 d-md-inline-block d-block">'+moment(studio_temp.qna_date).format('YYYY-MM-DD HH:mm')+'</span>'
+                                                +'</span>'
+                                            +'</div>'
+                                            +'<button class="btn accordion-btn" type="button" data-toggle="collapse" data-target="#itemCollapse'+studio_temp.qna_no+'" aria-expanded="true" aria-controls="itemCollapse'+studio_temp.qna_no+'">'
+                                                +'<i class="fas fa-angle-double-up"></i>'
+                                            +'</button>'
+                                        +'</div>'
+                                        +'<div id="itemCollapse'+studio_temp.qna_no+'" class="collapse show" aria-labelledby="itemHeading'+studio_temp.qna_no+'" data-parent="#qnaItem'+studio_temp.qna_no+'">'
+                                            +'<div class="input-group border-top accordion-textarea">'
+                                                +'<textarea id="ans_'+studio_temp.qna_no+'" class="form-control text-dark border-0" placeholder="답변을 작성해 주세요" aria-describedby="write-answer"></textarea>'
+                                                +'<div class="input-group-append">'
+                                                    +'<button type="button" onclick="goAns('+studio_temp.qna_no+');" class="btn bg-yellow rounded-0 text-gray">답변</button>'
+                                                +'</div>'
+                                            +'</div>'
+                                        +'</div>'
+                                    +'</div>'
+                                +'</div>';
+                }else{
+                    re_studio = '<div class="accordion host-accordion text-gray mb-lg-5 mb-3" id="qnaItem'+studio_temp.qna_no+'">'
+                                    +'<div class="card">'
+                                        +'<div class="card-header d-flex justify-content-between align-items-center" id="itemHeading'+studio_temp.qna_no+'">'
+                                            +'<div class="mr-lg-5 mr-3">'
+                                                +'<span class="state-text complete">답변완료</span>'
+                                                +'<span class="ml-2 font-weight-light state-text">작성자 : '+studio_temp.user_id+'</span>'
+                                                +'<p class="my-2"> '+studio_temp.qna_msg+' </p>'
+                                                +'<span class="state-text bottom">'+studio_temp.studio_name
+                                                    +'<span class="ml-md-4 d-md-inline-block d-block">'+moment(studio_temp.qna_date).format('YYYY-MM-DD HH:mm')+'</span>'
+                                                +'</span>'
+                                            +'</div>'
+                                            +'<button class="btn accordion-btn" type="button" data-toggle="collapse"'
+                                            +'data-target="#itemCollapse'+studio_temp.qna_no+'" aria-expanded="true" aria-controls="itemCollapse'+studio_temp.qna_no+'">'
+                                                +'<i class="fas fa-angle-double-up"></i>'
+                                            +'</button>'
+                                        +'</div>'
+                                        +'<div id="itemCollapse'+studio_temp.qna_no+'" class="collapse" aria-labelledby="itemHeading'+studio_temp.qna_no+'" data-parent="#qnaItem'+studio_temp.qna_no+'">'
+                                    +'<div class="card-body">'
+                                        +'<span class="state-text">답변</span>'
+                                        +'<p class="my-2 answer"> '+studio_temp.qna_answer+' </p>'
+                                        +'<span class="state-text bottom">'+moment(studio_temp.qna_answer_date).format('YYYY-MM-DD HH:mm')+'</span>'
+                                        +'<button type="button" class="btn ml-4 state-text edit-btn" onclick="handleQna('+studio_temp.qna_no+')">수정</button>'
+                                    +'</div>'
+
+                                    +' <div class="input-group border-top accordion-textarea" style="display: none">'
+                                        +'<textarea id="ans_'+studio_temp.qna_no+'" class="form-control text-dark border-0" placeholder="답변을 작성해 주세요" aria-describedby="write-answer"></textarea>'
+                                        +'<div class="input-group-append">'
+                                            +'<button type="button" onclick="goAns('+studio_temp.qna_no+');" class="btn bg-yellow rounded-0 text-gray">답변</button>'
+                                        +'</div>'
+                                    +'</div>'
+                                +' </div>'
+                            +'</div>'
+                        +'</div>';
+                    }
+                $("#qna_text").append(re_studio);
+            }
         }
 
         $(document).ready(function (){
@@ -141,58 +301,8 @@
             xhr.onreadystatechange = function() {
                 if (xhr.readyState === xhr.DONE) { 
                     if (xhr.status === 200 || xhr.status === 201) {
-                        var studio_list = JSON.parse(xhr.responseText);
-                        for(var i = 0; i<studio_list.length;i++){
-                            var studio_temp = studio_list[i];
-                            var reply = '';
-                            // if(!studio_temp.reply){reply = 'in';}
-                            var studio = '<div class="accordion host-accordion text-gray mb-lg-5 mb-3" id="qnaItem'+i+'">'
-                                                +'<div class="card">'
-                                                    +'<div class="card-header d-flex justify-content-between align-items-center" id="itemHeading'+i+'">'
-                                                        +'<div class="mr-lg-5 mr-3">'
-                                                            +'<span class="state-text '+reply+'complete">답변필요</span>'
-                                                            +'<span class="ml-2 font-weight-light state-text">작성자 : '+studio_temp.user_id+'</span>'
-                                                            +'<p class="my-2"> '+studio_temp.qna_msg+' </p>'
-                                                            +'<span class="state-text bottom">'+studio_temp.studio_name
-                                                                +'<span class="ml-md-4 d-md-inline-block d-block">'+studio_temp.qna_date+'</span>'
-                                                            +'</span>'
-                                                        +'</div>'
-                                                        +'<button class="btn accordion-btn" type="button" data-toggle="collapse"'
-                                                        +'data-target="#itemCollapse'+i+' aria-expanded="true" aria-controls="itemCollapse'+i+'">'
-                                                            +'<i class="fas fa-angle-double-up"></i>'
-                                                        +'</button>'
-                                                    +'</div>';
-
-                            // var no_studio ='<div id="itemCollapse'+i+'" class="collapse show" aria-labelledby="itemHeading'+i+'" data-parent="#qnaItem'+i+'">'
-                            //                             +'<div class="input-group border-top accordion-textarea">'
-                            //                                 +'<textarea class="form-control text-dark border-0" placeholder="답변을 작성해 주세요" aria-describedby="write-answer"></textarea>'
-                            //                                 +'<div class="input-group-append">'
-                            //                                     +'<button type="button" class="btn bg-yellow rounded-0 text-gray">답변</button>'
-                            //                                 +'</div>'
-                            //                             +'</div>'
-                            //                         +'</div>'
-                            //                     +'</div>'
-                            //                 +'</div>';
-                            // var re_studio = '<div id="itemCollapse3" class="collapse" aria-labelledby="itemHeading3" data-parent="#qnaItem'+i+'">'
-                            //                     +'<div class="card-body">'
-                            //                         +'<span class="state-text">답변</span>'
-                            //                         +'<p class="my-2 answer"> '+studio_temp.resubname+' </p>'
-                            //                         +'<span class="state-text bottom">'+studio_temp.retime+'</span>'
-                            //                         +'<button type="button" class="btn ml-4 state-text edit-btn" onclick="handleQna(qnaItem'+i+')">수정</button>'
-                            //                     +'</div>'
-
-                            //                     +' <div class="input-group border-top accordion-textarea" style="display: none">'
-                            //                         +'<textarea class="form-control text-dark border-0" placeholder="답변을 작성해 주세요" aria-describedby="write-answer"></textarea>'
-                            //                         +'<div class="input-group-append">'
-                            //                             +'<button type="button" class="btn bg-yellow rounded-0 text-gray">답변</button>'
-                            //                         +'</div>'
-                            //                     +'</div>'
-                            //                 +' </div>'
-                            //             +'</div>'
-                            //         +'</div>';
-                        $("#qna_text").append(studio);
-                        }
-
+                        qnaList = JSON.parse(xhr.responseText);
+                        writeHtml(qnaList);
                     } else {
                         alert("목록이 정상적으로 이루어지지 않았습니다. 다시 시도해주세요.");
                         console.error(xhr.responseText);

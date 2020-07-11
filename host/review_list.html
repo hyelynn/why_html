@@ -19,6 +19,7 @@
 
     <!-- Fontawesome -->
     <link rel="stylesheet" href="/css/fontawesome/css/all.min.css">
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
 
     <script src="/js/include.js"></script>
     <!-- Custom -->
@@ -79,194 +80,19 @@
             <!-- 검색 및 정렬 -->
             <div class="d-lg-flex mb-3 custom-inputs-sub host-top-function host-search-bar">
                 <div class="input-group search-bar-solid">
-                    <input type="text" class="form-control text-dark search-text" placeholder="작성자로 검색해주세요"
+                    <input type="text" id="searchText" class="form-control text-dark search-text" placeholder="작성자로 검색해주세요"
                         aria-label="작성자로 검색해주세요" aria-describedby="search-question">
                     <div class="input-group-append">
-                        <button type="button" class="btn bg-yellow text-gray">검색</button>
+                        <button type="button" onclick="searchWriter();" class="btn bg-yellow text-gray">검색</button>
                     </div>
                 </div>
-                <select class="form-control font-weight-light ml-auto mt-lg-0 mt-3">
-                    <option value="">평점 4.5이상</option>
-                    <option value="">미답변순</option>
-                    <option value="">최신 등록일 순</option>
+                <select id="selectVal" class="form-control font-weight-light ml-auto mt-lg-0 mt-3">
+                    <option value="3">최신 등록일 순</option>
+                    <option value="1">평점 4.5이상</option>
+                    <option value="2">미답변순</option>
                 </select>
             </div>
 
-            <!-- 리스트 : 아코디언 - 답변완료 -->
-            <div class="accordion host-accordion text-gray mb-lg-5 mb-3" id="qnaItem1">
-                <div class="card">
-                    <div class="card-header d-flex justify-content-between align-items-center" id="itemHeading1">
-                        <div class="mr-lg-5 mr-3">
-                            <span class="state-text rating">평점 : 2.5</span><span
-                                class="ml-2 font-weight-light state-text">작성자 : buming</span>
-                            <p class="my-2">
-                                속의 이름을 가을로 하나에 하나 버리었습니다. 무엇인지 때 라이너 자랑처럼 추억과 너무나 소녀들의 했던 버리었습니다. 아침이 가슴속에
-                                이름자 지나가는 당신은 별 까닭입니다. 헤는 이네들은 써 어머니 별에도 릴케 북간도에 가을 이름자를 봅니다. 아침이 사람들의 가득 헤는
-                                부끄러운 벌레는 언덕것은 가슴속에 봅니다. 아스라히 때 풀이 소학교 마리아 버리었습니다. 한 나의 마리아 이름자를 이름과, 별이 하나에
-                                별 아무 있습니다. 무성할 흙으로 자랑처럼 무엇인지 어머니, 노루, 나의 부끄러운 봅니다. 가득 말 둘 무덤 별 하나에 이름자를 계십니다.
-                            </p>
-                            <span class="state-text bottom">사당G4안무연습실 - J401호<span
-                                    class="ml-md-4 d-md-inline-block d-block">2020-06-09 14:41</span></span>
-                        </div>
-                        <button class="btn accordion-btn" type="button" data-toggle="collapse"
-                            data-target="#itemCollapse1" aria-expanded="true" aria-controls="itemCollapse1">
-                            <!-- collapse show일 때 -->
-                            <i class="fas fa-angle-double-up"></i>
-                            <!-- collapse 일 때 -->
-                            <!-- <i class="fas fa-angle-double-down"></i> -->
-                        </button>
-                    </div>
-
-                    <div id="itemCollapse1" class="collapse show" aria-labelledby="itemHeading1"
-                        data-parent="#qnaItem1">
-                        <div class="card-body">
-                            <span class="state-text">답변</span>
-                            <p class="my-2 answer">
-                                별들을 부끄러운 밤을 다하지 있습니다. 된 아름다운 이 같이 내 하나에 위에 멀리 까닭입니다. 릴케 경, 이름자를 별 어머님, 옥 가을 속의 계십니다.
-                                어머니, 애기 밤을 아무 보고, 아름다운 이런 별 까닭입니다. 하나에 이네들은 벌레는 언덕 하나 잠, 헤는 버리었습니다.
-                            </p>
-                            <span class="state-text bottom">2020-06-09 14:41</span>
-                            <button type="button" class="btn ml-4 state-text edit-btn"
-                                onclick="handleQna('qnaItem1')">수정</button>
-                        </div>
-
-                        <!-- 수정 버튼 클릭시 show -->
-                        <div class="input-group border-top accordion-textarea" style="display: none">
-                            <textarea class="form-control text-dark border-0" placeholder="답변을 작성해 주세요"
-                                aria-describedby="write-answer"></textarea>
-                            <div class="input-group-append">
-                                <button type="button" class="btn bg-yellow rounded-0 text-gray">답변</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- 리스트 : 아코디언 - 답변팔요 -->
-            <div class="accordion host-accordion text-gray mb-lg-5 mb-3" id="qnaItem2">
-                <div class="card">
-                    <div class="card-header d-flex justify-content-between align-items-center" id="itemHeading2">
-                        <div class="mr-lg-5 mr-3">
-                            <span class="state-text rating">평점 : 5.0</span><span
-                                class="ml-2 font-weight-light state-text">작성자 : GUEST_001</span>
-                            <p class="my-2">
-                                속의 이름을 가을로 하나에 하나 버리었습니다. 무엇인지 때 라이너 자랑처럼 추억과 너무나 소녀들의 했던 버리었습니다. 아침이 가슴속에
-                                이름자 지나가는 당신은 별 까닭입니다. 헤는 이네들은 써 어머니 별에도 릴케 북간도에 가을 이름자를 봅니다. 아침이 사람들의 가득 헤는
-                                부끄러운 벌레는 언덕것은 가슴속에 봅니다. 아스라히 때 풀이 소학교 마리아 버리었습니다. 한 나의 마리아 이름자를 이름과, 별이 하나에
-                                별 아무 있습니다. 무성할 흙으로 자랑처럼 무엇인지 어머니, 노루, 나의 부끄러운 봅니다. 가득 말 둘 무덤 별 하나에 이름자를 계십니다.
-                            </p>
-                            <span class="state-text bottom">방배합주실 - 4001호<span
-                                    class="ml-md-4 d-md-inline-block d-block">2020-06-09 14:41</span></span>
-                        </div>
-                        <button class="btn accordion-btn" type="button" data-toggle="collapse"
-                            data-target="#itemCollapse2" aria-expanded="true" aria-controls="itemCollapse2">
-                            <!-- collapse show일 때 -->
-                            <i class="fas fa-angle-double-up"></i>
-                            <!-- collapse 일 때 -->
-                            <!-- <i class="fas fa-angle-double-down"></i> -->
-                        </button>
-                    </div>
-
-                    <!-- 답변 작성란 -->
-                    <div id="itemCollapse2" class="collapse show" aria-labelledby="itemHeading2"
-                        data-parent="#qnaItem2">
-                        <div class="input-group border-top accordion-textarea">
-                            <textarea class="form-control text-dark border-0" placeholder="답변을 작성해 주세요"
-                                aria-describedby="write-answer"></textarea>
-                            <div class="input-group-append">
-                                <button type="button" class="btn bg-yellow rounded-0 text-gray">답변</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- 리스트 : 아코디언(닫힘) - 답변완료 -->
-            <div class="accordion host-accordion text-gray mb-lg-5 mb-3" id="qnaItem3">
-                <div class="card">
-                    <div class="card-header d-flex justify-content-between align-items-center" id="itemHeading3">
-                        <div class="mr-lg-5 mr-3">
-                            <span class="state-text rating">평점 3.0</span><span
-                                class="ml-2 font-weight-light state-text">작성자 : buming</span>
-                            <p class="my-2">
-                                속의 이름을 가을로 하나에 하나 버리었습니다. 무엇인지 때 라이너 자랑처럼 추억과 너무나 소녀들의 했던 버리었습니다. 아침이 가슴속에
-                                이름자 지나가는 당신은 별 까닭입니다. 헤는 이네들은 써 어머니 별에도 릴케 북간도에 가을 이름자를 봅니다. 아침이 사람들의 가득 헤는
-                                부끄러운 벌레는 언덕것은 가슴속에 봅니다. 아스라히 때 풀이 소학교 마리아 버리었습니다. 한 나의 마리아 이름자를 이름과, 별이 하나에
-                                별 아무 있습니다. 무성할 흙으로 자랑처럼 무엇인지 어머니, 노루, 나의 부끄러운 봅니다. 가득 말 둘 무덤 별 하나에 이름자를 계십니다.
-                            </p>
-                            <span class="state-text bottom">서초역공유주방- 304호<span
-                                    class="ml-md-4 d-md-inline-block d-block">2020-06-09 14:41</span></span>
-                        </div>
-                        <button class="btn accordion-btn" type="button" data-toggle="collapse"
-                            data-target="#itemCollapse3" aria-expanded="true" aria-controls="itemCollapse3">
-                            <!-- collapse show일 때 -->
-                            <!-- <i class="fas fa-angle-double-up"></i> -->
-                            <!-- collapse 일 때 -->
-                            <i class="fas fa-angle-double-down"></i>
-                        </button>
-                    </div>
-
-                    <div id="itemCollapse3" class="collapse" aria-labelledby="itemHeading3" data-parent="#qnaItem3">
-                        <div class="card-body">
-                            <span class="state-text">답변</span>
-                            <p class="my-2 answer">
-                                별들을 부끄러운 밤을 다하지 있습니다. 된 아름다운 이 같이 내 하나에 위에 멀리 까닭입니다. 릴케 경, 이름자를 별 어머님, 옥 가을 속의 계십니다.
-                                어머니, 애기 밤을 아무 보고, 아름다운 이런 별 까닭입니다. 하나에 이네들은 벌레는 언덕 하나 잠, 헤는 버리었습니다.
-                            </p>
-                            <span class="state-text bottom">2020-06-09 14:41</span>
-                            <button type="button" class="btn ml-4 state-text edit-btn"
-                                onclick="handleQna('qnaItem3')">수정</button>
-                        </div>
-
-                        <!-- 수정 버튼 클릭시 show -->
-                        <div class="input-group border-top accordion-textarea" style="display: none">
-                            <textarea class="form-control text-dark border-0" placeholder="답변을 작성해 주세요"
-                                aria-describedby="write-answer"></textarea>
-                            <div class="input-group-append">
-                                <button type="button" class="btn bg-yellow rounded-0 text-gray">답변</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- 리스트 : 아코디언(닫힘) - 답변팔요 -->
-            <div class="accordion host-accordion text-gray mb-lg-5 mb-3" id="qnaItem4">
-                <div class="card">
-                    <div class="card-header d-flex justify-content-between align-items-center" id="itemHeading4">
-                        <div class="mr-lg-5 mr-3">
-                            <span class="state-text rating">평점 2.5</span><span
-                                class="ml-2 font-weight-light state-text">작성자 : GUEST_001</span>
-                            <p class="my-2">
-                                속의 이름을 가을로 하나에 하나 버리었습니다. 무엇인지 때 라이너 자랑처럼 추억과 너무나 소녀들의 했던 버리었습니다. 아침이 가슴속에
-                                이름자 지나가는 당신은 별 까닭입니다. 헤는 이네들은 써 어머니 별에도 릴케 북간도에 가을 이름자를 봅니다. 아침이 사람들의 가득 헤는
-                                부끄러운 벌레는 언덕것은 가슴속에 봅니다. 아스라히 때 풀이 소학교 마리아 버리었습니다. 한 나의 마리아 이름자를 이름과, 별이 하나에
-                                별 아무 있습니다. 무성할 흙으로 자랑처럼 무엇인지 어머니, 노루, 나의 부끄러운 봅니다. 가득 말 둘 무덤 별 하나에 이름자를 계십니다.
-                            </p>
-                            <span class="state-text bottom">낙성대G2녹음연습실 - J401호<span
-                                    class="ml-md-4 d-md-inline-block d-block">2020-06-09 14:41</span></span>
-                        </div>
-                        <button class="btn accordion-btn" type="button" data-toggle="collapse"
-                            data-target="#itemCollapse4" aria-expanded="true" aria-controls="itemCollapse4">
-                            <!-- collapse show일 때 -->
-                            <!-- <i class="fas fa-angle-double-up"></i> -->
-                            <!-- collapse 일 때 -->
-                            <i class="fas fa-angle-double-down"></i>
-                        </button>
-                    </div>
-
-                    <!-- 답변 작성란 -->
-                    <div id="itemCollapse4" class="collapse" aria-labelledby="itemHeading4" data-parent="#qnaItem4">
-                        <div class="input-group border-top accordion-textarea">
-                            <textarea class="form-control text-dark border-0" placeholder="답변을 작성해 주세요"
-                                aria-describedby="write-answer"></textarea>
-                            <div class="input-group-append">
-                                <button type="button" class="btn bg-yellow rounded-0 text-gray">답변</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
         </div>
     </main>
 
@@ -295,16 +121,165 @@
     <script src="/js/custom.js"></script>
 
     <script>
+        var ansList;
+
+        function searchWriter(){
+            var tempList = [];
+            var writer = document.getElementById("searchText").value;
+            for(var i = 0; i<ansList.length;i++){
+                var studio_temp = ansList[i];
+                if(studio_temp.user_id.indexOf(writer) == 0){
+                    tempList.push(studio_temp);
+                }
+            }
+            $("div[id^='qnaItem']").remove();
+            writeHtml(tempList);
+        }
+
         // 수정 input 활성화
         function handleQna(id) {
             console.log(id)
-            let answer_text = $.trim($('#' + id).find('p.answer').text());
+            let answer_text = $.trim($('#qnaItem' + id).find('p.answer').text());
+            $('#qnaItem' + id).find('div.card-body').hide();
+            $('#qnaItem' + id).find('div.accordion-textarea').show().find('textarea').val(answer_text).focus();
+        }
+        
+        function scoreSort() { 
+            var tempList = [];
+            for(var i = 0; i<ansList.length;i++){
+                var studio_temp = ansList[i];
+                if(studio_temp.review_score >= "4.5"){
+                    tempList.push(studio_temp);
+                }
+            }
+            writeHtml(tempList);
+        }
+        
+        function noAnsSort(){
+            var tempList = [];
+            for(var i = 0; i<ansList.length;i++){
+                var studio_temp = ansList[i];
+                if(studio_temp.review_answer == null){
+                    tempList.push(studio_temp);
+                }
+            }
+            for(var i = 0; i<ansList.length;i++){
+                var studio_temp = ansList[i];
+                if(studio_temp.review_answer != null){
+                    tempList.push(studio_temp);
+                }
+            }
+            writeHtml(tempList);
+        }
+        
+        function recentSort(a, b) { if(a.qna_date == b.qna_date){ return 0} return a.qna_date < b.qna_date ? 1 : -1; }
 
-            // console.log($('#' + id))
-            $('#' + id).find('div.card-body').hide();
-            $('#' + id).find('div.accordion-textarea').show().find('textarea').val(answer_text).focus();
+        $("#selectVal").change(function (){
+            var num = $("#selectVal option:selected").val();
+            switch(num){
+                case "1":{
+                    $("div[id^='qnaItem']").remove();
+                    scoreSort();
+                    break;
+                }
+                case "2":{
+                    $("div[id^='qnaItem']").remove();
+                    noAnsSort();
+                    break;
+                }
+                default:{
+                    $("div[id^='qnaItem']").remove();
+                    ansList.sort(recentSort);
+                    writeHtml(ansList);
+                    break;
+                }
+            }
+        });
 
-            //수정
+        function goAns(id){
+            var ans = document.getElementById("ans_"+id).value;
+            var xhr = new XMLHttpRequest();
+            xhr.onreadystatechange = function() {
+                if (xhr.readyState === xhr.DONE) { 
+                    if (xhr.status === 200 || xhr.status === 201) {
+                        location.reload();
+                        $('#qnaItem' + id).find('div.card-body').show();
+                    } else {
+                        alert("답변이 등록되지 않았습니다. 다시 시도해 주세요.");
+                    }
+                }else{
+                }
+            };
+            xhr.open('POST', 'http://3.34.150.116:3000/studio/review/apply',true);
+            xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+            xhr.send("id="+id+"&answer="+ans); 
+        }
+
+        function writeHtml(studio_list){
+            for(var i = 0; i<studio_list.length;i++){
+                var studio_temp = studio_list[i];
+                var studio = '';
+                if(studio_temp.review_answer != null){
+                    studio = '<div class="accordion host-accordion text-gray mb-lg-5 mb-3" id="qnaItem'+studio_temp.review_no+'">'
+                                +'<div class="card">'
+                                    +'<div class="card-header d-flex justify-content-between align-items-center" id="itemHeading'+studio_temp.review_no+'">'
+                                        +'<div class="mr-lg-5 mr-3">'
+                                            +'<span class="state-text rating">평점 : '+studio_temp.review_score+'</span>'
+                                            +'<span class="ml-2 font-weight-light state-text">작성자 : '+studio_temp.user_id+'</span>'
+                                            +'<p class="my-2">'+studio_temp.review_msg+' </p>'
+                                            +'<span class="state-text bottom">'+studio_temp.studio_name
+                                                +'<span class="ml-md-4 d-md-inline-block d-block">'+moment(studio_temp.review_date).format('YYYY-MM-DD HH:mm')+'</span>'
+                                            +'</span>'
+                                        +'</div>'
+                                        +'<button class="btn accordion-btn" type="button" data-toggle="collapse" data-target="#itemCollapse'+studio_temp.review_no+'" aria-expanded="true" aria-controls="itemCollapse'+studio_temp.review_no+'">'
+                                            +'<i class="fas fa-angle-double-up"></i>'
+                                        +'</button>'
+                                    +'</div>'
+                                    +'<div id="itemCollapse'+studio_temp.review_no+'" class="collapse show" aria-labelledby="itemHeading'+studio_temp.review_no+'" data-parent="#qnaItem'+studio_temp.review_no+'">'
+                                    +'<div class="card-body">'
+                                        +'<span class="state-text">답변</span>'
+                                        +'<p class="my-2 answer">'+studio_temp.review_answer+'</p>'
+                                        +'<span class="state-text bottom">'+moment(studio_temp.review_answer_date).format('YYYY-MM-DD HH:mm')+'</span>'
+                                        +'<button type="button" class="btn ml-4 state-text edit-btn" onclick="handleQna('+studio_temp.review_no+')">수정</button>'
+                                    +'</div>'
+                                    +'<div class="input-group border-top accordion-textarea" style="display: none">'
+                                        +'<textarea id="ans_'+studio_temp.review_no+'" class="form-control text-dark border-0" placeholder="답변을 작성해 주세요" aria-describedby="write-answer"></textarea>'
+                                        +'<div class="input-group-append">'
+                                            +'<button type="button" onclick="goAns('+studio_temp.review_no+');" class="btn bg-yellow rounded-0 text-gray">답변</button>'
+                                        +'</div>'
+                                    +'</div>'
+                                +'</div>'
+                            +'</div>'
+                        +'</div>';
+                }else{
+                    studio = '<div class="accordion host-accordion text-gray mb-lg-5 mb-3" id="qnaItem'+studio_temp.review_no+'">'
+                                +'<div class="card">'
+                                    +'<div class="card-header d-flex justify-content-between align-items-center" id="itemHeading'+studio_temp.review_no+'">'
+                                        +'<div class="mr-lg-5 mr-3">'
+                                            +'<span class="state-text rating">평점 : '+studio_temp.review_score+'</span>'
+                                            +'<span class="ml-2 font-weight-light state-text">작성자 : '+studio_temp.user_id+'</span>'
+                                            +'<p class="my-2">'+studio_temp.review_msg+' </p>'
+                                            +'<span class="state-text bottom">'+studio_temp.studio_name
+                                                +'<span class="ml-md-4 d-md-inline-block d-block">'+moment(studio_temp.review_date).format('YYYY-MM-DD HH:mm')+'</span>'
+                                            +'</span>'
+                                        +'</div>'
+                                        +'<button class="btn accordion-btn" type="button" data-toggle="collapse" data-target="#itemCollapse'+studio_temp.review_no+'" aria-expanded="true" aria-controls="itemCollapse'+studio_temp.review_no+'">'
+                                            +'<i class="fas fa-angle-double-up"></i>'
+                                        +'</button>'
+                                    +'</div>'
+                                    +'<div id="itemCollapse'+studio_temp.review_no+'" class="collapse show" aria-labelledby="itemHeading'+studio_temp.review_no+'" data-parent="#qnaItem'+studio_temp.review_no+'">'
+                                    +'<div class="input-group border-top accordion-textarea">'
+                                        +'<textarea id="ans_'+studio_temp.review_no+'" class="form-control text-dark border-0" placeholder="답변을 작성해 주세요" aria-describedby="write-answer"></textarea>'
+                                        +'<div class="input-group-append">'
+                                            +'<button type="button" onclick="goAns('+studio_temp.review_no+');" class="btn bg-yellow rounded-0 text-gray">답변</button>'
+                                        +'</div>'
+                                    +'</div>'
+                                +'</div>'
+                            +'</div>'
+                        +'</div>';
+                }
+            $("#review_text").append(studio);
+            }
         }
 
         $(document).ready(function(){
@@ -312,57 +287,8 @@
             xhr.onreadystatechange = function() {
                 if (xhr.readyState === xhr.DONE) { 
                     if (xhr.status === 200 || xhr.status === 201) {
-                        var studio_list = JSON.parse(xhr.responseText);
-                        for(var i = 0; i<studio_list.length;i++){
-                            var studio_temp = studio_list[i];
-                            var reply = '';
-                            if(!studio_temp.reply){reply = 'in';}
-                            var studio = '<div class="accordion host-accordion text-gray mb-lg-5 mb-3" id="qnaItem'+i+'">'
-                                            +'<div class="card">'
-                                                +'<div class="card-header d-flex justify-content-between align-items-center" id="itemHeading'+i+'">'
-                                                    +'<div class="mr-lg-5 mr-3">'
-                                                        +'<span class="state-text rating">평점 : '+studio_temp.score+'</span>'
-                                                        +'<span class="ml-2 font-weight-light state-text">작성자 : '+studio_temp.writer+'</span>'
-                                                        +'<p class="my-2">'+studio_temp.subname+' </p>'
-                                                        +'<span class="state-text bottom">'+studio_temp.add+' - '+studio_temp.add2+''
-                                                            +'<span class="ml-md-4 d-md-inline-block d-block">'+studio_temp.now+'</span>'
-                                                        +'</span>'
-                                                    +'</div>'
-                                                    +'<button class="btn accordion-btn" type="button" data-toggle="collapse" data-target="#itemCollapse'+i+'" aria-expanded="true" aria-controls="itemCollapse'+i+'">'
-                                                        +'<i class="fas fa-angle-double-up"></i>'
-                                                    +'</button>'
-                                                +'</div>'
-
-                            var no_studio ='<div id="itemCollapse'+i+'" class="collapse show" aria-labelledby="itemHeading'+i+'" data-parent="#qnaItem'+i+'">'
-                                                +'<div class="card-body">'
-                                                    +'<span class="state-text">답변</span>'
-                                                    +'<p class="my-2 answer">'+studio_temp.subname+'</p>'
-                                                    +'<span class="state-text bottom">'+studio_temp.now+'</span>'
-                                                    +'<button type="button" class="btn ml-4 state-text edit-btn" onclick="handleQna(qnaItem'+i+')">수정</button>'
-                                                +'</div>'
-
-                                                +'<div class="input-group border-top accordion-textarea" style="display: none">'
-                                                    +'<textarea class="form-control text-dark border-0" placeholder="답변을 작성해 주세요" aria-describedby="write-answer"></textarea>'
-                                                    +'<div class="input-group-append">'
-                                                        +'<button type="button" class="btn bg-yellow rounded-0 text-gray">답변</button>'
-                                                    +'</div>'
-                                                +'</div>'
-                                            +'</div>'
-                                        +'</div>'
-                                    +'</div>';
-                            var re_studio = '<div id="itemCollapse2" class="collapse show" aria-labelledby="itemHeading'+i+'" data-parent="#qnaItem'+i+'">'
-                                                +'<div class="input-group border-top accordion-textarea">'
-                                                    +'<textarea class="form-control text-dark border-0" placeholder="답변을 작성해 주세요" aria-describedby="write-answer"></textarea>'
-                                                    +'<div class="input-group-append">'
-                                                        +'<button type="button" class="btn bg-yellow rounded-0 text-gray">답변</button>'
-                                                    +'</div>'
-                                                +'</div>'
-                                            +'</div>'
-                                        +'</div>'
-                                    +'</div>';
-                        $("#review_text").append(studio);
-                        }
-
+                        ansList = JSON.parse(xhr.responseText);
+                        writeHtml(ansList);
                     } else {
                         alert("목록이 정상적으로 이루어지지 않았습니다. 다시 시도해주세요.");
                         console.error(xhr.responseText);
@@ -371,9 +297,9 @@
                     
                 }
             };
-            xhr.open('POST', 'http://3.34.150.116:3000/studio/host',true);
+            xhr.open('POST', 'http://3.34.150.116:3000/studio/review/host',true);
             xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
-            xhr.send("user_id=jmnu1203");
+            xhr.send("id="+sessionStorage.getItem("id"));
         });
 
         // 아코디언 collapse

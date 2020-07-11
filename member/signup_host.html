@@ -279,6 +279,7 @@
 
 <script type="text/javascript">
     var emailFlag = false;
+    var ran_code = Math.floor(Math.random() * 9000 + 1000);
     var albumBucketName = 'biz-cetificate';
     var bucketRegion = 'ap-northeast-2';
     var IdentityPoolId = 'ap-northeast-2:5de34811-ed49-42bb-8378-726186756855';
@@ -321,12 +322,16 @@
     
     function goMsg(){
         var phone = document.getElementById("host_phone").value;
-        var code = Math.floor(Math.random() * 9000 + 1000);
+        ran_code = Math.floor(Math.random() * 9000 + 1000);
         var jsonData = {
-            message_type:'AT',
-            phn:phone,
-            tmplId:'artbyus-1',
-            msg:code+" ARTBYUS(아트바이어스)에서 보낸 인증번호입니다."
+            message_type: "AT",
+            phn: "82"+phone.substring(1),
+            profile: "ce295b05ccf1144d9a13283351fd58bdc5805fdb",
+            reserveDt:"00000000000000",
+            tmplId: "artbyus-1",
+            msg: `${ran_code}
+ARTBYUS(아트바이어스)에서 보낸 인증번호입니다.`,
+            smsKind: "S"
         };
         const strObject = JSON.stringify(jsonData);
         var xhr = new XMLHttpRequest();
@@ -335,11 +340,11 @@
             if (xhr.readyState === xhr.DONE) { 
                 if (xhr.status === 200 || xhr.status === 201) {
                     var result = JSON.parse(xhr.responseText);
-                    if(result.result=="false"){
-                        alert("이미 사용중인 아이디 입니다.");
-                    }
-                    else{
-                        alert("사용 할 수 있는 아이디 입니다.");
+                    alert(result.code);
+                    if(result.code == "true"){
+                        
+                    }else{
+
                     }
                 } else {
                 }
@@ -347,11 +352,11 @@
             else{
             }
         };
-        
+       
         xhr.open('POST', 'https://alimtalk-api.bizmsg.kr/v2/sender/send');
         xhr.setRequestHeader('Content-Type', 'application/json');
-        xhr.setRequestHeader('userid', 'artbyus');
-        xhr.send(strObject); 
+        xhr.setRequestHeader('userid', 'artbyus2020');
+        xhr.send(jsonData); 
     }
     
     document.getElementById("host_id").addEventListener('input', function(){
