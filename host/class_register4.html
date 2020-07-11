@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ART BY US</title>
+
+    <!-- Bootstrap 4.3.1 -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+    <!-- Custom -->
+    <link rel="stylesheet" href="../css/custom.css">
+    <link rel="stylesheet" href="../css/custom_host.css">
+
+    <!-- Fontawesome -->
+    <link rel="stylesheet" href="../css/fontawesome/css/all.min.css">
+</head>
+
+<body>
+    <!-- 모달 -->
+    <div id="modals"></div>
+
+    <!-- 서브 헤더 -->
+    <header id="header"></header>
+
+    <main role="main">
+        <div class="container overflow-hidden my-md-5 my-4 px-md-0">
+            <!-- 등록 프로세스 : min-width 992에서 글자 줄바꿈 현상 때문에, 해당 프로세스 글자만 출력 -->
+            <div class="mb-md-5 mb-4 font-weight-light host-regist-proc">
+                <div class="row">
+                    <div class="col-lg-3 col-12 d-lg-block d-none">
+                        <p class="mb-0 pb-2 step active">01. 카테고리 선택</p>
+                    </div>
+                    <div class="col-lg-3 col-12 d-lg-block d-none">
+                        <p class="mb-0 pb-2 step active">02. 소개 입력</p>
+                    </div>
+                    <div class="col-lg-3 col-12 d-lg-block d-none">
+                        <p class="mb-0 pb-2 step active">03. 세부 정보 입력</p>
+                    </div>
+                    <div class="col-lg-3 col-12">
+                        <p class="mb-0 pb-2 step active">04. 요금 체계 및 시간 설정</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 클래스 요금 체계 및 시간 -->
+            <h3 class="mb-md-4 mb-3">클래스 유형과 일정, 금액을 입력해 주세요</h3>
+            <div class="custom-inputs-sub host-register-form">
+            <!-- 타입1 -->
+                <!-- 유형 -->
+                <div class="custom-inputs custom-inputs-sub mb-lg-5 mb-3">
+                    <div class="text-gray font-weight-light">
+                        <label>예약 유형</label>
+                    </div>
+                    <div class="d-md-flex mb-3">
+                        <div class="flex-fill host-register-items mb-md-0 mb-3">
+                            <label class="radio-items">
+                                <input type="radio" name="category1" value="1" checked="checked">
+                                <span>일반 클래스</span>
+                            </label>
+                        </div>
+                        <div class="flex-fill host-register-items">
+                            <label class="radio-items">
+                                <input type="radio" name="category1" value="2">
+                                <span>공동 구매식 클래스</span>
+                            </label>
+                        </div>
+                    </div>
+                    <!-- 안내사항 -->
+                    <p class="mb-1">* 일반 클래스는 강사가 수업을 취소할 수 없습니다.</p>
+                    <p class="mb-1">* 공동 구매식 클래스는 인원이 차지 않으면 수업을 진행할 수 없습니다.</p>
+                </div>
+
+                <!-- 레슨 일정 선택 : 캘린더에 등록된 레슨 선택 -->
+                <div class="custom-inputs custom-inputs-sub mb-lg-5 mb-3 tag2">
+                    <div class="text-gray font-weight-light">
+                        <label>레슨 일정 (최대 20개)</label>
+                    </div>
+                    <div class="d-md-flex">
+                        <select name="times1" id="" class="form-control mr-md-3 mb-md-0 mb-3">
+                            <option value="">20-01-24 15:00~18:00</option>
+                            <option value="">20-01-25 15:00~18:00</option>
+                            <option value="">20-01-26 15:00~18:00</option>
+                        </select>
+
+                        <div class="d-flex justify-content-end align-items-center form-control mr-md-3 mb-md-0 mb-3">
+                            <input type="text" class="bg-transparent border-0 w-100 h-100 text-right text-gray tag-text">
+                            <span class="ml-3 text-light-gray">원</span>
+                        </div>
+
+                        <button type="button" class="btn bg-yellow fnc-btn" onclick="addTime('tag2')">추가하기</button>
+                    </div>
+
+                    <!-- 태그 -->
+                    <div class="d-flex justify-content-between align-content-center flex-wrap host-search-tags full">
+                        <div class="tag mt-3">
+                            <span class="mr-lg-2">20-01-24 15:00~18:00 38,000원</span>
+                            <button type="button" class="btn bg-transparent" onclick="removeTag(this)"><i class="fa fa-times text-red"></i></button>
+                        </div>
+                        <div class="tag mt-3">
+                            <span class="mr-lg-2">20-01-25 15:00~18:00 38,000원</span>
+                            <button type="button" class="btn bg-transparent" onclick="removeTag(this)"><i class="fa fa-times text-red"></i></button>
+                        </div>
+                        <div class="tag mt-3">
+                            <span class="mr-lg-2">20-01-26 15:00~18:00 38,000원</span>
+                            <button type="button" class="btn bg-transparent" onclick="removeTag(this)"><i class="fa fa-times text-red"></i></button>
+                        </div>
+                        <div class="tag mt-3">
+                            <span class="mr-lg-2">20-01-27 15:00~18:00 38,000원</span>
+                            <button type="button" class="btn bg-transparent" onclick="removeTag(this)"><i class="fa fa-times text-red"></i></button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 기준인원 -->
+                <div class="row custom-inputs custom-inputs-sub mb-lg-5 mb-3">
+                    <div class="col-md-6">
+                        <div class="text-gray font-weight-light">
+                            <label>기준인원</label>
+                        </div>
+                        <div class="d-flex justify-content-between">
+                            <button type="button" id="decreaseQuantity" class="btn border bg-gray number-btn">-</button>
+                            <input type="text" id="numberUpDown" value="1" class="text-center form-control border-right-0 border-left-0" style="width: calc(100% - 100px);">
+                            <button type="button" id="increaseQuantity" class="btn border bg-yellow number-btn">+</button>
+                        </div>
+                    </div>
+                </div>
+
+            <!-- 타입2 -->
+                <!-- 유형 -->
+                <div class="custom-inputs custom-inputs-sub mb-lg-5 mb-3">
+                    <div class="text-gray font-weight-light">
+                        <label>예약 유형</label>
+                    </div>
+                    <div class="d-md-flex mb-3">
+                        <div class="flex-fill host-register-items mb-md-0 mb-3">
+                            <label class="radio-items">
+                                <input type="radio" name="category2" value="1" checked="checked">
+                                <span>일반 클래스</span>
+                            </label>
+                        </div>
+                        <div class="flex-fill host-register-items">
+                            <label class="radio-items">
+                                <input type="radio" name="category2" value="2">
+                                <span>쉐어 클래스</span>
+                            </label>
+                        </div>
+                    </div>
+                    <!-- 안내사항 -->
+                    <p class="mb-1">* 일반 클래스는 강사가 수업을 취소할 수 없습니다.</p>
+                    <p class="mb-1">* 쉐어 클래스는 인원이 차지 않으면 수업을 진행할 수 없습니다.</p>
+                </div>
+
+                <!-- 레슨 일정 선택 : 캘린더에 등록된 레슨 선택 -->
+                <div class="custom-inputs custom-inputs-sub mb-lg-5 mb-3 tag1">
+                    <div class="text-gray font-weight-light">
+                        <label>레슨 일정 (최대 20개)</label>
+                    </div>
+                    <div class="d-md-flex">
+                        <select name="times2" id="" class="form-control mr-md-3 mb-md-0 mb-3">
+                            <option value="">20-01-24 15:00~18:00</option>
+                            <option value="">20-01-25 15:00~18:00</option>
+                            <option value="">20-01-26 15:00~18:00</option>
+                        </select>
+
+                        <div class="d-flex justify-content-end align-items-center form-control mr-md-3 mb-md-0 mb-3">
+                            <input type="text" class="bg-transparent border-0 w-100 h-100 text-right text-gray tag-text">
+                            <span class="ml-3 text-light-gray">원</span>
+                        </div>
+
+                        <button type="button" class="btn bg-yellow fnc-btn" onclick="addTime('tag1')">추가하기</button>
+                    </div>
+
+                    <!-- 태그 -->
+                    <div class="d-flex justify-content-between align-content-center flex-wrap host-search-tags full">
+                        <div class="tag mt-3">
+                            <span class="mr-lg-2">20-01-24 15:00~18:00 38,000원</span>
+                            <button type="button" class="btn bg-transparent" onclick="removeTag(this)"><i class="fa fa-times text-red"></i></button>
+                        </div>
+                        <div class="tag mt-3">
+                            <span class="mr-lg-2">20-01-25 15:00~18:00 38,000원</span>
+                            <button type="button" class="btn bg-transparent" onclick="removeTag(this)"><i class="fa fa-times text-red"></i></button>
+                        </div>
+                        <div class="tag mt-3">
+                            <span class="mr-lg-2">20-01-26 15:00~18:00 38,000원</span>
+                            <button type="button" class="btn bg-transparent" onclick="removeTag(this)"><i class="fa fa-times text-red"></i></button>
+                        </div>
+                        <div class="tag mt-3">
+                            <span class="mr-lg-2">20-01-27 15:00~18:00 38,000원</span>
+                            <button type="button" class="btn bg-transparent" onclick="removeTag(this)"><i class="fa fa-times text-red"></i></button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 기준인원 -->
+                <div class="row custom-inputs custom-inputs-sub mb-lg-5 mb-3">
+                    <div class="col-md-6">
+                        <div class="text-gray font-weight-light">
+                            <label>기준인원</label>
+                        </div>
+                        <div class="d-flex justify-content-between">
+                            <button type="button" id="decreaseQuantity" class="btn border bg-gray number-btn">-</button>
+                            <input type="text" id="numberUpDown" value="1" class="text-center form-control border-right-0 border-left-0" style="width: calc(100% - 100px);">
+                            <button type="button" id="increaseQuantity" class="btn border bg-yellow number-btn">+</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 공통 환불규정 -->
+                <div class="mb-lg-5 mb-3">
+                    <div class="text-gray font-weight-light">
+                        <label>아트바이어스의 공통 환불 규정입니다</label>
+                    </div>
+                    <div class="host-register-items">
+                        <table class="table table-bordered text-center color-table">
+                            <thead>
+                                <tr>
+                                    <th>환불 요청 날짜</th>
+                                    <th>환불 가능 금액</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>D-5</td>
+                                    <td>100% 환불</td>
+                                </tr>
+                                <tr>
+                                    <td>D-3</td>
+                                    <td>70% 환불</td>
+                                </tr>
+                                <tr>
+                                    <td>D-2</td>
+                                    <td>50% 환불</td>
+                                </tr>
+                                <tr>
+                                    <td>D-1</td>
+                                    <td>환불 불가</td>
+                                </tr>
+                                <tr>
+                                    <td>D-day</td>
+                                    <td>환불 불가</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 이전단계 / 다음단계 -->
+        <div class="overflow-hidden mt-lg-5 mt-3">
+            <a href="class_register3.html" class="btn bg-gray float-left w-50 rounded-0 py-lg-4 py-3 font-size-m" onclick="history.back()">이전 단계로 이동</a>
+            <a href="class_list.html" class="btn bg-yellow float-right w-50 rounded-0 py-lg-4 py-3 font-size-m">등록 완료</a>
+        </div>
+    </main>
+
+    <!-- 서브 푸터 -->
+    <footer id="footer"></footer>
+
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+
+    <script src="../js/include_html_host.js"></script>
+    <!-- <script src="../js/custom.js"></script> -->
+</body>
+
+<script>
+    $(function () {
+        // file upload
+        var fileTarget = $('.custom-inputs-sub.not .upload-hidden');
+        fileTarget.on('change', function() {
+            // 값이 변경되면
+            if(window.FileReader){ // modern browser
+                var filename = $(this)[0].files[0].name;
+            } else { // old IE
+                var filename = $(this).val().split('/').pop().split('\\').pop(); // 파일명만 추출
+            }
+            // 추출한 파일명 삽입
+            $(this).siblings('.upload-name').val(filename);
+        });
+    })
+</script>
+
+</html>
