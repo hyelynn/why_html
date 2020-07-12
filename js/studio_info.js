@@ -29,7 +29,7 @@ $(document).ready(function () {
           max = parseInt(result[0].studio_max);
           people_price = parseInt(result[0].studio_people_price);
           title = result[0].studio_name;
-          
+
           if (i == 0) {
             indi =
               "<li data-target='#carouselStudioView' data-slide-to='" +
@@ -53,7 +53,6 @@ $(document).ready(function () {
 
           $("#indicator").append($(indi));
           $("#carousel").append($(img));
-          
         }
 
         $("#title").append(
@@ -66,7 +65,7 @@ $(document).ready(function () {
               "</p>"
           )
         );
-        
+
         var info = "";
         var splitInfo = result[0].studio_info;
 
@@ -122,18 +121,28 @@ $(document).ready(function () {
               "</p></div>" +
               "<div class='my-5 border bg-white d-flex p-4'><div class='d-flex justify-content-center rounded-circle overflow-hidden mr-lg-5 mr-3 card-host'>" +
               "<img src='/img/studio-host.jpg' class='align-self-center' alt=''></div>" +
-              "<div><h4 class='font-size-m'>"+result[0].biz_title+"</h4>" +
-              "<p class='text-light-gray font-size-xs'>"+result[0].biz_introduce+"</p>" +
+              "<div><h4 class='font-size-m'>" +
+              result[0].biz_title +
+              "</h4>" +
+              "<p class='text-light-gray font-size-xs'>" +
+              result[0].biz_introduce +
+              "</p>" +
               "<button type='button' class='btn rounded-pill px-lg-5 px-3 py-2 border-yellow font-size-xs mr-2'>전화하기</button>" +
               "<button type='button' class='btn rounded-pill px-lg-5 px-3 py-2 border-yellow font-size-xs'>메시지 전송</button></div></div>"
           )
         );
 
-       // <h4 class="mb-md-4 mb-2 text-bullet">이용후기 <span class="text-sky font-weight-light ml-3 mr-2">33개</span> 평균 <span class="text-sky font-weight-light">★4.7/5</span></h4>
+        $("#review_info").append(
+          $(
+            "<h4 class='mb-md-4 mb-2 text-bullet'>이용후기 <span class='text-sky font-weight-light ml-3 mr-2'>33개</span> 평균 <span class='text-sky font-weight-light'>★4.7/5</span></h4>"
+          )
+        );
 
         $("#title_purchase").append(
           $(
-            "<h6>"+result[0].studio_name+"</h6>" +
+            "<h6>" +
+              result[0].studio_name +
+              "</h6>" +
               "<p class='font-weight-bold mb-4 text-red font-size-l'>" +
               result[0].studio_price +
               "원/1" +
@@ -156,39 +165,83 @@ $(document).ready(function () {
 
 function time_picker() {
   for (var i = 0; i < 23; i++) {
-    $("start_times").append($("<option></option", {
-      value: i,
-      text: (i+":00")
-    }));
+    $("start_times").append(
+      $("<option></option", {
+        value: i,
+        text: i + ":00",
+      })
+    );
 
-    $("end_times").append($("<option></option", {
-      value: i+1,
-      text: ((i+1)+":00")
-    }));
+    $("end_times").append(
+      $("<option></option", {
+        value: i + 1,
+        text: i + 1 + ":00",
+      })
+    );
   }
 }
 
 function price_maker() {
-  var stat = $('#numberUpDown').val();
+  var stat = $("#numberUpDown").val();
   var num = parseInt(stat, 10);
-  var start = $('#start_times option:selected').val();
-  var end = $('#end_times option:selected').val();
-  var date = '';//$('#datePicker').value;
-  
+  var start = $("#start_times option:selected").val();
+  var end = $("#end_times option:selected").val();
+  var date = ""; //$('#datePicker').value;
 
   if (start != null && end != null) curr_price = (end - start) * price;
   if (curr_price < 0) curr_price = 0;
-  else { if (num > max && max != 0) curr_price += num * people_price; }
+  else {
+    if (num > max && max != 0) curr_price += num * people_price;
+  }
 
   $("#priceinfo").empty();
   $("#priceinfo").prepend(
     $(
-      "<p>예약내용</p>"+"<p class='mb-0 font-weight-light font-size-xs'>"+ date +" "+ $('#start_times option:selected' ).text()+"</p>"+
-      "<p class='font-weight-light font-size-xs'>- "+$('#end_times option:selected').text()+"</p>"+
-      "<p class='font-weight-bold text-red font-size-l'>"+curr_price+"원<span class='font-weight-light font-size-xs text-light-gray-more'>(VAT포함)</span></p>"+
-      "<button type='button' class='btn btn-block border rounded-0 py-2 font-weight-light'><i class='fas fa-shopping-cart mr-2' onclick='addCart();'></i>장바구니</button>"
+      "<p>예약내용</p>" +
+        "<p class='mb-0 font-weight-light font-size-xs'>" +
+        date +
+        " " +
+        $("#start_times option:selected").text() +
+        "</p>" +
+        "<p class='font-weight-light font-size-xs'>- " +
+        $("#end_times option:selected").text() +
+        "</p>" +
+        "<p class='font-weight-bold text-red font-size-l'>" +
+        curr_price +
+        "원<span class='font-weight-light font-size-xs text-light-gray-more'>(VAT포함)</span></p>" +
+        "<button type='button' class='btn btn-block border rounded-0 py-2 font-weight-light'><i class='fas fa-shopping-cart mr-2' onclick='addCart();'></i>장바구니</button>"
     )
   );
+}
+
+function sendQna() {
+  let id = sessionStorage.getItem("id");
+  if (id != null) {
+    let msg = $("#qna_text").val();
+
+    var xhr = new XMLHttpRequest();
+    xhr.open("POST", "http://3.34.150.116:3000/studio/qna");
+    xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+    xhr.send("studio_key=" + value + "&user_id=" + id + "&msg=" + msg);
+  } else {
+    alert("로그인이 필요합니다");
+  }
+}
+
+function sendReview() {
+  let id = sessionStorage.getItem("id");
+  if (id != null) {
+    let msg = $("#review_text").val();
+
+    var xhr = new XMLHttpRequest();
+    xhr.open("POST", "http://3.34.150.116:3000/studio/review");
+    xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+    xhr.send("studio_key=" + value + "&user_id=" + id + "&msg=" + msg);
+    console.log(valnum + " : " + msg);
+  } else {
+    alert("로그인이 필요합니다");
+  }
+  
 }
 
 // <li class="mb-3">
