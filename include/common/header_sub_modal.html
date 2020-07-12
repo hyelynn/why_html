@@ -226,7 +226,7 @@
     </div>
 </div>
 
-<!-- view 페이지 질문 작성 모달 -->
+<!-- 질문 작성 모달 -->
 <div class="modal fade" id="qnaModal" tabindex="-1" role="dialog" aria-labelledby="qnaModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-xl custom-modal" role="document">
         <div class="modal-content px-lg-6 px-4 py-lg-5 py-5">
@@ -271,6 +271,65 @@
                 </div>
 
                 <button type="button" class="btn bg-yellow w-lg-65 w-100 py-md-4 py-2 h-auto rounded-0 font-size-s" data-dismiss="modal">리뷰 작성하기</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- 광고 신청 모달 -->
+<div class="modal fade" id="applyAdModal" tabindex="-1" role="dialog" aria-labelledby="applyAdModalLabel" aria-hidden="true">
+    <div class="modal-dialog custom-modal" role="document">
+        <div class="modal-content px-0 py-lg-5 py-5 text-center">
+            <div class="modal-header p-0 mb-md-4 mb-3 border-0">
+                <h2 class="modal-title mx-auto" id="applyAdModalLabel">프라임 광고 신청하기</h2>
+            </div>
+            <!-- 신청 정보 -->
+            <div class="modal-body p-0">
+                <!-- 광고 대상 -->
+                <div class="modal-full-img d-flex justify-content-center align-items-center">
+                    <img src="../img/performance-1.jpg" class="w-100">
+                </div>
+
+                <!-- 광고 정보 -->
+                <div class="px-lg-5 px-4 mt-3 mb-5 text-left">
+                    <h4>사당 G1안무연습실</h4>
+                    <p class="font-size-xs font-weight-light text-light-gray">하나 피어나듯이 못 무성할 헤는 까닭입니다. 벌써 이웃 위에 봅니다. 벌레는 아스라히 너무나 까닭이요, 별에도 책상을 내일 계십니다.</p>
+                    <div class="font-size-xs font-weight-light">
+                        <p class="mr-md-4 mr-2 d-inline-block mb-0">
+                            <i class="fas fa-heart text-red"></i> <span class="ml-1">1,459</span>
+                        </p>
+                        <span class="mr-md-4 mr-2">예약유형 : 예약결제</span>
+                        <span>1,500원 / 시간</span>
+                    </div>
+                </div>
+
+                <p class="font-size-s">위 연습실에 대한 광고신청을 진행합니다.</p>
+
+                <div class="custom-inputs px-4">
+                    <button type="button" class="btn bg-yellow w-lg-65 w-100 py-md-4 py-2 h-auto rounded-0 font-size-s"
+                            data-toggle="modal" data-target="#applyAdResultModal" data-dismiss="modal">프라임 광고 신청</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- 광고 신청 완료 모달 -->
+<div class="modal fade" id="applyAdResultModal" tabindex="-1" role="dialog" aria-labelledby="applyAdResultModalLabel" aria-hidden="true">
+    <div class="modal-dialog custom-modal" role="document">
+        <div class="modal-content px-0 py-lg-5 py-5 text-center">
+            <div class="modal-header p-0 mb-md-4 mb-3 border-0">
+                <h2 class="modal-title mx-auto" id="applyAdResultModalLabel">프라임 광고가 신청되었습니다</h2>
+            </div>
+            <!-- 신청 정보 -->
+            <div class="modal-body p-0">
+                <div class="mb-md-5 mb-3 w-md-auto w-10 mx-auto">
+                    <img src="../img/img-finish.png" class="img-fluid" alt="">
+                </div>
+
+                <div class="custom-inputs px-4">
+                    <button type="button" class="btn bg-yellow w-lg-65 w-100 py-md-4 py-2 h-auto rounded-0 font-size-s" data-dismiss="modal">완료</button>
+                </div>
             </div>
         </div>
     </div>

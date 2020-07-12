@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Content-Type" content="text/html">
+    <title>ART BY US</title>
+
+    <!-- Bootstrap 4.3.1 -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="/css/custom.css">
+    <link rel="stylesheet" href="/css/slick.css">
+    <link rel="stylesheet" href="/css/custom_host.css">
+    <link rel="stylesheet" href="/css/fontawesome/css/all.min.css">
+
+    <!-- Custom -->
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+    <script type="text/javascript" src="https://static.nid.naver.com/js/naveridlogin_js_sdk_2.0.0.js" charset="utf-8"></script>
+    <script src="/js/kakao_sdk.js"></script>
+    <script src="/js/include.js"></script>
+    
+    <script>
+        Kakao.init('d88bea310f4a39afbea3146fe1c0fa72');
+        Kakao.isInitialized();
+    </script>
+    
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-lg navbar-light py-lg-3 py-1">
+        <div class="container">
+            <a class="navbar-brand" href="/host/index.html"><img src="http://artbyus.co.kr/img/us-partner-logo.png" srcset="http://artbyus.co.kr/img/us-partner-logo@2x.png 2x, http://artbyus.co.kr/img/us-partner-logo@3x.png 3x"></a>
+            <div class="ml-auto align-items-center d-lg-none d-flex">
+                <a class="text-dark mr-3 font-size-sm" href="/member/calendar.html"><i class="far fa-calendar-alt"></i></a>
+                <a class="text-dark mr-3 font-size-sm" href="/member/recent_list.html"><i class="far fa-clock"></i></a>
+                <a class="text-dark mr-2 font-size-sm" href="/member/purchase.html"><i class="fas fa-shopping-cart"></i></a>
+            </div>
+            <button class="navbar-toggler border-0 font-size-md text-dark" type="button" data-toggle="collapse"
+                data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false"
+                aria-label="Toggle navigation">
+                <i class="fas fa-bars"></i>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarNavDropdown"></div>
+        </div>
+    </nav>
+    <script src="/js/header_host.js"></script>
+
+    <main role="main">
+        <div class="container my-md-5 my-4">
+            <h3 class="mb-lg-4 mb-2">파트너정보관리</h3>
+
+            <div class="row custom-user-form custom-inputs text-gray mb-lg-4 mb-3">
+                <!-- 프로필 이미지 -->
+                <div class="col-lg-3 mb-lg-0 mb-3">
+                    <label>프로필 사진</label>
+                    <div class="d-flex justify-content-center align-items-center py-lg-5 py-3 bg-gray-2">
+                        <!-- 이미지 첨부시 동그란 영역에만 이미지 변경 -->
+                        <!-- 기본 이미지 형태 -->
+                        <div class="d-flex justify-content-center align-items-center rounded-circle overflow-hidden mx-auto user-profile-img">
+                            <img src="../img/profile-img-default.jpg" alt="">
+                        </div>
+                    </div>
+                    <button type="button" class="btn btn-block bg-yellow text-gray">이미지 변경하기</button>
+
+                    <span class="d-block mt-2 text-red">* 프로필 사진은 3MB 이하<br>JPG, PNG파일만 가능합니다.</span>
+                </div>
+
+                <!-- 정보 폼 -->
+                <div class="col-lg-9">
+                    <div class="mb-3">
+                        <label for="host_email">이메일 (변경불가)</label>
+                        <input type="text" class="form-control" id="host_email" value="minbum3934@gmail.com" disabled>
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="host_nickname">닉네임</label>
+                        <input type="text" class="form-control" id="host_nickname" value="버밍" placeholder="아트바이어스">
+                    </div>
+
+                    <div class="mb-3">
+                        <div class="row">
+                            <div class="col-lg-6 mb-lg-0 mb-3">
+                                <label for="host_phone" class="d-block text-gray">내 연락처<span class="d-block d-md-inline-block text-red font-size-xs">*연락처 변경 시 가상번호도 변경됩니다</span></label>
+                                <div class="input-group">
+                                    <input type="text" class="form-control" id="host_phone" value="010-1234-5678" placeholder="010-1234-5678">
+                                    <div class="input-group-append">
+                                        <button type="button" class="btn px-5 bg-yellow text-gray">변경</button>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-6">
+                                <label for="host_safe_no" class="d-block text-gray">내 가상번호</label>
+                                <input type="text" class="form-control" id="host_safe_no" value="0507-1234-5678" disabled>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="mb-3">
+                        <div class="row">
+                            <div class="col-lg-6 mb-lg-0 mb-3">
+                                <label>비밀번호 변경</label>
+                                <button type="button" class="btn btn-block bg-yellow text-gray">비밀번호 변경</button>
+                            </div>
+
+                            <div class="col-lg-6">
+                                <label>마케팅 정보 수신동의</label>
+                                <div class="d-flex align-items-center form-control border-0 p-0">
+                                    <div class="w-50">
+                                        <input type="checkbox" class="custom-checkbox float-left mr-2" id="agree_sms" checked>
+                                        <label for="agree_sms" class="mb-0">SMS</label>
+                                    </div>
+                                    <div class="w-50">
+                                        <input type="checkbox" class="custom-checkbox float-left mr-2" id="agree_email" checked>
+                                        <label for="agree_email" class="mb-0">이메일</label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 소셜 계정 연동 -->
+            <div class="mb-5">
+                <label class="text-gray">소셜 계정 연동</label>
+                <div class="row custom-user-form custom-inputs">
+                    <div class="col-lg-6 mb-lg-0 mb-3">
+                        <button type="button" class="btn btn-block bg-kakao"><img src="../img/logo_kakao.svg" class="mr-2" width="20px" alt=""> 카카오계정 연동</button>
+                        <!-- <button type="button" class="btn btn-block bg-gray-2 border text-gray"><img src="../img/logo_kakao_gray.svg" class="mr-2" width="20px" alt=""> 카카오계정 연동완료</button> -->
+                    </div>
+                    <div class="col-lg-6">
+                        <!-- <button type="button" class="btn btn-block bg-naver text-white"><img src="../img/logo_naver.svg" class="mr-2" width="20px" alt=""> 네이버계정 연동</button> -->
+                        <button type="button" class="btn btn-block bg-gray-2 border text-gray"><img src="../img/logo_naver_gray.svg" class="mr-2" width="20px" alt=""> 네이버계정 연동완료</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- button -->
+            <div class="custom-inputs text-center">
+                <button type="button" class="btn btn-block bg-yellow px-md-5 py-md-3">회원 정보 수정 완료</button>
+                <button type="button" class="btn bg-transparent text-red">회원 탈퇴</button>
+            </div>
+        </div>
+    </main>
+
+    <!-- 서브 푸터 -->
+    <footer include-html="/include/footer.html"></footer>
+
+    <script src="/js/naver_login.js"></script>
+    <script src="/js/login.js"></script>
+    <script src="/js/custom.js"></script>
+
+
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+
+    <script src="/js/include_html_host.js"></script>
+    
+    <script>includeHTML({});</script>
+    <script>login_header();</script>
+
+</body>
+
+</html>
