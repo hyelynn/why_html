@@ -10,7 +10,6 @@
     <!-- Bootstrap 4.3.1 -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link rel="stylesheet" href="/css/custom.css">
-    <link rel="stylesheet" href="/css/slick.css">
     <link rel="stylesheet" href="/css/custom_host.css">
     <link rel="stylesheet" href="/css/fontawesome/css/all.min.css">
 
@@ -49,6 +48,7 @@
     </nav>
     <script src="/js/header_host.js"></script>
 
+    <div id="modals"></div>
     <main role="main">
         <div class="container my-md-5 my-4">
             <h3 class="mb-lg-4 mb-2">파트너정보관리</h3>
@@ -73,7 +73,7 @@
                 <div class="col-lg-9">
                     <div class="mb-3">
                         <label for="host_email">이메일 (변경불가)</label>
-                        <input type="text" class="form-control" id="host_email" value="minbum3934@gmail.com" disabled>
+                        <input type="text" id="email_text" class="form-control" id="host_email" disabled>
                     </div>
 
                     <div class="mb-3">
@@ -154,15 +154,16 @@
     <script src="/js/login.js"></script>
     <script src="/js/custom.js"></script>
 
-
-    <script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
-
-    <script src="/js/include_html_host.js"></script>
-    
     <script>includeHTML({});</script>
     <script>login_header();</script>
+    <script src="../js/include_html_host.js"></script>
+
+    <script>
+        $(document).ready(function (){
+            $("#email_text").val(sessionStorage.getItem("id"));
+        });
+
+    </script>
 
 </body>
 

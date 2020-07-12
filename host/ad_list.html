@@ -29,15 +29,11 @@
 <body>
     <nav class="navbar navbar-expand-lg navbar-light py-lg-3 py-1">
         <div class="container">
-            <a class="navbar-brand" href="/host/index.html"><img src="http://artbyus.co.kr/img/us-partner-logo.png"
-                    srcset="http://artbyus.co.kr/img/us-partner-logo@2x.png 2x, http://artbyus.co.kr/img/us-partner-logo@3x.png 3x"></a>
+            <a class="navbar-brand" href="/host/index.html"><img src="http://artbyus.co.kr/img/us-partner-logo.png" srcset="http://artbyus.co.kr/img/us-partner-logo@2x.png 2x, http://artbyus.co.kr/img/us-partner-logo@3x.png 3x"></a>
             <div class="ml-auto align-items-center d-lg-none d-flex">
-                <a class="text-dark mr-3 font-size-sm" href="/member/calendar.html"><i
-                        class="far fa-calendar-alt"></i></a>
-                <a class="text-dark mr-3 font-size-sm" href="/member/recent_list.html"><i
-                        class="far fa-clock"></i></a>
-                <a class="text-dark mr-2 font-size-sm" href="/member/purchase.html"><i
-                        class="fas fa-shopping-cart"></i></a>
+                <a class="text-dark mr-3 font-size-sm" href="/member/calendar.html"><i class="far fa-calendar-alt"></i></a>
+                <a class="text-dark mr-3 font-size-sm" href="/member/recent_list.html"><i class="far fa-clock"></i></a>
+                <a class="text-dark mr-2 font-size-sm" href="/member/purchase.html"><i class="fas fa-shopping-cart"></i></a>
             </div>
             <button class="navbar-toggler border-0 font-size-md text-dark" type="button" data-toggle="collapse"
                 data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false"
@@ -66,9 +62,9 @@
             <!-- 검색 및 정렬 -->
             <div class="d-lg-flex mb-3 custom-inputs-sub host-top-function">
                 <div class="input-group search-bar-solid">
-                    <input type="text" class="form-control text-dark search-text" placeholder="공간명을 검색해주세요">
+                    <input type="text" id="searchText" class="form-control text-dark search-text" placeholder="공간명을 검색해주세요">
                     <div class="input-group-append">
-                        <button type="button" class="btn bg-yellow text-gray">검색</button>
+                        <button type="button" onclick="goSearch();" class="btn bg-yellow text-gray">검색</button>
                     </div>
                 </div>
 
@@ -81,56 +77,8 @@
             </div>
 
             <!-- 리스트 -->
-            <ul class="list-group host-item-list calc">
-                <li class="list-group-item p-3 mb-3 border">
-                    <div class="row align-items-center">
-                        <div class="col-lg-10">
-                            <div class="d-flex align-items-lg-center">
-                                <div class="d-flex justify-content-center align-items-center overflow-hidden mr-4 item-thumbs">
-                                    <img src="../img/cart-1.jpg" alt="">
-                                </div>
-                                <div class="item-texts">
-                                    <a href="../sub/studio_view.html" class="text-decoration-none">
-                                        <h4 class="text-gray">사당 G1안무연습실
-                                        <p class="font-size-xs ml-lg-3 ml-2 d-inline-block mb-1 align-middle"><i class="fas fa-heart text-red"></i> <span class="ml-1">1,459</span></p></h4>
-                                    </a>
-                                    <p class="font-weight-light text-light-gray mb-2">하나 피어나듯이 못 무성할 헤는 까닭입니다. 벌써 이웃 위에 봅니다. 벌레는 아스라히 너무나 까닭이요, 별에도 책상을 내일 계십니다.</p>
-                                    <p class="font-weight-light mb-0"><span class="mr-md-4">예약유형 : 예약결제</span><span class="d-md-inline-block d-block">1,500원 / 시간</span></p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-lg-2">
-                            <div class="text-lg-center text-right mt-lg-0 mt-3 host-menu">
-                                <button type="button" class="btn border mr-lg-0 mr-2 item-btn item-pick">선택하기</button>
-                            </div>
-                        </div>
-                    </div>
-                </li>
-
-                <li class="list-group-item p-3 mb-3 border">
-                    <div class="row align-items-center">
-                        <div class="col-lg-10">
-                            <div class="d-flex align-items-lg-center">
-                                <div class="d-flex justify-content-center align-items-center overflow-hidden mr-4 item-thumbs">
-                                    <img src="../img/cart-1.jpg" alt="">
-                                </div>
-                                <div class="item-texts">
-                                    <a href="../sub/studio_view.html" class="text-decoration-none">
-                                        <h4 class="text-gray">사당 G1안무연습실
-                                        <p class="font-size-xs ml-lg-3 ml-2 d-inline-block mb-1 align-middle"><i class="fas fa-heart text-red"></i> <span class="ml-1">1,459</span></p></h4>
-                                    </a>
-                                    <p class="font-weight-light text-light-gray mb-2">하나 피어나듯이 못 무성할 헤는 까닭입니다. 벌써 이웃 위에 봅니다. 벌레는 아스라히 너무나 까닭이요, 별에도 책상을 내일 계십니다.</p>
-                                    <p class="font-weight-light mb-0"><span class="mr-md-4">예약유형 : 예약결제</span><span class="d-md-inline-block d-block">1,500원 / 시간</span></p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-lg-2">
-                            <div class="text-lg-center text-right mt-lg-0 mt-3 host-menu">
-                                <button type="button" class="btn border mr-lg-0 mr-2 item-btn item-pick">선택하기</button>
-                            </div>
-                        </div>
-                    </div>
-                </li>
+            <ul id="std_list" class="list-group host-item-list calc">
+                
             </ul>
         </div>
     </main>
@@ -147,7 +95,77 @@
     <script src="../js/include_html_host.js"></script>
 
     <script>
-        
+        var studioList = [];
+
+        function goSearch(){
+            var tempList = [];
+            var searchText = $("#searchText").val();
+            for(var i=0;i<studioList.length;i++){
+                var studio_temp = studioList[i];
+                if(studio_temp.studio_name.indexOf(searchText) == 0){
+                    tempList.push(studio_temp);
+                }
+            }
+            $("#std_list").empty();
+            writeList(tempList);
+        }
+
+        var writeList = function(tempList){
+            for(var i = 0; i<tempList.length;i++){
+                var studio_temp = tempList[i];
+                var studio = '<li id="studio_li_'+studio_temp.studio_key+'" class="list-group-item p-3 mb-3 border">'
+                                +'<div class="row align-items-center">'
+                                    +'<div class="col-lg-10">'
+                                        +'<div class="d-flex align-items-lg-center">'
+                                            +'<div class="d-flex justify-content-center align-items-center overflow-hidden mr-4 item-thumbs">'
+                                                +'<img src="'+studio_temp.studio_thumbnail+'" class="align-self-center h-100" alt="">'
+                                            +'</div>'
+                                            +'<div class="item-texts">'
+                                                +'<a href="/sub/studio_view.html" class="text-decoration-none">'
+                                                    +'<h4 class="text-gray">'+studio_temp.studio_name
+                                                        +'<p class="font-size-xs ml-lg-3 ml-2 d-inline-block mb-1 align-middle">'
+                                                            +'<i class="fas fa-heart text-red"></i>'
+                                                            +'<span class="ml-1">'+studio_temp.studio_like+'</span>'
+                                                        +'</p>'
+                                                    +'</h4>'
+                                                +'</a>'
+                                                +'<p class="font-weight-light text-light-gray mb-2">'+studio_temp.studio_subname+'</p>'
+                                                +'<p class="font-weight-light mb-0"><span class="mr-md-4">예약유형 : '+studio_temp.studio_types+ '</span>'
+                                                +'<span class="d-md-inline-block d-block">'+studio_temp.studio_price+'원 / 시간</span></p>'
+                                            +'</div>'
+                                        +'</div>'
+                                    +'</div>'
+                                    +'<div class="col-lg-2">'
+                                        +'<div class="text-lg-center text-right mt-lg-0 mt-3 host-menu">'
+                                            +'<button type="button" class="btn border mr-lg-0 mr-2 item-btn item-pick">선택하기</button>'
+                                        +'</div>'
+                                    +'</div>'
+                                +'</div>'
+                            +'</li>';
+                $("#std_list").append(studio);
+            }
+        }
+
+        $(document).ready(function (){
+            var xhr = new XMLHttpRequest();
+            xhr.onreadystatechange = function() {
+                if (xhr.readyState === xhr.DONE) { 
+                    if (xhr.status === 200 || xhr.status === 201) {
+                        studioList = JSON.parse(xhr.responseText);
+                        writeList(studioList);
+                    } else {
+                        alert("목록이 정상적으로 이루어지지 않았습니다. 다시 시도해주세요.");
+                        console.error(xhr.responseText);
+                    }
+                }else{
+                    
+                }
+            };
+            xhr.open('POST', 'http://3.34.150.116:3000/studio/host',true);
+            xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+            xhr.send("user_id=jmnu1203");
+
+        });
 
     </script>
 </body>
