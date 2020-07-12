@@ -5,32 +5,37 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ART BY US</title>
 
-    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
-    <!-- include -->
-    <script type="text/javascript">
-        $(function () {
-           $('#header').load('include/common/header_host.html')
-           $('#footer').load('include/common/footer_host.html')
-        });
-    </script>
-
     <!-- Bootstrap 4.3.1 -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 
     <!-- Custom -->
-    <link rel="stylesheet" href="/css/custom.css">
-    <link rel="stylesheet" href="/css/custom_host.css">
+    <link rel="stylesheet" href="css/custom.css">
+    <link rel="stylesheet" href="css/custom_host.css">
 
     <!-- Fontawesome -->
-    <link rel="stylesheet" href="/css/fontawesome/css/all.min.css">
+    <link rel="stylesheet" href="css/fontawesome/css/all.min.css">
 </head>
 
 <body>
+    <!-- 모달 -->
+    <div id="modals"></div>
+
+    <!-- 인덱스 헤더 -->
     <header id="header"></header>
 
     <main role="main">
         <div id="carouselAdContent" class="carousel slide" data-ride="carousel">
-            <div include-html="/main/advertise.html"></div>
+            <div class="carousel-inner">
+                <div class="carousel-item active">
+                    <img src="img/main_carousel_lg.jpg" srcset="img/main_carousel_lg@2x.jpg 2x, img/main_carousel_lg@3x.jpg 3x" class="d-block w-100" alt="...">
+                </div>
+                <div class="carousel-item">
+                    <img src="img/main_carousel_lg.jpg" srcset="img/main_carousel_lg@2x.jpg 2x, img/main_carousel_lg@3x.jpg 3x" class="d-block w-100" alt="...">
+                </div>
+                <div class="carousel-item">
+                    <img src="img/main_carousel_lg.jpg" srcset="img/main_carousel_lg@2x.jpg 2x, img/main_carousel_lg@3x.jpg 3x" class="d-block w-100" alt="...">
+                </div>
+            </div>
 
             <a class="carousel-control-prev" href="#carouselAdContent" role="button" data-slide="prev">
                 <span class="carousel-control-prev-icon" aria-hidden="true"></span>
@@ -44,7 +49,36 @@
 
         <div class="text-center mb-5 bg-yellow">
             <div class="container py-lg-5 py-4">
+                <!-- 호스트 비 로그인 -->
                 <h1 class="mb-0">로그인을 진행한 뒤<br>자세한 고객 보고서를 받아볼 수 있습니다.</h1>
+
+                <!-- 호스트 로그인 -->
+                <!--
+                <div class="d-lg-flex align-items-center host-summary-board">
+                    <div class="row w-lg-65">
+                        <div class="col-md-3 col-6">
+                            <span class="font-weight-light">전체 후기 수</span>
+                            <p class="mb-0 large-number">1,044</p>
+                        </div>
+                        <div class="col-md-3 col-6">
+                            <span class="font-weight-light">신규 후기 수</span>
+                            <p class="mb-0 large-number">350</p>
+                        </div>
+                        <div class="col-md-3 col-6 mt-4 mt-md-0">
+                            <span class="font-weight-light">전체 찜 갯수</span>
+                            <p class="mb-0 large-number">3</p>
+                        </div>
+                        <div class="col-md-3 col-6 mt-4 mt-md-0">
+                            <span class="font-weight-light">누적 예약 수</span>
+                            <p class="mb-0 large-number">71</p>
+                        </div>
+                    </div>
+                    <div class="ml-lg-auto mt-md-0 mt-4">
+                        <span class="font-weight-light">누적 정산 금액</span>
+                        <p class="mb-0 large-number">1,130,900,800원</p>
+                    </div>
+                </div>
+                -->
             </div>
         </div>
 
@@ -55,41 +89,41 @@
                 <div class="col-md-3 col-6">
                     <div class="card-menu-item py-5">
                         <div class="d-flex justify-content-center align-items-center mt-lg-4 card-item-v-img">
-                            <img src="/img/host-calendar.png" srcset="img/host-calendar@2x.png 2x, img/host-calendar@3x.png 3x" alt="">
-                            <img src="/img/host-calendar-hover.png" srcset="img/host-calendar-hover@2x.png 2x, img/host-calendar-hover@3x.png 3x" class="hover-img" alt="">
+                            <img src="img/host-calendar.png" srcset="img/host-calendar@2x.png 2x, img/host-calendar@3x.png 3x" alt="">
+                            <img src="img/host-calendar-hover.png" srcset="img/host-calendar-hover@2x.png 2x, img/host-calendar-hover@3x.png 3x" class="hover-img" alt="">
                         </div>
                         <p class="mt-lg-5 mt-3 mb-lg-4 mb-0 font-weight-light">캘린더</p>
-                        <a href="/member/calendar_host.html" class="stretched-link"></a>
+                        <a href="member/calendar_host.html" class="stretched-link"></a>
                     </div>
                 </div>
                 <div class="col-md-3 col-6">
                     <div class="card-menu-item py-5">
                         <div class="d-flex justify-content-center align-items-center mt-lg-4 card-item-v-img">
-                            <img src="/img/host-reserv-list.png" srcset="img/host-reserv-list@2x.png 2x, img/host-reserv-list@3x.png 3x" alt="">
-                            <img src="/img/host-reserv-list-hover.png" srcset="img/host-reserv-list-hover@2x.png 2x, img/host-reserv-list-hover@3x.png 3x" class="hover-img" alt="">
+                            <img src="img/host-reserv-list.png" srcset="img/host-reserv-list@2x.png 2x, img/host-reserv-list@3x.png 3x" alt="">
+                            <img src="img/host-reserv-list-hover.png" srcset="img/host-reserv-list-hover@2x.png 2x, img/host-reserv-list-hover@3x.png 3x" class="hover-img" alt="">
                         </div>
                         <p class="mt-lg-5 mt-3 mb-lg-4 mb-0 font-weight-light">예약 리스트</p>
-                        <a href="#x" class="stretched-link"></a>
+                        <a href="host/reserv_list.html" class="stretched-link"></a>
                     </div>
                 </div>
                 <div class="col-md-3 col-6 mt-4 mt-md-0">
                     <div class="card-menu-item py-5">
                         <div class="d-flex justify-content-center align-items-center mt-lg-4 card-item-v-img">
-                            <img src="/img/host-review.png" srcset="img/host-review@2x.png 2x, img/host-review@3x.png 3x" alt="">
-                            <img src="/img/host-review-hover.png" srcset="img/host-review-hover@2x.png 2x, img/host-review-hover@3x.png 3x" class="hover-img" alt="">
+                            <img src="img/host-review.png" srcset="img/host-review@2x.png 2x, img/host-review@3x.png 3x" alt="">
+                            <img src="img/host-review-hover.png" srcset="img/host-review-hover@2x.png 2x, img/host-review-hover@3x.png 3x" class="hover-img" alt="">
                         </div>
                         <p class="mt-lg-5 mt-3 mb-lg-4 mb-0 font-weight-light">이용후기/QNA</p>
-                        <a href="/host/qna_list.html" class="stretched-link"></a>
+                        <a href="host/qna_list.html" class="stretched-link"></a>
                     </div>
                 </div>
                 <div class="col-md-3 col-6 mt-4 mt-md-0">
                     <div class="card-menu-item py-5">
                         <div class="d-flex justify-content-center align-items-center mt-lg-4 card-item-v-img">
-                            <img src="/img/host-notice.png" srcset="img/host-notice@2x.png 2x, img/host-notice@3x.png 3x" alt="">
-                            <img src="/img/host-notice-hover.png" srcset="img/host-notice-hover@2x.png 2x, img/host-notice-hover@3x.png 3x" class="hover-img" alt="">
+                            <img src="img/host-notice.png" srcset="img/host-notice@2x.png 2x, img/host-notice@3x.png 3x" alt="">
+                            <img src="img/host-notice-hover.png" srcset="img/host-notice-hover@2x.png 2x, img/host-notice-hover@3x.png 3x" class="hover-img" alt="">
                         </div>
                         <p class="mt-lg-5 mt-3 mb-lg-4 mb-0 font-weight-light">공지사항</p>
-                        <a href="#x" class="stretched-link"></a>
+                        <a href="sub/board_notice.html" class="stretched-link"></a>
                     </div>
                 </div>
             </div>
@@ -102,28 +136,28 @@
                 <div class="col-md-3 col-6">
                     <div class="card-menu-item py-5">
                         <div class="d-flex justify-content-center align-items-center mt-lg-4 card-item-v-img">
-                            <img src="/img/host-adjustment.png" srcset="img/host-adjustment@2x.png 2x, img/host-adjustment@3x.png 3x" alt="">
-                            <img src="/img/host-adjustment-hover.png" srcset="img/host-adjustment-hover@2x.png 2x, img/host-adjustment-hover@3x.png 3x" class="hover-img" alt="">
+                            <img src="img/host-adjustment.png" srcset="img/host-adjustment@2x.png 2x, img/host-adjustment@3x.png 3x" alt="">
+                            <img src="img/host-adjustment-hover.png" srcset="img/host-adjustment-hover@2x.png 2x, img/host-adjustment-hover@3x.png 3x" class="hover-img" alt="">
                         </div>
                         <p class="mt-lg-5 mt-3 mb-lg-4 mb-0 font-weight-light">정산</p>
-                        <a href="/host/calculate.html" class="stretched-link"></a>
+                        <a href="host/calculate.html" class="stretched-link"></a>
                     </div>
                 </div>
                 <div class="col-md-3 col-6">
                     <div class="card-menu-item py-5">
                         <div class="d-flex justify-content-center align-items-center mt-lg-4 card-item-v-img">
-                            <img src="/img/host-chat.png" srcset="img/host-chat@2x.png 2x, img/host-chat@3x.png 3x" alt="">
-                            <img src="/img/host-chat-hover.png" srcset="img/host-chat-hover@2x.png 2x, img/host-chat-hover@3x.png 3x" class="hover-img" alt="">
+                            <img src="img/host-chat.png" srcset="img/host-chat@2x.png 2x, img/host-chat@3x.png 3x" alt="">
+                            <img src="img/host-chat-hover.png" srcset="img/host-chat-hover@2x.png 2x, img/host-chat-hover@3x.png 3x" class="hover-img" alt="">
                         </div>
                         <p class="mt-lg-5 mt-3 mb-lg-4 mb-0 font-weight-light">채팅</p>
-                        <a href="/member/chat_host_list.html" class="stretched-link"></a>
+                        <a href="member/chat_host_list.html" class="stretched-link"></a>
                     </div>
                 </div>
                 <div class="col-md-3 col-6 mt-4 mt-md-0">
                     <div class="card-menu-item py-5">
                         <div class="d-flex justify-content-center align-items-center mt-lg-4 card-item-v-img">
-                            <img src="/img/host-guide.png" srcset="img/host-guide@2x.png 2x, img/host-guide@3x.png 3x" alt="">
-                            <img src="/img/host-guide-hover.png" srcset="img/host-guide-hover@2x.png 2x, img/host-guide-hover@3x.png 3x" class="hover-img" alt="">
+                            <img src="img/host-guide.png" srcset="img/host-guide@2x.png 2x, img/host-guide@3x.png 3x" alt="">
+                            <img src="img/host-guide-hover.png" srcset="img/host-guide-hover@2x.png 2x, img/host-guide-hover@3x.png 3x" class="hover-img" alt="">
                         </div>
                         <p class="mt-lg-5 mt-3 mb-lg-4 mb-0 font-weight-light">이용 가이드</p>
                         <a href="#x" class="stretched-link"></a>
@@ -132,11 +166,11 @@
                 <div class="col-md-3 col-6 mt-4 mt-md-0">
                     <div class="card-menu-item py-5">
                         <div class="d-flex justify-content-center align-items-center mt-lg-4 card-item-v-img">
-                            <img src="/img/host-ad.png" srcset="img/host-ad@2x.png 2x, img/host-ad@3x.png 3x" alt="">
-                            <img src="/img/host-ad-hover.png" srcset="img/host-ad-hover@2x.png 2x, img/host-ad-hover@3x.png 3x" class="hover-img" alt="">
+                            <img src="img/host-ad.png" srcset="img/host-ad@2x.png 2x, img/host-ad@3x.png 3x" alt="">
+                            <img src="img/host-ad-hover.png" srcset="img/host-ad-hover@2x.png 2x, img/host-ad-hover@3x.png 3x" class="hover-img" alt="">
                         </div>
                         <p class="mt-lg-5 mt-3 mb-lg-4 mb-0 font-weight-light">유료광고</p>
-                        <a href="#x" class="stretched-link"></a>
+                        <a href="host/ad_list.html" class="stretched-link"></a>
                     </div>
                 </div>
             </div>
@@ -149,33 +183,49 @@
                 <div class="col-6">
                     <div class="card-menu-item py-5 d-md-flex align-items-center justify-content-center">
                         <div class="mr-md-5 card-item-h-img">
-                            <img src="/img/host-partner.png" srcset="img/host-partner@2x.png 2x, img/host-partner@3x.png 3x" alt="">
-                            <img src="/img/host-partner-hover.png" srcset="img/host-partner-hover@2x.png 2x, img/host-partner-hover@3x.png 3x" class="hover-img" alt="">
+                            <img src="img/host-partner.png" srcset="img/host-partner@2x.png 2x, img/host-partner@3x.png 3x" alt="">
+                            <img src="img/host-partner-hover.png" srcset="img/host-partner-hover@2x.png 2x, img/host-partner-hover@3x.png 3x" class="hover-img" alt="">
                         </div>
                         <p class="d-md-inline-block mt-lg-0 mt-3 mb-0 font-weight-light">파트너 정보 변경</p>
-                        <a href="#x" class="stretched-link"></a>
+                        <a href="member/form_host.html" class="stretched-link"></a>
                     </div>
                 </div>
                 <div class="col-6">
                     <div class="card-menu-item py-5 d-md-flex align-items-center justify-content-center">
                         <div class="mr-md-5 card-item-h-img">
-                            <img src="/img/host-registration.png" srcset="img/host-registration@2x.png 2x, img/host-registration@3x.png 3x" alt="">
-                            <img src="/img/host-registration-hover.png" srcset="img/host-registration-hover@2x.png 2x, img/host-registration-hover@3x.png 3x" class="hover-img" alt="">
+                            <img src="img/host-registration.png" srcset="img/host-registration@2x.png 2x, img/host-registration@3x.png 3x" alt="">
+                            <img src="img/host-registration-hover.png" srcset="img/host-registration-hover@2x.png 2x, img/host-registration-hover@3x.png 3x" class="hover-img" alt="">
                         </div>
                         <p class="d-md-inline-block mt-lg-0 mt-3 mb-0 font-weight-light">등록/관리</p>
-                        <a href="#x" class="stretched-link"></a>
+                        <a href="host/item_list.html" class="stretched-link"></a>
                     </div>
                 </div>
             </div>
         </div>
     </main>
 
+    <!-- 인덱스 푸터 -->
     <footer id="footer"></footer>
 
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
 
     <script src="js/custom.js"></script>
+
+    <!-- include -->
+    <script type="text/javascript">
+        $(function () {
+            // 인덱스 헤더
+           $('#header').load('include/common/header_host.html')
+           // 모달
+           $('#modals').load('include/common/header_modal.html')
+           // 광고 슬라이드
+           $('#carouselSlide').load('include/common/carousel_slide.html')
+           // 인덱스 푸터
+           $('#footer').load('include/common/footer_host.html')
+        });
+    </script>
 </body>
 
 </html>
