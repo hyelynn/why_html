@@ -214,50 +214,7 @@ function price_maker() {
   );
 }
 
-function sendQna() {
-  let id = sessionStorage.getItem("id");
-  if (id != null) {
-    console.id('asdf');
-    let msg = $("#qna_text").val();
 
-    var xhr = new XMLHttpRequest();
-    xhr.onreadystatechange = function () {
-      if (xhr.readyState === xhr.DONE) {
-        if (xhr.status === 200 || xhr.status === 201) {
-          var result = JSON.parse(xhr.responseText);
-          
-        } else {
-          alert("접속 오류");
-          location.href = "studio.html"; //잘못된 접속 시 페이지 강제 이동
-        }
-      } else {
-      }
-    };
-
-    xhr.open("POST", "http://3.34.150.116:3000/studio/qna");
-    xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-    xhr.send("studio_key=" + value + "&user_id=" + id + "&msg=" + msg);
-  } else {
-    alert("로그인이 필요합니다");
-  }
-}
-
-function sendReview() {
-  let id = sessionStorage.getItem("id");
-  if (id != null) {
-    console.id('asdf');
-    let msg = $("#review_text").val();
-
-    var xhr = new XMLHttpRequest();
-    xhr.open("POST", "http://3.34.150.116:3000/studio/review");
-    xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-    xhr.send("studio_key=" + value + "&user_id=" + id + "&msg=" + msg);
-    console.log(valnum + " : " + msg);
-  } else {
-    alert("로그인이 필요합니다");
-  }
-  
-}
 
 // <li class="mb-3">
 //                                             <div class="d-flex">

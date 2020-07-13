@@ -37,6 +37,7 @@
 
     <link rel="stylesheet" href="/css/custom.css">
     <script src="/js/custom.js"></script>
+    <script src="/js/jquery.star-rating-svg.min.js"></script>
 
     <!-- Fontawesome -->
     <link rel="stylesheet" href="/css/fontawesome/css/all.min.css">
@@ -121,20 +122,20 @@
                                     <div class="mb-10">
                                         <div class="d-flex justify-content-between">
                                             <h4 class="mb-md-4 mb-2 text-bullet">질문과 답변</h4>
-                                
+
                                             <button type="button"
-                                                    class="btn rounded-pill bg-dark text-white font-weight-light px-lg-4 px-2 font-size-xs btn-sm"
-                                                    data-toggle="modal" data-target="#qnaModal">질문 작성하기</button>
+                                                class="btn rounded-pill bg-dark text-white font-weight-light px-lg-4 px-2 font-size-xs btn-sm"
+                                                data-toggle="modal" data-target="#qnaModal">질문 작성하기</button>
                                         </div>
                                     </div>
-                                    
+
                                     <!-- Review <<<< -->
                                     <div class="d-flex justify-content-between" id="review_info">
                                         <button type="button"
-                                                    class="btn rounded-pill bg-dark text-white font-weight-light px-lg-4 px-2 font-size-xs btn-sm"
-                                                    data-toggle="modal" data-target="#reviewModal">후기 작성하기</button>
+                                            class="btn rounded-pill bg-dark text-white font-weight-light px-lg-4 px-2 font-size-xs btn-sm"
+                                            data-toggle="modal" data-target="#reviewModal">후기 작성하기</button>
 
-                                        <ul id="reviews" class="list-unstyled view-type-review"> </ul>                                                    
+                                        <ul id="reviews" class="list-unstyled view-type-review"> </ul>
                                     </div>
                                 </div>
                             </div>
@@ -313,6 +314,62 @@
 
 
 <script>
+    function sendQna() {
+        let id = sessionStorage.getItem("id");
+        if (id != null) {
+            console.id('asdf');
+            let msg = $("#qna_text").val();
+
+            var xhr = new XMLHttpRequest();
+            xhr.onreadystatechange = function () {
+                if (xhr.readyState === xhr.DONE) {
+                    if (xhr.status === 200 || xhr.status === 201) {
+                        var result = JSON.parse(xhr.responseText);
+
+                    } else {
+                        alert("접속 오류");
+                        location.href = "studio.html"; //잘못된 접속 시 페이지 강제 이동
+                    }
+                } else {
+                }
+            };
+
+            xhr.open("POST", "http://3.34.150.116:3000/studio/qna");
+            xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+            xhr.send("studio_key=" + value + "&user_id=" + id + "&msg=" + msg);
+        } else {
+            alert("로그인이 필요합니다");
+        }
+    }
+
+    function sendReview() {
+        let id = sessionStorage.getItem("id");
+        if (id != null) {
+            console.id('asdf');
+            let msg = $("#review_text").val();
+
+            var xhr = new XMLHttpRequest();
+            xhr.onreadystatechange = function () {
+                if (xhr.readyState === xhr.DONE) {
+                    if (xhr.status === 200 || xhr.status === 201) {
+                        var result = JSON.parse(xhr.responseText);
+
+                    } else {
+                        alert("접속 오류");
+                        location.href = "studio.html"; //잘못된 접속 시 페이지 강제 이동
+                    }
+                } else {
+                }
+            };
+
+            xhr.open("POST", "http://3.34.150.116:3000/studio/review");
+            xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+            xhr.send("studio_key=" + value + "&user_id=" + id + "&msg=" + msg);
+            console.log(valnum + " : " + msg);
+        } else {
+            alert("로그인이 필요합니다");
+        }
+    }
 
     function addCart() {
         var cartInfo = JSON.parse(sessionStorage.getItem("cart"));
