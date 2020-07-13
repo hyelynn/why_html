@@ -1,4 +1,4 @@
-var value = url.slice(url.indexOf("?") + 1, url.length).split("&");
+var value = location.href.slice(location.href.indexOf("?") + 1, location.href.length).split("&");
 
 $(document).ready(function () {
     //Get Room information
