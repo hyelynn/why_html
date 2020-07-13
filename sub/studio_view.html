@@ -137,9 +137,9 @@
                                         <button type="button"
                                             class="btn rounded-pill bg-dark text-white font-weight-light px-lg-4 px-2 font-size-xs btn-sm"
                                             data-toggle="modal" data-target="#reviewModal">후기 작성하기</button>
-
-                                        <ul id="reviews" class="list-unstyled view-type-review"> </ul>
                                     </div>
+
+                                    <ul id="reviews" class="list-unstyled view-type-review"> </ul>
                                 </div>
                             </div>
                             <div class="tab-pane fade" id="contact"></div>
@@ -369,7 +369,6 @@
             xhr.open("POST", "http://3.34.150.116:3000/studio/review");
             xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
             xhr.send("studio_key=" + value + "&user_id=" + id + "&msg=" + msg);
-            console.log(valnum + " : " + msg);
         } else {
             alert("로그인이 필요합니다");
         }
