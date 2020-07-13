@@ -1,15 +1,23 @@
 <!DOCTYPE html>
 <html lang="ko">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ART BY US</title>
 
     <!-- Bootstrap 4.3.1 -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
+        integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+        integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
+        integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
+        crossorigin="anonymous"></script>
 
     <!-- Custom -->
     <link rel="stylesheet" href="/css/custom.css">
@@ -43,8 +51,7 @@
             <div class="ml-auto align-items-center d-lg-none d-flex">
                 <a class="text-dark mr-3 font-size-sm" href="/member/calendar.html"><i
                         class="far fa-calendar-alt"></i></a>
-                <a class="text-dark mr-3 font-size-sm" href="/member/recent_list.html"><i
-                        class="far fa-clock"></i></a>
+                <a class="text-dark mr-3 font-size-sm" href="/member/recent_list.html"><i class="far fa-clock"></i></a>
                 <a class="text-dark mr-2 font-size-sm" href="/member/purchase.html"><i
                         class="fas fa-shopping-cart"></i></a>
             </div>
@@ -61,7 +68,7 @@
 
     <main role="main">
         <div class="container-fluid border-top custom-chat">
-            <div class="row" >
+            <div class="row">
                 <!-- chat list -->
                 <div class="col-xl-4 col-5 border-right px-0" id="chat_list"> </div>
 
@@ -79,7 +86,8 @@
 
                     <!-- input -->
                     <div class="custom-inputs chat-msg-input">
-                        <input id="msg" type="text" class="form-control border-0 font-size-s" placeholder="여기에 메시지를 입력해 주세요" onkeydown="send_chat();">
+                        <input id="msg" type="text" class="form-control border-0 font-size-s"
+                            placeholder="여기에 메시지를 입력해 주세요" onkeydown="send_chat();">
                     </div>
                 </div>
             </div>
@@ -95,6 +103,69 @@
     <script>login_header();</script>
 
     <script type="text/javascript">
+        function clicked_chat(user) {
+            current_host = user;
+            var xhr = new XMLHttpRequest();
+            var id = sessionStorage.getItem("id");
+
+            xhr.onreadystatechange = function () {
+                if (xhr.readyState === xhr.DONE) {
+                    if (xhr.status === 200 || xhr.status === 201) {
+                        var result = JSON.parse(xhr.responseText);
+                        for (var i = 0; i < result.length; i++) {
+                            //chat_img user_email chat_msg chat_date
+                            var img =
+                                result[i].chat_img.length > 10
+                                    ? "<img src='" +
+                                    result[i].chat_img +
+                                    "' alt='' class='w-100 mb-2'>"
+                                    : "<div class='d-flex align-items-start p-3 position-relative chat-item'>";
+                            var msg = "";
+                            if (result[i].user_email == id) {
+                                msg =
+                                    "<div class='d-flex justify-content-end mb-3'>" +
+                                    "<div class='ml-auto font-weight-light user-msg'>" +
+                                    "<div class='bg-sky rounded-xl p-md-3 p-2 mb-2 text-white chat-msg'>" +
+                                    img +
+                                    "<p class='mb-0'>+" +
+                                    result[i].chat_msg +
+                                    "+</p></div>" +
+                                    "<p class='text-light-gray font-size-xs'>" +
+                                    result[i].chat_date +
+                                    "</p></div></div>";
+                            } else {
+                                msg =
+                                    "<div class='d-flex justify-content-start mb-3'>" +
+                                    "<div class='mr-auto font-weight-light user-msg'>" +
+                                    "<div class='d-flex mb-2'>" +
+                                    "<div class='d-flex justify-content-center rounded-circle overflow-hidden mr-2 user-bg sm'>" +
+                                    "<img src='/why_html/img/studio-host.jpg' class='align-self-center w-100 h-100' alt=''></div>" +
+                                    "<p class='mb-0'>" +
+                                    result[i].user_email +
+                                    "</p></div>" +
+                                    "<div class='bg-light rounded-xl p-md-3 p-2 mb-2 chat-msg'>" +
+                                    img +
+                                    "<p class='mb-0'>" +
+                                    result[i].chat_msg +
+                                    "</p></div>" +
+                                    "<p class='text-right text-light-gray font-size-xs'>" +
+                                    +result[i].chat_date +
+                                    "</p></div></div>";
+                            }
+
+                            $("#msgs").append($(msg));
+                        }
+                    }
+                } else {
+                    alert("연결이 불안정합니다");
+                }
+            };
+
+            xhr.open("POST", "http://3.34.150.116:3000/chat/data");
+            xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+            xhr.send("user_id=" + id + "&host_id=" + user);
+        }
+
         function onLogout() {
             sessionStorage.clear();
             location.href = "index.html";
