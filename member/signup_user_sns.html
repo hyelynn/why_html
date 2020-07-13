@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ART BY US</title>
+
+    <!-- Bootstrap 4.3.1 -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+    <!-- Custom -->
+    <link rel="stylesheet" href="../css/custom.css">
+
+    <!-- Fontawesome -->
+    <link rel="stylesheet" href="../css/fontawesome/css/all.min.css">
+</head>
+
+<body>
+    <!-- 모달 -->
+    <div id="modals"></div>
+
+    <!-- 서브 헤더 -->
+    <header id="header"></header>
+
+    <main role="main">
+        <div class="container py-lg-5 py-4">
+            <h3 class="mb-lg-4 mb-2">개인 회원가입<span class="text-sky font-weight-light font-size-s float-lg-right d-lg-inline-block d-block my-lg-0 my-2">SNS 로그인 시, 닉네임, 연락처만 기입하면 완료 (네이버 로그인)</span></h3>
+            <!-- form -->
+            <div class="mb-2">
+                <div class="custom-inputs-sub not mb-3">
+                    <label for="user_id" class="d-block text-gray">아이디(이메일)<span class="d-block d-md-inline-block text-red font-size-xs">* 수정불가</span></label>
+                    <div class="d-flex">
+                        <input type="text" class="form-control flex-fill mr-lg-4 mr-2" id="user_id" placeholder="example@example.com" disabled>
+                        <button type="button" class="btn flex-fill w-md-25 bg-yellow whitespace-nowrap">중복확인</button>
+                    </div>
+                </div>
+                <div class="row mb-3">
+                    <div class="col-lg-6 custom-inputs-sub not mb-lg-0 mb-3">
+                        <label for="user_name" class="d-block text-gray">이름<span class="d-block d-md-inline-block text-red font-size-xs">* 수정불가</span></label>
+                        <input type="text" class="form-control" id="user_name" placeholder="이름" disabled>
+                    </div>
+                    <div class="col-lg-6 custom-inputs-sub not">
+                        <label for="user_nickname" class="d-block text-gray">닉네임</label>
+                        <input type="text" class="form-control" id="user_nickname" placeholder="아트바이어스">
+                    </div>
+                </div>
+                <div class="row mb-3">
+                    <div class="col-lg-6 custom-inputs-sub not mb-lg-0 mb-3">
+                        <label for="user_phone" class="d-block text-gray">연락처</label>
+                        <div class="d-flex">
+                            <div class="flex-fill mr-lg-4 mr-2">
+                                <input type="text" class="form-control" id="user_phone" placeholder="010-1234-5678">
+                            </div>
+                            <button type="button" class="btn flex-fill w-md-25 bg-yellow whitespace-nowrap">인증번호 발송</button>
+                        </div>
+                    </div>
+                    <div class="col-lg-6 custom-inputs-sub not">
+                        <label for="user_auth" class="d-block text-gray">인증번호</label>
+                        <input type="text" class="form-control" id="user_auth" placeholder="인증번호">
+                    </div>
+                </div>
+            </div>
+
+            <!-- checkbox -->
+            <div class="d-flex mb-4 custom-inputs">
+                <input type="checkbox" class="custom-checkbox mr-2" id="all_agree">
+                <label for="all_agree" class="mb-0">
+                    개인 회원 약관 및 개인정보이용방안을 이해하였으며 이에 동의합니다.
+                    <a href="../sub/terms.html" class="text-dark" target="_blank">(보기)</a>
+                </label>
+            </div>
+
+            <!-- button -->
+            <div class="custom-inputs-sub not">
+                <button type="button" class="btn btn-block bg-yellow">회원가입 완료</button>
+            </div>
+        </div>
+    </main>
+
+    <!-- 서브 푸터 -->
+    <footer id="footer"></footer>
+
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+
+    <script src="../js/include_html.js"></script>
+    <script src="../js/custom.js"></script>
+</body>
+
+</html>

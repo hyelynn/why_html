@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ART BY US</title>
+
+    <!-- Bootstrap 4.3.1 -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+    <!-- Custom -->
+    <link rel="stylesheet" href="../css/custom.css">
+    <link rel="stylesheet" href="../css/custom_calendar.css">
+
+    <!-- Fontawesome -->
+    <link rel="stylesheet" href="../css/fontawesome/css/all.min.css">
+</head>
+
+<body>
+    <!-- 모달 -->
+    <div id="modals"></div>
+
+    <!-- 서브 헤더 -->
+    <header id="header"></header>
+
+    <main role="main">
+        <div class="border-top">
+            <!-- view nav -->
+            <div class="border-bottom overflow-hidden">
+                <div class="container my-md-3 my-2">
+                    <div class="d-flex align-items-center">
+                        <a href="#x" class="mr-3 text-light-gray-more font-size-m" onclick="history.back();"><i class="fa fa-chevron-left align-middle"></i></a>
+                        <span class="text-gray font-size-s">5월</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- event list -->
+            <div class="container my-md-5 my-4">
+                <div class="wrapper custom-calendar overflow-hidden">
+                    <div class="list">
+                        <!-- date -->
+                        <p class="font-weight-light text-light-gray font-size-s">월<span class="ml-1 text-gray">1</span></p>
+
+                        <!-- list -->
+                        <div class="list-item">
+                            <!-- all day event -->
+                            <div class="d-flex align-items-lg-center font-weight-light border-bottom pb-3 mb-3">
+                                <div class="align-self-start event-time">
+                                    <p class="text-light-gray-more mb-0">하루종일</p>
+                                </div>
+                                <div class="bg-sky event-color-line"></div>
+                                <div class="ml-lg-4 ml-3 item-wrapper">
+                                    <p class="mb-0">JYP Ent. 보컬 오디션</p>
+                                    <span class="text-light-gray font-size-xs">서울특별시 강동구 양재대로 123</span>
+                                </div>
+
+                                <button type="button" class="btn stretched-link" data-toggle="modal" data-target="#editEventModal"></button>
+                            </div>
+
+                            <!-- other event -->
+                            <div class="d-flex align-items-lg-center font-weight-light pb-lg-2 pb-3">
+                                <div class="align-self-start event-time">
+                                    <p class="text-light-gray-more mb-0">09:00</p>
+                                    <p class="text-gray mb-0">13:00</p>
+                                </div>
+                                <div class="bg-red event-color-line"></div>
+                                <div class="ml-lg-4 ml-3 item-wrapper">
+                                    <p class="mb-0">사당안무연습실 [G1실]</p>
+                                    <span class="text-light-gray font-size-xs">예약자 : 이정훈</span>
+                                </div>
+                            </div>
+
+                            <div class="d-flex align-items-lg-center font-weight-light pb-lg-2 pb-3">
+                                <div class="align-self-start event-time">
+                                    <p class="text-light-gray-more mb-0">09:00</p>
+                                    <p class="text-gray mb-0">11:00</p>
+                                </div>
+                                <div class="bg-red event-color-line"></div>
+                                <div class="ml-lg-4 ml-3 item-wrapper">
+                                    <p class="mb-0">사당안무연습실 [G2실]</p>
+                                    <span class="text-light-gray font-size-xs">예약자 : 배규리</span>
+                                </div>
+                            </div>
+
+                            <div class="d-flex align-items-lg-center font-weight-light pb-lg-2 pb-3">
+                                <div class="align-self-start event-time">
+                                    <p class="text-light-gray-more mb-0">13:00</p>
+                                    <p class="text-gray mb-0">14:00</p>
+                                </div>
+                                <div class="bg-light-green event-color-line"></div>
+                                <div class="ml-lg-4 ml-3 item-wrapper">
+                                    <p class="mb-0">점심 약속</p>
+                                    <span class="text-light-gray font-size-xs">커피스미스 경리단길</span>
+                                </div>
+                            </div>
+
+                            <div class="d-flex align-items-lg-center font-weight-light pb-lg-2 pb-3">
+                                <div class="align-self-start event-time">
+                                    <p class="text-light-gray-more mb-0">15:00</p>
+                                    <p class="text-gray mb-0">18:00</p>
+                                </div>
+                                <div class="bg-purple event-color-line"></div>
+                                <div class="ml-lg-4 ml-3 item-wrapper">
+                                    <p class="mb-0">공병각의 캘리그라피 교실 텍스트</p>
+                                    <span class="text-light-gray font-size-xs">서울특별시 강남구 테헤란로 413 123동 1203호</span>
+                                </div>
+                            </div>
+
+                            <div class="d-flex align-items-lg-center font-weight-light pb-lg-2 pb-3">
+                                <div class="align-self-start event-time">
+                                    <p class="text-light-gray-more mb-0">19:00</p>
+                                    <p class="text-gray mb-0">22:00</p>
+                                </div>
+                                <div class="bg-yellow event-color-line"></div>
+                                <div class="ml-lg-4 ml-3 item-wrapper">
+                                    <p class="mb-0">뮤지컬 “모차르트”</p>
+                                    <span class="text-light-gray font-size-xs">샤롯데시어터</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="list">
+                        <!-- date -->
+                        <p class="font-weight-light text-light-gray font-size-s">화<span class="ml-1 text-gray">2</span></p>
+
+                        <!-- list -->
+                        <div class="list-item">
+                            <!-- all day event -->
+                            <div class="d-flex align-items-lg-center font-weight-light border-bottom pb-3 mb-3">
+                                <div class="align-self-start event-time">
+                                    <p class="text-light-gray-more mb-0">하루종일</p>
+                                </div>
+                                <div class="bg-sky event-color-line"></div>
+                                <div class="ml-lg-4 ml-3 item-wrapper">
+                                    <p class="mb-0">JYP Ent. 보컬 오디션</p>
+                                    <span class="text-light-gray font-size-xs">서울특별시 강동구 양재대로 123</span>
+                                </div>
+                            </div>
+
+                            <!-- other event -->
+                            <div class="d-flex align-items-lg-center font-weight-light pb-lg-2 pb-3">
+                                <div class="align-self-start event-time">
+                                    <p class="text-light-gray-more mb-0">09:00</p>
+                                    <p class="text-gray mb-0">13:00</p>
+                                </div>
+                                <div class="bg-red event-color-line"></div>
+                                <div class="ml-lg-4 ml-3 item-wrapper">
+                                    <p class="mb-0">사당안무연습실 [G1실]</p>
+                                    <span class="text-light-gray font-size-xs">예약자 : 이정훈</span>
+                                </div>
+                            </div>
+
+                            <div class="d-flex align-items-lg-center font-weight-light pb-lg-2 pb-3">
+                                <div class="align-self-start event-time">
+                                    <p class="text-light-gray-more mb-0">09:00</p>
+                                    <p class="text-gray mb-0">11:00</p>
+                                </div>
+                                <div class="bg-red event-color-line"></div>
+                                <div class="ml-lg-4 ml-3 item-wrapper">
+                                    <p class="mb-0">사당안무연습실 [G2실]</p>
+                                    <span class="text-light-gray font-size-xs">예약자 : 배규리</span>
+                                </div>
+                            </div>
+
+                            <div class="d-flex align-items-lg-center font-weight-light pb-lg-2 pb-3">
+                                <div class="align-self-start event-time">
+                                    <p class="text-light-gray-more mb-0">13:00</p>
+                                    <p class="text-gray mb-0">14:00</p>
+                                </div>
+                                <div class="bg-light-green event-color-line"></div>
+                                <div class="ml-lg-4 ml-3 item-wrapper">
+                                    <p class="mb-0">점심 약속</p>
+                                    <span class="text-light-gray font-size-xs">커피스미스 경리단길</span>
+                                </div>
+                            </div>
+
+                            <div class="d-flex align-items-lg-center font-weight-light pb-lg-2 pb-3">
+                                <div class="align-self-start event-time">
+                                    <p class="text-light-gray-more mb-0">15:00</p>
+                                    <p class="text-gray mb-0">18:00</p>
+                                </div>
+                                <div class="bg-purple event-color-line"></div>
+                                <div class="ml-lg-4 ml-3 item-wrapper">
+                                    <p class="mb-0">공병각의 캘리그라피 교실 텍스트</p>
+                                    <span class="text-light-gray font-size-xs">서울특별시 강남구 테헤란로 413 123동 1203호</span>
+                                </div>
+                            </div>
+
+                            <div class="d-flex align-items-lg-center font-weight-light pb-lg-2 pb-3">
+                                <div class="align-self-start event-time">
+                                    <p class="text-light-gray-more mb-0">19:00</p>
+                                    <p class="text-gray mb-0">22:00</p>
+                                </div>
+                                <div class="bg-yellow event-color-line"></div>
+                                <div class="ml-lg-4 ml-3 item-wrapper">
+                                    <p class="mb-0">뮤지컬 “모차르트”</p>
+                                    <span class="text-light-gray font-size-xs">샤롯데시어터</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 편집 modal -->
+                    <div class="modal fade" tabindex="-1" role="dialog" id="editEventModal" aria-labelledby="editEventModal" aria-hidden="true">
+                        <div class="modal-dialog modal-dialog-centered custom-modal full-modal" role="document">
+                            <div class="modal-content px-lg-5 px-3 py-lg-5 py-4">
+                                <button type="button" class="close text-right mb-3 d-md-none" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">×</span>
+                                </button>
+
+                                <div class="modal-header p-0 mb-4 border-0 d-flex justify-content-start align-items-center position-relative custom-inputs-sub">
+                                    <button type="button" class="btn btn-outline border mr-lg-3 mr-2 p-2 eventColor">
+                                        <span class="d-block bg-red event-color-box"></span>
+                                    </button>
+                                    <!--
+                                        color chart class
+                                        bg-red / bg-sky / bg-yellow / bg-purple / bg-light-green / bg-orange / bg-light-pink /
+                                        bg-mint / bg-light-brown / bg-gray / bg-mid-gray / bg-deep-dark
+                                    -->
+                                    <div class="event-color-chart border p-lg-3 p-2 d-none">
+                                        <div class="d-flex mb-3">
+                                            <div class="border p-2 mr-lg-3 mr-2"><span class="d-block event-color-box bg-red"></span></div>
+                                            <div class="border p-2 mr-lg-3 mr-2"><span class="d-block event-color-box bg-sky"></span></div>
+                                            <div class="border p-2 mr-lg-3 mr-2"><span class="d-block event-color-box bg-yellow"></span></div>
+                                            <div class="border p-2 mr-lg-3 mr-2"><span class="d-block event-color-box bg-purple"></span></div>
+                                            <div class="border p-2 mr-lg-3 mr-2"><span class="d-block event-color-box bg-light-green"></span></div>
+                                            <div class="border p-2"><span class="d-block event-color-box bg-orange"></span></div>
+                                        </div>
+                                        <div class="d-flex">
+                                            <div class="border p-2 mr-lg-3 mr-2"><span class="d-block event-color-box bg-pink"></span></div>
+                                            <div class="border p-2 mr-lg-3 mr-2"><span class="d-block event-color-box bg-mint"></span></div>
+                                            <div class="border p-2 mr-lg-3 mr-2"><span class="d-block event-color-box bg-light-brown"></span></div>
+                                            <div class="border p-2 mr-lg-3 mr-2"><span class="d-block event-color-box bg-gray"></span></div>
+                                            <div class="border p-2 mr-lg-3 mr-2"><span class="d-block event-color-box bg-mid-gray"></span></div>
+                                            <div class="border p-2"><span class="d-block event-color-box bg-deep-dark"></span></div>
+                                        </div>
+                                    </div>
+                                    <!-- <input type="text" class="form-control" placeholder="일정을 입력하세요."> -->
+                                    <h2 class="mb-0">JYP 1차 오디션</h2>
+                                </div>
+                                <div class="modal-body p-0 mb-4 custom-inputs">
+                                    <p class="font-weight-light mb-2 font-size-sm">예약 날짜 및 시간</p>
+                                    <input type="text" class="form-control mb-3" value="2020-01-24 13:30 ~ 2020-01-30 14:00">
+                                    <p class="font-weight-light mb-2 font-size-sm">추가옵션</p>
+                                    <div class="container">
+                                        <div class="row border custom-inputs">
+                                            <div class="col-lg-3 col-md-4 col-6 my-3">
+                                                <div class="d-flex align-items-center">
+                                                    <input type="checkbox" class="mr-2 custom-checkbox" id="opt1">
+                                                    <label for="opt1" class="font-weight-light mb-0">빔 프로젝터</label>
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-3 col-md-4 col-6 my-3">
+                                                <div class="d-flex align-items-center">
+                                                    <input type="checkbox" class="mr-2 custom-checkbox" id="opt2">
+                                                    <label for="opt2" class="font-weight-light mb-0">TV</label>
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-3 col-md-4 col-6 my-3">
+                                                <div class="d-flex align-items-center">
+                                                    <input type="checkbox" class="mr-2 custom-checkbox" id="opt3">
+                                                    <label for="opt3" class="font-weight-light mb-0">복사/인쇄기</label>
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-3 col-md-4 col-6 my-3">
+                                                <div class="d-flex align-items-center">
+                                                    <input type="checkbox" class="mr-2 custom-checkbox" id="opt4">
+                                                    <label for="opt4" class="font-weight-light mb-0">PC/노트북</label>
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-3 col-md-4 col-6 my-3">
+                                                <div class="d-flex align-items-center">
+                                                    <input type="checkbox" class="mr-2 custom-checkbox" id="opt5">
+                                                    <label for="opt5" class="font-weight-light mb-0">거울</label>
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-3 col-md-4 col-6 my-3">
+                                                <div class="d-flex align-items-center">
+                                                    <input type="checkbox" class="mr-2 custom-checkbox" id="opt6">
+                                                    <label for="opt6" class="font-weight-light mb-0">주차요청</label>
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-3 col-md-4 col-6 my-3">
+                                                <div class="d-flex align-items-center">
+                                                    <input type="checkbox" class="mr-2 custom-checkbox" id="opt7">
+                                                    <label for="opt7" class="font-weight-light mb-0">음향/마이크</label>
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-3 col-md-4 col-12 my-3">
+                                                <div class="d-flex align-items-center">
+                                                    <input type="checkbox" class="mr-2 custom-checkbox" id="opt8">
+                                                    <input type="text" class="form-control font-weight-light w-auto" placeholder="직접입력..." style="height: 34px !important">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="modal-footer p-0 border-0 custom-inputs">
+                                    <button type="button" class="btn btn-block text-white bg-red">적용</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- 서브 푸터 -->
+    <footer id="footer"></footer>
+
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+
+    <script src="../js/include_html.js"></script>
+    <script src="../js/custom.js"></script>
+</body>
+
+<script>
+    $('.eventColor').on('click', function () {
+        $('.event-color-chart').toggleClass('d-none');
+    })
+</script>
+
+</html>

@@ -1,0 +1,509 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ART BY US</title>
+
+    <!-- Bootstrap 4.3.1 -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+    <!-- Custom -->
+    <link rel="stylesheet" href="../css/custom.css">
+    <link rel="stylesheet" href="../css/custom_calendar.css">
+
+    <!-- Fontawesome -->
+    <link rel="stylesheet" href="../css/fontawesome/css/all.min.css">
+</head>
+
+<body>
+    <!-- 모달 -->
+    <div id="modals"></div>
+
+    <!-- 서브 헤더 -->
+    <header id="header"></header>
+
+    <main role="main">
+        <div class="border-top">
+            <div class="container my-md-5 my-4">
+                <div class="wrapper view-type custom-calendar overflow-hidden">
+                    <div class="main">
+                        <div class="toolbar mb-lg-4 mb-0">
+                            <!-- date -->
+                            <div class="d-flex align-items-center">
+                                <button type="button" class="btn px-md-2 px-1 font-size-md text-light-gray-more" aria-label="prev"><i class="fas fa-chevron-left"></i></button>
+                                <h2 class="mx-lg-4 mx-md-3 mx-2 mb-0">2020년 5월</h2>
+                                <button type="button" class="btn px-md-2 px-1 font-size-md text-light-gray-more" aria-label="next"><i class="fas fa-chevron-right"></i></button>
+                            </div>
+
+                            <!-- function -->
+                            <div class="d-flex custom-inputs-sub function">
+                                <button type="button" class="btn border mr-2 font-weight-light text-btn" data-toggle="modal" data-target="#addEventModal">
+                                    <i class="fas fa-plus mr-lg-1 mr-0 text-sky"></i><span class="d-lg-inline-block d-none">일정추가</span>
+                                </button>
+                                <select class="form-control font-weight-light">
+                                    <option value="">전체</option>
+                                    <option value="studio">공간예약</option>
+                                    <option value="class">클래스</option>
+                                    <option value="performance">공연</option>
+                                    <option value="audition">오디션</option>
+                                    <option value="personal">개인일정</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <!-- calendar -->
+                        <!--
+                            <PC> - min-width(992px)
+                            이벤트 클릭시 툴팁 노출 event info : left-down / right-down / left-up / right-up
+                            일자 클릭 및 +3(더 많은 이벤트 표시) 클릭시 우측 이벤트 리스트(eventList) 출력
+
+                            <Mobile>
+                            일자 및 이벤트 클릭시 리스트 페이지로 이동(calendar_event_list.html)
+                        -->
+                        <div class="float-lg-left pr-lg-5 mb-lg-0 mb-4 left">
+                            <div class="calendar">
+                                <div class="calendar-header">
+                                    <div>SUN</div>
+                                    <div>MON</div>
+                                    <div>TUE</div>
+                                    <div>WED</div>
+                                    <div>THU</div>
+                                    <div>FRI</div>
+                                    <div>SAT</div>
+                                </div>
+                                <div class="calendar-week">
+                                    <div class="calendar-day day">
+                                        <!-- event list 출력(right) : 예시로 1일만 작업 -->
+                                        <button type="button" class="btn bg-transparent py-0 align-top event-list-toggle" onclick="handleEventList()">1</button>
+                                        <!-- event info : left-down -->
+                                        <div class="day-event-popover left-down d-none" style="left: 110px; top: 120px">
+                                            <div class="mb-2 header">
+                                                <span class="d-inline-block align-middle mr-1 event-color bg-yellow"></span>
+                                                <span class="d-inline-block align-middle text-dark">JYP 1차 오디션</span>
+                                            </div>
+                                            <div class="content">
+                                                <p class="text-red">2020.05.01 오후 13:30 시작<br>2020.05.02 오전 10:00 종료</p>
+                                                <p class="mb-4 text-light-gray">
+                                                    예약자 : 김인간, 010-1234-5678<br>
+                                                    주소 : 서울특별시 강동구 양재대로 123<br>
+                                                    담당자 : 010-1234-5678<br>
+                                                    예약상태 : 예약완료<br>
+                                                    추가옵션 : 프로젝터, 반주테이프
+                                                </p>
+                                            </div>
+                                            <div class="d-flex justify-content-end text-white event-buttons">
+                                                <button type="button" class="btn mr-2 bg-mid-gray" data-toggle="modal" data-target="#editEventModal">편집</button>
+                                                <button type="button" class="btn bg-red">예약취소</button>
+                                            </div>
+                                        </div>
+
+                                        <!-- event item list -->
+                                        <div class="day-event bg-red text-white" style="width: 290%; margin-top: 5px;">
+                                            <span>사당 ABC 댄스연습실 - G1</span>
+                                        </div>
+                                        <div class="day-event bg-purple text-white" style="width: 190%; margin-top: 30px;">
+                                            <span>공병각의 캘리그라피...</span>
+                                        </div>
+
+                                        <!--
+                                            클릭시 툴팁 출력 / 모바일에선 calendar_event_list.html로 이동
+                                            툴팁은 이벤트 좌표에 따라 class 다름
+                                        -->
+                                        <div class="day-event bg-yellow text-dark loc-left-down" style="width: 190%; margin-top: 55px;">
+                                            <span>JYP 1차 오디션</span>
+                                        </div>
+                                        <div class="day-event bg-dark-gray text-white" style="width: 90%; margin-top: 80px;">
+                                            <span>+3 ...</span>
+                                        </div>
+                                    </div>
+                                    <div class="calendar-day day">2</div>
+                                    <div class="calendar-day day">3</div>
+                                    <div class="calendar-day day">4</div>
+                                    <div class="calendar-day day">5</div>
+                                    <div class="calendar-day day">6</div>
+                                    <div class="calendar-day day">7</div>
+                                </div>
+                                <div class="calendar-week">
+                                    <div class="calendar-day day">8</div>
+                                    <div class="calendar-day day">9</div>
+                                    <div class="calendar-day day">10</div>
+                                    <div class="calendar-day day">11</div>
+                                    <div class="calendar-day day">12</div>
+                                    <div class="calendar-day day">13
+                                        <!-- event info : right-down -->
+                                        <div class="day-event-popover right-down d-none">
+                                            <div class="mb-2 header">
+                                                <span class="d-inline-block align-middle mr-1 event-color bg-yellow"></span>
+                                                <span class="d-inline-block align-middle text-dark">JYP 1차 오디션</span>
+                                            </div>
+                                            <div class="content">
+                                                <p class="text-red">2020.05.01 오후 13:30 시작<br>2020.05.02 오전 10:00 종료</p>
+                                                <p class="mb-4 text-light-gray">
+                                                    예약자 : 김인간, 010-1234-5678<br>
+                                                    주소 : 서울특별시 강동구 양재대로 123<br>
+                                                    담당자 : 010-1234-5678<br>
+                                                    예약상태 : 예약완료<br>
+                                                    추가옵션 : 프로젝터, 반주테이프
+                                                </p>
+                                            </div>
+                                            <div class="d-flex justify-content-end text-white event-buttons">
+                                                <button type="button" class="btn mr-2 bg-mid-gray" data-toggle="modal" data-target="#editEventModal">편집</button>
+                                                <button type="button" class="btn bg-red">예약취소</button>
+                                            </div>
+                                        </div>
+
+                                        <!-- event item list -->
+                                        <div class="day-event bg-light-green text-white loc-right-down" style="width: 90%; margin-top: 5px;">
+                                            <span>강남 술약속</span>
+                                        </div>
+                                    </div>
+                                    <div class="calendar-day day">14</div>
+                                </div>
+                                <div class="calendar-week">
+                                    <div class="calendar-day day">15</div>
+                                    <div class="calendar-day day">16</div>
+                                    <div class="calendar-day day">17</div>
+                                    <div class="calendar-day day">18</div>
+                                    <div class="calendar-day day">19
+                                        <div class="day-event bg-sky text-white" style="width: 290%; margin-top: 5px;">
+                                            <span>BIG HIT ENTERTAINMETN VOCAL AUDITION</span>
+                                        </div>
+                                    </div>
+                                    <div class="calendar-day day">20</div>
+                                    <div class="calendar-day day">21</div>
+                                </div>
+                                <div class="calendar-week">
+                                    <div class="calendar-day day">22</div>
+                                    <div class="calendar-day day">23</div>
+                                    <div class="calendar-day day">24</div>
+                                    <div class="calendar-day day">25</div>
+                                    <div class="calendar-day day">26</div>
+                                    <div class="calendar-day day">27</div>
+                                    <div class="calendar-day day">28</div>
+                                </div>
+                                <div class="calendar-week">
+                                    <div class="calendar-day day">29</div>
+                                    <div class="calendar-day day">30</div>
+                                    <div class="calendar-day day">31
+                                        <!-- 다음달로 넘어가는 일정이면 bg-color-op -->
+                                        <div class="day-event bg-sky-op text-white" style="width: 290%; margin-top: 5px;">
+                                            <span>BIG HIT ENTERTAINMETN VOCAL AUDITION</span>
+                                        </div>
+                                    </div>
+                                    <div class="calendar-day day next-month">1</div>
+                                    <div class="calendar-day day next-month">2</div>
+                                    <div class="calendar-day day next-month">3</div>
+                                    <div class="calendar-day day next-month">4</div>
+                                </div>
+                                <div class="calendar-week">
+                                    <div class="calendar-day day next-month">5</div>
+                                    <div class="calendar-day day next-month">6</div>
+                                    <div class="calendar-day day next-month">7</div>
+                                    <div class="calendar-day day next-month">8
+                                        <!-- 다음달로 넘어가는 일정이면 bg-color-op -->
+                                        <div class="day-event bg-purple-op text-white" style="width: 190%; margin-top: 5px;">
+                                            <span>WEB DESIGN UX/UI...</span>
+                                        </div>
+                                    </div>
+                                    <div class="calendar-day day next-month">9</div>
+                                    <div class="calendar-day day next-month">10</div>
+                                    <div class="calendar-day day next-month">11</div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!--
+                            우측 event list : 기본적으로 접속한 날짜의 일정 리스트 출력
+                        -->
+                        <div id="eventList" class="float-lg-right right list">
+                            <div class="border p-3">
+                                <!-- 등록된 이벤트 없을 시 템플릿 -->
+                                <!-- <div class="font-weight-light text-center text-light-gray">
+                                    <p class="mb-0">등록된 일정이 없습니다.</p>
+                                </div> -->
+
+                                <!-- all day event -->
+                                <div class="d-flex align-items-center font-weight-light border-bottom pb-3">
+                                    <div class="align-self-start event-time">
+                                        <p class="text-light-gray-more mb-0">하루종일</p>
+                                    </div>
+                                    <div class="bg-sky event-color-line"></div>
+                                    <div class="ml-4">
+                                        <p class="mb-0">JYP Ent. 보컬 오디션</p>
+                                        <span class="text-light-gray font-size-xs">서울특별시 강동구 양재대로 123</span>
+                                    </div>
+                                </div>
+
+                                <!-- other event -->
+                                <div class="pt-3">
+                                    <div class="d-flex align-items-center font-weight-light pb-2">
+                                        <div class="align-self-start event-time">
+                                            <p class="text-light-gray-more mb-0">09:00</p>
+                                            <p class="text-gray mb-0">13:00</p>
+                                        </div>
+                                        <div class="bg-red event-color-line"></div>
+                                        <div class="ml-4">
+                                            <p class="mb-0">사당안무연습실 [G1실]</p>
+                                            <span class="text-light-gray font-size-xs">예약자 : 이정훈</span>
+                                        </div>
+                                    </div>
+
+                                    <div class="d-flex align-items-center font-weight-light pb-2">
+                                        <div class="align-self-start event-time">
+                                            <p class="text-light-gray-more mb-0">09:00</p>
+                                            <p class="text-gray mb-0">11:00</p>
+                                        </div>
+                                        <div class="bg-red event-color-line"></div>
+                                        <div class="ml-4">
+                                            <p class="mb-0">사당안무연습실 [G2실]</p>
+                                            <span class="text-light-gray font-size-xs">예약자 : 배규리</span>
+                                        </div>
+                                    </div>
+
+                                    <div class="d-flex align-items-center font-weight-light pb-2">
+                                        <div class="align-self-start event-time">
+                                            <p class="text-light-gray-more mb-0">13:00</p>
+                                            <p class="text-gray mb-0">14:00</p>
+                                        </div>
+                                        <div class="bg-light-green event-color-line"></div>
+                                        <div class="ml-4">
+                                            <p class="mb-0">점심 약속</p>
+                                            <span class="text-light-gray font-size-xs">커피스미스 경리단길</span>
+                                        </div>
+                                    </div>
+
+                                    <div class="d-flex align-items-center font-weight-light pb-2">
+                                        <div class="align-self-start event-time">
+                                            <p class="text-light-gray-more mb-0">15:00</p>
+                                            <p class="text-gray mb-0">18:00</p>
+                                        </div>
+                                        <div class="bg-purple event-color-line"></div>
+                                        <div class="ml-4">
+                                            <p class="mb-0">공병각의 캘리그라피 교실...</p>
+                                            <span class="text-light-gray font-size-xs">서울특별시 강남구 테헤란로 413 ...</span>
+                                        </div>
+                                    </div>
+
+                                    <div class="d-flex align-items-center font-weight-light pb-2">
+                                        <div class="align-self-start event-time">
+                                            <p class="text-light-gray-more mb-0">19:00</p>
+                                            <p class="text-gray mb-0">22:00</p>
+                                        </div>
+                                        <div class="bg-yellow event-color-line"></div>
+                                        <div class="ml-4">
+                                            <p class="mb-0">뮤지컬 “모차르트”</p>
+                                            <span class="text-light-gray font-size-xs">샤롯데시어터</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- <PC> 일정 추가 modal -->
+                    <div class="modal fade" tabindex="-1" role="dialog" id="addEventModal" aria-labelledby="addEventModal" aria-hidden="true">
+                        <div class="modal-dialog modal-dialog-centered custom-modal full-modal" role="document">
+                            <div class="modal-content px-lg-5 px-3 py-lg-5 py-4">
+                                <button type="button" class="close text-right mb-3 d-md-none" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">×</span>
+                                </button>
+
+                                <div class="modal-header p-0 mb-4 border-0 d-flex position-relative custom-inputs-sub">
+                                    <button type="button" class="btn btn-outline border mr-lg-3 mr-2 p-2 eventColor">
+                                        <span class="d-block bg-red event-color-box"></span>
+                                    </button>
+                                    <!--
+                                        color chart class
+                                        bg-red / bg-sky / bg-yellow / bg-purple / bg-light-green / bg-orange / bg-light-pink /
+                                        bg-mint / bg-light-brown / bg-gray / bg-mid-gray / bg-deep-dark
+                                    -->
+                                    <div class="event-color-chart border p-lg-3 p-2 d-none">
+                                        <div class="d-flex mb-3">
+                                            <div class="border p-2 mr-lg-3 mr-2"><span class="d-block event-color-box bg-red"></span></div>
+                                            <div class="border p-2 mr-lg-3 mr-2"><span class="d-block event-color-box bg-sky"></span></div>
+                                            <div class="border p-2 mr-lg-3 mr-2"><span class="d-block event-color-box bg-yellow"></span></div>
+                                            <div class="border p-2 mr-lg-3 mr-2"><span class="d-block event-color-box bg-purple"></span></div>
+                                            <div class="border p-2 mr-lg-3 mr-2"><span class="d-block event-color-box bg-light-green"></span></div>
+                                            <div class="border p-2"><span class="d-block event-color-box bg-orange"></span></div>
+                                        </div>
+                                        <div class="d-flex">
+                                            <div class="border p-2 mr-lg-3 mr-2"><span class="d-block event-color-box bg-pink"></span></div>
+                                            <div class="border p-2 mr-lg-3 mr-2"><span class="d-block event-color-box bg-mint"></span></div>
+                                            <div class="border p-2 mr-lg-3 mr-2"><span class="d-block event-color-box bg-light-brown"></span></div>
+                                            <div class="border p-2 mr-lg-3 mr-2"><span class="d-block event-color-box bg-gray"></span></div>
+                                            <div class="border p-2 mr-lg-3 mr-2"><span class="d-block event-color-box bg-mid-gray"></span></div>
+                                            <div class="border p-2"><span class="d-block event-color-box bg-deep-dark"></span></div>
+                                        </div>
+                                    </div>
+                                    <input type="text" class="form-control" placeholder="일정을 입력하세요.">
+                                </div>
+                                <div class="modal-body p-0 mb-4 custom-inputs">
+                                    <p class="font-weight-light mb-2 font-size-sm">예약 날짜 및 시간</p>
+                                    <input type="text" class="form-control mb-3">
+                                    <p class="font-weight-light mb-2 font-size-sm">장소</p>
+                                    <input type="text" class="form-control" value="서울대입구역">
+                                </div>
+                                <div class="modal-footer p-0 border-0 custom-inputs">
+                                    <button type="button" class="btn btn-block text-white bg-red">적용</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- <PC> 편집 modal -->
+                    <div class="modal fade" tabindex="-1" role="dialog" id="editEventModal" aria-labelledby="editEventModal" aria-hidden="true">
+                        <div class="modal-dialog modal-dialog-centered custom-modal full-modal" role="document">
+                            <div class="modal-content px-lg-5 px-3 py-lg-5 py-4">
+                                <button type="button" class="close text-right mb-3 d-md-none" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">×</span>
+                                </button>
+
+                                <div class="modal-header p-0 mb-4 border-0 d-flex justify-content-start align-items-center position-relative custom-inputs-sub">
+                                    <button type="button" class="btn btn-outline border mr-lg-3 mr-2 p-2 eventColor">
+                                        <span class="d-block bg-red event-color-box"></span>
+                                    </button>
+                                    <!--
+                                        color chart class
+                                        bg-red / bg-sky / bg-yellow / bg-purple / bg-light-green / bg-orange / bg-light-pink /
+                                        bg-mint / bg-light-brown / bg-gray / bg-mid-gray / bg-deep-dark
+                                    -->
+                                    <div class="event-color-chart border p-3 d-none">
+                                        <div class="d-flex mb-3">
+                                            <div class="border p-2 mr-3"><span class="d-block event-color-box bg-red"></span></div>
+                                            <div class="border p-2 mr-3"><span class="d-block event-color-box bg-sky"></span></div>
+                                            <div class="border p-2 mr-3"><span class="d-block event-color-box bg-yellow"></span></div>
+                                            <div class="border p-2 mr-3"><span class="d-block event-color-box bg-purple"></span></div>
+                                            <div class="border p-2 mr-3"><span class="d-block event-color-box bg-light-green"></span></div>
+                                            <div class="border p-2"><span class="d-block event-color-box bg-orange"></span></div>
+                                        </div>
+                                        <div class="d-flex">
+                                            <div class="border p-2 mr-3"><span class="d-block event-color-box bg-pink"></span></div>
+                                            <div class="border p-2 mr-3"><span class="d-block event-color-box bg-mint"></span></div>
+                                            <div class="border p-2 mr-3"><span class="d-block event-color-box bg-light-brown"></span></div>
+                                            <div class="border p-2 mr-3"><span class="d-block event-color-box bg-gray"></span></div>
+                                            <div class="border p-2 mr-3"><span class="d-block event-color-box bg-mid-gray"></span></div>
+                                            <div class="border p-2"><span class="d-block event-color-box bg-deep-dark"></span></div>
+                                        </div>
+                                    </div>
+                                    <!-- <input type="text" class="form-control" placeholder="일정을 입력하세요."> -->
+                                    <h2 class="mb-0">JYP 1차 오디션</h2>
+                                </div>
+                                <div class="modal-body p-0 mb-4 custom-inputs">
+                                    <p class="font-weight-light mb-2 font-size-sm">예약 날짜 및 시간</p>
+                                    <input type="text" class="form-control mb-3" value="2020-01-24 13:30 ~ 2020-01-30 14:00">
+                                    <p class="font-weight-light mb-2 font-size-sm">추가옵션</p>
+                                    <div class="container">
+                                        <div class="row border custom-inputs">
+                                            <div class="col-lg-3 col-md-4 col-6 my-3">
+                                                <div class="d-flex align-items-center">
+                                                    <input type="checkbox" class="mr-2 custom-checkbox" id="opt1">
+                                                    <label for="opt1" class="font-weight-light mb-0">빔 프로젝터</label>
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-3 col-md-4 col-6 my-3">
+                                                <div class="d-flex align-items-center">
+                                                    <input type="checkbox" class="mr-2 custom-checkbox" id="opt2">
+                                                    <label for="opt2" class="font-weight-light mb-0">TV</label>
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-3 col-md-4 col-6 my-3">
+                                                <div class="d-flex align-items-center">
+                                                    <input type="checkbox" class="mr-2 custom-checkbox" id="opt3">
+                                                    <label for="opt3" class="font-weight-light mb-0">복사/인쇄기</label>
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-3 col-md-4 col-6 my-3">
+                                                <div class="d-flex align-items-center">
+                                                    <input type="checkbox" class="mr-2 custom-checkbox" id="opt4">
+                                                    <label for="opt4" class="font-weight-light mb-0">PC/노트북</label>
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-3 col-md-4 col-6 my-3">
+                                                <div class="d-flex align-items-center">
+                                                    <input type="checkbox" class="mr-2 custom-checkbox" id="opt5">
+                                                    <label for="opt5" class="font-weight-light mb-0">거울</label>
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-3 col-md-4 col-6 my-3">
+                                                <div class="d-flex align-items-center">
+                                                    <input type="checkbox" class="mr-2 custom-checkbox" id="opt6">
+                                                    <label for="opt6" class="font-weight-light mb-0">주차요청</label>
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-3 col-md-4 col-6 my-3">
+                                                <div class="d-flex align-items-center">
+                                                    <input type="checkbox" class="mr-2 custom-checkbox" id="opt7">
+                                                    <label for="opt7" class="font-weight-light mb-0">음향/마이크</label>
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-3 col-md-4 col-6 my-3">
+                                                <div class="d-flex align-items-center">
+                                                    <input type="checkbox" class="mr-2 custom-checkbox" id="opt8">
+                                                    <input type="text" class="form-control font-weight-light" placeholder="직접입력..." style="height: 34px !important">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="modal-footer p-0 border-0 custom-inputs">
+                                    <button type="button" class="btn btn-block text-white bg-red">적용</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- 서브 푸터 -->
+    <footer id="footer" class="d-md-block d-none"></footer>
+
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+
+    <script src="../js/include_html.js"></script>
+    <!-- 스크립트가 동작하지 않아 include_html.js에서 getScript로 불러옴 -->
+    <!-- <script src="../js/custom.js"></script> -->
+</body>
+
+<script>
+    $('.eventColor').on('click', function () {
+        $('.event-color-chart').toggleClass('d-none');
+    })
+
+    let windowWidth = $(window).width();
+
+    /* date click event */
+    function handleEventList() {
+        if (windowWidth > 992) {
+            $('#eventList').toggleClass('d-none');
+        } else {
+            location.href='../member/calendar_event_list.html';
+        }
+    }
+
+    /* day-event click event */
+    $('.day-event').each( function () {
+        $(this).on('click', function (event) {
+            // console.log(event)
+            if (windowWidth > 992) {
+                if ($(event.target).hasClass('loc-left-down')) {
+                    $('.day-event-popover.left-down').toggleClass('d-none');
+                } else if ($(event.target).hasClass('loc-right-down')) {
+                    $('.day-event-popover.right-down').toggleClass('d-none');
+                }
+            } else {
+                location.href='../member/calendar_event_list.html';
+            }
+        })
+    })
+
+    $(window).resize( function () {
+        windowWidth = $(this).width();
+    })
+</script>
+
+</html>
