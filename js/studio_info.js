@@ -132,12 +132,6 @@ $(document).ready(function () {
           )
         );
 
-        $("#review_info").append(
-          $(
-            "<h4 class='mb-md-4 mb-2 text-bullet'>이용후기 <span class='text-sky font-weight-light ml-3 mr-2'>33개</span> 평균 <span class='text-sky font-weight-light'>★4.7/5</span></h4>"
-          )
-        );
-
         $("#title_purchase").append(
           $(
             "<h6>" +
@@ -206,7 +200,7 @@ function load_qna() {
     }
   };
 
-  xhr.open("POST", "http://3.34.150.116:3000/qna/get");
+  xhr.open("POST", "http://3.34.150.116:3000/studio/qna/get");
   xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
   xhr.send("studio_key=" + value);
 }
@@ -262,7 +256,7 @@ function load_review() {
     }
   };
 
-  xhr.open("POST", "http://3.34.150.116:3000/review/get");
+  xhr.open("POST", "http://3.34.150.116:3000/studio/review/get");
   xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
   xhr.send("studio_key=" + value);
 }
@@ -317,21 +311,3 @@ function price_maker() {
     )
   );
 }
-
-
-
-// <li class="mb-3">
-//                                             <div class="d-flex">
-//                                                 <div class="mr-lg-4 mr-2">
-//                                                     <span class="d-inline-block rounded-circle user-bg"></span>
-//                                                 </div>
-//                                                 <div class="border-bottom pb-4 mb-4">
-//                                                     <p class="font-size-m">BUMING <span class="float-right font-weight-light font-size-s text-light-gray">★3.5/5</span></p>
-//                                                     <p class="font-weight-light font-size-s text-light-gray">
-//                                                         이네들은 이런 하나 멀리 까닭입니다. 써 이런 못 이름자 거외다. 이름과 봄이 쉬이 피어
-//                                                         나듯이 써 가을 있습니다. 된 오면 그리고 노새, 이름자를 마디씩 까닭입니다.
-//                                                     </p>
-//                                                     <p class="text-light-gray-more font-size-xs">2020.03.20 18:50</p>
-//                                                 </div>
-//                                             </div>
-//                                         </li>
