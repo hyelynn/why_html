@@ -10,16 +10,17 @@ $(document).ready(function () {
         if (xhr.readyState === xhr.DONE) {
           if (xhr.status === 200 || xhr.status === 201) {
             var result = JSON.parse(xhr.responseText);
-
-            $("#title").append(
-                $("<span class='text-gray font-size-s'>"+result[i].user_nickname+"</span>")
-            );
-
-            $("#time").append(
-                $("<span class='d-inline-block rounded-xl px-3 py-1 bg-light chat-date'>" + moment(result[i].chat_date).format('YYYY-MM-DD') + "</span>")
-            );
-
             for (var i = 0; i < result.length; i++) {
+                if (i == 0) {
+                    $("#title").append(
+                        $("<span class='text-gray font-size-s'>"+result[i].user_nickname+"</span>")
+                    );
+        
+                    $("#time").append(
+                        $("<span class='d-inline-block rounded-xl px-3 py-1 bg-light chat-date'>" + moment(result[i].chat_date).format('YYYY-MM-DD') + "</span>")
+                    );
+                }
+
                 var text = "";
                 var img = "";
                 if (result[i].chat_img != null) {
