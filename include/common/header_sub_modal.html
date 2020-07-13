@@ -236,7 +236,7 @@
             <!-- 작성 폼 -->
             <div class="modal-body p-0 custom-inputs text-center">
                 <div class="input-group mb-4">
-                    <textarea class="form-control large-textarea" placeholder="- 질문 내용을 입력 해 주세요. (1,000자 이내)&#13;&#10;- 질문 작성 시 게시물의 하단에 질문내용이 노출됩니다."></textarea>
+                    <textarea id="qna_text" class="form-control large-textarea" placeholder="- 질문 내용을 입력 해 주세요. (1,000자 이내)&#13;&#10;- 질문 작성 시 게시물의 하단에 질문내용이 노출됩니다."></textarea>
                 </div>
 
                 <button type="button" onclick="sendQna();" class="btn bg-yellow w-lg-65 w-100 py-md-4 py-2 h-auto rounded-0 font-size-s" data-dismiss="modal">호스트에게 질문 전달하기</button>
@@ -266,7 +266,7 @@
                 <div class="text-left font-weight-light">
                     <p class="font-size-s mb-2">리뷰 내용</p>
                     <div class="input-group mb-4">
-                        <textarea class="form-control medium-textarea" placeholder="작성된 후기는 전체 공개 됩니다."></textarea>
+                        <textarea id="review_text" class="form-control medium-textarea" placeholder="작성된 후기는 전체 공개 됩니다."></textarea>
                     </div>
                 </div>
 
