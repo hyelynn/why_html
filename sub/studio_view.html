@@ -309,6 +309,7 @@
     <script>includeHTML({});</script>
     <script>login_header();</script>
     <script>price_maker();</script>
+    <script>load_review(); load_qna();</script>
 
     <script src="/js/naver_login.js"></script>
     <script src="/js/login.js"></script>
@@ -324,8 +325,7 @@
             var xhr = new XMLHttpRequest();
             xhr.onreadystatechange = function () {
                 if (xhr.readyState === xhr.DONE) {
-                    if (xhr.status === 200 || xhr.status === 201) {
-                        $("#qnas").prepend(
+                    $("#qnas").prepend(
                             $(
                             "<li class='mb-3'><div class='d-flex'><div class='mr-lg-4 mr-2'><span class='d-inline-block rounded-circle user-bg'></span></div>"+
                             "<div class=''><p class='font-size-m'> "+sessionStorage.getItem("nickname")+" </p>"+
@@ -334,10 +334,6 @@
                             "<li class='mb-3'><div class='d-flex'><div class='mr-lg-4 mr-2'><span class='d-inline-block rounded-circle user-bg'></span></div>"
                             )
                         )
-                    } else {
-                        alert("접속 오류");
-                        location.href = "studio.html"; //잘못된 접속 시 페이지 강제 이동
-                    }
                 } else {
                 }
             };
@@ -358,8 +354,7 @@
             var xhr = new XMLHttpRequest();
             xhr.onreadystatechange = function () {
                 if (xhr.readyState === xhr.DONE) {
-                    if (xhr.status === 200 || xhr.status === 201) {
-                        $("#reviews").prepend(
+                    $("#reviews").prepend(
                             $(
                             "<li class='mb-3'><div class='d-flex'><div class='mr-lg-4 mr-2'><span class='d-inline-block rounded-circle user-bg'></span></div>"+
                             "<div class=''><p class='font-size-m'> "+sessionStorage.getItem("nickname")+" </p>"+
@@ -368,10 +363,6 @@
                             "<li class='mb-3'><div class='d-flex'><div class='mr-lg-4 mr-2'><span class='d-inline-block rounded-circle user-bg'></span></div>"
                             )
                         )
-                    } else {
-                        alert("접속 오류");
-                        location.href = "studio.html"; //잘못된 접속 시 페이지 강제 이동
-                    }
                 } else {
                 }
             };
