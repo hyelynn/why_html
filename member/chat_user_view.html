@@ -9,80 +9,58 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 
     <!-- Custom -->
-    <link rel="stylesheet" href="../css/custom.css">
+    <link rel="stylesheet" href="/css/custom.css">
 
     <!-- Fontawesome -->
-    <link rel="stylesheet" href="../css/fontawesome/css/all.min.css">
+    <link rel="stylesheet" href="/css/fontawesome/css/all.min.css">
 </head>
 
 <body>
-    <!-- 모달 -->
-    <div id="modals"></div>
+    <modal include-html="/include/header.html"></modal>
+    <div class="py-md-3 px-5 py-2 text-center text-white bg-deep-dark top-notice">
+        <span class="font-weight-light">코로나19에 대한 아트바이어스의 대책 및 환불 정책에 대한 최신 정보를 확인하세요.</span>
+        <a href="#x" class="text-white d-lg-inline-block d-block">자세히 알아보기</a>
+    </div>
 
-    <!-- 서브 헤더 -->
-    <header id="header"></header>
+    <nav class="navbar navbar-expand-lg navbar-light py-lg-3 py-1">
+        <div class="container">
+            <a class="navbar-brand" href="/index.html"><img src="http://artbyus.co.kr/img/logo.png"
+                    srcset="http://artbyus.co.kr/img/logo@2x.png 2x, http://artbyus.co.kr/img/logo@3x.png 3x"></a>
+            <div class="ml-auto align-items-center d-lg-none d-flex">
+                <a class="text-dark mr-3 font-size-sm" href="/member/calendar.html"><i
+                        class="far fa-calendar-alt"></i></a>
+                <a class="text-dark mr-3 font-size-sm" href="/member/recent_list.html"><i class="far fa-clock"></i></a>
+                <a class="text-dark mr-2 font-size-sm" href="/member/purchase.html"><i
+                        class="fas fa-shopping-cart"></i></a>
+            </div>
+            <button class="navbar-toggler border-0 font-size-md text-dark" type="button" data-toggle="collapse"
+                data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false"
+                aria-label="Toggle navigation">
+                <i class="fas fa-bars"></i>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarNavDropdown"></div>
+        </div>
+    </nav>
+    <script src="/js/header.js"></script>
 
     <main role="main">
         <div class="border-top custom-chat">
             <!-- view nav -->
             <div class="border-bottom overflow-hidden">
                 <div class="container my-md-3 my-2">
-                    <div class="d-flex align-items-center">
+                    <div class="d-flex align-items-center" id="title">
                         <a href="#x" class="mr-3 text-light-gray-more font-size-m" onclick="history.back();"><i class="fa fa-chevron-left align-middle"></i></a>
-                        <span class="text-gray font-size-s">사당안무연습실 호스트</span>
                     </div>
                 </div>
             </div>
 
             <!-- chat view -->
-            <div class="container my-3 chat-msgs user">
+            <div class="container my-3 chat-msgs user" id="chat_list">
                 <!-- date -->
                 <div class="font-weight-light">
-                    <div class="text-center mb-3">
-                        <span class="d-inline-block rounded-xl px-3 py-1 bg-light chat-date">2020년 05월 01일</span>
-                    </div>
-                </div>
-
-                <!-- msg -->
-                <!-- Reciever -->
-                <div class="d-flex justify-content-end mb-3">
-                    <div class="ml-auto font-weight-light user-msg">
-                        <div class="bg-sky rounded-xl p-md-3 px-3 py-2 mb-2 text-white chat-msg">
-                            <img src="../img/section-2-photo.jpg" alt="" class="w-100 mb-2">
-                            <p class="mb-2">사당 안무연습실 예약 요청이 되었습니다.<br>호스트의 답변을 기다려주세요.</p>
-                            <p class="mb-0">예약자 : 김민범<br>호실 : G1<br>예약일시 : 2020-05-03 18:00 ~ 2020-05-04 20:00</p>
-                        </div>
-                        <p class="text-light-gray font-size-xs">14:51</p>
-                    </div>
-                </div>
-
-                <!-- Sender -->
-                <div class="d-flex justify-content-start mb-3">
-                    <div class="mr-auto font-weight-light user-msg">
-                        <div class="d-flex mb-2 align-items-center">
-                            <div class="d-flex justify-content-center rounded-circle overflow-hidden mr-2 user-bg sm">
-                                <img src="../img/studio-host.jpg" class="align-self-center w-100 h-100" alt="">
-                            </div>
-                            <p class="mb-0">사당안무연습실 호스트</p>
-                        </div>
-                        <div class="bg-light rounded-xl p-md-3 px-3 py-2 mb-2 chat-msg">
-                            <p class="mb-0">
-                                안녕하세요 ^^ 사당안무연습실입니다.<br>
-                                예약 내용 확인되어 예약 확정 진행하려고 합니다.<br>
-                                괜찮으신가요?
-                            </p>
-                        </div>
-                        <p class="text-right text-light-gray font-size-xs">19:00</p>
-                    </div>
-                </div>
-
-                <!-- Reciever -->
-                <div class="d-flex justify-content-end mb-3">
-                    <div class="ml-auto font-weight-light user-msg">
-                        <div class="bg-sky rounded-xl p-md-3 px-3 py-2 mb-2 text-white chat-msg">
-                            <p class="mb-0">네, 진행 부탁드립니다.</p>
-                        </div>
-                        <p class="text-light-gray font-size-xs">19:51</p>
+                    <div class="text-center mb-3" id="time">
+                        
                     </div>
                 </div>
             </div>
@@ -96,12 +74,21 @@
         </div>
     </main>
 
+
+    <footer include-html="/include/footer.html"></footer>
+
+    <script src="/js/naver_login.js"></script>
+    <script src="/js/login.js"></script>
+
+    <script>includeHTML({});</script>
+    <script>login_header();</script>
+
     <script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
 
-    <script src="../js/include_html.js"></script>
-    <script src="../js/custom.js"></script>
+    <script src="/js/include_html.js"></script>
+    <script src="/js/custom.js"></script>
 </body>
 
 </html>
