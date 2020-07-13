@@ -163,16 +163,120 @@ $(document).ready(function () {
   xhr.send("studio_key=" + value);
 });
 
+
+function load_qna() {
+  var valnum = Number(value);
+
+  var regexp = /^[0-9]*$/;
+  if (!regexp.test(valnum)) {
+    alert("접속 오류");
+    location.href = "studio.html"; //잘못된 접속 시 페이지 강제 이동
+  }
+  var xhr = new XMLHttpRequest();
+
+  xhr.onreadystatechange = function () {
+    if (xhr.readyState === xhr.DONE) {
+      if (xhr.status === 200 || xhr.status === 201) {
+        var result = JSON.parse(xhr.responseText);
+        for (var i = 0; i < result.length; i++) {
+          var suffix = ""
+
+          if (result[i].qna_answer != 'undefined' && result[i].qna_answer != null) {
+            suffix = "<div class='border-bottom pb-4 mb-4'>"+
+            "<p class='text-sky font-size-m'>호스트의 답변</p>"+
+            "<p class='font-weight-light font-size-s text-light-gray'>"+result[i].qna_answer+"</p>"+
+            "<p class='text-light-gray-more font-size-xs'>"+moment(result[i].qna_answer_date).format('YYYY-MM-DD HH:mm')+"</p></div></div></li>"
+          }
+
+          $("#qnas").append(
+            $(
+              "<li class='mb-3'><div class='d-flex'><div class='mr-lg-4 mr-2'><span class='d-inline-block rounded-circle user-bg'></span></div>"+
+              "<div class=''><p class='font-size-m'> "+result[i].user_nickname+" </p>"+
+              "<p class='font-weight-light font-size-s text-light-gray'>"+result[i].qna_msg+"</p>"+
+              "<p class='text-light-gray-more font-size-xs'>"+moment(result[i].qna_date).format('YYYY-MM-DD HH:mm')+"</p></div></div></li>"+
+              "<li class='mb-3'><div class='d-flex'><div class='mr-lg-4 mr-2'><span class='d-inline-block rounded-circle user-bg'></span></div>" + suffix
+            )
+          )
+        }  
+      } else {
+        alert("접속 오류");
+        location.href = "studio.html"; //잘못된 접속 시 페이지 강제 이동
+      }
+    } else {
+    }
+  };
+
+  xhr.open("POST", "http://3.34.150.116:3000/qna/get");
+  xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+  xhr.send("studio_key=" + value);
+}
+
+function load_review() {
+  var valnum = Number(value);
+
+  var regexp = /^[0-9]*$/;
+  if (!regexp.test(valnum)) {
+    alert("접속 오류");
+    location.href = "studio.html"; //잘못된 접속 시 페이지 강제 이동
+  }
+  var xhr = new XMLHttpRequest();
+
+  xhr.onreadystatechange = function () {
+    if (xhr.readyState === xhr.DONE) {
+      if (xhr.status === 200 || xhr.status === 201) {
+        var result = JSON.parse(xhr.responseText);
+        var totalscore = 0.0;
+        for (var i = 0; i < result.length; i++) {
+          totalscore += parseFloat(result[i].review_score);
+          var suffix = ""
+
+          if (result[i].review_answer != 'undefined' && result[i].review_answer != null) {
+            suffix = "<div class='border-bottom pb-4 mb-4'>"+
+            "<p class='text-sky font-size-m'>호스트의 답변</p>"+
+            "<p class='font-weight-light font-size-s text-light-gray'>"+result[i].review_answer+"</p>"+
+            "<p class='text-light-gray-more font-size-xs'>"+moment(result[i].review_answer_date).format('YYYY-MM-DD HH:mm')+"</p></div></div></li>"
+          }
+
+          $("#reviews").append(
+            $(
+              "<li class='mb-3'><div class='d-flex'><div class='mr-lg-4 mr-2'><span class='d-inline-block rounded-circle user-bg'></span></div>"+
+              "<div class=''><p class='font-size-m'> "+result[i].user_nickname+
+              "<span class='float-right font-weight-light font-size-s text-light-gray'>★"+result[i].review_score+"/5</span> </p>"+
+              "<p class='font-weight-light font-size-s text-light-gray'>"+result[i].review_msg+"</p>"+
+              "<p class='text-light-gray-more font-size-xs'>"+moment(result[i].review_date).format('YYYY-MM-DD HH:mm')+"</p></div></div></li>"+
+              "<li class='mb-3'><div class='d-flex'><div class='mr-lg-4 mr-2'><span class='d-inline-block rounded-circle user-bg'></span></div>" + suffix
+            )
+          )
+        }
+        
+        $("#review_info").prepend($(
+          "<h4 class='mb-md-4 mb-2 text-bullet'>이용후기 <span class='text-sky font-weight-light ml-3 mr-2'> "+
+          result.length+"개 </span> 평균 <span class='text-sky font-weight-light'>★"+
+          totalscore/result.length+"/5</span></h4>"
+        ));
+      } else {
+        alert("접속 오류");
+        location.href = "studio.html"; //잘못된 접속 시 페이지 강제 이동
+      }
+    } else {
+    }
+  };
+
+  xhr.open("POST", "http://3.34.150.116:3000/review/get");
+  xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+  xhr.send("studio_key=" + value);
+}
+
 function time_picker() {
   for (var i = 0; i < 23; i++) {
-    $("start_times").append(
+    $("#start_times").append(
       $("<option></option", {
         value: i,
         text: i + ":00",
       })
     );
 
-    $("end_times").append(
+    $("#end_times").append(
       $("<option></option", {
         value: i + 1,
         text: i + 1 + ":00",

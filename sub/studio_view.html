@@ -127,6 +127,8 @@
                                                 class="btn rounded-pill bg-dark text-white font-weight-light px-lg-4 px-2 font-size-xs btn-sm"
                                                 data-toggle="modal" data-target="#qnaModal">질문 작성하기</button>
                                         </div>
+
+                                        <ul id="qnas" class="list-unstyled view-type-review"> </ul>
                                     </div>
 
                                     <!-- Review <<<< -->
@@ -288,7 +290,7 @@
 
                         <!-- Buttons -->
                         <button type="button"
-                            class="btn btn-block py-3 border-0 rounded-0 font-weight-light mb-3 bg-yellow"
+                            class="btn btn-block py-3 border-0 rounded-0 font-weighㅎt-light mb-3 bg-yellow"
                             onclick="purchase();">스튜디오 예약하기</button>
                         <div class="d-flex bg-yellow">
                             <button type="button"
@@ -323,8 +325,15 @@
             xhr.onreadystatechange = function () {
                 if (xhr.readyState === xhr.DONE) {
                     if (xhr.status === 200 || xhr.status === 201) {
-                        var result = JSON.parse(xhr.responseText);
-
+                        $("#qnas").prepend(
+                            $(
+                            "<li class='mb-3'><div class='d-flex'><div class='mr-lg-4 mr-2'><span class='d-inline-block rounded-circle user-bg'></span></div>"+
+                            "<div class=''><p class='font-size-m'> "+sessionStorage.getItem("nickname")+" </p>"+
+                            "<p class='font-weight-light font-size-s text-light-gray'>"+msg+"</p>"+
+                            "<p class='text-light-gray-more font-size-xs'> 방금 전 </p></div></div></li>"+
+                            "<li class='mb-3'><div class='d-flex'><div class='mr-lg-4 mr-2'><span class='d-inline-block rounded-circle user-bg'></span></div>"
+                            )
+                        )
                     } else {
                         alert("접속 오류");
                         location.href = "studio.html"; //잘못된 접속 시 페이지 강제 이동
@@ -350,8 +359,15 @@
             xhr.onreadystatechange = function () {
                 if (xhr.readyState === xhr.DONE) {
                     if (xhr.status === 200 || xhr.status === 201) {
-                        var result = JSON.parse(xhr.responseText);
-
+                        $("#reviews").prepend(
+                            $(
+                            "<li class='mb-3'><div class='d-flex'><div class='mr-lg-4 mr-2'><span class='d-inline-block rounded-circle user-bg'></span></div>"+
+                            "<div class=''><p class='font-size-m'> "+sessionStorage.getItem("nickname")+" </p>"+
+                            "<p class='font-weight-light font-size-s text-light-gray'>"+msg+"</p>"+
+                            "<p class='text-light-gray-more font-size-xs'> 방금 전 </p></div></div></li>"+
+                            "<li class='mb-3'><div class='d-flex'><div class='mr-lg-4 mr-2'><span class='d-inline-block rounded-circle user-bg'></span></div>"
+                            )
+                        )
                     } else {
                         alert("접속 오류");
                         location.href = "studio.html"; //잘못된 접속 시 페이지 강제 이동
