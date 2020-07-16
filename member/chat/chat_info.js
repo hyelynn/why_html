@@ -57,8 +57,11 @@ function send_chat() {
     var id = sessionStorage.getItem("id");
     var send_img = "";
     var send_msg = $("#msg").val();
+    $("#msg").value = '';
+
+    console.log(send_msg);
   
-    if (window.event.keyCode == 13 && current_host != '') {
+    if (window.event.keyCode == 13) {
       xhr.onreadystatechange = function () {
         if (xhr.readyState === xhr.DONE) {
           if (xhr.status === 200 || xhr.status === 201) {
@@ -98,7 +101,7 @@ function send_chat() {
         "user_id=" +
           id +
           "&host_id=" +
-          current_host +
+          value +
           "&chat_img=" +
           send_img +
           "&chat_msg=" +

@@ -16,10 +16,14 @@ $(document).ready(function () {
                 "<img src='/img/studio-host.jpg' class='align-self-center w-100 h-100' alt=''></div>"+
                 "<div class='font-weight-light'><p class='mb-1'>" +result[i].user_nickname +"</p>"+
                 "<p class='mb-1 text-light-gray font-size-xs'>" + result[i].chat_msg +"</p>"+
-                "<p class='mb-0 text-light-gray font-size-xs'>"+ result[i].chat_date +"</p></div>"+
+                "<p class='mb-0 text-light-gray font-size-xs'>"+ moment(result[i].chat_date).format('YYYY-MM-DD') +"</p></div>"+
                 "<a href='/member/chat_user_view.html?"+result[i].dest_key+"' class='stretched-link text-decoration-none'></a></div>"
               )
             );
+          }
+
+          if (result.length <= 0) {
+            alert('현재 진행중인 채팅이 없습니다');
           }
         }
       }
