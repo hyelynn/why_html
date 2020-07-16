@@ -17,24 +17,26 @@ $(document).ready(function () {
                     );
         
                     $("#time").append(
-                        $("<span class='d-inline-block rounded-xl px-3 py-1 bg-light chat-date'>" + moment(result[i].chat_date).format('YYYY-MM-DD') + "</span>")
+                        $("<span class='d-inline-block rounded-xl px-3 py-1 bg-light chat-date'> " + moment(result[i].chat_date).format('YYYY-MM-DD') + " </span>")
                     );
                 }
 
                 var text = "";
                 var img = "";
-                if (result[i].chat_img != null) {
+                if (result[i].chat_img != null && result[i].chat_img != undefined) {
+                    console.log(result[i].chat_img);
                     img = "<img src='"+result[i].chat_img+"' class='align-self-center w-100 h-100' alt=''></div>"
                 }
+
                 if (result[i].from_key != id) {
                     text = "<div class='d-flex justify-content-start mb-3'><div class='mr-auto font-weight-light user-msg'>"+
                     "<div class='d-flex mb-2 align-items-center'><div class='d-flex justify-content-center rounded-circle overflow-hidden mr-2 user-bg sm'> "+
                     img + "<p class='mb-0'>"+result[i].user_nickname+"</p></div>"+
-                    "<div class='bg-light rounded-xl p-md-3 px-3 py-2 mb-2 chat-msg'><p class='mb-0'>"+result[i].chat_msg+"</p></div>"+
-                    "<p class='text-right text-light-gray font-size-xs'>"+moment(result[i].chat_date).format('MM-DD HH:mm') +"</p></div></div>"
+                    "<div class='bg-light rounded-xl p-md-3 px-3 py-2 mb-2 chat-msg'><p class='mb-0'> "+result[i].chat_msg+" </p></div>"+
+                    "<p class='text-right text-light-gray font-size-xs'> "+moment(result[i].chat_date).format('MM-DD HH:mm') +" </p></div></div>"
                 } else {
                     text = "<div class='d-flex justify-content-end mb-3'><div class='ml-auto font-weight-light user-msg'><div class='bg-sky rounded-xl p-md-3 px-3 py-2 mb-2 text-white chat-msg'>"+img+
-                           "<p class='mb-0'>"+result[i].chat_msg+"</p></div><p class='text-light-gray font-size-xs'>"+moment(result[i].chat_date).format('MM-DD HH:mm') +"</p></div></div>"
+                           "<p class='mb-0'> "+result[i].chat_msg+" </p></div><p class='text-light-gray font-size-xs'> "+moment(result[i].chat_date).format('MM-DD HH:mm') +" </p></div></div>"
                 }
                 $("#chat_list").append($(text));
             }
@@ -68,22 +70,14 @@ function send_chat() {
             var result = JSON.parse(xhr.responseText);
             for (var i = 0; i < result.length; i++) {
               //chat_img user_email chat_msg chat_date
-              var img =
-                result[i].chat_img.length > 10
-                  ? "<img src='" +
-                    result[i].chat_img +
-                    "' alt='' class='w-100 mb-2'>"
-                  : "<div class='d-flex align-items-start p-3 position-relative chat-item'>";
               var msg = "<div class='d-flex justify-content-end mb-3'>" +
                         "<div class='ml-auto font-weight-light user-msg'>" +
                         "<div class='bg-sky rounded-xl p-md-3 p-2 mb-2 text-white chat-msg'>" +
                         img +
                         "<p class='mb-0'>+" +
-                        result[i].chat_msg +
+                        send_msg +
                         "+</p></div>" +
-                        "<p class='text-light-gray font-size-xs'>" +
-                        result[i].chat_date +
-                        "</p></div></div>";
+                        "<p class='text-light-gray font-size-xs'> 방금 전 </p></div></div>";
   
               $("#msgs").append($(msg));
   
