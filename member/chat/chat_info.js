@@ -26,7 +26,7 @@ $(document).ready(function () {
                 if (result[i].chat_img != null) {
                     img = "<img src='"+result[i].chat_img+"' class='align-self-center w-100 h-100' alt=''></div>"
                 }
-                if (result[i].from_key == id) {
+                if (result[i].from_key != id) {
                     text = "<div class='d-flex justify-content-start mb-3'><div class='mr-auto font-weight-light user-msg'>"+
                     "<div class='d-flex mb-2 align-items-center'><div class='d-flex justify-content-center rounded-circle overflow-hidden mr-2 user-bg sm'> "+
                     img + "<p class='mb-0'>"+result[i].user_nickname+"</p></div>"+
@@ -50,3 +50,61 @@ $(document).ready(function () {
     }
   });
   
+
+
+function send_chat() {
+    var xhr = new XMLHttpRequest();
+    var id = sessionStorage.getItem("id");
+    var send_img = "";
+    var send_msg = $("#msg").val();
+  
+    if (window.event.keyCode == 13 && current_host != '') {
+      xhr.onreadystatechange = function () {
+        if (xhr.readyState === xhr.DONE) {
+          if (xhr.status === 200 || xhr.status === 201) {
+            var result = JSON.parse(xhr.responseText);
+            for (var i = 0; i < result.length; i++) {
+              //chat_img user_email chat_msg chat_date
+              var img =
+                result[i].chat_img.length > 10
+                  ? "<img src='" +
+                    result[i].chat_img +
+                    "' alt='' class='w-100 mb-2'>"
+                  : "<div class='d-flex align-items-start p-3 position-relative chat-item'>";
+              var msg = "<div class='d-flex justify-content-end mb-3'>" +
+                        "<div class='ml-auto font-weight-light user-msg'>" +
+                        "<div class='bg-sky rounded-xl p-md-3 p-2 mb-2 text-white chat-msg'>" +
+                        img +
+                        "<p class='mb-0'>+" +
+                        result[i].chat_msg +
+                        "+</p></div>" +
+                        "<p class='text-light-gray font-size-xs'>" +
+                        result[i].chat_date +
+                        "</p></div></div>";
+  
+              $("#msgs").append($(msg));
+  
+              if (result.length <= 0) {
+                alert('진행중인 채팅이 없습니다.');
+              }
+            }
+          }
+        }
+      };
+
+      xhr.open("POST", "http://3.34.150.116:3000/chat/send");
+      xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+      xhr.send(
+        "user_id=" +
+          id +
+          "&host_id=" +
+          current_host +
+          "&chat_img=" +
+          send_img +
+          "&chat_msg=" +
+          send_msg
+      );
+    }
+  
+    
+  }
