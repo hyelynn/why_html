@@ -33,7 +33,7 @@
     <script type="text/javascript" src="https://static.nid.naver.com/js/naveridlogin_js_sdk_2.0.0.js"
         charset="utf-8"></script>
     <script src="/js/kakao_sdk.js"></script>
-    <script src="/member/list/recent.js"></script>
+    <script src="/member/list/favorite.js"></script>
 
     <script>
         Kakao.init('d88bea310f4a39afbea3146fe1c0fa72');
@@ -82,154 +82,8 @@
         </div>
 
         <div class="container my-md-5 my-4">
-            <div class="row">
-                <div class="col-lg-3 col-6 mb-lg-5 mb-4">
-                    <div class="card border-0">
-                        <div class="position-absolute p-md-2 p-1 w-100 z-index-2">
-                            <div class="p-lg-2 p-1 d-flex list-tag list-tag-yellow">
-                                <span class="align-self-center list-tag-title">예약결제</span>
-                            </div>
-                            <button type="button" class="float-right bg-transparent border-0 p-0 text-white font-size-md" onclick="addWishList(this);"><i class="far fa-heart"></i></button>
-                        </div>
-
-                        <img src="../img/section-1-photo.jpg" class="card-img-top rounded-0" srcset="../img/section-1-photo@2x.jpg 2x, ../img/section-1-photo@3x.jpg 3x" alt="">
-
-                        <h5 class="mt-lg-3 mt-2">타이틀은 한줄부터 두줄까지 가능합니다.</h5>
-                        <p class="font-weight-light border-bottom pb-2 mb-2 font-size-xs">설명은 짧게는 한줄 다 채워 주시고, 두 줄도 가능합니다.</p>
-                        <a href="#x" class="stretched-link text-decoration-none">
-                            <span class="text-red font-weight-bold font-size-l">1,500</span><span class="text-dark font-weight-light pl-1 font-size-s">원/시간</span>
-                        </a>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-6 mb-lg-5 mb-4">
-                    <div class="card border-0">
-                        <div class="position-absolute p-md-2 p-1 w-100 z-index-2">
-                            <div class="p-lg-2 p-1 d-flex list-tag list-tag-yellow">
-                                <span class="align-self-center list-tag-title">예약결제</span>
-                            </div>
-                            <button type="button" class="float-right bg-transparent border-0 p-0 text-white font-size-md" onclick="addWishList(this);"><i class="far fa-heart"></i></button>
-                        </div>
-
-                        <img src="../img/section-2-photo.jpg" class="card-img-top rounded-0" srcset="../img/section-2-photo@2x.jpg 2x, ../img/section-2-photo@3x.jpg 3x" alt="">
-
-                        <h5 class="mt-lg-3 mt-2">타이틀은 한줄부터 두줄까지 가능합니다.</h5>
-                        <p class="font-weight-light border-bottom pb-2 mb-2 font-size-xs">설명은 짧게는 한줄 다 채워 주시고, 두 줄도 가능합니다.</p>
-                        <a href="#x" class="stretched-link text-decoration-none">
-                            <span class="text-red font-weight-bold font-size-l">1,500</span><span class="text-dark font-weight-light pl-1 font-size-s">원/시간</span>
-                        </a>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-6 mb-lg-5 mb-4">
-                    <div class="card border-0">
-                        <div class="position-absolute p-md-2 p-1 w-100 z-index-2">
-                            <div class="p-lg-2 p-1 d-flex list-tag list-tag-yellow">
-                                <span class="align-self-center list-tag-title">예약결제</span>
-                            </div>
-                            <button type="button" class="float-right bg-transparent border-0 p-0 text-white font-size-md" onclick="addWishList(this);"><i class="far fa-heart"></i></button>
-                        </div>
-
-                        <img src="../img/section-3-photo.jpg" class="card-img-top rounded-0" srcset="../img/section-3-photo@2x.jpg 2x, ../img/section-3-photo@3x.jpg 3x" alt="">
-
-                        <h5 class="mt-lg-3 mt-2">타이틀은 한줄부터 두줄까지 가능합니다.</h5>
-                        <p class="font-weight-light border-bottom pb-2 mb-2 font-size-xs">설명은 짧게는 한줄 다 채워 주시고, 두 줄도 가능합니다.</p>
-                        <a href="#x" class="stretched-link text-decoration-none">
-                            <span class="text-red font-weight-bold font-size-l">1,500</span><span class="text-dark font-weight-light pl-1 font-size-s">원/시간</span>
-                        </a>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-6 mb-lg-5 mb-4">
-                    <div class="card border-0">
-                        <div class="position-absolute p-md-2 p-1 w-100 z-index-2">
-                            <div class="p-lg-2 p-1 d-flex list-tag list-tag-yellow">
-                                <span class="align-self-center list-tag-title">예약결제</span>
-                            </div>
-                            <button type="button" class="float-right bg-transparent border-0 p-0 text-white font-size-md" onclick="addWishList(this);"><i class="far fa-heart"></i></button>
-                        </div>
-
-                        <img src="../img/section-4-photo.jpg" class="card-img-top rounded-0" srcset="../img/section-4-photo@2x.jpg 2x, ../img/section-4-photo@3x.jpg 3x" alt="">
-
-                        <h5 class="mt-lg-3 mt-2">타이틀은 한줄부터 두줄까지 가능합니다.</h5>
-                        <p class="font-weight-light border-bottom pb-2 mb-2 font-size-xs">설명은 짧게는 한줄 다 채워 주시고, 두 줄도 가능합니다.</p>
-                        <a href="#x" class="stretched-link text-decoration-none">
-                            <span class="text-red font-weight-bold font-size-l">1,500</span><span class="text-dark font-weight-light pl-1 font-size-s">원/시간</span>
-                        </a>
-                    </div>
-                </div>
-            </div>
-
-            <div class="row">
-                <div class="col-lg-3 col-6 mb-lg-5 mb-4">
-                    <div class="card border-0">
-                        <div class="position-absolute p-md-2 p-1 w-100 z-index-2">
-                            <div class="p-lg-2 p-1 d-flex list-tag list-tag-yellow">
-                                <span class="align-self-center list-tag-title">예약결제</span>
-                            </div>
-                            <button type="button" class="float-right bg-transparent border-0 p-0 text-white font-size-md" onclick="addWishList(this);"><i class="far fa-heart"></i></button>
-                        </div>
-
-                        <img src="../img/section-1-photo.jpg" class="card-img-top rounded-0" srcset="../img/section-1-photo@2x.jpg 2x, ../img/section-1-photo@3x.jpg 3x" alt="">
-
-                        <h5 class="mt-lg-3 mt-2">타이틀은 한줄부터 두줄까지 가능합니다.</h5>
-                        <p class="font-weight-light border-bottom pb-2 mb-2 font-size-xs">설명은 짧게는 한줄 다 채워 주시고, 두 줄도 가능합니다.</p>
-                        <a href="#x" class="stretched-link text-decoration-none">
-                            <span class="text-red font-weight-bold font-size-l">1,500</span><span class="text-dark font-weight-light pl-1 font-size-s">원/시간</span>
-                        </a>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-6 mb-lg-5 mb-4">
-                    <div class="card border-0">
-                        <div class="position-absolute p-md-2 p-1 w-100 z-index-2">
-                            <div class="p-lg-2 p-1 d-flex list-tag list-tag-yellow">
-                                <span class="align-self-center list-tag-title">예약결제</span>
-                            </div>
-                            <button type="button" class="float-right bg-transparent border-0 p-0 text-white font-size-md" onclick="addWishList(this);"><i class="far fa-heart"></i></button>
-                        </div>
-
-                        <img src="../img/section-2-photo.jpg" class="card-img-top rounded-0" srcset="../img/section-2-photo@2x.jpg 2x, ../img/section-2-photo@3x.jpg 3x" alt="">
-
-                        <h5 class="mt-lg-3 mt-2">타이틀은 한줄부터 두줄까지 가능합니다.</h5>
-                        <p class="font-weight-light border-bottom pb-2 mb-2 font-size-xs">설명은 짧게는 한줄 다 채워 주시고, 두 줄도 가능합니다.</p>
-                        <a href="#x" class="stretched-link text-decoration-none">
-                            <span class="text-red font-weight-bold font-size-l">1,500</span><span class="text-dark font-weight-light pl-1 font-size-s">원/시간</span>
-                        </a>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-6 mb-lg-5 mb-4">
-                    <div class="card border-0">
-                        <div class="position-absolute p-md-2 p-1 w-100 z-index-2">
-                            <div class="p-lg-2 p-1 d-flex list-tag list-tag-yellow">
-                                <span class="align-self-center list-tag-title">예약결제</span>
-                            </div>
-                            <button type="button" class="float-right bg-transparent border-0 p-0 text-white font-size-md" onclick="addWishList(this);"><i class="far fa-heart"></i></button>
-                        </div>
-
-                        <img src="../img/section-3-photo.jpg" class="card-img-top rounded-0" srcset="../img/section-3-photo@2x.jpg 2x, ../img/section-3-photo@3x.jpg 3x" alt="">
-
-                        <h5 class="mt-lg-3 mt-2">타이틀은 한줄부터 두줄까지 가능합니다.</h5>
-                        <p class="font-weight-light border-bottom pb-2 mb-2 font-size-xs">설명은 짧게는 한줄 다 채워 주시고, 두 줄도 가능합니다.</p>
-                        <a href="#x" class="stretched-link text-decoration-none">
-                            <span class="text-red font-weight-bold font-size-l">1,500</span><span class="text-dark font-weight-light pl-1 font-size-s">원/시간</span>
-                        </a>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-6 mb-lg-5 mb-4">
-                    <div class="card border-0">
-                        <div class="position-absolute p-md-2 p-1 w-100 z-index-2">
-                            <div class="p-lg-2 p-1 d-flex list-tag list-tag-yellow">
-                                <span class="align-self-center list-tag-title">예약결제</span>
-                            </div>
-                            <button type="button" class="float-right bg-transparent border-0 p-0 text-white font-size-md" onclick="addWishList(this);"><i class="far fa-heart"></i></button>
-                        </div>
-
-                        <img src="../img/section-4-photo.jpg" class="card-img-top rounded-0" srcset="../img/section-4-photo@2x.jpg 2x, ../img/section-4-photo@3x.jpg 3x" alt="">
-
-                        <h5 class="mt-lg-3 mt-2">타이틀은 한줄부터 두줄까지 가능합니다.</h5>
-                        <p class="font-weight-light border-bottom pb-2 mb-2 font-size-xs">설명은 짧게는 한줄 다 채워 주시고, 두 줄도 가능합니다.</p>
-                        <a href="#x" class="stretched-link text-decoration-none">
-                            <span class="text-red font-weight-bold font-size-l">1,500</span><span class="text-dark font-weight-light pl-1 font-size-s">원/시간</span>
-                        </a>
-                    </div>
-                </div>
+            <div class="row" id="favorite_list">
+                
             </div>
         </div>
     </main>
