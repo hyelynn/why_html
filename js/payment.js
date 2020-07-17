@@ -89,6 +89,7 @@ $(document).ready(function () {
   "<input type='hidden' name='mKey' value='"+mKey+"'/>"+
   "<input type='hidden' name='closeUrl' value='artbyus.co.kr/js/close.jsp'/>"+
   "<input type='hidden' name='popupUrl' value='artbyus.co.kr/js/popup.jsp'/>";
+  console.log(sfid);
   $("#SendPayForm_id").append($(sfid))
 });
 
