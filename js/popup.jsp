@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=EUC-KR" pageEncoding="EUC-KR"%>
 <%@ page import="java.util.*"%>
 
-<!-- !!!! ÁÖÀÇ !!!! ´Ù¸¥ ³»¿ëÀ» Àý´ë Ãß°¡ÇÏÁö ¸¶¼¼¿ä -->
-<!-- °áÁ¦Ã¢ Ç¥½Ã ¹æ¹ý(payViewType)ÀÌ popupÀÏ °æ¿ì ÆË¾÷Ã¢À» »ý¼º ¿ªÈ°À» À§ÇÑ ÆäÀÌÁö -->
-<script language="javascript" type="text/javascript" src="https://tstgstdpay.paywelcome.co.kr/stdjs/INIStdPay_popup.js" charset="UTF-8"></script>
+<!-- !!!! ï¿½ï¿½ï¿½ï¿½ !!!! ï¿½Ù¸ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ß°ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ -->
+<!-- ï¿½ï¿½ï¿½ï¿½Ã¢ Ç¥ï¿½ï¿½ ï¿½ï¿½ï¿½(payViewType)ï¿½ï¿½ popupï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½Ë¾ï¿½Ã¢ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½È°ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ -->
+<script language="javascript" type="text/javascript" src="https://tstdpay.paywelcome.co.kr/stdjs/INIStdPay_popup.js" charset="UTF-8"></script>
