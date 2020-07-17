@@ -1,0 +1,9 @@
+<!-- 
+취소 처리로 Overlay 창을 닫아주는 역활을 하는 페이지
+필요 시 가맹점 로직 추가하여 처리
+-->
+
+<!--테스트-->
+<script language="javascript" type="text/javascript" src="https://tstgstdpay.paywelcome.co.kr/stdjs/INIStdPay_close.js" charset="UTF-8"></script>
+<!--운영-->
+<!--script language="javascript" type="text/javascript" src="https://stgstdpay.paywelcome.co.kr/stdjs/INIStdPay_close.js" charset="UTF-8"></script>
