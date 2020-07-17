@@ -16,10 +16,12 @@ $(document).ready(function () {
     location.href = "studio.html"; //잘못된 접속 시 페이지 강제 이동
   }
   var xhr = new XMLHttpRequest();
-  var recent = sessionStorage.getItem('recent');
-  var split_data = recent.split('?');
-  if (split_data.find(value) == undefined) {
-    sessionStorage.setItem('recent', recent+'?'+value);
+  var recent = sessionStorage.getItem("recent");
+  if (recent != undefined && recent != null) {
+    var split_data = recent.split("?");
+    if (split_data.find(value) == undefined) {
+      sessionStorage.setItem("recent", recent + "?" + value);
+    }
   }
 
   xhr.onreadystatechange = function () {
