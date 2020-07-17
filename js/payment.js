@@ -1,4 +1,5 @@
 var total_price = 0;
+var total_count = 0;
 var items = [];
 
 $(document).ready(function () {
