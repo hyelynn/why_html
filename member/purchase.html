@@ -10,6 +10,9 @@
     <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+    <script language="javascript" type="text/javascript" src="HTTPS://tstdpay.paywelcome.co.kr/stdjs/INIStdPay.js" charset="UTF-8"></script>
+    <script language="javascript" type="text/javascript" src="https://tstgstdpay.paywelcome.co.kr/stdjs/INIStdPay_popup.js" charset="UTF-8"></script>
+    <script language="javascript" type="text/javascript" src="https://tstgstdpay.paywelcome.co.kr/stdjs/INIStdPay_close.js" charset="UTF-8"></script>
 
     <!-- Custom -->
     <link rel="stylesheet" href="/css/custom.css">
@@ -20,7 +23,7 @@
     <link rel="stylesheet" href="/css/fontawesome/css/all.min.css">
 </head>
 
-<body>
+<body onload="INIStdPay.allowpopup();"> 
     <script src="https://cdn.bootpay.co.kr/js/bootpay-3.2.4.min.js" type="application/javascript"></script>
     <modal include-html="/include/header.html"></modal>
     <div class="py-md-3 px-5 py-2 text-center text-white bg-deep-dark top-notice">
@@ -129,15 +132,15 @@
 
             <!-- button -->
             <div class="custom-inputs">
-                <button type="button" id="send" onClick="payment();" class="btn btn-block bg-yellow">결제 진행하기</button>
+                <button type="button" id="send" onClick="INIStdPay.pay('SendPayForm_id')" class="btn btn-block bg-yellow">결제 진행하기</button>
             </div>
         </div>
+
+        <form id="SendPayForm_id" name="" method="POST" ></form>
     </main>
 
     
     <footer include-html="/include/footer.html"></footer>
-    <script language="javascript" type="text/javascript" src="https://tstgstdpay.paywelcome.co.kr/stdjs/INIStdPay_popup.js" charset="UTF-8"></script>
-    <script language="javascript" type="text/javascript" src="https://tstgstdpay.paywelcome.co.kr/stdjs/INIStdPay_close.js" charset="UTF-8"></script>
     <script>includeHTML();</script>
     <script>login_header();</script>
 </body>
