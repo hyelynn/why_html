@@ -1,5 +1,4 @@
 var total_price = 0;
-var total_count = 0;
 var items = [];
 
 $(document).ready(function () {
@@ -75,25 +74,22 @@ $(document).ready(function () {
 	var mKey = SignatureUtil.hash(signKey, "SHA-256");
 
 	// signature 데이터 생성 (모듈에서 자동으로 signParam을 알파벳 순으로 정렬후 NVP 방식으로 나열해 hash)
-	var signature = SignatureUtil.makeSignature('mKey='+mKey+'&oid=wpartby071_'+timestamp+'&price='+total_price+'&timestamp='+timestamp);
-  $("#SendPayForm_id").append(
-    $(
-      "<input type='hidden' name='version' value='1.0'/>"+
-      "<input type='hidden' name='mid' value='wpartby071'/>"+
-      "<input type='hidden' name='oid' value='wpartby071_"+timestamp+"'/>"+
-      "<input type='hidden' name='goodname' value='아트바이어스 스튜디오&클래스'/>"+
-      "<input type='hidden' name='price' value='"+total_price+"'/>"+
-      "<input type='hidden' name='currency' value='WON'/>"+
-      "<input type='hidden' name='buyername' value='"+sessionStorage.getItem('name')+"'/>"+
-      "<input type='hidden' name='buyertel' value='"+sessionStorage.getItem("phone")+"'/>"+
-      "<input type='hidden' name='timestamp' value='"+timestamp+"'/>"+
-      "<input type='hidden' name='signature' value='"+signature+"'/>"+
-      "<input type='hidden' name='returnUrl' value='artbyus.co.kr/js/INIStdPayReturn.jsp'/>"+
-      "<input type='hidden' name='mKey' value='"+mKey+"'/>"+
-      "<input type='hidden' name='closeUrl' value='artbyus.co.kr/js/close.jsp'/>"+
-      "<input type='hidden' name='popupUrl' value='artbyus.co.kr/js/popup.jsp'/>"
-    )
-  )
+  var signature = SignatureUtil.makeSignature('mKey='+mKey+'&oid=wpartby071_'+timestamp+'&price='+total_price+'&timestamp='+timestamp);
+  var sfid = "<input type='hidden' name='version' value='1.0'/>"+
+  "<input type='hidden' name='mid' value='wpartby071'/>"+
+  "<input type='hidden' name='oid' value='wpartby071_"+timestamp+"'/>"+
+  "<input type='hidden' name='goodname' value='아트바이어스 스튜디오&클래스'/>"+
+  "<input type='hidden' name='price' value='"+total_price+"'/>"+
+  "<input type='hidden' name='currency' value='WON'/>"+
+  "<input type='hidden' name='buyername' value='"+sessionStorage.getItem('name')+"'/>"+
+  "<input type='hidden' name='buyertel' value='"+sessionStorage.getItem("phone")+"'/>"+
+  "<input type='hidden' name='timestamp' value='"+timestamp+"'/>"+
+  "<input type='hidden' name='signature' value='"+signature+"'/>"+
+  "<input type='hidden' name='returnUrl' value='artbyus.co.kr/js/INIStdPayReturn.jsp'/>"+
+  "<input type='hidden' name='mKey' value='"+mKey+"'/>"+
+  "<input type='hidden' name='closeUrl' value='artbyus.co.kr/js/close.jsp'/>"+
+  "<input type='hidden' name='popupUrl' value='artbyus.co.kr/js/popup.jsp'/>";
+  $("#SendPayForm_id").append($(sfid))
 });
 
 function payment() {
