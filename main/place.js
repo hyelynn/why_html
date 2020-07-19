@@ -1,4 +1,4 @@
-$(document).ready(function () {
+function initPlace() {
 
   //Get Room information
   $.ajax({
@@ -80,4 +80,4 @@ $(document).ready(function () {
       alert("접속 오류");
     },
   });
-});
+}
