@@ -35,7 +35,9 @@ function initPerform() {
                 "</p>" +
                 "<a href='/sub/performance_view.html?" +
                 item.perform_id +
-                "' class='stretched-link text-decoration-none'></a></div></div>"
+                "' class='stretched-link text-decoration-none'>" +
+                "<span class='text-red font-weight-bold font-size-l'>"+
+                "</span><span class='text-dark font-weight-light pl-1 font-size-s'>/</span></a></div></div>"
             )
           );
         });
