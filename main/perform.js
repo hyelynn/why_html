@@ -41,8 +41,8 @@ function initPerform() {
   
           
         });
-        
-        $("#main-audition-slide").slick({
+
+        $("#main-audition-slide").not('.slick-initialized').slick({
             slidesToShow: 4,
             slidesToScroll: 1,
             autoplay: true,

@@ -47,7 +47,7 @@ function initClass() {
           
         });
 
-        $("#main-class-slide").slick({
+        $("#main-class-slide").not('.slick-initialized').slick({
           slidesToShow: 4,
           slidesToScroll: 1,
           autoplay: true,
