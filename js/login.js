@@ -20,6 +20,7 @@ function normal_login() {
         sessionStorage.setItem("id", result.user_email);
         sessionStorage.setItem("nickname", result.user_nickname);
         sessionStorage.setItem("phone", result.user_phone);
+        sessionStorage.setItem("name", result.user_name);
         location.reload();
       } else {
         alert("아이디와 비밀번호 중 잘못된 정보가 있습니다.");
