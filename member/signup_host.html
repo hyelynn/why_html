@@ -7,10 +7,12 @@
 
     <!-- Bootstrap 4.3.1 -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+    <script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
     <script src="https://sdk.amazonaws.com/js/aws-sdk-2.283.1.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/3.1.2/rollups/aes.js"></script>
+
     <!-- Custom -->
 
     <link rel="stylesheet" href="/css/custom.css">
@@ -36,12 +38,12 @@
 
 <body>
 
-    <modal include-html="/include/header.html"></modal>
-
+    <div id="modals"></div>
     <div class="py-md-3 px-5 py-2 text-center text-white bg-deep-dark top-notice">
         <span class="font-weight-light">코로나19에 대한 아트바이어스의 대책 및 환불 정책에 대한 최신 정보를 확인하세요.</span>
         <a href="#x" class="text-white d-lg-inline-block d-block">자세히 알아보기</a>
     </div>
+
 
     <nav class="navbar navbar-expand-lg navbar-light py-lg-3 py-1">
         <div class="container">
@@ -138,7 +140,7 @@
                             <div class="flex-fill mr-lg-4 mr-2">
                                 <input type="text" class="form-control" id="host_safe_no" placeholder="예) 0507-1234-5678">
                             </div>
-                            <button type="button" class="btn flex-fill w-md-25 bg-yellow whitespace-nowrap">안심번호 생성</button>
+                            <button type="button" onclick="give_me_num();" class="btn flex-fill w-md-25 bg-yellow whitespace-nowrap">안심번호 생성</button>
                         </div>
                     </div>
                     <!--div class="col-lg-6">
@@ -279,7 +281,7 @@
 
 <script type="text/javascript">
     var emailFlag = false;
-    var ran_code = Math.floor(Math.random() * 9000 + 1000);
+    var ran_code = 0;
     var albumBucketName = 'biz-cetificate';
     var bucketRegion = 'ap-northeast-2';
     var IdentityPoolId = 'ap-northeast-2:5de34811-ed49-42bb-8378-726186756855';
@@ -321,42 +323,76 @@
     }
     
     function goMsg(){
-        var phone = document.getElementById("host_phone").value;
         ran_code = Math.floor(Math.random() * 9000 + 1000);
-        var jsonData = {
-            message_type: "AT",
-            phn: "82"+phone.substring(1),
-            profile: "ce295b05ccf1144d9a13283351fd58bdc5805fdb",
-            reserveDt:"00000000000000",
-            tmplId: "artbyus-1",
-            msg: `${ran_code}
-ARTBYUS(아트바이어스)에서 보낸 인증번호입니다.`,
-            smsKind: "S"
-        };
-        const strObject = JSON.stringify(jsonData);
-        var xhr = new XMLHttpRequest();
+        var phone = document.getElementById("host_phone").value;
+        if(phone == ''){
+            alert("핸드폰 번호를 입력해 주세요");
+            return false;
+        }
+        var request_url = "https://alimtalk-api.bizmsg.kr/v2/sender/send";
+        var message_type = "at";
+        var phn = "82"+phone.substring(1);
+        var profile = "ce295b05ccf1144d9a13283351fd58bdc5805fdb";
+        var tmplId = "artbyus-1";
+        var msg = `${ran_code}
+                    ARTBYUS(아트바이어스)에서 보낸 인증번호입니다.`;
 
-        xhr.onreadystatechange = function() { 
-            if (xhr.readyState === xhr.DONE) { 
-                if (xhr.status === 200 || xhr.status === 201) {
-                    var result = JSON.parse(xhr.responseText);
-                    alert(result.code);
-                    if(result.code == "true"){
-                        
-                    }else{
+        var sendArray = [];
+        var sendObj = {};
 
-                    }
-                } else {
-                }
+        sendObj['message_type'] = message_type;
+        sendObj['phn'] = phn;
+        sendObj['profile'] = profile;
+        sendObj['tmplId'] = tmplId;
+        sendObj['msg'] = msg;
+        sendObj['smsKind']= 's';
+        sendObj['msgSms']= msg;
+        sendObj['smsSender'] = '18002563';
+        
+        sendArray.push(sendObj);
+        var sendData = JSON.stringify(sendArray);        
+
+        $.ajax({
+            type : "POST",
+            dataType : "json",
+            headers: {
+                'Content-Type':'application/json',
+                'userid': 'artbyus2020'
+            },
+            url : request_url,
+            data : sendData,
+            success : function(data) {
+                alert("카카오톡이나 문자를 확인해주세요");
             }
-            else{
+        });
+    }
+
+    function give_me_num(){
+        var phone = document.getElementById("host_phone").value;
+        if(phone == ''){
+            alert("핸드폰 번호를 입력해 주세요");
+            return false;
+        }
+        var request_url = "https://api.050bizcall.co.kr/link/auto_mapp.do";
+        var iid = "alespldwaidgha713frq";
+        var auth = iid+phone
+        auth = btoa(CryptoJS.MD5(auth));
+
+        var data = new FormData();
+        data.append("iid",iid);
+        data.append("rn",phone);
+        data.append("auth",auth);
+           
+        $.ajax({
+            type : "POST",
+            dataType : "multipart/form-data",
+            url : request_url,
+            data : data,
+            success : function(data) {
+                alert(data.rt+"::::"+data.vn);
+                document.getElementById('host_safe_no').value = data.vn;
             }
-        };
-       
-        xhr.open('POST', 'https://alimtalk-api.bizmsg.kr/v2/sender/send');
-        xhr.setRequestHeader('Content-Type', 'application/json');
-        xhr.setRequestHeader('userid', 'artbyus2020');
-        xhr.send(jsonData); 
+        });
     }
     
     document.getElementById("host_id").addEventListener('input', function(){
@@ -468,7 +504,7 @@ ARTBYUS(아트바이어스)에서 보낸 인증번호입니다.`,
         var host_file = document.getElementById("host_file").value;
         var all_agree = document.getElementById("all_agree");
         var regPw = /^[A-Za-z0-9+]*$/;
-        var regPhone = /^\d{2,3}-\d{3,4}-\d{4}$/;
+        var regPhone = /^\d{2,3}\d{3,4}\d{4}$/;
 
         if(host_id == ""){
             alert("아이디를 입력해주세요.");
@@ -529,7 +565,12 @@ ARTBYUS(아트바이어스)에서 보낸 인증번호입니다.`,
             document.getElementById("host_auth").focus();
             return false;
         }
-        if(host_auth != 1234){
+        if(ran_code == 0){
+            alert("전화번호 인증을 해주세요.");
+            document.getElementById("host_auth").focus();
+            return false;
+        }
+        if(host_auth != ran_code){
             alert("인증번호가 맞지 않습니다.");
             document.getElementById("host_auth").focus();
             return false;

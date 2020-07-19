@@ -8,8 +8,8 @@
      <!-- Bootstrap 4.3.1 -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link rel="stylesheet" href="/css/custom.css">
-     <link rel="stylesheet" href="/css/custom_host.css">
     <link rel="stylesheet" href="/css/fontawesome/css/all.min.css">
+    <link rel="stylesheet" href="/css/custom_host.css">
 
     <!-- Custom -->
     <script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
@@ -27,13 +27,18 @@
 </head>
 
 <body>
+    <div id="modals"></div>
     <nav class="navbar navbar-expand-lg navbar-light py-lg-3 py-1">
         <div class="container">
-            <a class="navbar-brand" href="/host/index.html"><img src="http://artbyus.co.kr/img/us-partner-logo.png" srcset="http://artbyus.co.kr/img/us-partner-logo@2x.png 2x, http://artbyus.co.kr/img/us-partner-logo@3x.png 3x"></a>
+            <a class="navbar-brand" href="/host/index.html"><img src="http://artbyus.co.kr/img/us-partner-logo.png"
+                    srcset="http://artbyus.co.kr/img/us-partner-logo@2x.png 2x, http://artbyus.co.kr/img/us-partner-logo@3x.png 3x"></a>
             <div class="ml-auto align-items-center d-lg-none d-flex">
-                <a class="text-dark mr-3 font-size-sm" href="/member/calendar.html"><i class="far fa-calendar-alt"></i></a>
-                <a class="text-dark mr-3 font-size-sm" href="/member/recent_list.html"><i class="far fa-clock"></i></a>
-                <a class="text-dark mr-2 font-size-sm" href="/member/purchase.html"><i class="fas fa-shopping-cart"></i></a>
+                <a class="text-dark mr-3 font-size-sm" href="/member/calendar.html"><i
+                        class="far fa-calendar-alt"></i></a>
+                <a class="text-dark mr-3 font-size-sm" href="/member/recent_list.html"><i
+                        class="far fa-clock"></i></a>
+                <a class="text-dark mr-2 font-size-sm" href="/member/purchase.html"><i
+                        class="fas fa-shopping-cart"></i></a>
             </div>
             <button class="navbar-toggler border-0 font-size-md text-dark" type="button" data-toggle="collapse"
                 data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false"
@@ -45,8 +50,6 @@
         </div>
     </nav>
     <script src="/js/header_host.js"></script>
-    <!-- 모달 -->
-    <div id="modals"></div>
 
 
     <main role="main">
@@ -70,9 +73,9 @@
 
                 <div class="d-flex mt-3 mt-lg-0">
                     <button type="button" class="btn font-weight-light bg-yellow mx-lg-3 mr-3 text-btn"
-                            data-toggle="modal" data-target="#applyAdModal">플래티넘 광고 신청</button>
+                            data-toggle="modal" onclick="putInside('platinum');" data-target="#applyAdModal">플래티넘 광고 신청</button>
                     <button type="button" class="btn font-weight-light bg-yellow text-btn"
-                            data-toggle="modal" data-target="#applyAdModal">프라임 광고 신청</button>
+                            data-toggle="modal" onclick="putInside('prime');" data-target="#applyAdModal">프라임 광고 신청</button>
                 </div>
             </div>
 
@@ -96,7 +99,7 @@
 
     <script>
         var studioList = [];
-
+        var stu_key = "";
         function goSearch(){
             var tempList = [];
             var searchText = $("#searchText").val();
@@ -113,7 +116,7 @@
         var writeList = function(tempList){
             for(var i = 0; i<tempList.length;i++){
                 var studio_temp = tempList[i];
-                var studio = '<li id="studio_li_'+studio_temp.studio_key+'" class="list-group-item p-3 mb-3 border">'
+                var studio = '<li class="list-group-item p-3 mb-3 border">'
                                 +'<div class="row align-items-center">'
                                     +'<div class="col-lg-10">'
                                         +'<div class="d-flex align-items-lg-center">'
@@ -137,13 +140,24 @@
                                     +'</div>'
                                     +'<div class="col-lg-2">'
                                         +'<div class="text-lg-center text-right mt-lg-0 mt-3 host-menu">'
-                                            +'<button type="button" class="btn border mr-lg-0 mr-2 item-btn item-pick">선택하기</button>'
+                                            +'<button type="button" id="only_one"'+i+' onclick="is_block('+studio_temp.studio_key+','+tempList.length+');" class="btn border mr-lg-0 mr-2 item-btn item-pick">선택하기</button>'
                                         +'</div>'
                                     +'</div>'
                                 +'</div>'
                             +'</li>';
                 $("#std_list").append(studio);
             }
+        }
+
+        function is_block(num,length){
+
+            $("#only_one"+stu_key).attr("block",true);
+            stu_key = num;
+            $("#only_one"+stu_key).attr("block",true);
+            // for(var i = 0;i<length;i++){
+            //     if(i == num)continue;
+            //     // $("#only_one"+i).attr("block",true);
+            // }
         }
 
         $(document).ready(function (){
@@ -164,9 +178,27 @@
             xhr.open('POST', 'http://3.34.150.116:3000/studio/host',true);
             xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
             xhr.send("user_id=jmnu1203");
+            // xhr.send("user_id="+sessionStorage.getItem("id"));
 
         });
 
+        function putInside(ad_type){
+            var xhr = new XMLHttpRequest();
+            xhr.onreadystatechange = function() {
+                if (xhr.readyState === xhr.DONE) { 
+                    if (xhr.status === 200 || xhr.status === 201) {
+                        alert(stu_key)
+                    } else {
+                        alert("삭제가 정상적으로 이루어지지 않았습니다. 다시 시도해주세요.");
+                        console.error(xhr.responseText);
+                    }
+                }else{
+                }
+            };
+            xhr.open('POST', 'http://3.34.150.116:3000/ad/apply',true);
+            xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+            xhr.send("key="+stu_key+"&type=studio&ad_type="+ad_type);
+        }
     </script>
 </body>
 

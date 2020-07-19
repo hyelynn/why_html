@@ -57,7 +57,7 @@
 
 .host-top-function .text-btn,
 .host-top-function select.form-control {
-    width: 50%;
+    width: 50% !important;
 }
 .host-top-function.host-search-bar select.form-control {
     width: 160px;
@@ -81,6 +81,10 @@
     width: 80px;
     height: 40px;
     font-size: 0.8rem;
+    margin-top: -1px;
+}
+.host-item-list .item-btn.active {
+    background: #ffde3b;
 }
 
 .host-item-list .item-btn.block-item {
@@ -92,6 +96,10 @@
 }
 .host-item-list.calc .calc-number .large-number {
     font-size: 1.2rem;
+}
+
+.host-item-list .outline {
+    outline: #ffde3b solid 3px;
 }
 
 .host-regist-proc .step {
@@ -351,6 +359,16 @@
     padding-top: 0;
     padding-bottom: 0;
 }
+.host-search-tags.full .tag {
+    width: 100%;
+    margin-right: 0;
+}
+
+.host-item-btn .btn {
+    padding: .2rem .75rem;
+    font-size: 0.85rem;
+    border-radius: 0;
+}
 
 @media (min-width: 992px) {
     .navbar-host-title {
@@ -364,11 +382,12 @@
         font-size: 2.5rem;
     }
 
-    .host-top-function .text-btn {
-        width: 260px;
+    .host-top-function .text-btn,
+    .host-top-function.host-search-bar .text-btn {
+        width: 260px !important;
     }
     .host-top-function select.form-control {
-        width: 160px;
+        width: 160px !important;
     }
 
     .host-top-function.host-search-bar .search-bar-solid {
@@ -417,9 +436,6 @@
     .host-item-list .item-thumbs {
         width: 150px;
         height: 150px;
-    }
-    .host-item-list .item-btn:first-child {
-        border-bottom: 0 !important;
     }
     .host-item-list.calc .calc-number .large-number {
         font-size: 1.5rem;
@@ -515,5 +531,14 @@
     }
     .host-accordion .accordion-btn {
         font-size: 2rem;
+    }
+
+    .host-item-btn .btn {
+        padding: .375rem .75rem;
+        font-size: 1rem;
+    }
+
+    .host-search-tags.full .tag {
+        width: 49%;
     }
 }

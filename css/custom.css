@@ -82,6 +82,9 @@ body {
 .bg-gray {
     background-color: #f1f1f1 !important;
 }
+.bg-gray-2 {
+    background-color: #f3f3f3 !important;
+}
 .bg-mid-gray {
     background-color: #acacac !important;
 }
@@ -268,6 +271,11 @@ button:focus {
 .custom-modal .form-control.medium-textarea,
 .custom-modal .form-control.large-textarea {
     min-height: 200px;
+}
+.custom-modal .modal-full-img {
+    width: 100%;
+    height: 180px;
+    overflow: hidden;
 }
 
 .custom-inputs .form-control {
@@ -463,9 +471,9 @@ select::-ms-expand {
     width: 100px;
     height: 60px;
 }
-.cart-thumbs img {
+/* .cart-thumbs img {
     width: inherit !important;
-}
+} */
 
 /* chat */
 
@@ -602,15 +610,29 @@ select::-ms-expand {
     border: 1px solid #dee2e6;
     border-bottom: 0;
 }
-.custom-nav-tabs.light .nav-item:not(:first-child) .nav-link {
+.custom-nav-tabs.light .nav-item:not(:first-child) .nav-link,
+.custom-nav-tabs.button .nav-item:not(:first-child) .nav-link {
     margin-left: -1px;
 }
 .custom-nav-tabs.light .nav-link.active {
     background-color: #fff;
     color: #222;
 }
+.custom-nav-tabs.button {
+    border-bottom: 0;
+}
+.custom-nav-tabs.button .nav-link {
+    background-color: #fff;
+    color: inherit;
+    border: 1px solid #dee2e6;
+    border-bottom: 0;
+}
+.custom-nav-tabs.button .nav-link.active {
+    background-color: #ffde3b;
+}
 
 /* nav-tab - modal */
+
 .modal-tabs .nav-item {
     width: 50%;
 }
@@ -913,6 +935,19 @@ footer .text-divider {
     margin-left: 10px;
 }
 
+/* custom-user-form */
+
+.custom-user-form .user-profile-img {
+    width: 160px;
+    height: 160px;
+}
+.custom-user-form .user-profile-img img {
+    height: 100%;
+}
+.custom-user-form.custom-inputs .form-control {
+    height: 50px;
+}
+
 @media (min-width: 1200px) {
     /* layout */
     .custom-chat .user-msg {
@@ -1097,6 +1132,10 @@ footer .text-divider {
         width: 150px;
         height: 150px;
     }
+
+    .custom-user-form.custom-inputs .form-control {
+        height: 60px !important;
+    }
 }
 
 @media (max-width: 992px) {
@@ -1170,6 +1209,9 @@ footer .text-divider {
     .custom-modal .form-control.large-textarea {
         min-height: 430px !important;
     }
+    .custom-modal .modal-full-img {
+        height: 260px;
+    }
 
     .modal-title-text .text-underline:after {
         height: 15px;
@@ -1240,6 +1282,21 @@ footer .text-divider {
     }
     .custom-chat .chat-msgs.host {
         height: calc(100vh - 215px);
+    }
+
+    .custom-user-form .user-profile-img {
+        max-width: 224px;
+        max-height: 224px;
+        width: 100%;
+        height: 100%;
+    }
+    .custom-user-form .user-profile-img img {
+        height: auto !important;
+    }
+
+    .custom-nav-tabs.button .nav-link {
+        font-size: 1.4rem;
+        padding: .85rem .1rem;
     }
 }
 
