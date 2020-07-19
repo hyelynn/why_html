@@ -38,8 +38,6 @@ function initPerform() {
                 "' class='stretched-link text-decoration-none'></a></div></div>"
             )
           );
-  
-          
         });
 
         $("#main-audition-slide").slick({

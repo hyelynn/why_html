@@ -43,8 +43,6 @@ function initClass() {
               "</span></a></div></div>"
             )
           );
-  
-          
         });
 
         $("#main-class-slide").slick({

@@ -45,7 +45,6 @@ function initPlace() {
               "</span></a></div></div>"
           )
         );
-
       });
 
       $("#main-item-slide").slick({
