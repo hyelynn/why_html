@@ -24,7 +24,7 @@ function initPlace() {
             "<button type='button' class='float-right bg-transparent border-0 p-0 text-white font-size-md' onclick='addWishList(this);'><i class='far fa-heart'></i></button></div>";
         }
 
-        $("#main-item-slide").not('.slick-initialized').append(
+        $("#main-item-slide").append(
           $(
             "<div class='col-lg-3 col-6'><div class='card border-0'>" +
               prefix +
@@ -48,7 +48,7 @@ function initPlace() {
 
       });
 
-      $("#main-item-slide").slick({
+      $("#main-item-slide").not('.slick-initialized').slick({
         slidesToShow: 4,
         slidesToScroll: 1,
         autoplay: true,
