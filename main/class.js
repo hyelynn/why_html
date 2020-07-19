@@ -1,31 +1,4 @@
-$(document).ready(function () {
-
-    function initSlick(target) {
-      if ($(target).hasClass('slick-initialized')) {
-        ($(target).slick('setPosition'));
-      } else {
-        $(target).slick({
-          slidesToShow: 4,
-          slidesToScroll: 1,
-          autoplay: true,
-          autoplaySpeed: 2000,
-          arrows: true,
-          prevArrow:
-            '<button type="button" class="btn slide-prev"><span class="slide-prev-icon" aria-hidden="true"></span><span class="sr-only">Previous</span></button>',
-          nextArrow:
-            '<button type="button" class="btn slide-next"><span class="slide-next-icon" aria-hidden="true"></span><span class="sr-only">Next</span></button>',
-          responsive: [
-            {
-              breakpoint: 992,
-              settings: {
-                slidesToShow: 2,
-                slidesToScroll: 2,
-              },
-            },
-          ],
-        });
-      }
-    }
+function initClass() {
     //Get Room information
     $.ajax({
       type: "GET",
@@ -105,5 +78,5 @@ $(document).ready(function () {
         alert("접속 오류");
       },
     });
-  });
+  }
   
