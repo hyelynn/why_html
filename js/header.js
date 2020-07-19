@@ -2,11 +2,27 @@ function login_header() {
   var nickname = sessionStorage.getItem("nickname");
   var img = sessionStorage.getItem("prof");
   if (img == undefined) {
-    img = '/img/studio.png';
+    img = "/img/studio.png";
   }
 
   if (nickname != null) {
     var append_html =
+      "<ul class='navbar-nav m-auto font-weight-light sub-nav'>" +
+      "<li class='nav-item mx-lg-3 mx-2 active'>" +
+      "<div class='d-flex justify-content-between'>" +
+      "<a class='nav-link text-dark' href='/sub/studio.html' id='menu1'>Studio</a>" +
+      "<button class='navbar-toggler border-0 font-size-md text-dark' type='button' data-toggle='collapse' data-target='#subNavDropdown1' aria-controls='subNavDropdown1' aria-expanded='false' aria-label='Toggle navigation'>" +
+      "<i class='fas fa-chevron-down'></i></button></div></li>" +
+      "<li class='nav-item mx-lg-3 mx-2'>" +
+      "<div class='d-flex justify-content-between'>" +
+      "<a class='nav-link text-dark' href='/sub/class.html' id='menu2'>Class</a>" +
+      "<button class='navbar-toggler border-0 font-size-md text-dark' type='button' data-toggle='collapse' data-target='#subNavDropdown2' aria-controls='subNavDropdown2' aria-expanded='false' aria-label='Toggle navigation'>" +
+      "<i class='fas fa-chevron-down'></i></button></div></li>" +
+      "<li class='nav-item mx-lg-3 mx-2'>" +
+      "<div class='d-flex justify-content-between'>" +
+      "<a class='nav-link text-dark' href='/sub/performance.html' id='menu3'>Performance</a>" +
+      "<button class='navbar-toggler border-0 font-size-md text-dark' type='button' data-toggle='collapse' data-target='#subNavDropdown3' aria-controls='subNavDropdown3' aria-expanded='false' aria-label='Toggle navigation'>" +
+      "<i class='fas fa-chevron-down'></i></button></div></li></ul>" +
       "<ul class='navbar-nav ml-auto align-items-center d-none d-lg-flex'>" +
       "<li class='nav-item mr-2 font-size-md'>" +
       "<a class='nav-link text-dark' href='/member/calendar.html'><i class='far fa-calendar-alt'></i></a></li>" +
@@ -19,7 +35,9 @@ function login_header() {
       "<div class='d-flex'>" +
       "<div class='position-relative mr-2 nav-user-profile'>" +
       "<span class='position-absolute rounded-pill bg-hot-pink nav-user-notify'></span>" +
-      "<img src='"+img+"' class='rounded-circle nav-user-profile-img'></div>" +
+      "<img src='" +
+      img +
+      "' class='rounded-circle nav-user-profile-img'></div>" +
       "<span>" +
       nickname +
       "</span></div></button>" +
@@ -37,7 +55,9 @@ function login_header() {
       "<li class='nav-item mx-lg-3 mx-2 mb-2'>" +
       "<div class='d-flex'><div class='position-relative mr-2 nav-user-profile'>" +
       "<span class='position-absolute rounded-pill bg-hot-pink nav-user-notify'></span>" +
-      "<img src='"+img+"' class='rounded-circle nav-user-profile-img' alt='" +
+      "<img src='" +
+      img +
+      "' class='rounded-circle nav-user-profile-img' alt='" +
       nickname +
       "님'></div>" +
       "<span class='align-self-center'>" +
@@ -59,7 +79,23 @@ function login_header() {
     $("#navbarNavDropdown").empty();
     $("#navbarNavDropdown").append(
       $(
-        "<ul class='navbar-nav border-top pt-3 m-lg-auto mt-2 font-size-xs d-block d-lg-none'>" +
+        "<ul class='navbar-nav m-auto font-weight-light sub-nav'>" +
+          "<li class='nav-item mx-lg-3 mx-2 active'>" +
+          "<div class='d-flex justify-content-between'>" +
+          "<a class='nav-link text-dark' href='/sub/studio.html' id='menu1'>Studio</a>" +
+          "<button class='navbar-toggler border-0 font-size-md text-dark' type='button' data-toggle='collapse' data-target='#subNavDropdown1' aria-controls='subNavDropdown1' aria-expanded='false' aria-label='Toggle navigation'>" +
+          "<i class='fas fa-chevron-down'></i></button></div></li>" +
+          "<li class='nav-item mx-lg-3 mx-2'>" +
+          "<div class='d-flex justify-content-between'>" +
+          "<a class='nav-link text-dark' href='/sub/class.html' id='menu2'>Class</a>" +
+          "<button class='navbar-toggler border-0 font-size-md text-dark' type='button' data-toggle='collapse' data-target='#subNavDropdown2' aria-controls='subNavDropdown2' aria-expanded='false' aria-label='Toggle navigation'>" +
+          "<i class='fas fa-chevron-down'></i></button></div></li>" +
+          "<li class='nav-item mx-lg-3 mx-2'>" +
+          "<div class='d-flex justify-content-between'>" +
+          "<a class='nav-link text-dark' href='/sub/performance.html' id='menu3'>Performance</a>" +
+          "<button class='navbar-toggler border-0 font-size-md text-dark' type='button' data-toggle='collapse' data-target='#subNavDropdown3' aria-controls='subNavDropdown3' aria-expanded='false' aria-label='Toggle navigation'>" +
+          "<i class='fas fa-chevron-down'></i></button></div></li></ul>" +
+          "<ul class='navbar-nav border-top pt-3 m-lg-auto mt-2 font-size-xs d-block d-lg-none'>" +
           "<li class='nav-item mx-lg-3 mx-2 mb-2'>" +
           "<button class='btn btn-block border text-dark dropdown-toggle p-2 bg-white rounded-xl' type='button' data-toggle='modal' data-target='#loginModal'><span>로그인</span></button></li></ul>" +
           "<ul class='navbar-nav ml-auto align-items-center d-none d-lg-flex'>" +

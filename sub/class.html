@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ART BY US</title>
+
+    <!-- Bootstrap 4.3.1 -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+    <script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
+    <script src="/js/include.js"></script>
+    <!-- Custom -->
+    <script type="text/javascript" src="https://static.nid.naver.com/js/naveridlogin_js_sdk_2.0.0.js" charset="utf-8"></script>
+    <script src="/js/kakao_sdk.js"></script>
+    <link href="/css/datepicker.css" rel="stylesheet">
+    <script src="/js/datepicker.js"></script>
+    <script src="/js/class.js"></script>
+
+
+     <script>
+         // SDK를 초기화 합니다. 사용할 앱의 JavaScript 키를 설정해 주세요.
+         Kakao.init('d88bea310f4a39afbea3146fe1c0fa72');
+         // SDK 초기화 여부를 판단합니다.
+         console.log(Kakao.isInitialized());
+     </script>
+ 
+
+    <link rel="stylesheet" href="/css/custom.css">
+    <script src="/js/custom.js"></script>
+      
+    <!-- Fontawesome -->
+    <link rel="stylesheet" href="/css/fontawesome/css/all.min.css">
+</head>
+
+<body>
+    <modal include-html="/include/header.html"></modal>
+    <div class="py-md-3 px-5 py-2 text-center text-white bg-deep-dark top-notice">
+        <span class="font-weight-light">코로나19에 대한 아트바이어스의 대책 및 환불 정책에 대한 최신 정보를 확인하세요.</span>
+        <a href="#x" class="text-white d-lg-inline-block d-block">자세히 알아보기</a>
+    </div>
+
+    <nav class="navbar navbar-expand-lg navbar-light py-lg-3 py-1">
+        <div class="container">
+            <a class="navbar-brand" href="/index.html"><img src="http://artbyus.co.kr/img/logo.png"
+                    srcset="http://artbyus.co.kr/img/logo@2x.png 2x, http://artbyus.co.kr/img/logo@3x.png 3x"></a>
+            <div class="ml-auto align-items-center d-lg-none d-flex">
+                <a class="text-dark mr-3 font-size-sm" href="/member/calendar.html"><i
+                        class="far fa-calendar-alt"></i></a>
+                <a class="text-dark mr-3 font-size-sm" href="/member/recent_list.html"><i
+                        class="far fa-clock"></i></a>
+                <a class="text-dark mr-2 font-size-sm" href="/member/purchase.html"><i
+                        class="fas fa-shopping-cart"></i></a>
+            </div>
+            <button class="navbar-toggler border-0 font-size-md text-dark" type="button" data-toggle="collapse"
+                data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false"
+                aria-label="Toggle navigation">
+                <i class="fas fa-bars"></i>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarNavDropdown"></div>
+        </div>
+    </nav>
+    <script src="/js/header.js"></script>
+
+    <main role="main">
+        <div class="container  my-md-5 my-3">
+            <!-- title -->
+            <h2 class="d-inline-block font-weight-bold position-relative px-2 mb-md-5 mb-4 sub-title"><span class="sub-title-text">클래스</span></h2>
+
+            <!-- search category -->
+            <div class="row justify-content-between custom-inputs">
+                <div class="col-md-4 mb-md-0 mb-2">
+                    <p class="font-weight-light font-weight-light mb-1 font-size-sm">지역</p>
+                    <div class="input-group">
+                        <input type="text" class="form-control font-size-sm" id="locationInput" value="봉천동" placeholder="지역">
+                        <div class="position-absolute w-100 d-none location-input-list" id="locationList">
+                            <ul class="list-unstyled">
+                                <li class="d-flex align-items-center form-control border-top-0">
+                                    <a href="/sub/map.html" class="text-decoration-none text-dark">
+                                        <i class="fas fa-map-marker-alt mr-2 text-red"></i>지도에서 검색하기
+                                    </a>
+                                </li>
+                                <li class="d-flex align-items-center form-control border-top-0 font-weight-light">
+                                    <a href="#x" class="text-decoration-none text-gray">
+                                        서울특별시 관악구 <span class="font-weight-bold">봉천동</span>
+                                    </a>
+                                </li>
+                                <li class="d-flex align-items-center form-control border-top-0 font-weight-light">
+                                    <a href="#x" class="text-decoration-none text-gray">
+                                        봉천역, 2호선
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 mb-md-0 mb-2">
+                    <p class="font-weight-light font-weight-light mb-1 font-size-sm">항목</p>
+                    <div class="input-group">
+                        <select name="" id="" class="form-control font-size-sm">
+                            <option value="" selected>무용</option>
+                            <option value="">연기</option>
+                            <option value="">음악</option>
+                            <option value="">보컬</option>
+                            <option value="">클래식 음악</option>
+                            <option value="">댄스</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <p class="font-weight-light font-weight-light mb-1 font-size-sm">날짜</p>
+                    <div class="input-group date">
+                        <input type="text" class="form-control" id="datePicker">
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- search result - list -->
+        <div class="container my-md-5 my-3">
+            <div class="row" id="show_list"></div>
+            
+            <div class="d-flex justify-content-center">
+                <button type="button" class="btn border rounded-0 font-weight-light px-5 py-3 font-size-m text-light-gray">View More...</button>
+            </div>
+        </div>
+    </main>
+
+    <footer include-html="/include/footer.html"></footer>
+    <script>includeHTML();</script>
+    <script>login_header();</script>
+
+    <script src="/js/naver_login.js"></script>
+    <script src="/js/login.js"></script>
+</body>
+
+<script>
+    // datepicker
+    $(function () {
+        $('#datePicker').datepicker({
+            language: 'ko',
+            multipleDatesSeparator: ' ~ ',
+            range: false,
+            navTitles: {
+                days: '<span class="font-weight-bold mr-2">M</span> MM, <i>yyyy</i>'
+            },
+            prevHtml: '<i class="fas fa-chevron-left"></i>',
+            nextHtml: '<i class="fas fa-chevron-right"></i>',
+            onShow: function () {
+                if ($('.datepicker .btn').length > 0) {
+                    return false;
+                } else {
+                    $('.datepicker').append('<button type="button" class="btn btn-block py-3 border-0 rounded-0 font-weight-light bg-yellow">검색</button>');
+                }
+            }
+        })
+    });
+
+    // locationInput
+    $('#locationInput').click( function () {
+        $(this).siblings('#locationList').toggleClass('d-none');
+    })
+</script>
+
+</html>
