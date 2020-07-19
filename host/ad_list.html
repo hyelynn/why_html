@@ -72,9 +72,9 @@
                 </div>
 
                 <div class="d-flex mt-3 mt-lg-0">
-                    <button type="button" class="btn font-weight-light bg-yellow mx-lg-3 mr-3 text-btn"
+                    <button type="button" class="btn font-weight-light bg-yellow mx-lg-3 mr-3 text-btn" data-title="data"
                             data-toggle="modal" onclick="putInside('platinum');" data-target="#applyAdModal">플래티넘 광고 신청</button>
-                    <button type="button" class="btn font-weight-light bg-yellow text-btn"
+                    <button type="button" class="btn font-weight-light bg-yellow text-btn" data-title="data"
                             data-toggle="modal" onclick="putInside('prime');" data-target="#applyAdModal">프라임 광고 신청</button>
                 </div>
             </div>
@@ -117,7 +117,7 @@
             for(var i = 0; i<tempList.length;i++){
                 var studio_temp = tempList[i];
                 var studio = '<li class="list-group-item p-3 mb-3 border">'
-                                +'<div class="row align-items-center">'
+                                +'<div id="border'+i+'" class="row align-items-center">'
                                     +'<div class="col-lg-10">'
                                         +'<div class="d-flex align-items-lg-center">'
                                             +'<div class="d-flex justify-content-center align-items-center overflow-hidden mr-4 item-thumbs">'
@@ -140,7 +140,7 @@
                                     +'</div>'
                                     +'<div class="col-lg-2">'
                                         +'<div class="text-lg-center text-right mt-lg-0 mt-3 host-menu">'
-                                            +'<button type="button" id="only_one"'+i+' onclick="is_block('+studio_temp.studio_key+','+tempList.length+');" class="btn border mr-lg-0 mr-2 item-btn item-pick">선택하기</button>'
+                                            +'<button type="button" id="only_one'+i+'" onclick="is_block('+i+','+studio_temp.studio_key+','+tempList.length+');" class="btn border mr-lg-0 mr-2 item-btn item-pick">선택하기</button>'
                                         +'</div>'
                                     +'</div>'
                                 +'</div>'
@@ -149,15 +149,17 @@
             }
         }
 
-        function is_block(num,length){
-
-            $("#only_one"+stu_key).attr("block",true);
-            stu_key = num;
-            $("#only_one"+stu_key).attr("block",true);
-            // for(var i = 0;i<length;i++){
-            //     if(i == num)continue;
-            //     // $("#only_one"+i).attr("block",true);
-            // }
+        function is_block(num, key, length){
+            stu_key = key;
+            for(var i = 0;i<length;i++){
+                if(i == num){
+                    $("#only_one"+i).attr('class','btn border mr-lg-0 mr-2 item-btn item-pick');
+                    // $("#border"+i).attr('class','#ffde3b solid 2px');
+                }else{
+                    $("#only_one"+i).attr('class','btn border mr-lg-0 mr-2 item-btn');
+                    // $("#border"+i).attr('outline',none);
+                }
+            }
         }
 
         $(document).ready(function (){

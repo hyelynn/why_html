@@ -83,10 +83,10 @@
     font-size: 0.8rem;
     margin-top: -1px;
 }
+
 .host-item-list .item-btn.active {
     background: #ffde3b;
 }
-
 .host-item-list .item-btn.block-item {
     color: #ff3c49;
 }
@@ -98,9 +98,9 @@
     font-size: 1.2rem;
 }
 
-.host-item-list .outline {
+/* .host-item-list .outline {
     outline: #ffde3b solid 3px;
-}
+} */
 
 .host-regist-proc .step {
     border-bottom: 10px solid #f2f2f2;
