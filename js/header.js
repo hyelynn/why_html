@@ -1,6 +1,6 @@
 function login_header() {
   var nickname = sessionStorage.getItem("nickname");
-  prof
+  
   if (nickname != null) {
     var append_html =
       "<ul class='navbar-nav ml-auto align-items-center d-none d-lg-flex'>" +

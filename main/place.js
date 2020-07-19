@@ -115,10 +115,11 @@ $(document).ready(function () {
               "</span></a></div></div>"
           )
         );
+
+        initSlick("#main-audition-slide");
+        initSlick("#main-class-slide");
+        initSlick("#main-item-slide");
       });
-      initSlick("#main-audition-slide");
-      initSlick("#main-class-slide");
-      initSlick("#main-item-slide");
     },
 
     //error 발생 시
