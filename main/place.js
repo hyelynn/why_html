@@ -2,7 +2,7 @@ function initSlick(target) {
   if ($(target).hasClass('slick-initialized')) {
     ($(target).slick('setPosition'));
   } else {
-    $(target).not('').slick({
+    $(target).slick({
       slidesToShow: 4,
       slidesToScroll: 1,
       autoplay: true,
@@ -94,7 +94,7 @@ $(document).ready(function () {
           )
         );
 
-        $().append(
+        $("main-audition-slide").append(
           $(
             "<div class='col-lg-3 col-6'><div class='card border-0'>" +
               prefix +

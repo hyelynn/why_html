@@ -21,7 +21,11 @@ function normal_login() {
         sessionStorage.setItem("nickname", result.user_nickname);
         sessionStorage.setItem("phone", result.user_phone);
         sessionStorage.setItem("name", result.user_name);
-        location.reload();
+        sessionStorage.setItem("prof", result.user_profile);
+        if (result.user_name == 'us')
+          location.href = 'artbyus.co.kr/index.html';
+        else
+          location.href = 'artbyus.co.kr/host/index.html';
       } else {
         alert("아이디와 비밀번호 중 잘못된 정보가 있습니다.");
         document.getElementById("login_email").value = "";
