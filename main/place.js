@@ -1,31 +1,5 @@
-function initSlick(target) {
-  if ($(target).hasClass('slick-initialized')) {
-    ($(target).slick('setPosition'));
-  } else {
-    $(target).slick({
-      slidesToShow: 4,
-      slidesToScroll: 1,
-      autoplay: true,
-      autoplaySpeed: 2000,
-      arrows: true,
-      prevArrow:
-        '<button type="button" class="btn slide-prev"><span class="slide-prev-icon" aria-hidden="true"></span><span class="sr-only">Previous</span></button>',
-      nextArrow:
-        '<button type="button" class="btn slide-next"><span class="slide-next-icon" aria-hidden="true"></span><span class="sr-only">Next</span></button>',
-      responsive: [
-        {
-          breakpoint: 992,
-          settings: {
-            slidesToShow: 2,
-            slidesToScroll: 2,
-          },
-        },
-      ],
-    });
-  }
-}
-
 $(document).ready(function () {
+
   //Get Room information
   $.ajax({
     type: "GET",
@@ -72,53 +46,32 @@ $(document).ready(function () {
           )
         );
 
-        $("#main-class-slide").append(
-          $(
-            "<div class='col-lg-3 col-6'><div class='card border-0'>" +
-              prefix +
-              "<img src='"+item.studio_thumbnail+"' class='card-img-top rounded-0'>" +
-              "<h5 class='mt-lg-3 mt-2'>" +
-              item.studio_name +
-              "</h5>" +
-              "<p class='font-weight-light border-bottom pb-2 mb-2 font-size-xs'>" +
-              item.studio_name +
-              "</p>" +
-              "<a href='/sub/studio_view.html?" +
-              item.studio_key +
-              "' class='stretched-link text-decoration-none'>" +
-              "<span class='text-red font-weight-bold font-size-l'>" +
-              item.studio_price +
-              "</span><span class='text-dark font-weight-light pl-1 font-size-s'>원/" +
-              item.studio_price_type +
-              "</span></a></div></div>"
-          )
-        );
-
-        $("main-audition-slide").append(
-          $(
-            "<div class='col-lg-3 col-6'><div class='card border-0'>" +
-              prefix +
-              "<img src='"+item.studio_thumbnail+"' class='card-img-top rounded-0'>" +
-              "<h5 class='mt-lg-3 mt-2'>" +
-              item.studio_name +
-              "</h5>" +
-              "<p class='font-weight-light border-bottom pb-2 mb-2 font-size-xs'>" +
-              item.studio_name +
-              "</p>" +
-              "<a href='/sub/studio_view.html?" +
-              item.studio_key +
-              "' class='stretched-link text-decoration-none'>" +
-              "<span class='text-red font-weight-bold font-size-l'>" +
-              item.studio_price +
-              "</span><span class='text-dark font-weight-light pl-1 font-size-s'>원/" +
-              item.studio_price_type +
-              "</span></a></div></div>"
-          )
-        );
-
-        initSlick("#main-audition-slide");
-        initSlick("#main-class-slide");
-        initSlick("#main-item-slide");
+        if ($("#main-item-slide").hasClass('slick-initialized')) {
+          console.log('slick-already');
+          ($("#main-item-slide").slick('setPosition'));
+        } else {
+          console.log('slick');
+          $("#main-item-slide").slick({
+            slidesToShow: 4,
+            slidesToScroll: 1,
+            autoplay: true,
+            autoplaySpeed: 2000,
+            arrows: true,
+            prevArrow:
+              '<button type="button" class="btn slide-prev"><span class="slide-prev-icon" aria-hidden="true"></span><span class="sr-only">Previous</span></button>',
+            nextArrow:
+              '<button type="button" class="btn slide-next"><span class="slide-next-icon" aria-hidden="true"></span><span class="sr-only">Next</span></button>',
+            responsive: [
+              {
+                breakpoint: 992,
+                settings: {
+                  slidesToShow: 2,
+                  slidesToScroll: 2,
+                },
+              },
+            ],
+          });
+        }
       });
     },
 
