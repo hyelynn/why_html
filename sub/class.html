@@ -124,7 +124,7 @@
             <div class="row" id="show_list"></div>
             
             <div class="d-flex justify-content-center">
-                <button type="button" class="btn border rounded-0 font-weight-light px-5 py-3 font-size-m text-light-gray">View More...</button>
+                <button id = "viewmore" type="button" class="btn border rounded-0 font-weight-light px-5 py-3 font-size-m text-light-gray">View More...</button>
             </div>
         </div>
     </main>
@@ -163,6 +163,11 @@
     $('#locationInput').click( function () {
         $(this).siblings('#locationList').toggleClass('d-none');
     })
+
+    $("#viewmore").on("click", function() {
+        $("#showview").show();
+        $("#viewmore").hide();
+    });
 </script>
 
 </html>

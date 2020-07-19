@@ -22,7 +22,7 @@ function initClass() {
               "<span class='align-self-center list-tag-title'>즉시결제</span></div>" +
               "<button type='button' class='float-right bg-transparent border-0 p-0 text-white font-size-md' onclick='addWishList(this);'><i class='far fa-heart'></i></button></div>";
           }
-          $("main-class-slide").append(
+          $("#main-class-slide").append(
             $(
               "<div class='col-lg-3 col-6'><div class='card border-0'>" +
               prefix +
