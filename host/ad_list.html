@@ -86,6 +86,46 @@
         </div>
     </main>
 
+    <!-- 광고 신청 모달 -->
+    <div class="modal fade" id="applyAdModal" tabindex="-1" role="dialog" aria-labelledby="applyAdModalLabel" aria-hidden="true">
+        <div class="modal-dialog custom-modal" role="document">
+            <div class="modal-content px-0 py-lg-5 py-5 text-center">
+                <div class="modal-header p-0 mb-md-4 mb-3 border-0">
+                    <h2 class="modal-title mx-auto" id="applyAdModalLabel">프라임 광고 신청하기</h2>
+                </div>
+                <!-- 신청 정보 -->
+                <div class="modal-body p-0">
+                    <!-- 광고 대상 -->
+                    <div class="modal-full-img d-flex justify-content-center align-items-center">
+                        <img id="modal_profile" src=studio.studio_thumbnail class="w-100">
+                    </div>
+
+                    <!-- 광고 정보 -->
+                    <div class="px-lg-5 px-4 mt-3 mb-5 text-left">
+                        <h4 id="modal_name"></h4>
+                        <p id= "modal_subname" class="font-size-xs font-weight-light text-light-gray"></p>
+                        <div class="font-size-xs font-weight-light">
+                            <p class="mr-md-4 mr-2 d-inline-block mb-0">
+                                <i class="fas fa-heart text-red"></i>
+                                <span class="ml-1" id="modal_studio_like"></span>
+                            </p>
+                            <span id="modal_type" class="mr-md-4 mr-2"></span>
+                            <span id="modal_price"></span>
+                        </div>
+                    </div>
+
+                    <p class="font-size-s">위 연습실에 대한 광고신청을 진행합니다.</p>
+
+                    <div class="custom-inputs px-4">
+                        <button type="button" onclick="apply()" class="btn bg-yellow w-lg-65 w-100 py-md-4 py-2 h-auto rounded-0 font-size-s"
+                                data-toggle="modal" data-target="#applyAdResultModal" data-dismiss="modal">프라임 광고 신청</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
     <!-- 서브 푸터 -->
     <footer include-html="/include/footer.html"></footer>
 
@@ -100,6 +140,7 @@
     <script>
         var studioList = [];
         var stu_key = "";
+        var ad_type = "";
         function goSearch(){
             var tempList = [];
             var searchText = $("#searchText").val();
@@ -160,6 +201,13 @@
                     // $("#border"+i).attr('outline',none);
                 }
             }
+
+            $("#modal_profile").attr("src",studioList[num].studio_thumbnail);
+            $("#modal_name").text(studioList[num].studio_name);
+            $("#modal_subname").text(studioList[num].studio_subname);
+            $("#modal_studio_like").text(studioList[num].studio_like);
+            $("#modal_type").text("예약유형 : "+studioList[num].studio_types);
+            $("#modal_price").text(studioList[num].studio_price+" / 시간");
         }
 
         $(document).ready(function (){
@@ -184,12 +232,11 @@
 
         });
 
-        function putInside(ad_type){
+        function apply(){
             var xhr = new XMLHttpRequest();
             xhr.onreadystatechange = function() {
                 if (xhr.readyState === xhr.DONE) { 
                     if (xhr.status === 200 || xhr.status === 201) {
-                        alert(stu_key)
                     } else {
                         alert("삭제가 정상적으로 이루어지지 않았습니다. 다시 시도해주세요.");
                         console.error(xhr.responseText);
@@ -200,6 +247,10 @@
             xhr.open('POST', 'http://3.34.150.116:3000/ad/apply',true);
             xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
             xhr.send("key="+stu_key+"&type=studio&ad_type="+ad_type);
+        }
+
+        function putInside(ad_type_txt){
+            ad_type = ad_type_txt;
         }
     </script>
 </body>
