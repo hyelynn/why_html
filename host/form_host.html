@@ -20,6 +20,7 @@
     <script type="text/javascript" src="https://static.nid.naver.com/js/naveridlogin_js_sdk_2.0.0.js" charset="utf-8"></script>
     <script src="/js/kakao_sdk.js"></script>
     <script src="/js/include.js"></script>
+    <script src="https://sdk.amazonaws.com/js/aws-sdk-2.283.1.min.js"></script>
     
     <script>
         Kakao.init('d88bea310f4a39afbea3146fe1c0fa72');
@@ -61,11 +62,11 @@
                         <!-- 이미지 첨부시 동그란 영역에만 이미지 변경 -->
                         <!-- 기본 이미지 형태 -->
                         <div class="d-flex justify-content-center align-items-center rounded-circle overflow-hidden mx-auto user-profile-img">
-                            <img src="../img/profile-img-default.jpg" alt="">
+                            <img id="profile" src="/img/profile-img-default.jpg" alt="">
                         </div>
                     </div>
-                    <button type="button" class="btn btn-block bg-yellow text-gray">이미지 변경하기</button>
 
+                    <input type="file" id="thumbsFile" class="btn btn-block bg-yellow text-gray" accept=".jpg, .png" value="이미지 변경하기" onchange="addFile(this);">
                     <span class="d-block mt-2 text-red">* 프로필 사진은 3MB 이하<br>JPG, PNG파일만 가능합니다.</span>
                 </div>
 
@@ -73,12 +74,12 @@
                 <div class="col-lg-9">
                     <div class="mb-3">
                         <label for="host_email">이메일 (변경불가)</label>
-                        <input type="text" id="email_text" class="form-control" id="host_email" disabled>
+                        <input type="text" id="email_text" class="form-control" disabled>
                     </div>
 
                     <div class="mb-3">
                         <label for="host_nickname">닉네임</label>
-                        <input type="text" class="form-control" id="host_nickname" value="버밍" placeholder="아트바이어스">
+                        <input type="text" class="form-control" id="host_nickname" placeholder="아트바이어스">
                     </div>
 
                     <div class="mb-3">
@@ -86,7 +87,7 @@
                             <div class="col-lg-6 mb-lg-0 mb-3">
                                 <label for="host_phone" class="d-block text-gray">내 연락처<span class="d-block d-md-inline-block text-red font-size-xs">*연락처 변경 시 가상번호도 변경됩니다</span></label>
                                 <div class="input-group">
-                                    <input type="text" class="form-control" id="host_phone" value="010-1234-5678" placeholder="010-1234-5678">
+                                    <input type="text" class="form-control" id="host_phone" placeholder="010-1234-5678">
                                     <div class="input-group-append">
                                         <button type="button" class="btn px-5 bg-yellow text-gray">변경</button>
                                     </div>
@@ -110,11 +111,11 @@
                                 <label>마케팅 정보 수신동의</label>
                                 <div class="d-flex align-items-center form-control border-0 p-0">
                                     <div class="w-50">
-                                        <input type="checkbox" class="custom-checkbox float-left mr-2" id="agree_sms" checked>
+                                        <input type="checkbox" class="custom-checkbox float-left mr-2" id="agree_sms" >
                                         <label for="agree_sms" class="mb-0">SMS</label>
                                     </div>
                                     <div class="w-50">
-                                        <input type="checkbox" class="custom-checkbox float-left mr-2" id="agree_email" checked>
+                                        <input type="checkbox" class="custom-checkbox float-left mr-2" id="agree_email" >
                                         <label for="agree_email" class="mb-0">이메일</label>
                                     </div>
                                 </div>
@@ -129,20 +130,20 @@
                 <label class="text-gray">소셜 계정 연동</label>
                 <div class="row custom-user-form custom-inputs">
                     <div class="col-lg-6 mb-lg-0 mb-3">
-                        <button type="button" class="btn btn-block bg-kakao"><img src="../img/logo_kakao.svg" class="mr-2" width="20px" alt=""> 카카오계정 연동</button>
+                        <button type="button" id="kakao" class="btn btn-block bg-kakao"><img src="../img/logo_kakao.svg" class="mr-2" width="20px" alt=""> 카카오계정 연동</button>
                         <!-- <button type="button" class="btn btn-block bg-gray-2 border text-gray"><img src="../img/logo_kakao_gray.svg" class="mr-2" width="20px" alt=""> 카카오계정 연동완료</button> -->
                     </div>
                     <div class="col-lg-6">
-                        <!-- <button type="button" class="btn btn-block bg-naver text-white"><img src="../img/logo_naver.svg" class="mr-2" width="20px" alt=""> 네이버계정 연동</button> -->
-                        <button type="button" class="btn btn-block bg-gray-2 border text-gray"><img src="../img/logo_naver_gray.svg" class="mr-2" width="20px" alt=""> 네이버계정 연동완료</button>
+                        <button type="button" id="naver" class="btn btn-block bg-naver text-white"><img src="../img/logo_naver.svg" class="mr-2" width="20px" alt=""> 네이버계정 연동</button>
+                        <!-- <button type="button" class="btn btn-block bg-gray-2 border text-gray"><img src="../img/logo_naver_gray.svg" class="mr-2" width="20px" alt=""> 네이버계정 연동완료</button> -->
                     </div>
                 </div>
             </div>
 
             <!-- button -->
             <div class="custom-inputs text-center">
-                <button type="button" class="btn btn-block bg-yellow px-md-5 py-md-3">회원 정보 수정 완료</button>
-                <button type="button" class="btn bg-transparent text-red">회원 탈퇴</button>
+                <button type="button" onclick="upUser();" class="btn btn-block bg-yellow px-md-5 py-md-3">회원 정보 수정 완료</button>
+                <button type="button" onclick="delUser();" class="btn bg-transparent text-red">회원 탈퇴</button>
             </div>
         </div>
     </main>
@@ -154,15 +155,173 @@
     <script src="/js/login.js"></script>
     <script src="/js/custom.js"></script>
 
-    <script>includeHTML({});</script>
+    <script>includeHTML();</script>
     <script>login_header();</script>
 
     <script src="../js/include_html_host.js"></script>
     <script>
-        $(document).ready(function (){
-            $("#email_text").val(sessionStorage.getItem("id"));
+        var albumBucketName = 'user-profile-artbyus';
+        var bucketRegion = 'ap-northeast-2';
+        var IdentityPoolId = 'ap-northeast-2:5de34811-ed49-42bb-8378-726186756855';
+      
+        AWS.config.update({
+            region: bucketRegion,
+            credentials: new AWS.CognitoIdentityCredentials({
+                IdentityPoolId: IdentityPoolId
+            })
         });
 
+        var s3 = new AWS.S3({
+            apiVersion: '2006-03-01',
+            CacheControl: "no-cache",
+            params: {Bucket: albumBucketName}
+        });
+
+        $(document).ready(function (){
+            var xhr = new XMLHttpRequest();
+            xhr.onreadystatechange = function() {
+                if (xhr.readyState === xhr.DONE) { 
+                    if (xhr.status === 200 || xhr.status === 201) {
+                        var user = JSON.parse(xhr.responseText);
+                        $("#email_text").val(user[0].user_key);
+                        if(user[0].user_profile == null){
+                            $("#profile").attr("src","/img/profile-img-default.jpg");
+                        }else{
+                            $("#profile").attr("src","https://user-profile-artbyus.s3.ap-northeast-2.amazonaws.com/"+user[0].user_profile);
+                        }
+                        $("#host_nickname").val(user[0].user_nickname);
+                        $("#host_phone").val(user[0].user_nickname);
+                        if(user[0].user_sms){
+                            $("#agree_sms").attr("checked", true); 
+                        }else{
+                            $("#agree_sms").attr("checked", false); 
+                        }
+                        if(user[0].user_mail){
+                            $("#agree_email").attr("checked", true); 
+                        }else{
+                            $("#agree_email").attr("checked", false); 
+                        }
+                        if(user[0].kakao){
+                            $("#kakao").attr("class","btn btn-block bg-kakao");
+                        }else{
+                            $("#kakao").attr("class","btn btn-block bg-gray-2 border text-gray");
+                        }
+                        if(user[0].naver){
+                            $("#kakao").attr("class","btn btn-block bg-naver text-white");
+                        }else{
+                            $("#kakao").attr("class","btn btn-block bg-gray-2 border text-gray");
+                        }
+                    } else {
+                        alert("목록이 정상적으로 이루어지지 않았습니다. 다시 시도해주세요.");
+                        console.error(xhr.responseText);
+                    }
+                }else{
+                    
+                }
+            };
+            xhr.open('POST', 'http://3.34.150.116:3000/user',true);
+            xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+            xhr.send("id=jmnu1203");
+            // xhr.send("user_id="+sessionStorage.getItem("id"));
+        });
+        
+        function addFile(me) {
+            readURL(me)
+            var files = document.getElementById(me.id).files;
+            var maxSize  = 1024 * 1024 * 3;
+            if (!files.length) {
+                return alert('업로드할 파일을 선택해주세요.');
+            }
+            var file = files[0];
+            var fileSize = file.size;
+            if(fileSize > maxSize){
+                $("#"+me.id).val("");
+                return  alert("파일 크기를 줄여주세요.");
+            }
+            var fileName = file.name;
+            var photoKey = "jmnu1203_profile.jpg";
+            // var photoKey = sessionStorage.getItem("id")+"_profile.jpg";
+
+            s3.upload({
+                Key: photoKey,
+                Body: file,
+                ACL: 'public-read'
+            }, function(err, data) {
+                if (err) {
+                    return alert('파일 업로드 실패: ', err, data);
+                    console.log(err, data);
+                }else{
+                }
+            });
+
+        }
+
+        function readURL(input) {
+            if (input.files && input.files[0]) {
+                var reader = new FileReader();
+                
+                reader.onload = function (e) {
+                $('#profile').attr('src', e.target.result);  
+                }
+                
+                reader.readAsDataURL(input.files[0]);
+            }
+        }
+  
+    
+        function upUser(){
+            var id = document.getElementById("email_text").value;
+            var host_nickname = document.getElementById("host_nickname").value;
+            var host_phone = document.getElementById("host_phone").value;
+            var profile =  sessionStorage.getItem("id")+"_profile.jpg"
+            var profile =  "jmnu1203_profile.jpg"
+            var agree_sms = $('input:checkbox[id="agree_sms"]').is(":checked");
+            var agree_email = $('input:checkbox[id="agree_email"]').is(":checked");
+            var host_safe_no = document.getElementById("host_safe_no").value;
+
+            var xhr = new XMLHttpRequest();
+            xhr.onreadystatechange = function() {
+                if (xhr.readyState === xhr.DONE) { 
+                    if (xhr.status === 200 || xhr.status === 201) {
+                        var studio_list = JSON.parse(xhr.responseText);
+                        alert("성공적으로 수정되었습니다.");
+                        location.href = "/host/form_host.html"
+                    } else {
+                        alert("목록이 정상적으로 이루어지지 않았습니다. 다시 시도해주세요.");
+                        console.error(xhr.responseText);
+                    }
+                }else{
+                }
+            };
+            xhr.open('POST', 'http://3.34.150.116:3000/user/modify',true);
+            xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+            xhr.send("user_id="+id+"&user_nickname="+host_nickname+"&user_phone="+host_phone+
+            "&user_prof="+profile+"&user_sms="+agree_sms+"&user_mail="+agree_email
+            // +"&biz_num="+host_safe_no
+            );
+
+
+        }
+
+        function delUser(){
+            var xhr = new XMLHttpRequest();
+            xhr.onreadystatechange = function() {
+                if (xhr.readyState === xhr.DONE) { 
+                    if (xhr.status === 200 || xhr.status === 201) {
+                        location.href = "../index.html"
+                        
+                    } else {
+                        alert("목록이 정상적으로 이루어지지 않았습니다. 다시 시도해주세요.");
+                        console.error(xhr.responseText);
+                    }
+                }else{
+                }
+            };
+            xhr.open('POST', 'http://3.34.150.116:3000/',true);
+            xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+            xhr.send("user_id="+sessionStorage.getItem("id"));
+        }
+        
     </script>
 
 </body>

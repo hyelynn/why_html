@@ -7,7 +7,7 @@
 
     <!-- Bootstrap 4.3.1 -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+    <script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
     <!-- <script type="text/javascript" src="http://code.jquery.com/jquery-latest.min.js"></script>
@@ -106,9 +106,9 @@
                         <label for="user_phone" class="d-block text-gray">연락처( - 빼고 입력해주세요)</label>
                         <div class="d-flex">
                             <div class="flex-fill mr-4">
-                                <input type="text" class="form-control" id="user_phone" placeholder="010-1234-5678">
+                                <input type="text" class="form-control" id="user_phone" placeholder="01012345678">
                             </div>
-                            <button type="button" class="btn flex-fill w-25 bg-yellow">인증번호 발송</button>
+                            <button type="button" onclick="goMsg();" class="btn flex-fill w-25 bg-yellow">인증번호 발송</button>
                         </div>
                     </div>
                     <div class="col-lg-6 custom-inputs-sub not">
@@ -146,7 +146,8 @@
 
     <script type="text/javascript">
 
-    document.getElementById("is_dup").addEventListener('click', function(){
+        var ran_code = 0;
+        document.getElementById("is_dup").addEventListener('click', function(){
             var email =  document.getElementById("user_id").value;
             var regEmail = /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i;
             if (!regEmail.test(email)) {
@@ -180,43 +181,83 @@
             xhr.send("email="+ email); 
         })
 
-    function sendFormAjax(){
-        if(CheckForm()){
-            var user_id_t = document.getElementById("user_id").value;
-            var user_pw_t = document.getElementById("user_pw").value;
-            var user_name_t = document.getElementById("user_name").value;
-            var user_nickname_t = document.getElementById("user_nickname").value;
-            var user_phone_t = document.getElementById("user_phone").value;
-            // var dataStuff = {
-            //     user_id:user_id_t,
-            //     user_pw:user_pw_t,
-            //     user_name:user_name_t,
-            //     user_nickname:user_nickname_t,
-            //     user_phone:user_phone_t
-            // }
-            var xhr = new XMLHttpRequest();
-            xhr.onreadystatechange = function() {
-                if (xhr.readyState === xhr.DONE) { 
-                    if (xhr.status === 200 || xhr.status === 201) {
-                        alert("회원가입 완료");
+        function sendFormAjax(){
+            if(CheckForm()){
+                var user_id_t = document.getElementById("user_id").value;
+                var user_pw_t = document.getElementById("user_pw").value;
+                var user_name_t = document.getElementById("user_name").value;
+                var user_nickname_t = document.getElementById("user_nickname").value;
+                var user_phone_t = document.getElementById("user_phone").value;
+                // var dataStuff = {
+                //     user_id:user_id_t,
+                //     user_pw:user_pw_t,
+                //     user_name:user_name_t,
+                //     user_nickname:user_nickname_t,
+                //     user_phone:user_phone_t
+                // }
+                var xhr = new XMLHttpRequest();
+                xhr.onreadystatechange = function() {
+                    if (xhr.readyState === xhr.DONE) { 
+                        if (xhr.status === 200 || xhr.status === 201) {
+                            alert("회원가입 완료");
 
-                        window.location.href = "/index.html";
+                            window.location.href = "/index.html";
 
-                    } else {
-                        alert("회원가입이 정상적으로 이루어지지 않았습니다. 다시 시도해주세요.");
-                        console.error(xhr.responseText);
+                        } else {
+                            alert("회원가입이 정상적으로 이루어지지 않았습니다. 다시 시도해주세요.");
+                            console.error(xhr.responseText);
+                        }
+                    }else{
                     }
-                }else{
-                }
-            };
-            xhr.open('POST', 'http://3.34.150.116:3000/user/apply',true);
-            xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
-            xhr.send("user_id="+user_id_t+"&user_pw="+user_pw_t+"&user_name="+user_name_t+"&user_nickname="+user_nickname_t+"&user_phone="+user_phone_t); 
-            // xhr.send(dataStuff);
+                };
+                xhr.open('POST', 'http://3.34.150.116:3000/user/apply',true);
+                xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+                xhr.send("user_id="+user_id_t+"&user_pw="+user_pw_t+"&user_name="+user_name_t+"&user_nickname="+user_nickname_t+"&user_phone="+user_phone_t); 
+                // xhr.send(dataStuff);
+            }
+                
         }
-            
+        
+        function goMsg(){
+        ran_code = Math.floor(Math.random() * 9000 + 1000);
+        var phone = document.getElementById("user_phone").value;
+        var request_url = "https://alimtalk-api.bizmsg.kr/v2/sender/send";
+        var message_type = "at";
+        var phn = "821040896927";
+        var profile = "ce295b05ccf1144d9a13283351fd58bdc5805fdb";
+        var tmplId = "artbyus-1";
+        var msg = `${ran_code}
+                    ARTBYUS(아트바이어스)에서 보낸 인증번호입니다.`;
+
+        var sendArray = [];
+        var sendObj = {};
+
+        sendObj['message_type'] = message_type;
+        sendObj['phn'] = phn;
+        sendObj['profile'] = profile;
+        sendObj['tmplId'] = tmplId;
+        sendObj['msg'] = msg;
+        sendObj['smsKind']= 's';
+        sendObj['msgSms']= msg;
+        sendObj['smsSender'] = '18002563';
+        
+        sendArray.push(sendObj);
+        var sendData = JSON.stringify(sendArray);        
+
+        $.ajax({
+            type : "POST",
+            dataType : "json",
+            headers: {
+                'Content-Type':'application/json',
+                'userid': 'artbyus2020'
+            },
+            url : request_url,
+            data : sendData,
+            success : function(data) {
+                alert("카카오톡이나 문자를 확인해주세요");
+            }
+        });
     }
-     
      
      
     function CheckForm(){
@@ -231,7 +272,7 @@
 
         var regEmail = /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i;
         var regPw = /^[A-Za-z0-9+]*$/;
-        var regPhone = /^\d{2,3}-\d{3,4}-\d{4}$/;
+        var regPhone = /^\d{2,3}\d{3,4}\d{4}$/;
 
         if(user_id == ""){
             alert("아이디를 입력해주세요.");
@@ -293,11 +334,17 @@
             document.getElementById("user_auth").focus();
             return false;
         }
-        if(user_auth != 1234){
+        if(ran_code == 0){
+            alert("전화번호 인증을 해주세요.");
+            document.getElementById("user_auth").focus();
+            return false;
+        }
+        if(user_auth != ran_code){
             alert("인증번호가 맞지 않습니다.");
             document.getElementById("user_auth").focus();
             return false;
         }
+        
         if(all_agree.checked){
             return true;
         }else{
