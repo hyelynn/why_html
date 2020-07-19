@@ -2,7 +2,12 @@ $(document).ready(function () {
     // console.log('2')
 
     // 모달
-    $('#modals').load('../include/common/header_sub_modal.html')
+    $('#modals').load('../include/common/header_sub_modal.html',function(){
+        var button = $(event.relatedTarget);
+        var stu_key = button.data('stu_key');
+        var modal = $(this);
+
+    });
 
     // 서브 헤더
     $('#header').load('../include/common/header_host_sub.html', function () {
