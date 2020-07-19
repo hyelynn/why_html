@@ -1,6 +1,10 @@
 function login_header() {
   var nickname = sessionStorage.getItem("nickname");
-  
+  var img = sessionStorage.getItem("prof");
+  if (img == undefined) {
+    img = '/img/studio.png';
+  }
+
   if (nickname != null) {
     var append_html =
       "<ul class='navbar-nav ml-auto align-items-center d-none d-lg-flex'>" +
@@ -15,7 +19,7 @@ function login_header() {
       "<div class='d-flex'>" +
       "<div class='position-relative mr-2 nav-user-profile'>" +
       "<span class='position-absolute rounded-pill bg-hot-pink nav-user-notify'></span>" +
-      "<img src='"+sessionStorage.getItem("prof")+"' class='rounded-circle nav-user-profile-img'></div>" +
+      "<img src='"+img+"' class='rounded-circle nav-user-profile-img'></div>" +
       "<span>" +
       nickname +
       "</span></div></button>" +
@@ -33,7 +37,7 @@ function login_header() {
       "<li class='nav-item mx-lg-3 mx-2 mb-2'>" +
       "<div class='d-flex'><div class='position-relative mr-2 nav-user-profile'>" +
       "<span class='position-absolute rounded-pill bg-hot-pink nav-user-notify'></span>" +
-      "<img src='"+sessionStorage.getItem("prof")+"' class='rounded-circle nav-user-profile-img' alt='" +
+      "<img src='"+img+"' class='rounded-circle nav-user-profile-img' alt='" +
       nickname +
       "님'></div>" +
       "<span class='align-self-center'>" +

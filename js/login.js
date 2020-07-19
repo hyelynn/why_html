@@ -22,7 +22,7 @@ function normal_login() {
         sessionStorage.setItem("phone", result.user_phone);
         sessionStorage.setItem("name", result.user_name);
         sessionStorage.setItem("prof", result.user_profile);
-        if (result.user_name == 'us')
+        if (result.user_type == 'us')
           location.href = '/index.html';
         else
           location.href = '/host/index.html';
