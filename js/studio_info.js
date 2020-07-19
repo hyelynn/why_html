@@ -22,6 +22,8 @@ $(document).ready(function () {
     if (split_data.find(value) == undefined) {
       sessionStorage.setItem("recent", recent + "?" + value);
     }
+  } else {
+    sessionStorage.setItem("recent", recent + "?" + value);
   }
 
   xhr.onreadystatechange = function () {
