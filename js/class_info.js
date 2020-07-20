@@ -16,15 +16,6 @@ $(document).ready(function () {
     location.href = "class.html"; //잘못된 접속 시 페이지 강제 이동
   }
   var xhr = new XMLHttpRequest();
-  var recent = sessionStorage.getItem("recent");
-  if (recent != undefined && recent != null) {
-    var split_data = recent.split("?");
-    if (split_data.find(value) == undefined) {
-      sessionStorage.setItem("recent", recent + "?" + value);
-    }
-  } else {
-    sessionStorage.setItem("recent", recent + "?" + value);
-  }
 
   xhr.onreadystatechange = function () {
     if (xhr.readyState === xhr.DONE) {
