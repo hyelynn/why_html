@@ -138,7 +138,7 @@
                     <div class="col-lg-6 custom-inputs-sub not">
                         <div class="d-flex">
                             <div class="flex-fill mr-lg-4 mr-2">
-                                <input type="text" class="form-control" id="host_safe_no" placeholder="예) 0507-1234-5678">
+                                <input type="text" class="form-control" id="host_safe_no" readOnly placeholder="예) 0507-1234-5678">
                             </div>
                             <button type="button" onclick="give_me_num();" class="btn flex-fill w-md-25 bg-yellow whitespace-nowrap">안심번호 생성</button>
                         </div>
@@ -378,21 +378,22 @@
         var auth = iid+phone
         auth = btoa(CryptoJS.MD5(auth));
 
-        var data = new FormData();
-        data.append("iid",iid);
-        data.append("rn",phone);
-        data.append("auth",auth);
-           
-        $.ajax({
-            type : "POST",
-            dataType : "multipart/form-data",
-            url : request_url,
-            data : data,
-            success : function(data) {
-                alert(data.rt+"::::"+data.vn);
-                document.getElementById('host_safe_no').value = data.vn;
+        var xhr = new XMLHttpRequest();
+        xhr.onreadystatechange = function() { 
+            if (xhr.readyState === xhr.DONE) { 
+                if (xhr.status === 200 || xhr.status === 201) {
+                    var result = JSON.parse(xhr.responseText);
+                    document.getElementById('host_safe_no').value = result.vn;
+                } else {
+                }
+            }else{
             }
-        });
+        };
+        
+        xhr.open('POST', request_url);
+        xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+        xhr.send("iid="+iid+"&rn="+phone+"&auth="+auth);
+           
     }
     
     document.getElementById("host_id").addEventListener('input', function(){

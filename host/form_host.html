@@ -21,6 +21,7 @@
     <script src="/js/kakao_sdk.js"></script>
     <script src="/js/include.js"></script>
     <script src="https://sdk.amazonaws.com/js/aws-sdk-2.283.1.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/3.1.2/rollups/aes.js"></script>
     
     <script>
         Kakao.init('d88bea310f4a39afbea3146fe1c0fa72');
@@ -89,13 +90,13 @@
                                 <div class="input-group">
                                     <input type="text" class="form-control" id="host_phone" placeholder="010-1234-5678">
                                     <div class="input-group-append">
-                                        <button type="button" class="btn px-5 bg-yellow text-gray">변경</button>
+                                        <button type="button" onclick="give_me_num();" class="btn px-5 bg-yellow text-gray">변경</button>
                                     </div>
                                 </div>
                             </div>
                             <div class="col-lg-6">
                                 <label for="host_safe_no" class="d-block text-gray">내 가상번호</label>
-                                <input type="text" class="form-control" id="host_safe_no" value="0507-1234-5678" disabled>
+                                <input type="text" class="form-control" id="host_safe_no" disabled>
                             </div>
                         </div>
                     </div>
@@ -187,10 +188,11 @@
                         if(user[0].user_profile == null){
                             $("#profile").attr("src","/img/profile-img-default.jpg");
                         }else{
-                            $("#profile").attr("src","https://user-profile-artbyus.s3.ap-northeast-2.amazonaws.com/"+user[0].user_profile);
+                            $("#profile").attr("src",user[0].user_profile);
                         }
                         $("#host_nickname").val(user[0].user_nickname);
-                        $("#host_phone").val(user[0].user_nickname);
+                        $("#host_phone").val(user[0].user_phone);
+                        $("#host_safe_no").val(user[0].biz_num);
                         if(user[0].user_sms){
                             $("#agree_sms").attr("checked", true); 
                         }else{
@@ -268,12 +270,40 @@
             }
         }
   
-    
+        function give_me_num(){
+            var phone = document.getElementById("host_phone").value;
+            if(phone == ''){
+                alert("핸드폰 번호를 입력해 주세요");
+                return false;
+            }
+            var request_url = "https://api.050bizcall.co.kr/link/auto_mapp.do";
+            var iid = "alespldwaidgha713frq";
+            var auth = iid+phone
+            auth = btoa(CryptoJS.MD5(auth));
+
+            var xhr = new XMLHttpRequest();
+            xhr.onreadystatechange = function() { 
+                if (xhr.readyState === xhr.DONE) { 
+                    if (xhr.status === 200 || xhr.status === 201) {
+                        var result = JSON.parse(xhr.responseText);
+                        document.getElementById('host_safe_no').value = result.vn;
+                    } else {
+                    }
+                }else{
+                }
+            };
+            
+            xhr.open('POST', request_url);
+            xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+            xhr.send("iid="+iid+"&rn="+phone+"&auth="+auth);
+            
+        }
+
         function upUser(){
             var id = document.getElementById("email_text").value;
             var host_nickname = document.getElementById("host_nickname").value;
             var host_phone = document.getElementById("host_phone").value;
-            var profile =  sessionStorage.getItem("id")+"_profile.jpg"
+            // var profile =  sessionStorage.getItem("id")+"_profile.jpg"
             var profile =  "jmnu1203_profile.jpg"
             var agree_sms = $('input:checkbox[id="agree_sms"]').is(":checked");
             var agree_email = $('input:checkbox[id="agree_email"]').is(":checked");
@@ -293,14 +323,13 @@
                 }else{
                 }
             };
+
             xhr.open('POST', 'http://3.34.150.116:3000/user/modify',true);
             xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
             xhr.send("user_id="+id+"&user_nickname="+host_nickname+"&user_phone="+host_phone+
             "&user_prof="+profile+"&user_sms="+agree_sms+"&user_mail="+agree_email
-            // +"&biz_num="+host_safe_no
+            +"&biz_num="+host_safe_no
             );
-
-
         }
 
         function delUser(){
