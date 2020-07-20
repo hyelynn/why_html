@@ -28,7 +28,7 @@ $(document).ready(function () {
           price = parseInt(result[0].class_price);
           //max = parseInt(result[0].studio_max);
           //people_price = parseInt(result[0].studio_people_price);
-          title = result[0].studio_name;
+          title = result[0].class_name;
 
           if (i == 0) {
             indi =
@@ -64,7 +64,7 @@ $(document).ready(function () {
         );
 
         var info = "";
-        var splitInfo = result[0].class_info.split('/');
+        var splitInfo = JSON.stringify(result[0].class_info).split('/');
 
         for (var s in splitInfo) {
           info += s + "<br>";
@@ -81,7 +81,7 @@ $(document).ready(function () {
         );
 
         var rule = "";
-        var rules = result[0].class_rule.split('/');
+        var rules = JSON.stringify(result[0].class_rule).split('/');
 
         for (var s in rules) {
           rule += s + "<br>";
@@ -97,7 +97,7 @@ $(document).ready(function () {
         );
 
         var g = "";
-        var gs = result[0].class_howabout.split('/');
+        var gs = JSON.stringify(result[0].class_howabout).split('/');
 
         for (var s in gs) {
           g += s + "<br>";
@@ -124,7 +124,7 @@ $(document).ready(function () {
         );
       } else {
         alert("접속 오류");
-        location.href = "studio.html"; //잘못된 접속 시 페이지 강제 이동
+        location.href = "class.html"; //잘못된 접속 시 페이지 강제 이동
       }
     } else {
     }
