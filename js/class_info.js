@@ -65,6 +65,7 @@ $(document).ready(function () {
 
         var info = "";
         var splitInfo = JSON.stringify(result[0].class_info).split('/');
+        console.log(JSON.stringify(result[0].class_info));
 
         for (var s in splitInfo) {
           info += s + "<br>";
@@ -82,6 +83,7 @@ $(document).ready(function () {
 
         var rule = "";
         var rules = JSON.stringify(result[0].class_rule).split('/');
+        console.log(JSON.stringify(result[0].class_rule));
 
         for (var s in rules) {
           rule += s + "<br>";
@@ -98,7 +100,7 @@ $(document).ready(function () {
 
         var g = "";
         var gs = JSON.stringify(result[0].class_howabout).split('/');
-
+            console.log(JSON.stringify(result[0].class_howabout));
         for (var s in gs) {
           g += s + "<br>";
         }
