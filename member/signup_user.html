@@ -223,7 +223,7 @@
         var phone = document.getElementById("user_phone").value;
         var request_url = "https://alimtalk-api.bizmsg.kr/v2/sender/send";
         var message_type = "at";
-        var phn = "821040896927";
+        var phn = "82"+phone.substring(1);
         var profile = "ce295b05ccf1144d9a13283351fd58bdc5805fdb";
         var tmplId = "artbyus-1";
         var msg = `${ran_code}
