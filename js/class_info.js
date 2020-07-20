@@ -64,8 +64,7 @@ $(document).ready(function () {
         );
 
         var info = "";
-        var splitInfo = JSON.stringify(result[0].class_info).split('\/');
-        console.log(JSON.stringify(result[0].class_info));
+        var splitInfo = result[0].class_info.split('/');
 
         for (var s in splitInfo) {
           info += splitInfo[s] + "<br>";
@@ -82,8 +81,7 @@ $(document).ready(function () {
         );
 
         var rule = "";
-        var rules = JSON.stringify(result[0].class_rule).split('/');
-        console.log(JSON.stringify(result[0].class_rule));
+        var rules = result[0].class_rule.split('/');
 
         for (var s in rules) {
           rule += rules[s] + "<br>";
@@ -99,8 +97,7 @@ $(document).ready(function () {
         );
 
         var g = "";
-        var gs = JSON.stringify(result[0].class_howabout).split('/');
-            console.log(JSON.stringify(result[0].class_howabout));
+        var gs = result[0].class_howabout.split('/');
         for (var s in gs) {
           g += gs[s] + "<br>";
         }
