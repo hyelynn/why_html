@@ -9,7 +9,7 @@ var curr_price = 0;
 
 $(document).ready(function () {
   var valnum = Number(value);
-
+  console.log(valnum);
   var regexp = /^[0-9]*$/;
   if (!regexp.test(valnum)) {
     alert("접속 오류");

@@ -37,7 +37,7 @@
             selectOtherYears: true,
             moveToOtherYearsOnSelect: true,
 
-            minDate: '',
+            minDate: '-1d',
             maxDate: '',
             disableNavWhenOutOfRange: true,
 
