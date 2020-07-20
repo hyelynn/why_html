@@ -9,7 +9,7 @@ var curr_price = 0;
 
 $(document).ready(function () {
   var valnum = Number(value);
-  console.log(valnum);
+
   var regexp = /^[0-9]*$/;
   if (!regexp.test(valnum)) {
     alert("접속 오류");
@@ -64,11 +64,11 @@ $(document).ready(function () {
         );
 
         var info = "";
-        var splitInfo = JSON.stringify(result[0].class_info).split('/');
+        var splitInfo = JSON.stringify(result[0].class_info).split('\/');
         console.log(JSON.stringify(result[0].class_info));
 
         for (var s in splitInfo) {
-          info += s + "<br>";
+          info += splitInfo[s] + "<br>";
         }
 
         $("#info").append(
@@ -86,7 +86,7 @@ $(document).ready(function () {
         console.log(JSON.stringify(result[0].class_rule));
 
         for (var s in rules) {
-          rule += s + "<br>";
+          rule += rules[s] + "<br>";
         }
 
         $("#terms").append(
@@ -102,7 +102,7 @@ $(document).ready(function () {
         var gs = JSON.stringify(result[0].class_howabout).split('/');
             console.log(JSON.stringify(result[0].class_howabout));
         for (var s in gs) {
-          g += s + "<br>";
+          g += gs[s] + "<br>";
         }
 
         $("#guide").append(
