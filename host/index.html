@@ -260,14 +260,11 @@
     <!-- include -->
     <script type="text/javascript">
         $(function () {
-            // 인덱스 헤더
-           $('#header').load('include/common/header_host.html')
-           // 모달
-           $('#modals').load('include/common/header_modal.html')
-           // 광고 슬라이드
+            if (sessionStorage.getItem('user_type') != 'h') {
+                alert('권한이 없습니다');
+                location.href = '/index.html';
+            }
            $('#carouselSlide').load('include/common/carousel_slide.html')
-           // 인덱스 푸터
-           $('#footer').load('include/common/footer_host.html')
         });
     </script>
 </body>

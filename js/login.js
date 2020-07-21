@@ -22,12 +22,7 @@ function normal_login() {
         sessionStorage.setItem("phone", result.user_phone);
         sessionStorage.setItem("name", result.user_name);
         sessionStorage.setItem("prof", result.user_profile);
-
-        alert(result.user_type)
-        if (result.user_type == 'us')
-          location.href = '/index.html';
-        else
-          location.href = '/host/index.html';
+        sessionStorage.setItem("user_type", result.user_type);
       } else {
         alert("아이디와 비밀번호 중 잘못된 정보가 있습니다.");
         document.getElementById("login_email").value = "";
