@@ -128,7 +128,7 @@ $(document).ready(function () {
               "<p class='text-light-gray font-size-xs'>" +
               result[0].biz_introduce +
               "</p>" +
-              "<button type='button' class='btn rounded-pill px-lg-5 px-3 py-2 border-yellow font-size-xs mr-2'>전화하기</button>" +
+              "<button type='button' class='btn rounded-pill px-lg-5 px-3 py-2 border-yellow font-size-xs mr-2'  data-target='#notifyModal'>전화하기</button>" +
               "<button type='button' class='btn rounded-pill px-lg-5 px-3 py-2 border-yellow font-size-xs'>메시지 전송</button></div></div>"
           )
         );
@@ -156,6 +156,10 @@ $(document).ready(function () {
             "<textarea id='review_text' class='form-control medium-textarea' placeholder='작성된 후기는 전체 공개 됩니다.'></textarea></div></div>"+
             "<button type='button' onclick='sendReview();' class='btn bg-yellow w-lg-65 w-100 py-md-4 py-2 h-auto rounded-0 font-size-s' data-dismiss='modal'>리뷰 작성하기</button></div></div></div>"
           )
+        )
+
+        $("#notifytext").append(
+          $("<p class='text-gray wordbreak-keep-all'>"+result[0].biz_num+"</p>")
         )
 
         $("#star-rating").starRating({
