@@ -1,9 +1,18 @@
 function login_header() {
   var nickname = sessionStorage.getItem("nickname");
   var img = sessionStorage.getItem("prof");
-  console.log(img);
+  
+  if (navigator.geolocation) {
+    navigator.geolocation.getCurrentPosition(function(pos) {
+      sessionStorage.setItem("lat", pos.coords.latitude)
+      sessionStorage.setItem("lng", pos.coords.longitude)
+    })
+  } else {
+    alert('해당 브라우저에서는 위치정보를 제공하지 않습니다')
+  }
+
   if (img == undefined || img == 'undefined') {
-    img = "/img/studio.png";
+    img = "/img/default.png";
   }
 
   if (nickname != null) {
@@ -122,4 +131,15 @@ function copyToClipboard() {
   document.execCommand('copy');
   document.body.removeChild(t);
   alert('링크 복사 완료');
+}
+
+
+// wishlist btn
+function addWishList(obj) {
+  let icon = $(obj).find('i');
+  if (icon.hasClass('far fa-heart')) {
+      $(icon).attr('class', 'fas fa-heart text-red');
+  } else {
+      $(icon).attr('class', 'far fa-heart');
+  }
 }

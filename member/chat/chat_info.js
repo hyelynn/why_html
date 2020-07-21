@@ -62,47 +62,33 @@ function send_chat() {
     var send_msg = $("#msg").val();
     $("#msg").value = '';
 
-    console.log(send_msg);
-  
-    if (window.event.keyCode == 13) {
-      xhr.onreadystatechange = function () {
-        if (xhr.readyState === xhr.DONE) {
-          if (xhr.status === 200 || xhr.status === 201) {
-            var result = JSON.parse(xhr.responseText);
-            for (var i = 0; i < result.length; i++) {
-              //chat_img user_email chat_msg chat_date
-              var msg = "<div class='d-flex justify-content-end mb-3'>" +
-                        "<div class='ml-auto font-weight-light user-msg'>" +
-                        "<div class='bg-sky rounded-xl p-md-3 p-2 mb-2 text-white chat-msg'>" +
-                        img +
-                        "<p class='mb-0'>+" +
-                        send_msg +
-                        "+</p></div>" +
-                        "<p class='text-light-gray font-size-xs'> 방금 전 </p></div></div>";
-  
-              $("#msgs").append($(msg));
-  
-              if (result.length <= 0) {
-                alert('진행중인 채팅이 없습니다.');
-              }
-            }
-          }
-        }
-      };
+    xhr.onreadystatechange = function () {
+      if (xhr.readyState === xhr.DONE) {
+        if (xhr.status === 200 || xhr.status === 201) {
+          var msg = "<div class='d-flex justify-content-end mb-3'>" +
+                      "<div class='ml-auto font-weight-light user-msg'>" +
+                      "<div class='bg-sky rounded-xl p-md-3 p-2 mb-2 text-white chat-msg'>" +
+                      img +
+                      "<p class='mb-0'>+" +
+                      send_msg +
+                      "+</p></div>" +
+                      "<p class='text-light-gray font-size-xs'> 방금 전 </p></div></div>";
 
-      xhr.open("POST", "http://3.34.150.116:3000/chat/send");
-      xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-      xhr.send(
-        "user_id=" +
-          id +
-          "&host_id=" +
-          value +
-          "&chat_img=" +
-          send_img +
-          "&chat_msg=" +
-          send_msg
-      );
-    }
-  
-    
+          $("#msgs").append($(msg));
+        }
+      }
+    };
+
+    xhr.open("POST", "http://3.34.150.116:3000/chat/send");
+    xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+    xhr.send(
+      "user_id=" +
+        id +
+        "&host_id=" +
+        value +
+        "&chat_img=" +
+        send_img +
+        "&chat_msg=" +
+        send_msg
+    );
   }

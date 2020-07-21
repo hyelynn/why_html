@@ -145,6 +145,23 @@ $(document).ready(function () {
               "</p>"
           )
         );
+
+        $(".star-rating").starRating({
+          initialRating: 3.5,
+          disableAfterRate: false,
+          strokeWidth: 0,
+          useGradient: false,
+          emptyColor: "#f1f1f1",
+          activeColor: "#ffde3b",
+          ratedColor: "#ffde3b",
+          hoverColor: "#ffde3b",
+          onHover: function (currentIndex, currentRating, $el) {
+            $(".live-rating").text(currentIndex);
+          },
+          onLeave: function (currentIndex, currentRating, $el) {
+            $(".live-rating").text(currentRating);
+          },
+        });
       } else {
         alert("접속 오류");
         location.href = "studio.html"; //잘못된 접속 시 페이지 강제 이동
@@ -153,22 +170,7 @@ $(document).ready(function () {
     }
   };
 
-  $(".star-rating").starRating({
-    initialRating: 3.5,
-    disableAfterRate: false,
-    strokeWidth: 0,
-    useGradient: false,
-    emptyColor: "#f1f1f1",
-    activeColor: "#ffde3b",
-    ratedColor: "#ffde3b",
-    hoverColor: "#ffde3b",
-    onHover: function (currentIndex, currentRating, $el) {
-      $(".live-rating").text(currentIndex);
-    },
-    onLeave: function (currentIndex, currentRating, $el) {
-      $(".live-rating").text(currentRating);
-    },
-  });
+  
 
   xhr.open("POST", "http://3.34.150.116:3000/studio/info");
   xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
