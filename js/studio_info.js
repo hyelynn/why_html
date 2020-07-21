@@ -203,9 +203,10 @@ function start_chat() {
     location.reload();
   } else {
     var xhr = new XMLHttpRequest();
-    xhr.open("POST", "http://3.34.150.116:3000/studio/info");
+    xhr.open("POST", "http://3.34.150.116:3000/chat/start");
     xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-    xhr.send("studio_key=" + value);
+    console.log("from=" + id + "&dest=" + host);
+    xhr.send("from=" + id + "&dest=" + host);
   }
 }
 
