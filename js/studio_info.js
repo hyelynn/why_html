@@ -26,6 +26,7 @@ $(document).ready(function () {
             img = "";
 
           price = parseInt(result[0].studio_price);
+          curr_price = price;
           max = parseInt(result[0].studio_max);
           people_price = parseInt(result[0].studio_people_price);
           title = result[0].studio_name;
