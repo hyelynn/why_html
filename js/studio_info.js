@@ -131,7 +131,7 @@ $(document).ready(function () {
               result[0].biz_introduce +
               "</p>" +
               "<button type='button' class='btn rounded-pill px-lg-5 px-3 py-2 border-yellow font-size-xs mr-2'  data-target='#notifyModal'>전화하기</button>" +
-              "<button type='button' class='btn rounded-pill px-lg-5 px-3 py-2 border-yellow font-size-xs'>메시지 전송</button></div></div>"
+              "<button type='button' class='btn rounded-pill px-lg-5 px-3 py-2 border-yellow font-size-xs' onclick='start_chat();'>메시지 전송</button></div></div>"
           )
         );
 
@@ -207,6 +207,14 @@ function start_chat() {
     location.reload();
   } else {
     var xhr = new XMLHttpRequest();
+    xhr.onreadystatechange = function () {
+      if (xhr.readyState === xhr.DONE) {
+        if (xhr.status === 200 || xhr.status === 201) { 
+          location.href = '/member/chat_user_view.html?' + host;
+        }
+      }
+    }
+
     xhr.open("POST", "http://3.34.150.116:3000/chat/start");
     xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
     console.log("from=" + id + "&dest=" + host);

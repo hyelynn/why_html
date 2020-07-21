@@ -1389,7 +1389,6 @@
 
     datepicker.getParsedDate = function (date) {
         return {
-            year: date.getFullYear(),
             month: date.getMonth(),
             fullMonth: (date.getMonth() + 1) < 10 ? '0' + (date.getMonth() + 1) : date.getMonth() + 1, // One based
             date: date.getDate(),
