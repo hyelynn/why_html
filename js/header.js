@@ -4,15 +4,16 @@ function login_header() {
   
   if (navigator.geolocation) {
     navigator.geolocation.getCurrentPosition(function(pos) {
-      sessionStorage.setItem("lat", pos.coords.latitude)
-      sessionStorage.setItem("lng", pos.coords.longitude)
+      sessionStorage.setItem("lat", pos.coords.latitude);
+      sessionStorage.setItem("lng", pos.coords.longitude);
+      console.log(pos);
     })
   } else {
     alert('해당 브라우저에서는 위치정보를 제공하지 않습니다')
   }
 
   if (img == undefined || img == 'undefined') {
-    img = "/img/default.png";
+    img = "/img/profile_default.png";
   }
 
   if (nickname != null) {
@@ -142,4 +143,8 @@ function addWishList(obj) {
   } else {
       $(icon).attr('class', 'far fa-heart');
   }
+}
+
+function numberFormat(inputNumber) {
+  return inputNumber.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 }

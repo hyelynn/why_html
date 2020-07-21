@@ -12,7 +12,6 @@ $(document).ready(function(){
         //성공 시
         success : function(data) {
 
-        console.log(data);
 
         $.each(data, function(index, item){
             $("#show_list").append(
@@ -32,7 +31,6 @@ $(document).ready(function(){
                 "<span class='text-red font-weight-bold font-size-l'>"+item.studio_price+"</span><span class='text-dark font-weight-light pl-1 font-size-s'>원/" +item.studio_price_type +"</span>"+
                "</a> </div></div>"
                 ));
-       
         });
 
         },

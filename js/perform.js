@@ -26,7 +26,7 @@ $(document).ready(function(){
                 "<p class='font-weight-light text-red font-size-sm'>"+item.perform_location+"</p>"+
                 "<p class='font-weight-light overflow-hidden list-card-content text-light-gray font-size-sm'>"+item.perform_subname+"</p>"+
                 "<p class='font-weight-light mb-0 text-light-gray font-size-sm'>2020.04.03</p>"+
-                "<a href='performance_view.html' class='stretched-link text-decoration-none'></a></div></div></div>"
+                "<a href='performance_view.html?"+item.perform_id+"' class='stretched-link text-decoration-none'></a></div></div></div>"
                 ));
         });
 
