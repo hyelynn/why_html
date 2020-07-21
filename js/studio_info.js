@@ -78,7 +78,7 @@ $(document).ready(function () {
             "<div class='my-5'>" +
               "<h4 class='mb-4 text-bullet'>소개</h4>" +
               "<p class='font-weight-light font-size-s'>" +
-              splitInfo +
+              info +
               "</p></div>" +
               "<div class='my-5'>" +
               "<h4 class='mb-4 text-bullet'>편의시설</h4>" +
