@@ -341,7 +341,7 @@
                             <button type="button" data-toggle="modal" data-target="#notifyModal"
                                 class="btn w-50 py-3 border-0 rounded-0 font-weight-light">전화하기</button>
                             <span class="d-inline-block my-3" style="border-right: 1px solid #fff"></span>
-                            <button type="button" class="btn w-50 py-3 border-0 rounded-0 font-weight-light">1:1 채팅</button>
+                            <button type="button" class="btn w-50 py-3 border-0 rounded-0 font-weight-light" onclick='start_chat();'>1:1 채팅</button>
                         </div>
                     </div>
                 </div>
@@ -352,8 +352,6 @@
     <footer include-html="/include/footer.html"></footer>
     <script>includeHTML({});</script>
     <script>login_header();</script>
-    <script>price_maker();</script>
-    <script>load_review(); load_qna();</script>
 
     <script src="/js/naver_login.js"></script>
     <script src="/js/login.js"></script>

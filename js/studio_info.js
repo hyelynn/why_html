@@ -181,6 +181,10 @@ $(document).ready(function () {
             $(".live-rating").text(currentRating);
           },
         });
+
+        price_maker();
+        load_review();
+         load_qna();
       } else {
         alert("접속 오류");
         location.href = "studio.html"; //잘못된 접속 시 페이지 강제 이동
