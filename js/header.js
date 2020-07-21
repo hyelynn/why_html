@@ -143,6 +143,8 @@ function addWishList(obj) {
   } else {
       $(icon).attr('class', 'far fa-heart');
   }
+
+  let id = $(obj).find('i');
 }
 
 function numberFormat(inputNumber) {

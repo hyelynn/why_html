@@ -48,7 +48,7 @@ function initialize(curr) {
               "'></li>";
             img =
               "<div class='carousel-item'><img src='" +
-              result[i].obj_images +
+              result[i]._images +
               "' class='d-block w-100' alt='...'></div>";
           }
 
@@ -165,6 +165,11 @@ function initialize(curr) {
 
         $("#notifytext").append(
           $("<p class='text-gray wordbreak-keep-all'>"+result[0].biz_num+"</p>")
+        )
+        $("#like").append(
+          "<button type='button' class='btn border rounded-xl bg-white btn-block py-2'onclick='addWishList(this);'><i class='far fa-heart'></i>"+
+          "<id id ='studio_index' style='display: none;''>"+result[0].obj_key +"</id>"+
+          "<span class='ml-1 font-size-xs'>"+result[0].obj_like+"</span></button>"
         )
         $(".live-rating").text(3.5);
         $("#star-rating").starRating({
