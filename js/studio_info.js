@@ -67,7 +67,7 @@ $(document).ready(function () {
         );
 
         var info = "";
-        var splitInfo = result[0].studio_info.split('.');
+        var splitInfo = result[0].studio_info.split(".");
 
         for (var s in splitInfo) {
           info += s + "<br>";
@@ -151,29 +151,28 @@ $(document).ready(function () {
     } else {
     }
   };
-  
-  $('.star-rating').starRating({
+
+  $(".star-rating").starRating({
     initialRating: 3.5,
     disableAfterRate: false,
     strokeWidth: 0,
     useGradient: false,
-    emptyColor: '#f1f1f1',
-    activeColor: '#ffde3b',
-    ratedColor: '#ffde3b',
-    hoverColor: '#ffde3b',
-    onHover: function(currentIndex, currentRating, $el){
-      $('.live-rating').text(currentIndex);
+    emptyColor: "#f1f1f1",
+    activeColor: "#ffde3b",
+    ratedColor: "#ffde3b",
+    hoverColor: "#ffde3b",
+    onHover: function (currentIndex, currentRating, $el) {
+      $(".live-rating").text(currentIndex);
     },
-    onLeave: function(currentIndex, currentRating, $el){
-      $('.live-rating').text(currentRating);
-    }
-})
+    onLeave: function (currentIndex, currentRating, $el) {
+      $(".live-rating").text(currentRating);
+    },
+  });
 
   xhr.open("POST", "http://3.34.150.116:3000/studio/info");
   xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
   xhr.send("studio_key=" + value);
 });
-
 
 function load_qna() {
   var valnum = Number(value);
@@ -190,26 +189,40 @@ function load_qna() {
       if (xhr.status === 200 || xhr.status === 201) {
         var result = JSON.parse(xhr.responseText);
         for (var i = 0; i < result.length; i++) {
-          var suffix = ""
+          var suffix = "";
 
-          if (result[i].qna_answer != 'undefined' && result[i].qna_answer != null) {
-            suffix = 
-            "<li class='mb-3'><div class='d-flex'><div class='mr-lg-4 mr-2'><span class='d-inline-block rounded-circle user-bg'></span></div>" + 
-            "<div class='border-bottom pb-4 mb-4'>"+
-            "<p class='text-sky font-size-m'>호스트의 답변</p>"+
-            "<p class='font-weight-light font-size-s text-light-gray'>"+result[i].qna_answer+"</p>"+
-            "<p class='text-light-gray-more font-size-xs'>"+moment(result[i].qna_answer_date).format('YYYY-MM-DD HH:mm')+"</p></div></div></li>"
+          if (
+            result[i].qna_answer != "undefined" &&
+            result[i].qna_answer != null
+          ) {
+            suffix =
+              "<li class='mb-3'><div class='d-flex'><div class='mr-lg-4 mr-2'><span class='d-inline-block rounded-circle user-bg'></span></div>" +
+              "<div class='border-bottom pb-4 mb-4'>" +
+              "<p class='text-sky font-size-m'>호스트의 답변</p>" +
+              "<p class='font-weight-light font-size-s text-light-gray'>" +
+              result[i].qna_answer +
+              "</p>" +
+              "<p class='text-light-gray-more font-size-xs'>" +
+              moment(result[i].qna_answer_date).format("YYYY-MM-DD HH:mm") +
+              "</p></div></div></li>";
           }
 
           $("#qnas").append(
             $(
-              "<li class='mb-3'><div class='d-flex'><div class='mr-lg-4 mr-2'><span class='d-inline-block rounded-circle user-bg'></span></div>"+
-              "<div class=''><p class='font-size-m'> "+result[i].user_nickname+" </p>"+
-              "<p class='font-weight-light font-size-s text-light-gray'>"+result[i].qna_msg+"</p>"+
-              "<p class='text-light-gray-more font-size-xs'>"+moment(result[i].qna_date).format('YYYY-MM-DD HH:mm')+"</p></div></div></li>"+suffix
+              "<li class='mb-3'><div class='d-flex'><div class='mr-lg-4 mr-2'><span class='d-inline-block rounded-circle user-bg'></span></div>" +
+                "<div class=''><p class='font-size-m'> " +
+                result[i].user_nickname +
+                " </p>" +
+                "<p class='font-weight-light font-size-s text-light-gray'>" +
+                result[i].qna_msg +
+                "</p>" +
+                "<p class='text-light-gray-more font-size-xs'>" +
+                moment(result[i].qna_date).format("YYYY-MM-DD HH:mm") +
+                "</p></div></div></li>" +
+                suffix
             )
-          )
-        }  
+          );
+        }
       } else {
         alert("접속 오류");
         location.href = "studio.html"; //잘못된 접속 시 페이지 강제 이동
@@ -240,33 +253,52 @@ function load_review() {
         var totalscore = 0.0;
         for (var i = 0; i < result.length; i++) {
           totalscore += parseFloat(result[i].review_score);
-          var suffix = ""
+          var suffix = "";
 
-          if (result[i].review_answer != 'undefined' && result[i].review_answer != null) {
-            suffix = 
-            "<li class='mb-3'><div class='d-flex'><div class='mr-lg-4 mr-2'><span class='d-inline-block rounded-circle user-bg'></span></div>" + 
-            "<div class='border-bottom pb-4 mb-4'>"+
-            "<p class='text-sky font-size-m'>호스트의 답변</p>"+
-            "<p class='font-weight-light font-size-s text-light-gray'>"+result[i].review_answer+"</p>"+
-            "<p class='text-light-gray-more font-size-xs'>"+moment(result[i].review_answer_date).format('YYYY-MM-DD HH:mm')+"</p></div></div></li>"
+          if (
+            result[i].review_answer != "undefined" &&
+            result[i].review_answer != null
+          ) {
+            suffix =
+              "<li class='mb-3'><div class='d-flex'><div class='mr-lg-4 mr-2'><span class='d-inline-block rounded-circle user-bg'></span></div>" +
+              "<div class='border-bottom pb-4 mb-4'>" +
+              "<p class='text-sky font-size-m'>호스트의 답변</p>" +
+              "<p class='font-weight-light font-size-s text-light-gray'>" +
+              result[i].review_answer +
+              "</p>" +
+              "<p class='text-light-gray-more font-size-xs'>" +
+              moment(result[i].review_answer_date).format("YYYY-MM-DD HH:mm") +
+              "</p></div></div></li>";
           }
 
           $("#reviews").append(
             $(
-              "<li class='mb-3'><div class='d-flex'><div class='mr-lg-4 mr-2'><span class='d-inline-block rounded-circle user-bg'></span></div>"+
-              "<div class=''><p class='font-size-m'> "+result[i].user_nickname+
-              "<span class='float-right font-weight-light font-size-s text-light-gray'>★"+result[i].review_score+"/5</span> </p>"+
-              "<p class='font-weight-light font-size-s text-light-gray'>"+result[i].review_msg+"</p>"+
-              "<p class='text-light-gray-more font-size-xs'>"+moment(result[i].review_date).format('YYYY-MM-DD HH:mm')+"</p></div></div></li>"+suffix
+              "<li class='mb-3'><div class='d-flex'><div class='mr-lg-4 mr-2'><span class='d-inline-block rounded-circle user-bg'></span></div>" +
+                "<div class=''><p class='font-size-m'> " +
+                result[i].user_nickname +
+                "<span class='float-right font-weight-light font-size-s text-light-gray'>★" +
+                result[i].review_score +
+                "/5</span> </p>" +
+                "<p class='font-weight-light font-size-s text-light-gray'>" +
+                result[i].review_msg +
+                "</p>" +
+                "<p class='text-light-gray-more font-size-xs'>" +
+                moment(result[i].review_date).format("YYYY-MM-DD HH:mm") +
+                "</p></div></div></li>" +
+                suffix
             )
-          )
+          );
         }
-        
-        $("#review_info").prepend($(
-          "<h4 class='mb-md-4 mb-2 text-bullet'>이용후기 <span class='text-sky font-weight-light ml-3 mr-2'> "+
-          result.length+"개 </span> 평균 <span class='text-sky font-weight-light'>★"+
-          totalscore/result.length+"/5</span></h4>"
-        ));
+
+        $("#review_info").prepend(
+          $(
+            "<h4 class='mb-md-4 mb-2 text-bullet'>이용후기 <span class='text-sky font-weight-light ml-3 mr-2'> " +
+              result.length +
+              "개 </span> 평균 <span class='text-sky font-weight-light'>★" +
+              totalscore / result.length +
+              "/5</span></h4>"
+          )
+        );
       } else {
         alert("접속 오류");
         location.href = "studio.html"; //잘못된 접속 시 페이지 강제 이동

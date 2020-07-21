@@ -39,7 +39,7 @@ function initPlace() {
               item.studio_key +
               "' class='stretched-link text-decoration-none'>" +
               "<span class='text-red font-weight-bold font-size-l'>" +
-              item.studio_price +
+              item.studio_rp +
               "</span><span class='text-dark font-weight-light pl-1 font-size-s'>원/" +
               item.studio_price_type +
               "</span></a></div></div>"

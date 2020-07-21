@@ -37,7 +37,7 @@ function initClass() {
               item.class_key +
               "' class='stretched-link text-decoration-none'>" +
               "<span class='text-red font-weight-bold font-size-l'>" +
-              item.class_price +
+              item.class_rp +
               "</span><span class='text-dark font-weight-light pl-1 font-size-s'>원/" +
               item.class_price_type +
               "</span></a></div></div>"
