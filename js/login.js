@@ -23,7 +23,7 @@ function normal_login() {
         sessionStorage.setItem("name", result.user_name);
         sessionStorage.setItem("prof", result.user_profile);
 
-        console.log(result.user_type);
+        alert(result.user_type)
         if (result.user_type == 'us')
           location.href = '/index.html';
         else

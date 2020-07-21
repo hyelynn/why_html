@@ -67,7 +67,7 @@ $(document).ready(function () {
         );
 
         var info = "";
-        var splitInfo = result[0].studio_info;
+        var splitInfo = result[0].studio_info.split('.');
 
         for (var s in splitInfo) {
           info += s + "<br>";
@@ -138,7 +138,7 @@ $(document).ready(function () {
               result[0].studio_name +
               "</h6>" +
               "<p class='font-weight-bold mb-4 text-red font-size-l'>" +
-              result[0].studio_price +
+              result[0].studio_rp +
               "원/1" +
               result[0].studio_price_type +
               "</p>"
@@ -151,6 +151,23 @@ $(document).ready(function () {
     } else {
     }
   };
+  
+  $('.star-rating').starRating({
+    initialRating: 3.5,
+    disableAfterRate: false,
+    strokeWidth: 0,
+    useGradient: false,
+    emptyColor: '#f1f1f1',
+    activeColor: '#ffde3b',
+    ratedColor: '#ffde3b',
+    hoverColor: '#ffde3b',
+    onHover: function(currentIndex, currentRating, $el){
+      $('.live-rating').text(currentIndex);
+    },
+    onLeave: function(currentIndex, currentRating, $el){
+      $('.live-rating').text(currentRating);
+    }
+})
 
   xhr.open("POST", "http://3.34.150.116:3000/studio/info");
   xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");

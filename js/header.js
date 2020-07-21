@@ -2,7 +2,7 @@ function login_header() {
   var nickname = sessionStorage.getItem("nickname");
   var img = sessionStorage.getItem("prof");
   console.log(img);
-  if (img == undefined) {
+  if (img == undefined || img == 'undefined') {
     img = "/img/studio.png";
   }
 
@@ -112,4 +112,14 @@ function login_header() {
       )
     );
   }
+}
+
+function copyToClipboard() {
+  var t = document.createElement("textarea");
+  document.body.appendChild(t);
+  t.value = location.href;
+  t.select();
+  document.execCommand('copy');
+  document.body.removeChild(t);
+  alert('링크 복사 완료');
 }

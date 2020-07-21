@@ -87,26 +87,6 @@ $(function () {
         })
     }
 
-    // view 페이지 별점
-    if ($('.tab-content #review').length > 0) {
-        $('.star-rating').starRating({
-            initialRating: 3.5,
-            disableAfterRate: false,
-            strokeWidth: 0,
-            useGradient: false,
-            emptyColor: '#f1f1f1',
-            activeColor: '#ffde3b',
-            ratedColor: '#ffde3b',
-            hoverColor: '#ffde3b',
-            onHover: function(currentIndex, currentRating, $el){
-              $('.live-rating').text(currentIndex);
-            },
-            onLeave: function(currentIndex, currentRating, $el){
-              $('.live-rating').text(currentRating);
-            }
-        })
-    }
-
     // 인풋 활성/비활성
     $('#order_def').on('change', function () {
         if ($(this).prop('checked') === true) {
