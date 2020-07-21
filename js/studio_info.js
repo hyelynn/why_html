@@ -70,7 +70,7 @@ $(document).ready(function () {
         var splitInfo = result[0].studio_info.split(".");
 
         for (var s in splitInfo) {
-          info += s + "<br>";
+          info += splitInfo[s] + "<br>";
         }
 
         $("#info").append(
