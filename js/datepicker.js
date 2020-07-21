@@ -37,7 +37,7 @@
             selectOtherYears: true,
             moveToOtherYearsOnSelect: true,
 
-            minDate: '-1d',
+            minDate: '',
             maxDate: '',
             disableNavWhenOutOfRange: true,
 
@@ -1387,8 +1387,7 @@
         return new Date(date.getFullYear(), date.getMonth() + 1, 0).getDate();
     };
 
-    datepicker.getParsedDate = function (d) {
-        var date = new Date(d)
+    datepicker.getParsedDate = function (date) {
         return {
             year: date.getFullYear(),
             month: date.getMonth(),
