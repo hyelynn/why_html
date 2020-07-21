@@ -23,7 +23,7 @@ $(document).ready(function () {
             );
           }
 
-          if (result.length <= 0) {
+          if (result.length == undefined || result.length == 'undefined') {
             alert('현재 진행중인 채팅이 없습니다');
           }
         }
