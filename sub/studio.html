@@ -119,8 +119,8 @@
         <!-- search result - list -->
         <div class="container my-md-5 my-3">
             <div class="d-flex justify-content-between align-items-center mb-4 custom-inputs">
-                <h2 class="mb-0">검색결과 <span class="d-none ml-2 font-weight-light text-red">48건</span></h2>
-                <select name="" id="" class="form-control" style="width: 160px">
+                <h2 class="mb-0">검색결과</h2>
+                <select name="" id="sort" class="form-control" style="width: 160px" onchange="sort();">
                     <option value="random">랜덤순</option>
                     <option value="distance">거리순</option>
                     <option value="review">후기순</option>
@@ -141,23 +141,11 @@
 </body>
 
 <script>
+    function sort() {
+
+    }
  // datepicker
     $(function () {
-        // $('#datePicker').daterangepicker({
-        //     timePicker: true,
-        //     startDate: moment().startOf('hour'),
-        //     endDate: moment().startOf('hour').add(32, 'hour'),
-        //     locale: {
-        //         format: 'YY-MM-DD hh:00',
-        //         daysOfWeek: ['일', '월', '화', '수', '목', '금', '토'],
-        //         monthNames: ['JANUARY', 'FEBRUARY', 'MARCH', 'APRIL', 'MAY', 'JUNE', 'JULY', 'AUGUST', 'SEPTEMBER', 'OCTOBER', 'NOVEMBER', 'DECEMBER'],
-        //         applyLabel: '검색',
-        //         separator: ' ~ '
-        //     },
-        //     timePicker24Hour: true,
-        //     opens: 'left'
-        // });
-
         $('#datePicker').datepicker({
             language: 'ko',
             // multipleDatesSeparator: ' ~ ',
@@ -197,6 +185,9 @@
                         .append(timePicker)
                         .append(btn);
                 }
+            },
+            onchange: function() {
+                console.log('MM yyyy');
             }
         })
     });
@@ -205,12 +196,6 @@
     $('#locationInput').click( function () {
         $(this).siblings('#locationList').toggleClass('d-none');
     })
-
-    
-    $("#viewmore").on("click", function() {
-        $("#showview").show();
-        $("#viewmore").hide();
-    });
     
 </script>
 

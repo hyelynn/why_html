@@ -28,7 +28,7 @@ $(document).ready(function(){
                 "<h5 class='mt-lg-3 mt-2'>"+ item.studio_name +"</h5>"+
                 "<p class='font-weight-light border-bottom pb-2 mb-2 font-size-xs'>"+item.studio_subname+"</p>"+
                 "<a href='studio_view.html?"+item.studio_key+"' class='stretched-link text-decoration-none'>"+
-                "<span class='text-red font-weight-bold font-size-l'>"+item.studio_price+"</span><span class='text-dark font-weight-light pl-1 font-size-s'>원/" +item.studio_price_type +"</span>"+
+                "<span class='text-red font-weight-bold font-size-l'>"+item.studio_rp+"</span><span class='text-dark font-weight-light pl-1 font-size-s'>원/" +item.studio_price_type +"</span>"+
                "</a> </div></div>"
                 ));
         });

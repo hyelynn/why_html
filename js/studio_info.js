@@ -146,7 +146,19 @@ $(document).ready(function () {
           )
         );
 
-        $(".star-rating").starRating({
+        $("#reviewModal").append(
+          $(
+            "<div class='modal-dialog modal-xl custom-modal' role='document'><div class='modal-content px-lg-6 px-4 py-lg-5 py-5'><div class='modal-header p-0 mb-md-4 mb-2 border-0'>" +
+            "<h2 class='modal-title' id='reviewModalLabel'><span class='modal-title-text position-relative'><span class='text-underline'>"+result[0].studio_name +"</span></span>의<br>여러분의 리뷰를 남겨주세요</h2></div>"+
+            "<div class='modal-body p-0 custom-inputs text-center'><div class='text-left mb-md-3 mb-2 font-weight-light'>"+
+            "<p class='font-size-s mb-2'>별점</p><span id='star-rating' class='star-rating'></span><span class='live-rating align-middle ml-2'></span></div>"+
+            "<div class='text-left font-weight-light'><p class='font-size-s mb-2'>리뷰 내용</p><div class='input-group mb-4'>"+
+            "<textarea id='review_text' class='form-control medium-textarea' placeholder='작성된 후기는 전체 공개 됩니다.'></textarea></div></div>"+
+            "<button type='button' onclick='sendReview();' class='btn bg-yellow w-lg-65 w-100 py-md-4 py-2 h-auto rounded-0 font-size-s' data-dismiss='modal'>리뷰 작성하기</button></div></div></div>"
+          )
+        )
+
+        $("#star-rating").starRating({
           initialRating: 3.5,
           disableAfterRate: false,
           strokeWidth: 0,
