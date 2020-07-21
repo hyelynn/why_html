@@ -23,6 +23,8 @@ function normal_login() {
         sessionStorage.setItem("name", result.user_name);
         sessionStorage.setItem("prof", result.user_profile);
         sessionStorage.setItem("user_type", result.user_type);
+        
+        location.reload();
       } else {
         alert("아이디와 비밀번호 중 잘못된 정보가 있습니다.");
         document.getElementById("login_email").value = "";
