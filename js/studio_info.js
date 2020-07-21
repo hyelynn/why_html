@@ -3,7 +3,6 @@ var value = url.slice(url.indexOf("?") + 1, url.length).split("&");
 var price = 0;
 var max = 0;
 var people_price = 0;
-var img_link = "";
 var title = "";
 var curr_price = 0;
 var host = "";
@@ -40,9 +39,8 @@ function initialize(curr) {
               "' class='active'></li>";
             img =
               "<div class='carousel-item active'><img src='" +
-              result[i].obj_images +
+              result[i]._images +
               "' class='d-block w-100' alt='...'></div>";
-            img_link = result[i].obj_images;
           } else {
             indi =
               "<li data-target='#carouselStudioView' data-slide-to='" +
