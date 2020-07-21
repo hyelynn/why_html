@@ -49,7 +49,7 @@ $(document).ready(function () {
 
     xhr.open("POST", "http://3.34.150.116:3000/object/likes");
     xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-    xhr.send("ukey=" + idw);
+    xhr.send("ukey=" + id);
   } else {
     alert("로그인이 필요합니다");
   }
