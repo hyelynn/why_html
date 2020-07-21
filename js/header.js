@@ -137,14 +137,35 @@ function copyToClipboard() {
 
 // wishlist btn
 function addWishList(obj) {
-  let icon = $(obj).find('i');
-  if (icon.hasClass('far fa-heart')) {
-      $(icon).attr('class', 'fas fa-heart text-red');
+  let uid = sessionStorage.getItem("id");
+  if (uid == null) {
+    alert("로그인이 필요합니다");
+    location.reload();
   } else {
-      $(icon).attr('class', 'far fa-heart');
-  }
+    let icon = $(obj).find("i");
+    if (icon.hasClass("far fa-heart")) {
+      $(icon).attr("class", "fas fa-heart text-red");
+    } else {
+      $(icon).attr("class", "far fa-heart");
+    }
 
-  let id = $(obj).find('i');
+    let id = $(obj).find("id").val();
+    console.log(id);
+
+    var xhr = new XMLHttpRequest();
+
+    xhr.onreadystatechange = function () {
+      if (xhr.readyState === xhr.DONE) {
+        if (xhr.status === 200 || xhr.status === 201) {
+          console.log("조아여");
+        }
+      }
+    };
+
+    xhr.open("POST", "http://3.34.150.116:3000/object/like");
+    xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+    xhr.send("key=" + value + "&ukey=" + uid);
+  }
 }
 
 function numberFormat(inputNumber) {
