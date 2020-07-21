@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ART BY US</title>
+
+    <!-- Bootstrap 4.3.1 -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+    <script type="text/javascript" src="https://static.nid.naver.com/js/naveridlogin_js_sdk_2.0.0.js" charset="utf-8"></script>
+    
+    <!-- Custom -->
+    <link rel="stylesheet" href="/css/custom.css">
+    <script src="/js/custom.js"></script>
+    
+    
+    <!-- Fontawesome -->
+    <link rel="stylesheet" href="/css/fontawesome/css/all.min.css">
+
+    <!-- Custom -->
+    <script type="text/javascript" src="https://static.nid.naver.com/js/naveridlogin_js_sdk_2.0.0.js" charset="utf-8"></script>
+    <script src="/js/kakao_sdk.js"></script>
+
+     <script>
+         // SDK를 초기화 합니다. 사용할 앱의 JavaScript 키를 설정해 주세요.
+         Kakao.init('d88bea310f4a39afbea3146fe1c0fa72');
+         // SDK 초기화 여부를 판단합니다.
+         console.log(Kakao.isInitialized());
+     </script>
+</head>
+
+<body>
+    <modal include-html="/include/header.html"></modal>
+    <div class="py-md-3 px-5 py-2 text-center text-white bg-deep-dark top-notice">
+        <span class="font-weight-light">코로나19에 대한 아트바이어스의 대책 및 환불 정책에 대한 최신 정보를 확인하세요.</span>
+        <a href="#x" class="text-white d-lg-inline-block d-block">자세히 알아보기</a>
+    </div>
+
+    <nav class="navbar navbar-expand-lg navbar-light py-lg-3 py-1">
+        <div class="container">
+            <a class="navbar-brand" href="/index.html"><img src="http://artbyus.co.kr/img/logo.png"
+                    srcset="http://artbyus.co.kr/img/logo@2x.png 2x, http://artbyus.co.kr/img/logo@3x.png 3x"></a>
+            <div class="ml-auto align-items-center d-lg-none d-flex">
+                <a class="text-dark mr-3 font-size-sm" href="/member/calendar.html"><i
+                        class="far fa-calendar-alt"></i></a>
+                <a class="text-dark mr-3 font-size-sm" href="/member/recent_list.html"><i
+                        class="far fa-clock"></i></a>
+                <a class="text-dark mr-2 font-size-sm" href="/member/purchase.html"><i
+                        class="fas fa-shopping-cart"></i></a>
+            </div>
+            <button class="navbar-toggler border-0 font-size-md text-dark" type="button" data-toggle="collapse"
+                data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false"
+                aria-label="Toggle navigation">
+                <i class="fas fa-bars"></i>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarNavDropdown"></div>
+        </div>
+    </nav>
+    <script src="/js/header.js"></script>
+
+    <main role="main">
+        <div class="border-bottom mt-lg-5 mt-4">
+            <div class="container">
+                <div class="d-flex text-center">
+                    <a class="bg-yellow d-block text-decoration-none text-dark font-size-s w-lg-20 py-md-3 py-2 px-lg-0 px-3" href="myqna_list.html">1:1 문의</a>
+                    <a class="border border-bottom-0 d-block text-decoration-none text-dark font-size-s w-lg-20 py-md-3 py-2 px-lg-0 px-3" href="myreview_list.html">나의 이용후기</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="container my-3">
+            <!-- 질문 작성 -->
+            <div class="text-right mb-3">
+                <button type="button" class="btn rounded-pill bg-dark text-white font-weight-light px-lg-4 px-2 font-size-xs btn-sm" data-toggle="modal" data-target="#qnaModal">질문 작성하기</button>
+            </div>
+
+            <!-- 리스트 : 아코디언 - 답변완료 -->
+            <div class="accordion host-accordion text-gray mb-lg-5 mb-3" id="qnaItem1">
+                <div class="card">
+                    <div class="card-header d-flex justify-content-between align-items-center" id="itemHeading1">
+                        <div class="mr-lg-5 mr-3">
+                            <span class="state-text complete">답변완료</span>
+                            <p class="my-2">
+                                속의 이름을 가을로 하나에 하나 버리었습니다. 무엇인지 때 라이너 자랑처럼 추억과 너무나 소녀들의 했던 버리었습니다. 아침이 가슴속에
+                                이름자 지나가는 당신은 별 까닭입니다. 헤는 이네들은 써 어머니 별에도 릴케 북간도에 가을 이름자를 봅니다. 아침이 사람들의 가득 헤는
+                                부끄러운 벌레는 언덕것은 가슴속에 봅니다. 아스라히 때 풀이 소학교 마리아 버리었습니다. 한 나의 마리아 이름자를 이름과, 별이 하나에
+                                별 아무 있습니다. 무성할 흙으로 자랑처럼 무엇인지 어머니, 노루, 나의 부끄러운 봅니다. 가득 말 둘 무덤 별 하나에 이름자를 계십니다.
+                            </p>
+                            <span class="state-text bottom">사당G4안무연습실 - J401호<span class="ml-md-4 d-md-inline-block d-block">2020-06-09 14:41</span></span>
+                        </div>
+                        <button class="btn accordion-btn" type="button" data-toggle="collapse" data-target="#itemCollapse1" aria-expanded="true" aria-controls="itemCollapse1">
+                            <!-- collapse show일 때 -->
+                            <i class="fas fa-angle-double-up"></i>
+                            <!-- collapse 일 때 -->
+                            <!-- <i class="fas fa-angle-double-down"></i> -->
+                        </button>
+                    </div>
+
+                    <div id="itemCollapse1" class="collapse show" aria-labelledby="itemHeading1" data-parent="#qnaItem1">
+                        <div class="card-body">
+                            <span class="state-text">답변</span>
+                            <p class="my-2 answer">
+                                별들을 부끄러운 밤을 다하지 있습니다. 된 아름다운 이 같이 내 하나에 위에 멀리 까닭입니다. 릴케 경, 이름자를 별 어머님, 옥 가을 속의 계십니다.
+                                어머니, 애기 밤을 아무 보고, 아름다운 이런 별 까닭입니다. 하나에 이네들은 벌레는 언덕 하나 잠, 헤는 버리었습니다.
+                            </p>
+                            <span class="state-text bottom">2020-06-09 14:41</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 리스트 : 아코디언 - 미답변 -->
+            <div class="accordion host-accordion text-gray mb-lg-5 mb-3" id="qnaItem2">
+                <div class="card">
+                    <div class="card-header d-flex justify-content-between align-items-center" id="itemHeading2">
+                        <div class="mr-lg-5 mr-3">
+                            <span class="state-text incomplete">미답변</span>
+                            <p class="my-2">
+                                속의 이름을 가을로 하나에 하나 버리었습니다. 무엇인지 때 라이너 자랑처럼 추억과 너무나 소녀들의 했던 버리었습니다. 아침이 가슴속에
+                                이름자 지나가는 당신은 별 까닭입니다. 헤는 이네들은 써 어머니 별에도 릴케 북간도에 가을 이름자를 봅니다. 아침이 사람들의 가득 헤는
+                                부끄러운 벌레는 언덕것은 가슴속에 봅니다. 아스라히 때 풀이 소학교 마리아 버리었습니다. 한 나의 마리아 이름자를 이름과, 별이 하나에
+                                별 아무 있습니다. 무성할 흙으로 자랑처럼 무엇인지 어머니, 노루, 나의 부끄러운 봅니다. 가득 말 둘 무덤 별 하나에 이름자를 계십니다.
+                            </p>
+                            <span class="state-text bottom">낙성대G2녹음연습실 - J401호<span class="ml-md-4 d-md-inline-block d-block">2020-06-09 14:41</span></span>
+                        </div>
+                        <button class="btn accordion-btn" type="button" data-toggle="collapse" data-target="#itemCollapse2" aria-expanded="true" aria-controls="itemCollapse2">
+                            <!-- collapse show일 때 -->
+                            <!-- <i class="fas fa-angle-double-up"></i> -->
+                            <!-- collapse 일 때 -->
+                            <i class="fas fa-angle-double-down"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 리스트 : 아코디언(닫힘) - 답변완료 -->
+            <div class="accordion host-accordion text-gray mb-lg-5 mb-3" id="qnaItem3">
+                <div class="card">
+                    <div class="card-header d-flex justify-content-between align-items-center" id="itemHeading3">
+                        <div class="mr-lg-5 mr-3">
+                            <span class="state-text complete">답변완료</span>
+                            <p class="my-2">
+                                속의 이름을 가을로 하나에 하나 버리었습니다. 무엇인지 때 라이너 자랑처럼 추억과 너무나 소녀들의 했던 버리었습니다. 아침이 가슴속에
+                                이름자 지나가는 당신은 별 까닭입니다. 헤는 이네들은 써 어머니 별에도 릴케 북간도에 가을 이름자를 봅니다. 아침이 사람들의 가득 헤는
+                                부끄러운 벌레는 언덕것은 가슴속에 봅니다. 아스라히 때 풀이 소학교 마리아 버리었습니다. 한 나의 마리아 이름자를 이름과, 별이 하나에
+                                별 아무 있습니다. 무성할 흙으로 자랑처럼 무엇인지 어머니, 노루, 나의 부끄러운 봅니다. 가득 말 둘 무덤 별 하나에 이름자를 계십니다.
+                            </p>
+                            <span class="state-text bottom">서울대입구역 스터디카페 - 201호<span class="ml-md-4 d-md-inline-block d-block">2020-06-09 14:41</span></span>
+                        </div>
+                        <button class="btn accordion-btn" type="button" data-toggle="collapse" data-target="#itemCollapse3" aria-expanded="true" aria-controls="itemCollapse3">
+                            <!-- collapse show일 때 -->
+                            <!-- <i class="fas fa-angle-double-up"></i> -->
+                            <!-- collapse 일 때 -->
+                            <i class="fas fa-angle-double-down"></i>
+                        </button>
+                    </div>
+
+                    <div id="itemCollapse3" class="collapse" aria-labelledby="itemHeading3" data-parent="#qnaItem3">
+                        <div class="card-body">
+                            <span class="state-text">답변</span>
+                            <p class="my-2 answer">
+                                별들을 부끄러운 밤을 다하지 있습니다. 된 아름다운 이 같이 내 하나에 위에 멀리 까닭입니다. 릴케 경, 이름자를 별 어머님, 옥 가을 속의 계십니다.
+                                어머니, 애기 밤을 아무 보고, 아름다운 이런 별 까닭입니다. 하나에 이네들은 벌레는 언덕 하나 잠, 헤는 버리었습니다.
+                            </p>
+                            <span class="state-text bottom">2020-06-09 14:41</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 리스트 : 아코디언(닫힘) - 미답변 -->
+            <div class="accordion host-accordion text-gray mb-lg-5 mb-3" id="qnaItem4">
+                <div class="card">
+                    <div class="card-header d-flex justify-content-between align-items-center" id="itemHeading4">
+                        <div class="mr-lg-5 mr-3">
+                            <span class="state-text incomplete">미답변</span>
+                            <p class="my-2">
+                                속의 이름을 가을로 하나에 하나 버리었습니다. 무엇인지 때 라이너 자랑처럼 추억과 너무나 소녀들의 했던 버리었습니다. 아침이 가슴속에
+                                이름자 지나가는 당신은 별 까닭입니다. 헤는 이네들은 써 어머니 별에도 릴케 북간도에 가을 이름자를 봅니다. 아침이 사람들의 가득 헤는
+                                부끄러운 벌레는 언덕것은 가슴속에 봅니다. 아스라히 때 풀이 소학교 마리아 버리었습니다. 한 나의 마리아 이름자를 이름과, 별이 하나에
+                                별 아무 있습니다. 무성할 흙으로 자랑처럼 무엇인지 어머니, 노루, 나의 부끄러운 봅니다. 가득 말 둘 무덤 별 하나에 이름자를 계십니다.
+                            </p>
+                            <span class="state-text bottom">낙성대G2녹음연습실 - J401호<span class="ml-md-4 d-md-inline-block d-block">2020-06-09 14:41</span></span>
+                        </div>
+                        <button class="btn accordion-btn" type="button" data-toggle="collapse" data-target="#itemCollapse4" aria-expanded="true" aria-controls="itemCollapse4">
+                            <!-- collapse show일 때 -->
+                            <!-- <i class="fas fa-angle-double-up"></i> -->
+                            <!-- collapse 일 때 -->
+                            <i class="fas fa-angle-double-down"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- 서브 푸터 -->
+    <footer include-html="/include/footer.html"></footer>
+    <script>includeHTML();</script>
+    <script>login_header();</script>
+    <script src="/js/naver_login.js"></script>
+    <!-- <script src="/js/custom.js"></script> -->
+</body>
+
+</html>

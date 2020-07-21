@@ -107,31 +107,6 @@ $(function () {
         })
     }
 
-    // 인원수 감소
-    $('#decreaseQuantity').click( function(e) {
-        e.preventDefault();
-        var stat = $('#numberUpDown').val();
-        var num = parseInt(stat, 10);
-        num--;
-
-        if (num <= 0) {
-            num = 1;
-        }
-        $('#numberUpDown').val(num);
-    })
-    // 인원수 증가
-    $('#increaseQuantity').click( function(e) {
-        e.preventDefault();
-        var stat = $('#numberUpDown').val();
-        var num = parseInt(stat, 10);
-        num++;
-
-        if (num > 100) {
-            num = 100;
-        }
-        $('#numberUpDown').val(num);
-    })
-
     // 인풋 활성/비활성
     $('#order_def').on('change', function () {
         if ($(this).prop('checked') === true) {

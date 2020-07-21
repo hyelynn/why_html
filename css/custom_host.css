@@ -46,9 +46,16 @@
     background: #793477;
 }
 
+.host-summary-board .number-title {
+    font-size: 0.7rem;
+}
 .host-summary-board .large-number {
-    font-size: 1.3rem;
+    font-size: 0.8rem;
     font-weight: 500;
+}
+.host-summary-board .number-title,
+.host-summary-board .large-number {
+    white-space: nowrap;
 }
 
 .host-top-function .search-bar-solid .btn {
@@ -83,10 +90,10 @@
     font-size: 0.8rem;
     margin-top: -1px;
 }
-
 .host-item-list .item-btn.active {
     background: #ffde3b;
 }
+
 .host-item-list .item-btn.block-item {
     color: #ff3c49;
 }
@@ -98,9 +105,9 @@
     font-size: 1.2rem;
 }
 
-/* .host-item-list .outline {
+.host-item-list .outline {
     outline: #ffde3b solid 3px;
-} */
+}
 
 .host-regist-proc .step {
     border-bottom: 10px solid #f2f2f2;
@@ -378,8 +385,11 @@
         margin-left: 10px;
     }
 
+    .host-summary-board .number-title {
+        font-size: inherit !important;
+    }
     .host-summary-board .large-number {
-        font-size: 2.5rem;
+        font-size: 2.5rem !important;
     }
 
     .host-top-function .text-btn,
@@ -540,5 +550,12 @@
 
     .host-search-tags.full .tag {
         width: 49%;
+    }
+
+    .host-summary-board .number-title {
+        font-size: 0.8rem;
+    }
+    .host-summary-board .large-number {
+        font-size: 1.6rem;
     }
 }

@@ -521,6 +521,10 @@ select::-ms-expand {
 .custom-chat .chat-msgs::-webkit-scrollbar {
     display: none; /* Chrome, Safari, Opera*/
 }
+.custom-chat .send-btn {
+    width: 50px;
+    height: 40px;
+}
 
 
 /* list tag */
@@ -1282,6 +1286,11 @@ footer .text-divider {
     }
     .custom-chat .chat-msgs.host {
         height: calc(100vh - 215px);
+    }
+    .custom-chat .send-btn {
+        width: 60px;
+        height: 60px;
+        font-size: 1.5rem;
     }
 
     .custom-user-form .user-profile-img {
