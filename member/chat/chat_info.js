@@ -36,8 +36,7 @@ $(document).ready(function () {
                     "<p class='text-right text-light-gray font-size-xs'> "+moment(result[i].chat_date).format('MM-DD HH:mm') +" </p></div></div>"
                 } else {
                     text = "<div class='d-flex justify-content-end mb-3'><div class='ml-auto font-weight-light user-msg'>"+
-                    "<div class='d-flex mb-2 align-items-center'><div class='d-flex justify-content-center rounded-circle overflow-hidden mr-2 user-bg sm'> "+
-                    img +"<div class='bg-sky rounded-xl p-md-3 px-3 py-2 mb-2 text-white chat-msg'>"+
+                    "<div class='bg-sky rounded-xl p-md-3 px-3 py-2 mb-2 text-white chat-msg'>"+
                     "<p class='mb-0'> "+result[i].chat_msg+" </p></div><p class='text-light-gray font-size-xs'> "+moment(result[i].chat_date).format('MM-DD HH:mm') +" </p></div></div>"
                 }
                 $("#chat_list").append($(text));
