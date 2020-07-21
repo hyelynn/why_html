@@ -8,6 +8,7 @@ $(document).ready(function () {
       if (xhr.readyState === xhr.DONE) {
         if (xhr.status === 200 || xhr.status === 201) {
           var result = JSON.parse(xhr.responseText);
+          console.log(result.length);
           for (var i = 0; i < result.length; i++) {
             $("#chat_list").append(
               $(
