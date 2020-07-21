@@ -6,6 +6,7 @@ var people_price = 0;
 var title = "";
 var curr_price = 0;
 var host = "";
+var like = 0;
 
 function initialize(curr) {
   var valnum = Number(value);
@@ -166,10 +167,13 @@ function initialize(curr) {
         $("#notifytext").append(
           $("<p class='text-gray wordbreak-keep-all'>"+result[0].biz_num+"</p>")
         )
+        
+        if (result[0].obj_like != 'undefined') { like = parseInt(result[0].obj_like); }
+
         $("#like").append(
           "<button type='button' class='btn border rounded-xl bg-white btn-block py-2'onclick='addWishList(this);'><i class='far fa-heart'></i>"+
           "<id id ='studio_index' style='display: none;''>"+result[0].obj_key +"</id>"+
-          "<span class='ml-1 font-size-xs'>"+result[0].obj_like+"</span></button>"
+          "<span id='cnt' class='ml-1 font-size-xs'>"+like+"</span></button>"
         )
         $(".live-rating").text(3.5);
         $("#star-rating").starRating({

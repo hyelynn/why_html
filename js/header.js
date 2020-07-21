@@ -144,13 +144,14 @@ function addWishList(obj) {
   } else {
     let icon = $(obj).find("i");
     if (icon.hasClass("far fa-heart")) {
+      like++;
+      $(obj).find("#cnt").text(like);
       $(icon).attr("class", "fas fa-heart text-red");
     } else {
+      like--;
+      $(obj).find("#cnt").text(like);
       $(icon).attr("class", "far fa-heart");
     }
-
-    let id = $(obj).find("id").val();
-    console.log(id);
 
     var xhr = new XMLHttpRequest();
 
