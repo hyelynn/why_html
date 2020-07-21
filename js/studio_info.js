@@ -375,7 +375,7 @@ function price_maker() {
         $("#end_times option:selected").text() +
         "</p>" +
         "<p class='font-weight-bold text-red font-size-l'>" +
-        curr_price +
+        numberFormat(curr_price) +
         "원<span class='font-weight-light font-size-xs text-light-gray-more'>(VAT포함)</span></p>" +
         "<button type='button' class='btn btn-block border rounded-0 py-2 font-weight-light'><i class='fas fa-shopping-cart mr-2' onclick='addCart();'></i>장바구니</button>"
     )

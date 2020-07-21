@@ -44,7 +44,29 @@
 </head>
 <body>
     <modal include-html="/include/header.html"></modal>
-    <modal include-html="/include/common/header_sub_modal.html"></modal>
+
+    <!-- 질문 작성 모달 -->
+    <div class="modal fade" id="qnaModal" tabindex="-1" role="dialog" aria-labelledby="qnaModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog modal-xl custom-modal" role="document">
+            <div class="modal-content px-lg-6 px-4 py-lg-5 py-5">
+                <div class="modal-header p-0 mb-md-4 mb-2 border-0">
+                    <h2 class="modal-title" id="qnaModalLabel">질문 작성하기</h2>
+                </div>
+                <!-- 작성 폼 -->
+                <div class="modal-body p-0 custom-inputs text-center">
+                    <div class="input-group mb-4">
+                        <textarea id="qna_text" class="form-control large-textarea"
+                            placeholder="- 질문 내용을 입력 해 주세요. (1,000자 이내)&#13;&#10;- 질문 작성 시 게시물의 하단에 질문내용이 노출됩니다."></textarea>
+                    </div>
+
+                    <button type="button" onclick="sendQna();"
+                        class="btn bg-yellow w-lg-65 w-100 py-md-4 py-2 h-auto rounded-0 font-size-s"
+                        data-dismiss="modal">호스트에게 질문 전달하기</button>
+                </div>
+            </div>
+        </div>
+    </div>
     <div class="modal fade" id="reviewModal" tabindex="-1" role="dialog" aria-labelledby="reviewModalLabel"
         aria-hidden="true"> </div>
     <!-- 알림 모달 -->
@@ -59,7 +81,7 @@
                 <!-- 메세지 -->
                 <div class="modal-body p-0 text-center font-size-s">
                     <div id="notifytext" class="mb-lg-5 mb-4">
-                        
+
                     </div>
 
                     <button type="button" class="btn btn-block bg-yellow py-lg-3 py-2 h-auto rounded-0 font-size-s"
@@ -371,7 +393,7 @@
         let id = sessionStorage.getItem("id");
         if (id != null) {
             let msg = $("#review_text").val();
-            let rating = $(".live-rating").text;
+            let rating = $(".live-rating").text();
 
             console.log(rating);
 
@@ -439,6 +461,9 @@
         location.href = "http://artbyus.co.kr/member/purchase.html";
     }
 
+    function numberFormat(inputNumber) {
+        return inputNumber.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+    }
 
     $(function () {
         // datepicker
