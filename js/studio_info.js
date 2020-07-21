@@ -6,6 +6,7 @@ var people_price = 0;
 var img_link = "";
 var title = "";
 var curr_price = 0;
+var host = "";
 
 $(document).ready(function () {
   var valnum = Number(value);
@@ -30,6 +31,7 @@ $(document).ready(function () {
           max = parseInt(result[0].studio_max);
           people_price = parseInt(result[0].studio_people_price);
           title = result[0].studio_name;
+          host = result[0].user_key;
 
           if (i == 0) {
             indi =
@@ -161,7 +163,7 @@ $(document).ready(function () {
         $("#notifytext").append(
           $("<p class='text-gray wordbreak-keep-all'>"+result[0].biz_num+"</p>")
         )
-
+        $(".live-rating").text(3.5);
         $("#star-rating").starRating({
           initialRating: 3.5,
           disableAfterRate: false,
@@ -171,6 +173,7 @@ $(document).ready(function () {
           activeColor: "#ffde3b",
           ratedColor: "#ffde3b",
           hoverColor: "#ffde3b",
+          
           onHover: function (currentIndex, currentRating, $el) {
             $(".live-rating").text(currentIndex);
           },
@@ -192,6 +195,19 @@ $(document).ready(function () {
   xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
   xhr.send("studio_key=" + value);
 });
+
+function start_chat() {
+  let id = sessionStorage.getItem("id");
+  if (id == null) {
+    alert('로그인이 필요합니다');
+    location.reload();
+  } else {
+    var xhr = new XMLHttpRequest();
+    xhr.open("POST", "http://3.34.150.116:3000/studio/info");
+    xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+    xhr.send("studio_key=" + value);
+  }
+}
 
 function load_qna() {
   var valnum = Number(value);
