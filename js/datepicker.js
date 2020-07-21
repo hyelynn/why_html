@@ -1387,8 +1387,10 @@
         return new Date(date.getFullYear(), date.getMonth() + 1, 0).getDate();
     };
 
-    datepicker.getParsedDate = function (date) {
+    datepicker.getParsedDate = function (d) {
+        var date = new Date(d)
         return {
+            year: date.getFullYear(),
             month: date.getMonth(),
             fullMonth: (date.getMonth() + 1) < 10 ? '0' + (date.getMonth() + 1) : date.getMonth() + 1, // One based
             date: date.getDate(),
