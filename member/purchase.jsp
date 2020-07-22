@@ -149,8 +149,6 @@
 
     <script>includeHTML();</script>
     <script>login_header();</script>
-    <script>$(function () { location.href = '/member/purchase.jsp'; })</script>
-    
 </body>
 
 

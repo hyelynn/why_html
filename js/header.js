@@ -18,7 +18,8 @@ function login_header() {
   }
   var menu = ""
   console.log(location.href)
-  if (location.href != 'http://artbyus.co.kr/index.html' && location.href != 'https://artbyus.co.kr/index.html') {
+  if (location.href != 'http://artbyus.co.kr/index.html' && location.href != 'https://artbyus.co.kr/index.html' && 
+      location.href != 'http://artbyus.co.kr/' && location.href != 'https://artbyus.co.kr/' ) {
     menu = "<ul class='navbar-nav m-auto font-weight-light sub-nav'>" +
     "<li class='nav-item mx-lg-3 mx-2 active'>" +
     "<div class='d-flex justify-content-between'>" +
