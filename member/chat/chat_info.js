@@ -4,6 +4,8 @@ $(document).ready(function () {
     //Get Room information
     var xhr = new XMLHttpRequest();
     var id = sessionStorage.getItem("id");
+
+    window.setTimeout('window.location.reload()',180000);
   
     if (id != null) {
       xhr.onreadystatechange = function () {
