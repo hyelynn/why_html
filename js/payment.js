@@ -1,3 +1,5 @@
+import "com.inicis.std.util.SignatureUtil"
+
 var total_price = 0;
 var items = [];
 
@@ -66,12 +68,11 @@ $(document).ready(function () {
   );
 
   let timestamp = SignatureUtil.getTimestamp();
-  let signKey = 'bjdYek1nbjlSd3dmZml5b1JDRmowUT09';
 
   //###############################################
 	// 2. 가맹점 확인을 위한 signKey를 해시값으로 변경 (SHA-256방식 사용)
 	//###############################################
-	var mKey = SignatureUtil.hash(signKey, "SHA-256");
+	var mKey = SignatureUtil.hash('bjdYek1nbjlSd3dmZml5b1JDRmowUT09', "SHA-256");
 
 	// signature 데이터 생성 (모듈에서 자동으로 signParam을 알파벳 순으로 정렬후 NVP 방식으로 나열해 hash)
   var signature = SignatureUtil.makeSignature('mKey='+mKey+'&oid=wpartby071_'+timestamp+'&price='+total_price+'&timestamp='+timestamp);
