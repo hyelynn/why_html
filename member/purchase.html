@@ -147,9 +147,11 @@
     <script src="/js/naver_login.js"></script>
     <script src="/js/login.js"></script>
 
-    <script>includeHTML();</script>
+    <script>includeHTML({ });</script>
     <script>login_header();</script>
-    
+    <script>$(function () {
+        location.href = '/member/purchase.jsp';
+    })</script>
 </body>
 
 
