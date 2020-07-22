@@ -198,6 +198,8 @@
 <script>
 
     $(document).ready(function () {
+        var total_price = 0;
+
         items = JSON.parse(sessionStorage.getItem("cart"));
         console.log(items);
 
