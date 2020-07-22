@@ -69,17 +69,15 @@ function initialize(curr) {
         );
 
         var info = "";
-        var splitInfo = result[0].obj_info.split(".");
+        var splitInfo = result[0].obj_info.split("/");
 
         for (var s in splitInfo) {
           info += splitInfo[s] + "<br>";
         }
 
-        var suf = ""
-        if (curr == 'studio') {
-          suf = "<span class='mr-2'>" +
-            result[0].obj_useful +
-            "</span></div>"
+        var suf = "";
+        if (curr == "studio") {
+          suf = "<span class='mr-2'>" + result[0].obj_useful + "</span></div>";
         }
 
         $("#info").append(
@@ -92,89 +90,148 @@ function initialize(curr) {
               "<div class='my-5'>" +
               "<h4 class='mb-4 text-bullet'>편의시설</h4>" +
               "<div class='d-flex-fill font-weight-light font-size-s'>" +
-              suf +"</div>"
+              suf +
+              "</div>"
           )
         );
 
-        $("#terms").append(
-          $(
-            "<div class='my-5'><h4 class='mb-4 text-bullet'>이용약관</h4>" +
-              "<p class='font-weight-light font-size-s'>" +
-              result[0].obj_rule +
-              "</p></div>"
-          )
-        );
+        if (curr == "studio") {
+          $("#terms").append(
+            $(
+              "<div class='my-5'><h4 class='mb-4 text-bullet'>이용약관</h4>" +
+                "<p class='font-weight-light font-size-s'>" +
+                result[0].obj_rule +
+                "</p></div>"
+            )
+          );
 
-        // $("#refund").append(
-        //   $(
-        //     "<div class='my-5'><h4 class='mb-4 text-bullet'>환불규정</h4>" +
-        //       "<p class='font-weight-light font-size-s'>" +
-        //       result[0].obj_refund +
-        //       "</p></div>"
-        //   )
-        // );
+          // $("#refund").append(
+          //   $(
+          //     "<div class='my-5'><h4 class='mb-4 text-bullet'>환불규정</h4>" +
+          //       "<p class='font-weight-light font-size-s'>" +
+          //       result[0].obj_refund +
+          //       "</p></div>"
+          //   )
+          // );
 
-        $("#contact").append(
-          $(
-            "<div class='my-5'><h4 class='mb-4 text-bullet'>주소</h4>" +
-              "<div class='mb-2'><iframe src='https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3166.2200823320336!2d126.94783625121208!3d37.47913253678695!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0xe9d42c354ca061aa!2z7IK87J2867mM65Sp!5e0!3m2!1sko!2skr!4v1589899812488!5m2!1sko!2skr' width='100%' height='210' frameborder='0' style='border:0;' allowfullscreen='' aria-hidden='false' tabindex='0'></iframe></div>" +
-              "<p class='font-weight-light font-size-s'>" +
-              result[0].obj_location +
-              "</p></div>" +
-              "<div class='my-5'><h4 class='mb-4 text-bullet'>대중교통</h4><p class='font-weight-light font-size-s'>" +
-              result[0].obj_subway +
-              "<br>" +
-              result[0].obj_bus +
-              "</p></div>" +
-              "<div class='my-5 border bg-white d-flex p-4'><div class='d-flex justify-content-center rounded-circle overflow-hidden mr-lg-5 mr-3 card-host'>" +
-              "<img src='/img/studio-host.jpg' class='align-self-center' alt=''></div>" +
-              "<div><h4 class='font-size-m'>" +
-              result[0].biz_title +
-              "</h4>" +
-              "<p class='text-light-gray font-size-xs'>" +
-              result[0].biz_introduce +
-              "</p>" +
-              "<button type='button' class='btn rounded-pill px-lg-5 px-3 py-2 border-yellow font-size-xs mr-2'  data-target='#notifyModal'>전화하기</button>" +
-              "<button type='button' class='btn rounded-pill px-lg-5 px-3 py-2 border-yellow font-size-xs' onclick='start_chat();'>메시지 전송</button></div></div>"
-          )
-        );
+          $("#contact").append(
+            $(
+              "<div class='my-5'><h4 class='mb-4 text-bullet'>주소</h4>" +
+                "<div class='mb-2'><iframe src='https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3166.2200823320336!2d126.94783625121208!3d37.47913253678695!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0xe9d42c354ca061aa!2z7IK87J2867mM65Sp!5e0!3m2!1sko!2skr!4v1589899812488!5m2!1sko!2skr' width='100%' height='210' frameborder='0' style='border:0;' allowfullscreen='' aria-hidden='false' tabindex='0'></iframe></div>" +
+                "<p class='font-weight-light font-size-s'>" +
+                result[0].obj_location +
+                "</p></div>" +
+                "<div class='my-5'><h4 class='mb-4 text-bullet'>대중교통</h4><p class='font-weight-light font-size-s'>" +
+                result[0].obj_subway +
+                "<br>" +
+                result[0].obj_bus +
+                "</p></div>" +
+                "<div class='my-5 border bg-white d-flex p-4'><div class='d-flex justify-content-center rounded-circle overflow-hidden mr-lg-5 mr-3 card-host'>" +
+                "<img src='/img/studio-host.jpg' class='align-self-center' alt=''></div>" +
+                "<div><h4 class='font-size-m'>" +
+                result[0].biz_title +
+                "</h4>" +
+                "<p class='text-light-gray font-size-xs'>" +
+                result[0].biz_introduce +
+                "</p>" +
+                "<button type='button' class='btn rounded-pill px-lg-5 px-3 py-2 border-yellow font-size-xs mr-2'  data-target='#notifyModal'>전화하기</button>" +
+                "<button type='button' class='btn rounded-pill px-lg-5 px-3 py-2 border-yellow font-size-xs' onclick='start_chat();'>메시지 전송</button></div></div>"
+            )
+          );
 
-        $("#title_purchase").append(
+          $("#title_purchase").append(
+            $(
+              "<h6>" +
+                result[0].obj_name +
+                "</h6>" +
+                "<p class='font-weight-bold mb-4 text-red font-size-l'>" +
+                result[0].obj_rp +
+                "원/1" +
+                result[0].obj_price_type +
+                "</p>"
+            )
+          );
+        } else if (curr == "class") {
+          var rule = "";
+          var rules = result[0].class_rule.split("/");
+
+          for (var s in rules) {
+            rule += rules[s] + "<br>";
+          }
+
+          $("#terms").append(
+            $(
+              "<div class='my-5'><h4 class='mb-4 text-bullet'>이용약관</h4>" +
+                "<p class='font-weight-light font-size-s'>" +
+                rule +
+                "</p></div>"
+            )
+          );
+
+          var g = "";
+          var gs = result[0].class_howabout.split("/");
+          for (var s in gs) {
+            g += gs[s] + "<br>";
+          }
+
+          $("#guide").append(
+            $(
+              "<div class='my-5'><h4 class='mb-4 text-bullet'>레슨 안내</h4>" +
+                "<p class='font-weight-light font-size-s'>" +
+                g +
+                "</p></div>"
+            )
+          );
+
+          $("#title_purchase").append(
+            $(
+              "<h6>" +
+                result[0].class_name +
+                "</h6>" +
+                "<p class='font-weight-bold mb-4 text-red font-size-l'>" +
+                result[0].class_price +
+                "원/1" +
+                result[0].class_price_type +
+                "</p>"
+            )
+          );
+        }
+        $("#reviewModal").append(
           $(
-            "<h6>" +
+            "<div class='modal-dialog modal-xl custom-modal' role='document'><div class='modal-content px-lg-6 px-4 py-lg-5 py-5'><div class='modal-header p-0 mb-md-4 mb-2 border-0'>" +
+              "<h2 class='modal-title' id='reviewModalLabel'><span class='modal-title-text position-relative'><span class='text-underline'>" +
               result[0].obj_name +
-              "</h6>" +
-              "<p class='font-weight-bold mb-4 text-red font-size-l'>" +
-              result[0].obj_rp +
-              "원/1" +
-              result[0].obj_price_type +
+              "</span></span>의<br>여러분의 리뷰를 남겨주세요</h2></div>" +
+              "<div class='modal-body p-0 custom-inputs text-center'><div class='text-left mb-md-3 mb-2 font-weight-light'>" +
+              "<p class='font-size-s mb-2'>별점</p><span id='star-rating' class='star-rating'></span><span id='live-rating' class='live-rating align-middle ml-2'></span></div>" +
+              "<div class='text-left font-weight-light'><p class='font-size-s mb-2'>리뷰 내용</p><div class='input-group mb-4'>" +
+              "<textarea id='review_text' class='form-control medium-textarea' placeholder='작성된 후기는 전체 공개 됩니다.'></textarea></div></div>" +
+              "<button type='button' onclick='sendReview();' class='btn bg-yellow w-lg-65 w-100 py-md-4 py-2 h-auto rounded-0 font-size-s' data-dismiss='modal'>리뷰 작성하기</button></div></div></div>"
+          )
+        );
+
+        $("#notifytext").append(
+          $(
+            "<p class='text-gray wordbreak-keep-all'>" +
+              result[0].biz_num +
               "</p>"
           )
         );
 
-        $("#reviewModal").append(
-          $(
-            "<div class='modal-dialog modal-xl custom-modal' role='document'><div class='modal-content px-lg-6 px-4 py-lg-5 py-5'><div class='modal-header p-0 mb-md-4 mb-2 border-0'>" +
-            "<h2 class='modal-title' id='reviewModalLabel'><span class='modal-title-text position-relative'><span class='text-underline'>"+result[0].obj_name +"</span></span>의<br>여러분의 리뷰를 남겨주세요</h2></div>"+
-            "<div class='modal-body p-0 custom-inputs text-center'><div class='text-left mb-md-3 mb-2 font-weight-light'>"+
-            "<p class='font-size-s mb-2'>별점</p><span id='star-rating' class='star-rating'></span><span id='live-rating' class='live-rating align-middle ml-2'></span></div>"+
-            "<div class='text-left font-weight-light'><p class='font-size-s mb-2'>리뷰 내용</p><div class='input-group mb-4'>"+
-            "<textarea id='review_text' class='form-control medium-textarea' placeholder='작성된 후기는 전체 공개 됩니다.'></textarea></div></div>"+
-            "<button type='button' onclick='sendReview();' class='btn bg-yellow w-lg-65 w-100 py-md-4 py-2 h-auto rounded-0 font-size-s' data-dismiss='modal'>리뷰 작성하기</button></div></div></div>"
-          )
-        )
-
-        $("#notifytext").append(
-          $("<p class='text-gray wordbreak-keep-all'>"+result[0].biz_num+"</p>")
-        )
-        
-        if (result[0].obj_like != 'undefined') { like = parseInt(result[0].obj_like); }
+        if (result[0].obj_like != "undefined") {
+          like = parseInt(result[0].obj_like);
+        }
 
         $("#like").append(
-          "<button type='button' class='btn border rounded-xl bg-white btn-block py-2'onclick='addWishList(this);'><i class='far fa-heart'></i>"+
-          "<id id ='studio_index' style='display: none;''>"+result[0].obj_key +"</id>"+
-          "<span id='cnt' class='ml-1 font-size-xs'>"+like+"</span></button>"
-        )
+          "<button type='button' class='btn border rounded-xl bg-white btn-block py-2'onclick='addWishList(this);'><i class='far fa-heart'></i>" +
+            "<id id ='studio_index' style='display: none;''>" +
+            result[0].obj_key +
+            "</id>" +
+            "<span id='cnt' class='ml-1 font-size-xs'>" +
+            like +
+            "</span></button>"
+        );
+        
         $(".live-rating").text(3.5);
         $("#star-rating").starRating({
           initialRating: 3.5,
@@ -185,7 +242,7 @@ function initialize(curr) {
           activeColor: "#ffde3b",
           ratedColor: "#ffde3b",
           hoverColor: "#ffde3b",
-          
+
           onHover: function (currentIndex, currentRating, $el) {
             $(".live-rating").text(currentIndex);
           },
@@ -196,7 +253,7 @@ function initialize(curr) {
 
         price_maker();
         load_review();
-         load_qna();
+        load_qna();
       } else {
         alert("접속 오류");
         location.href = "studio.html"; //잘못된 접속 시 페이지 강제 이동
@@ -213,17 +270,17 @@ function initialize(curr) {
 function start_chat() {
   let id = sessionStorage.getItem("id");
   if (id == null) {
-    alert('로그인이 필요합니다');
+    alert("로그인이 필요합니다");
     location.reload();
   } else {
     var xhr = new XMLHttpRequest();
     xhr.onreadystatechange = function () {
       if (xhr.readyState === xhr.DONE) {
-        if (xhr.status === 200 || xhr.status === 201) { 
-          location.href = '/member/chat_user_view.html?' + host;
+        if (xhr.status === 200 || xhr.status === 201) {
+          location.href = "/member/chat_user_view.html?" + host;
         }
       }
-    }
+    };
 
     xhr.open("POST", "http://3.34.150.116:3000/chat/start");
     xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
@@ -420,7 +477,6 @@ function price_maker() {
     )
   );
 }
-
 
 // wishlist btn
 function addWishList(obj) {
