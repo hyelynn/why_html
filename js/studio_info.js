@@ -7,6 +7,7 @@ var title = "";
 var curr_price = 0;
 var host = "";
 var like = 0;
+var img_link = "";
 
 function initialize(curr) {
   var valnum = Number(value);
@@ -33,6 +34,7 @@ function initialize(curr) {
             people_price = parseInt(result[0].obj_people_price);
             title = result[0].obj_name;
             host = result[0].user_key;
+            
 
             if (i == 0) {
               indi =
@@ -43,6 +45,7 @@ function initialize(curr) {
                 "<div class='carousel-item active'><img src='" +
                 result[i]._images +
                 "' class='d-block w-100' alt='...'></div>";
+                img_link = result[0]._images;
             } else {
               indi =
                 "<li data-target='#carouselStudioView' data-slide-to='" +
@@ -268,7 +271,7 @@ function initialize(curr) {
           );
           
           for (var i = 0; i < result.length; i++) {
-            $("#info").append("<img src="+result[i]._images+" class='img-fluid' alt=''>")
+            $("#info").append("<<img src="+result[i]._images+" class='img-fluid' alt=''>")
           }          
         } 
 
