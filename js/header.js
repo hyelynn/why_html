@@ -19,7 +19,10 @@ function login_header() {
   var menu = ""
   console.log(location.href)
   if (location.href != 'http://artbyus.co.kr/index.html' && location.href != 'https://artbyus.co.kr/index.html') {
-    menu = "<a class='nav-link text-dark' href='/sub/studio.html' id='menu1'>Studio</a>" +
+    menu = "<ul class='navbar-nav m-auto font-weight-light sub-nav'>" +
+    "<li class='nav-item mx-lg-3 mx-2 active'>" +
+    "<div class='d-flex justify-content-between'>" +
+    "<a class='nav-link text-dark' href='/sub/studio.html' id='menu1'>Studio</a>" +
     "<button class='navbar-toggler border-0 font-size-md text-dark' type='button' data-toggle='collapse' data-target='#subNavDropdown1' aria-controls='subNavDropdown1' aria-expanded='false' aria-label='Toggle navigation'>" +
     "<i class='fas fa-chevron-down'></i></button></div></li>" +
     "<li class='nav-item mx-lg-3 mx-2'>" +
@@ -35,11 +38,7 @@ function login_header() {
   }
 
   if (nickname != null) {
-    var append_html =
-      "<ul class='navbar-nav m-auto font-weight-light sub-nav'>" +
-      "<li class='nav-item mx-lg-3 mx-2 active'>" +
-      "<div class='d-flex justify-content-between'>" +
-      menu +
+    var append_html = menu +
       "<ul class='navbar-nav ml-auto align-items-center d-none d-lg-flex'>" +
       "<li class='nav-item mr-2 font-size-md'>" +
       "<a class='nav-link text-dark' href='/member/calendar.html'><i class='far fa-calendar-alt'></i></a></li>" +
@@ -95,10 +94,7 @@ function login_header() {
   } else {
     $("#navbarNavDropdown").empty();
     $("#navbarNavDropdown").append(
-      $(
-        "<ul class='navbar-nav m-auto font-weight-light sub-nav'>" +
-          "<li class='nav-item mx-lg-3 mx-2 active'>" +
-          menu +
+      $(  menu +
           "<ul class='navbar-nav border-top pt-3 m-lg-auto mt-2 font-size-xs d-block d-lg-none'>" +
           "<li class='nav-item mx-lg-3 mx-2 mb-2'>" +
           "<button class='btn btn-block border text-dark dropdown-toggle p-2 bg-white rounded-xl' type='button' data-toggle='modal' data-target='#loginModal'><span>로그인</span></button></li></ul>" +
