@@ -1,4 +1,4 @@
-function initialize(keyword) {
+function makelist(keyword) {
     var xhr = new XMLHttpRequest();
     xhr.onreadystatechange = function () {
       if (xhr.readyState === xhr.DONE) {
