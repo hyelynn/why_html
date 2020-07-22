@@ -64,6 +64,8 @@ function send_chat() {
     var send_msg = $("#msg").text();
     $("#msg").text('');
 
+    console.log(send_msg);
+
     xhr.onreadystatechange = function () {
       if (xhr.readyState === xhr.DONE) {
         if (xhr.status === 200 || xhr.status === 201) {
