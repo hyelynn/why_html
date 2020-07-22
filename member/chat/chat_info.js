@@ -28,6 +28,8 @@ $(document).ready(function () {
                     img = "<img src='"+result[i].chat_img+"' class='align-self-center w-100 h-100' alt=''></div>"
                 }
 
+                if (result[i].chat_msg == '') continue;
+
                 if (result[i].from_key != id) {
                     text = "<div class='d-flex justify-content-start mb-3'><div class='mr-auto font-weight-light user-msg'>"+
                     "<div class='d-flex mb-2 align-items-center'><div class='d-flex justify-content-center rounded-circle overflow-hidden mr-2 user-bg sm'> "+
@@ -68,7 +70,6 @@ function send_chat() {
           var msg = "<div class='d-flex justify-content-end mb-3'>" +
                       "<div class='ml-auto font-weight-light user-msg'>" +
                       "<div class='bg-sky rounded-xl p-md-3 p-2 mb-2 text-white chat-msg'>" +
-                      img +
                       "<p class='mb-0'>+" +
                       send_msg +
                       "+</p></div>" +

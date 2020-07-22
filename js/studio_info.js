@@ -77,7 +77,11 @@ function initialize(curr) {
 
         var suf = "";
         if (curr == "studio") {
-          suf = "<span class='mr-2'>" + result[0].obj_useful + "</span></div>";
+          suf =  "<div class='my-5'>" +
+          "<h4 class='mb-4 text-bullet'>편의시설</h4>" +
+          "<div class='d-flex-fill font-weight-light font-size-s'>" +
+          "<span class='mr-2'>" + result[0].obj_useful + "</span></div>"+
+          "</div>";
         }
 
         $("#info").append(
@@ -86,12 +90,7 @@ function initialize(curr) {
               "<h4 class='mb-4 text-bullet'>소개</h4>" +
               "<p class='font-weight-light font-size-s'>" +
               info +
-              "</p></div>" +
-              "<div class='my-5'>" +
-              "<h4 class='mb-4 text-bullet'>편의시설</h4>" +
-              "<div class='d-flex-fill font-weight-light font-size-s'>" +
-              suf +
-              "</div>"
+              "</p></div>" + suf
           )
         );
 
@@ -153,7 +152,7 @@ function initialize(curr) {
           );
         } else if (curr == "class") {
           var rule = "";
-          var rules = result[0].class_rule.split("/");
+          var rules = result[0].obj_rule.split("/");
 
           for (var s in rules) {
             rule += rules[s] + "<br>";
@@ -169,7 +168,7 @@ function initialize(curr) {
           );
 
           var g = "";
-          var gs = result[0].class_howabout.split("/");
+          var gs = result[0].obj_howabout.split("/");
           for (var s in gs) {
             g += gs[s] + "<br>";
           }
@@ -186,12 +185,12 @@ function initialize(curr) {
           $("#title_purchase").append(
             $(
               "<h6>" +
-                result[0].class_name +
+                result[0].obj_name +
                 "</h6>" +
                 "<p class='font-weight-bold mb-4 text-red font-size-l'>" +
-                result[0].class_price +
+                result[0].obj_rp +
                 "원/1" +
-                result[0].class_price_type +
+                result[0].obj_price_type +
                 "</p>"
             )
           );
@@ -231,7 +230,7 @@ function initialize(curr) {
             like +
             "</span></button>"
         );
-        
+
         $(".live-rating").text(3.5);
         $("#star-rating").starRating({
           initialRating: 3.5,
