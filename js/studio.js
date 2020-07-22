@@ -1,7 +1,6 @@
 function makelist(keyword) {
+  console.log(keyword);
 
-    console.log(keyword);
-    
   var xhr = new XMLHttpRequest();
   xhr.onreadystatechange = function () {
     if (xhr.readyState === xhr.DONE) {
@@ -76,9 +75,9 @@ function makelist(keyword) {
       } else {
       }
     }
-
-    xhr.open("POST", "http://3.34.150.116:3000/object/");
-    xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-    xhr.send("keyword=" + keyword);
   };
+
+  xhr.open("POST", "http://3.34.150.116:3000/object/");
+  xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+  xhr.send("keyword=" + keyword);
 }
