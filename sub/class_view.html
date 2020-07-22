@@ -201,14 +201,11 @@
                     <!-- schedule -->
                     <div class="float-lg-right right">
                         <div class="row mb-4">
-                            <div class="col-6">
-                                <button type="button" class="btn border rounded-xl bg-white btn-block py-2" onclick="addWishList(this);">
-                                    <i class="far fa-heart"></i>
-                                    <span class="ml-1 font-size-xs">1,459</span>
-                                </button>
+                            <div class="col-6" id="like">
+                                
                             </div>
                             <div class="col-6">
-                                <button type="button" class="btn border rounded-xl bg-white btn-block py-2">
+                                <button type="button" class="btn border rounded-xl bg-white btn-block py-2" onclick="copyToClipboard()">
                                     <i class="fas fa-share-alt text-purple"></i>
                                     <span class="ml-1 font-size-xs">공유하기</span>
                                 </button>
@@ -260,11 +257,14 @@
                         </div>
 
                         <!-- Buttons -->
-                        <button type="button" class="btn btn-block py-3 border-0 rounded-0 font-weight-light mb-3 bg-yellow">클래스 신청하기</button>
+                        <button type="button"
+                            class="btn btn-block py-3 border-0 rounded-0 font-weighㅎt-light mb-3 bg-yellow"
+                            onclick="purchase();">스튜디오 예약하기</button>
                         <div class="d-flex bg-yellow">
-                            <button type="button" class="btn w-50 py-3 border-0 rounded-0 font-weight-light">전화하기</button>
+                            <button type="button" data-toggle="modal" data-target="#notifyModal"
+                                class="btn w-50 py-3 border-0 rounded-0 font-weight-light">전화하기</button>
                             <span class="d-inline-block my-3" style="border-right: 1px solid #fff"></span>
-                            <button type="button" class="btn w-50 py-3 border-0 rounded-0 font-weight-light">1:1 채팅</button>
+                            <button type="button" class="btn w-50 py-3 border-0 rounded-0 font-weight-light" onclick='start_chat();'>1:1 채팅</button>
                         </div>
                     </div>
                 </div>
