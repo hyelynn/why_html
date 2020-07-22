@@ -251,7 +251,7 @@ function initialize(curr) {
           });
         } else if (curr == "perform") {
           var rule = "";
-            var rules = result[i].obj_info.split("/");
+            var rules = result[0].obj_info.split("/");
 
             for (var s in rules) {
               rule += rules[s] + "<br>";
