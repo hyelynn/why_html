@@ -20,7 +20,8 @@ $(document).ready(function () {
                   "<div class='p-lg-2 p-1 d-flex list-tag list-tag-yellow'>" +
                   "<span class='align-self-center list-tag-title'>바로결제</span>" +
                   "</div>" +
-                  "<button type='button' class='float-right bg-transparent border-0 p-0 text-white font-size-md' onclick='addWishList("+result[i].obj_key +");'><i class='fas fa-heart text-red'></i></button>" +
+                  "<button type='button' class='float-right bg-transparent border-0 p-0 text-white font-size-md' onclick='addWishList("+result[i].obj_key +");'><i class='far fa-heart text-red'></i></button>" +
+                  "</div>" +
                   "<img src='" +
                   result[i].obj_thumbnail +
                   "' class='card-img-top rounded-0'>" +
@@ -30,7 +31,7 @@ $(document).ready(function () {
                   "<p class='font-weight-light border-bottom pb-2 mb-2 font-size-xs'>" +
                   result[i].obj_subname +
                   "</p>" +
-                  "<a href='"+ result[i].obj_category +"_view.html?" +
+                  "<a href='/sub/"+ result[i].obj_category +"_view.html?" +
                   result[i].obj_key +
                   "' class='stretched-link text-decoration-none'>" +
                   "<span class='text-red font-weight-bold font-size-l'>" +
@@ -55,7 +56,6 @@ $(document).ready(function () {
 });
 
 
-// wishlist btn
 function addWishList(value) {
   let uid = sessionStorage.getItem("id");
   if (uid == null) {
