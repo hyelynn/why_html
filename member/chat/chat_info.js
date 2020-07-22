@@ -69,15 +69,7 @@ function send_chat() {
     xhr.onreadystatechange = function () {
       if (xhr.readyState === xhr.DONE) {
         if (xhr.status === 200 || xhr.status === 201) {
-          var msg = "<div class='d-flex justify-content-end mb-3'>" +
-                      "<div class='ml-auto font-weight-light user-msg'>" +
-                      "<div class='bg-sky rounded-xl p-md-3 p-2 mb-2 text-white chat-msg'>" +
-                      "<p class='mb-0'>+" +
-                      send_msg +
-                      "+</p></div>" +
-                      "<p class='text-light-gray font-size-xs'> 방금 전 </p></div></div>";
-
-          $("#msgs").append($(msg));
+          location.reload()
         }
       }
     };
