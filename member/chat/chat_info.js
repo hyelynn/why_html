@@ -61,8 +61,8 @@ function send_chat() {
     var xhr = new XMLHttpRequest();
     var id = sessionStorage.getItem("id");
     var send_img = "";
-    var send_msg = $("#msg").text();
-    $("#msg").text('');
+    var send_msg = $("#msg").val();
+    $("#msg").val('');
 
     console.log(send_msg);
 
