@@ -2,6 +2,42 @@
 <%@page import="java.text.SimpleDateFormat"%>
 <%@page import="com.inicis.std.util.SignatureUtil"%>
 <%@page import="java.util.*"%>
+<%
+    //############################################
+    // 1.전문 필드 값 설정(***가맹점 개발수정***)
+    //############################################
+
+    // 여기에 설정된 값은 Form 필드에 동일한 값으로 설정
+    String mid					= "welcometst";		// 가맹점 ID(가맹점 수정후 고정)					
+
+    //인증
+    String signKey			    = "QjZXWDZDRmxYUXJPYnMvelEvSjJ5QT09";	// 가맹점에 제공된 웹 표준 사인키(가맹점 수정후 고정)
+    String timestamp			= SignatureUtil.getTimestamp();			// util에 의해서 자동생성
+
+    String oid					= mid+"_"+SignatureUtil.getTimestamp();	// 가맹점 주문번호(가맹점에서 직접 설정)
+    String price				= "1000";													// 상품가격(특수기호 제외, 가맹점에서 직접 설정)
+
+    String cardNoInterestQuota	= "11-2:3:,34-5:12,14-6:12:24,12-12:36,06-9:12,01-3:4";		// 카드 무이자 여부 설정(가맹점에서 직접 설정)
+    String cardQuotaBase		= "2:3:4:5:6:11:12:24:36";		// 가맹점에서 사용할 할부 개월수 설정
+
+    //###############################################
+    // 2. 가맹점 확인을 위한 signKey를 해시값으로 변경 (SHA-256방식 사용)
+    //###############################################
+    String mKey = SignatureUtil.hash(signKey, "SHA-256");
+
+    //###############################################
+    // 2.signature 생성
+    //###############################################
+    Map<String, String> signParam = new HashMap<String, String>();
+
+    signParam.put("mKey", mKey);				// 필수
+    signParam.put("oid", oid); 					// 필수
+    signParam.put("price", price);				// 필수
+    signParam.put("timestamp", timestamp);		// 필수
+
+    // signature 데이터 생성 (모듈에서 자동으로 signParam을 알파벳 순으로 정렬후 NVP 방식으로 나열해 hash)
+    String signature = SignatureUtil.makeSignature(signParam);
+%>
 
 <!DOCTYPE html>
 <html lang="ko">
@@ -20,7 +56,7 @@
     <!-- Custom -->
     <link rel="stylesheet" href="/css/custom.css">
     <script src="/js/custom.js"></script>
-    <script src="/js/payment.js"></script>
+    <!-- <script src="/js/payment.js"></script> -->
     <script src="/js/include.js"></script>
     <!-- Fontawesome -->
     <link rel="stylesheet" href="/css/fontawesome/css/all.min.css">

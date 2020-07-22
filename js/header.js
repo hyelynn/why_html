@@ -10,7 +10,6 @@ function login_header() {
     })
   } else {
     alert('해당 브라우저에서는 위치정보를 제공하지 않습니다')
-
   }
 
   if (img == undefined || img == 'undefined') {
