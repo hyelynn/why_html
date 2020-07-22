@@ -20,10 +20,7 @@ $(document).ready(function () {
                   "<div class='p-lg-2 p-1 d-flex list-tag list-tag-yellow'>" +
                   "<span class='align-self-center list-tag-title'>바로결제</span>" +
                   "</div>" +
-                  "<button type='button' class='float-right bg-transparent border-0 p-0 text-white font-size-md' onclick='addWishList(this);'><i class='far fa-heart text-red'></i></button>" +
-                  "<div id = 'key' style='display: none;''>" +
-                  result[i].obj_key +"</div>"+
-                  "</div>" +
+                  "<button type='button' class='float-right bg-transparent border-0 p-0 text-white font-size-md' onclick='addWishList("+result[i].obj_key +");'><i class='fas fa-heart text-red'></i></button>" +
                   "<img src='" +
                   result[i].obj_thumbnail +
                   "' class='card-img-top rounded-0'>" +
@@ -59,26 +56,17 @@ $(document).ready(function () {
 
 
 // wishlist btn
-function addWishList(obj) {
+function addWishList(value) {
   let uid = sessionStorage.getItem("id");
   if (uid == null) {
     alert("로그인이 필요합니다");
     location.reload();
   } else {
-    let icon = $(obj).find("i");
-    if (icon.hasClass("far fa-heart")) {
-      $(icon).attr("class", "fas fa-heart text-red");
-    } else {
-      $(icon).attr("class", "far fa-heart");
-    }
-
-    var value = $(obj).find("#key").text();
     var xhr = new XMLHttpRequest();
 
     xhr.onreadystatechange = function () {
       if (xhr.readyState === xhr.DONE) {
         if (xhr.status === 200 || xhr.status === 201) {
-          console.log("조아여");
           location.reload();
         }
       }
