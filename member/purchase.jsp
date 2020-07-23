@@ -11,7 +11,7 @@
     String mid					= "wpartby071";		// 가맹점 ID(가맹점 수정후 고정)					
 
     //인증
-    String signKey			    = "QjZXWDZDRmxYUXJPYnMvelEvSjJ5QT09";	// 가맹점에 제공된 웹 표준 사인키(가맹점 수정후 고정)
+    String signKey			    = "bjdYek1nbjlSd3dmZml5b1JDRmowUT09";	// 가맹점에 제공된 웹 표준 사인키(가맹점 수정후 고정)
     String timestamp			= SignatureUtil.getTimestamp();			// util에 의해서 자동생성
 
     String oid					= mid+"_"+SignatureUtil.getTimestamp();	// 가맹점 주문번호(가맹점에서 직접 설정)
