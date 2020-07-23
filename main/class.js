@@ -33,7 +33,7 @@ function initClass() {
               "<p class='font-weight-light border-bottom pb-2 mb-2 font-size-xs'>" +
               item.obj_name +
               "</p>" +
-              "<a href='/sub/obj_view.html?" +
+              "<a href='/sub/class_view.html?" +
               item.obj_key +
               "' class='stretched-link text-decoration-none'>" +
               "<span class='text-red font-weight-bold font-size-l'>" +
