@@ -16,13 +16,13 @@
 
     <script src="/js/include.js"></script>
     <script src="/js/studio_info.js"></script>
-
     <!-- Custom -->
     <script type="text/javascript" src="https://static.nid.naver.com/js/naveridlogin_js_sdk_2.0.0.js"
         charset="utf-8"></script>
     <script src="/js/kakao_sdk.js"></script>
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
 
+    
     <script>
         // SDK를 초기화 합니다. 사용할 앱의 JavaScript 키를 설정해 주세요.
         Kakao.init('d88bea310f4a39afbea3146fe1c0fa72');
@@ -32,7 +32,6 @@
 
 
     <link rel="stylesheet" href="/css/custom.css">
-    <script src="/js/jquery.star-rating-svg.min.js"></script>
 
     <!-- Fontawesome -->
     <link rel="stylesheet" href="/css/fontawesome/css/all.min.css">
@@ -69,28 +68,14 @@
 
     <main role="main">
         <div class="bg-light-more py-lg-5 py-4">
-            <div class="container">
-                <div id="title"></div>
+            <div class="container" id="title">
+                
 
                 <div class="my-md-5 my-3" id="info">
                     <h3 class="mb-lg-4 mb-3 text-bullet">상세정보</h3>
-                    <p class="font-weight-light font-size-s">
-                        그들을 동력은 우리의 공자는 굳세게 구하지 낙원을 그들의 이것이다. 위하여, 얼음과 꽃이 사는가 새 하였으며, 끝에 것이다. 청춘의 착목한는 얼음이 따뜻한
-                        할지니, 천자만홍이 원대하고, 그들에게 굳세게 것이다.<br><br>
-                        할지니, 군영과 이상 꾸며 힘있다. 인생을 밥을 쓸쓸한 더운지라 황금시대다. 할지니, 우리 청춘의 이것을 가치를 무엇을 있으며, 것이다. 이상의 시들어 이상의
-                        굳세게 대한 약동하다. 이상, 싶이 목숨이 두기 방황하여도, 풍부하게 쓸쓸한 것이다.<br><br>
-                        가슴이 것은 모래뿐일 끓는 살 수 이것이다. 피고, 위하여서 반짝이는 안고, 같지 뼈 우리의 황금시대다
-                    </p>
                 </div>
-                <div class="my-md-5 my-3" id="rules">
+                <div class="my-md-5 my-3" id="rule">
                     <h3 class="mb-lg-4 mb-3 text-bullet">유의사항</h3>
-                    <div class="font-weight-light font-size-s">
-                        <ul class="custom-list-style">
-                            <li class="list-item">이런 시와 비둘기, 가을로 별이 있습니다. 이런 내 동경과 별 이름과, 벌써 이름자를 한 딴은 듯합니다. 이네들은 그러나 마리아 딴은 계집애들의 버리었습니다. 아름다운 덮어 잔디가 못 가을 소학교 다 위에 계십니다. 어머님, 쉬이 지나가는 있습니다. 걱정도 새겨지는 하나의 많은 추억과 비둘기, 어머님, 위에도 계십니다. 이름과 차 다 하나에 버리었습니다. 다하지 하나에 겨울이 프랑시스 라이너 까닭이요, 둘 가을 속의 듯합니다. 당신은 별이 아이들의 무성할 때 무엇인지 별들을 있습니다.</li>
-                            <li class="list-item">헤일 별 마디씩 많은 된 아무 보고, 듯합니다. 추억과 나의 같이 봅니다. 쓸쓸함과 나는 아름다운 프랑시스 이 하늘에는 있습니다. 지나가는 때 내린 하나에 거외다. 너무나 까닭이요, 이런 봅니다. 시와 릴케 밤이 멀리 추억과 애기 그리고 청춘이 버리었습니다. 아무 헤는 새워 별빛이 내 이름을 듯합니다. 속의 걱정도 소녀들의 별빛이 별을 슬퍼하는 새겨지는 어머님, 내 까닭입니다. 별 다하지 멀듯이, 내 나는 봅니다. 어머님, 가을로 가득 소학교 노루, 어머니 있습니다.</li>
-                            <li class="list-item">같이 된 아름다운 사람들의 아스라히 버리었습니다. 사람들의 벌레는 우는 위에도 가을 거외다. 않은 것은 내 어머님, 노루, 가을 한 소녀들의 동경과 봅니다. 아침이 겨울이 비둘기, 봅니다. 무성할 쓸쓸함과 없이 이름과, 노루, 있습니다. 멀리 위에 지나가는 헤는 버리었습니다. 잠, 라이너 무엇인지 멀듯이, 마리아 내일 무덤 별이 차 까닭입니다. 그러나 남은 흙으로 부끄러운 라이너 내일 계십니다. 옥 풀이 무덤 별 토끼, 까닭입니다. 아침이 별 내일 그리고 까닭입니다.</li>
-                        </ul>
-                    </div>
                 </div>
             </div>
         </div>
@@ -103,10 +88,12 @@
     <script src="/js/naver_login.js"></script>
     <script src="/js/login.js"></script>
 </body>
-    <script>
-        $(function () {
+
+
+<script>
+    $(function () {
         // datepicker
-            initialize("audition")
-        });
-    </script>
+        initialize("audition")
+    });
+</script>
 </html>

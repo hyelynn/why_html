@@ -23,7 +23,7 @@ function initialize(curr) {
     if (xhr.readyState === xhr.DONE) {
       if (xhr.status === 200 || xhr.status === 201) {
         var result = JSON.parse(xhr.responseText);
-        if (curr == "studio" || curr == "class") {
+        if (curr == "studio" || curr == "class" || curr == "audition") {
           for (var i = 0; i < result.length; i++) {
             var indi = "",
               img = "";
@@ -195,7 +195,7 @@ function initialize(curr) {
                   "</p>"
               )
             );
-          }
+          } 
 
           $("#reviewModal").append(
             $(
@@ -264,8 +264,7 @@ function initialize(curr) {
 
           $("#title").prepend(
             "<img src="+result[0].obj_thumbnail+" class='img-fluid' alt=''>"+
-            "<h2 class='my-4'>"+result[0].obj_name+"</h2>"+
-            "<p class='font-weight-light text-light-gray font-size-s'>"+title+"</p>"
+            "<h2 class='my-4'>"+result[0].obj_name+"</h2>"
           );
           
           $("#locdate").prepend(
@@ -275,9 +274,30 @@ function initialize(curr) {
           for (var i = 0; i < result.length; i++) {
             $("#info").append("<img src="+result[i]._images+" class='img-fluid' alt=''>")
           }          
-          $("#info").append("<p class='font-weight-light font-size-s'>"+ rule + "</p>")
-                    
-        } 
+          $("#info").append("<br><p class='font-weight-light font-size-s'>"+ rule + "</p>")
+                     
+        } else if (curr == "audition") {
+          var info = "";
+          var splitInfo = result[0].obj_info.split("/");
+
+          for (var s in splitInfo) {
+            info += splitInfo[s] + "<br>";
+          }
+
+          var rule = "";
+          var rules = result[0].obj_rule.split("/");
+
+          for (var s in splitInfo) {
+            info += splitInfo[s] + "<br>";
+          }
+
+          for (var s in rules) {
+            rule += rules[s] + "<br>";
+          }
+
+          $("#info").append($("<p class='font-weight-light font-size-s'>"+info+"</p>"));
+          $("#rules").append($("<p class='font-weight-light font-size-s'>"+rule+"</p>"));
+        }
 
         price_maker();
         load_review();
