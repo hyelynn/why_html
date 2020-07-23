@@ -28,20 +28,20 @@ function initPlace() {
           $(
             "<div class='col-lg-3 col-6'><div class='card border-0'>" +
               prefix +
-              "<img src='"+item.studio_thumbnail+"' class='card-img-top rounded-0'>" +
+              "<img src='"+item.obj_thumbnail+"' class='card-img-top rounded-0'>" +
               "<h5 class='mt-lg-3 mt-2'>" +
-              item.studio_name +
+              item.obj_name +
               "</h5>" +
               "<p class='font-weight-light border-bottom pb-2 mb-2 font-size-xs'>" +
-              item.studio_name +
+              item.obj_name +
               "</p>" +
-              "<a href='/sub/studio_view.html?" +
-              item.studio_key +
+              "<a href='/sub/obj_view.html?" +
+              item.obj_key +
               "' class='stretched-link text-decoration-none'>" +
               "<span class='text-red font-weight-bold font-size-l'>" +
-              item.studio_rp +
+              item.obj_rp +
               "</span><span class='text-dark font-weight-light pl-1 font-size-s'>원/" +
-              item.studio_price_type +
+              item.obj_price_type +
               "</span></a></div></div>"
           )
         );
