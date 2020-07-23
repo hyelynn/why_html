@@ -1,9 +1,9 @@
 <!-- 
-Ãë¼Ò Ã³¸®·Î Overlay Ã¢À» ´Ý¾ÆÁÖ´Â ¿ªÈ°À» ÇÏ´Â ÆäÀÌÁö
-ÇÊ¿ä ½Ã °¡¸ÍÁ¡ ·ÎÁ÷ Ãß°¡ÇÏ¿© Ã³¸®
+ï¿½ï¿½ï¿½ Ã³ï¿½ï¿½ï¿½ï¿½ Overlay Ã¢ï¿½ï¿½ ï¿½Ý¾ï¿½ï¿½Ö´ï¿½ ï¿½ï¿½È°ï¿½ï¿½ ï¿½Ï´ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+ï¿½Ê¿ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ß°ï¿½ï¿½Ï¿ï¿½ Ã³ï¿½ï¿½
 -->
 
-<!--Å×½ºÆ®-->
-<script language="javascript" type="text/javascript" src="https://tstgstdpay.paywelcome.co.kr/stdjs/INIStdPay_close.js" charset="UTF-8"></script>
-<!--¿î¿µ-->
+<!--ï¿½×½ï¿½Æ®-->
+<script language="javascript" type="text/javascript" src="https://stdpay.paywelcome.co.kr/stdjs/INIStdPay_close.js" charset="UTF-8"></script>
+<!--ï¿½î¿µ-->
 <!--script language="javascript" type="text/javascript" src="https://stgstdpay.paywelcome.co.kr/stdjs/INIStdPay_close.js" charset="UTF-8"></script>

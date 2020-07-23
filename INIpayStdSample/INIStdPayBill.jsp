@@ -72,7 +72,7 @@
 
 	<!-- 이니시스 표준결제 js -->
 	<!-- 가맹점 URL이 http일 경우 http처리, 실제 오픈시 가맹점 MID로 stdpay로 처리 -->	
-	<script language="javascript" type="text/javascript" src="https://tstgstdpay.paywelcome.co.kr/stdjs/INIStdPay.js" charset="UTF-8"></script>
+	<script language="javascript" type="text/javascript" src="http://stdpay.paywelcome.co.kr/stdjs/INIStdPay.js" charset="UTF-8"></script>
 <script type="text/javascript">
 
 function cardShow(){

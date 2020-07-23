@@ -20,12 +20,7 @@
 		이니시스 표준결제 인증결과 수신 / 승인요청, 승인결과 표시 샘플
 	</div>
 <% 
-
 	try{
-
-		//#############################
-		// 인증결과 파라미터 일괄 수신
-		//#############################
 		request.setCharacterEncoding("UTF-8");
 
 		Map<String,String> paramMap = new Hashtable<String,String>();
@@ -42,9 +37,6 @@
 		
 		System.out.println("paramMap : "+ paramMap.toString());
 		
-		//#####################
-		// 인증이 성공일 경우만
-		//#####################
 		if("0000".equals(paramMap.get("resultCode"))){
 
 			out.println("####인증성공/승인요청####");
@@ -197,33 +189,7 @@
 				out.println("<td class='td02'><p>" +resultMap.get("applTime")+"</p></td></tr>");
 				out.println("<tr><th class='line' colspan='2'><p></p></th></tr>");
 				
-				if("VBank".equals(resultMap.get("payMethod"))){ //가상계좌
-					
-					out.println("<tr><th class='line' colspan='2'><p></p></th></tr>");
-					out.println("<tr><th class='td01'><p>입금 계좌번호</p></th>");
-					out.println("<td class='td02'><p>" +resultMap.get("VACT_Num")+"</p></td></tr>");
-					out.println("<tr><th class='line' colspan='2'><p></p></th></tr>");
-					out.println("<tr><th class='td01'><p>입금 은행코드</p></th>");
-					out.println("<td class='td02'><p>" +resultMap.get("VACT_BankCode")+"</p></td></tr>");
-					out.println("<tr><th class='line' colspan='2'><p></p></th></tr>");
-					out.println("<tr><th class='td01'><p>입금 은행명</p></th>");
-					out.println("<td class='td02'><p>" +resultMap.get("vactBankName")+"</p></td></tr>");
-					out.println("<tr><th class='line' colspan='2'><p></p></th></tr>");
-					out.println("<tr><th class='td01'><p>예금주 명</p></th>");
-					out.println("<td class='td02'><p>" +resultMap.get("VACT_Name")+"</p></td></tr>");
-					out.println("<tr><th class='line' colspan='2'><p></p></th></tr>");
-					out.println("<tr><th class='td01'><p>송금자 명</p></th>");
-					out.println("<td class='td02'><p>" +resultMap.get("VACT_InputName")+"</p></td></tr>");
-					out.println("<tr><th class='line' colspan='2'><p></p></th></tr>");
-					out.println("<tr><th class='td01'><p>송금 일자</p></th>");
-					out.println("<td class='td02'><p>" +resultMap.get("VACT_Date")+"</p></td></tr>");
-					out.println("<tr><th class='line' colspan='2'><p></p></th></tr>");
-					out.println("<tr><th class='td01'><p>송금 시간</p></th>");
-					out.println("<td class='td02'><p>" +resultMap.get("VACT_Time")+"</p></td></tr>");
-					
-					out.println("<tr><th class='line' colspan='2'><p></p></th></tr>");	
-					
-				}else if("DirectBank".equals(resultMap.get("payMethod"))){ //실시간계좌이체
+				if("DirectBank".equals(resultMap.get("payMethod"))){ //실시간계좌이체
 					out.println("<tr><th class='line' colspan='2'><p></p></th></tr>");
 					out.println("<tr><th class='td01'><p>은행코드</p></th>");
 					out.println("<td class='td02'><p>" +resultMap.get("ACCT_BankCode")+"</p></td></tr>");
@@ -235,140 +201,7 @@
 					out.println("<td class='td02'><p>" +resultMap.get("CSHR_Type")+"</p></td></tr>");
 					out.println("<tr><th class='line' colspan='2'><p></p></th></tr>");
 					 
-				}else if("iDirectBank".equals(resultMap.get("payMethod"))){ //실시간계좌이체
-					out.println("<tr><th class='line' colspan='2'><p></p></th></tr>");
-					out.println("<tr><th class='td01'><p>은행코드</p></th>");
-					out.println("<td class='td02'><p>" +resultMap.get("ACCT_BankCode")+"</p></td></tr>");
-					out.println("<tr><th class='line' colspan='2'><p></p></th></tr>");
-					out.println("<tr><th class='td01'><p>현금영수증 발급결과코드</p></th>");
-					out.println("<td class='td02'><p>" +resultMap.get("CSHRResultCode")+"</p></td></tr>");
-					out.println("<tr><th class='line' colspan='2'><p></p></th></tr>");
-					out.println("<tr><th class='td01'><p>현금영수증 발급구분코드</p> <font color=red><b>(0 - 소득공제용, 1 - 지출증빙용)</b></font></th>");
-					out.println("<td class='td02'><p>" +resultMap.get("CSHR_Type")+"</p></td></tr>");
-					out.println("<tr><th class='line' colspan='2'><p></p></th></tr>");
-					 
-				}else if("HPP".equals(resultMap.get("payMethod"))){ //휴대폰
-					out.println("<tr><th class='line' colspan='2'><p></p></th></tr>");
-					out.println("<tr><th class='td01'><p>통신사</p></th>");
-					out.println("<td class='td02'><p>" +resultMap.get("HPP_Corp")+"</p></td></tr>");
-					out.println("<tr><th class='line' colspan='2'><p></p></th></tr>");
-					out.println("<tr><th class='td01'><p>결제장치</p></th>");
-					out.println("<td class='td02'><p>" +resultMap.get("payDevice")+"</p></td></tr>");
-					out.println("<tr><th class='line' colspan='2'><p></p></th></tr>");
-					out.println("<tr><th class='td01'><p>휴대폰번호</p></th>");
-					out.println("<td class='td02'><p>" +resultMap.get("HPP_Num")+"</p></td></tr>");
-					out.println("<tr><th class='line' colspan='2'><p></p></th></tr>");
-					
-				}else if("DGCL".equals(resultMap.get("payMethod"))){//게임문화상품권
-					String sum="0",sum2="0",sum3="0",sum4="0",sum5="0",sum6="0";
-					out.println("<tr><th class='line' colspan='2'><p></p></th></tr>");
-					out.println("<tr><th class='td01'><p>게임문화상품권승인금액</p></th>");
-					out.println("<td class='td02'><p>" +resultMap.get("GAMG_ApplPrice")+"원</p></td></tr>");
-					out.println("<tr><th class='line' colspan='2'><p></p></th></tr>");
-					out.println("<tr><th class='td01'><p>사용한 카드수</p></th>");
-					out.println("<td class='td02'><p>" +resultMap.get("GAMG_Cnt")+"</p></td></tr>");
-					out.println("<tr><th class='line' colspan='2'><p></p></th></tr>");
-					out.println("<tr><th class='td01'><p>사용한 카드번호</p></th>");
-					out.println("<td class='td02'><p>" +resultMap.get("GAMG_Num1")+"</p></td></tr>");
-					out.println("<tr><th class='line' colspan='2'><p></p></th></tr>");
-					out.println("<tr><th class='td01'><p>카드잔액</p></th>");
-					out.println("<td class='td02'><p>" +resultMap.get("GAMG_Price1")+"원</p></td></tr>");
-					
-					if(!"".equals(resultMap.get("GAMG_Num2"))){
-						out.println("<tr><th class='line' colspan='2'><p></p></th></tr>");
-						out.println("<tr><th class='td01'><p>사용한 카드번호</p></th>");
-						out.println("<td class='td02'><p>" +resultMap.get("GAMG_Num2")+"</p></td></tr>");
-						out.println("<tr><th class='line' colspan='2'><p></p></th></tr>");
-						out.println("<tr><th class='td01'><p>카드잔액</p></th>");
-						out.println("<td class='td02'><p>" +resultMap.get("GAMG_Price2")+"원</p></td></tr>");
-					}
-					if(!"".equals(resultMap.get("GAMG_Num3"))){
-						out.println("<tr><th class='line' colspan='2'><p></p></th></tr>");
-						out.println("<tr><th class='td01'><p>사용한 카드번호</p></th>");
-						out.println("<td class='td02'><p>" +resultMap.get("GAMG_Num3")+"</p></td></tr>");
-						out.println("<tr><th class='line' colspan='2'><p></p></th></tr>");
-						out.println("<tr><th class='td01'><p>카드잔액</p></th>");
-						out.println("<td class='td02'><p>" +resultMap.get("GAMG_Price3")+"원</p></td></tr>");
-					}
-					if(!"".equals(resultMap.get("GAMG_Num4"))){
-						out.println("<tr><th class='line' colspan='2'><p></p></th></tr>");
-						out.println("<tr><th class='td01'><p>사용한 카드번호</p></th>");
-						out.println("<td class='td02'><p>" +resultMap.get("GAMG_Num4")+"</p></td></tr>");
-						out.println("<tr><th class='line' colspan='2'><p></p></th></tr>");
-						out.println("<tr><th class='td01'><p>카드잔액</p></th>");
-						out.println("<td class='td02'><p>" +resultMap.get("GAMG_Price4")+"원</p></td></tr>");
-					}
-					if(!"".equals(resultMap.get("GAMG_Num5"))){
-						out.println("<tr><th class='line' colspan='2'><p></p></th></tr>");
-						out.println("<tr><th class='td01'><p>사용한 카드번호</p></th>");
-						out.println("<td class='td02'><p>" +resultMap.get("GAMG_Num5")+"</p></td></tr>");
-						out.println("<tr><th class='line' colspan='2'><p></p></th></tr>");
-						out.println("<tr><th class='td01'><p>카드잔액</p></th>");
-						out.println("<td class='td02'><p>" +resultMap.get("GAMG_Price5")+"원</p></td></tr>");
-					}
-					if(!"".equals(resultMap.get("GAMG_Num6"))){
-						out.println("<tr><th class='line' colspan='2'><p></p></th></tr>");
-						out.println("<tr><th class='td01'><p>사용한 카드번호</p></th>");
-						out.println("<td class='td02'><p>" +resultMap.get("GAMG_Num6")+"</p></td></tr>");
-						out.println("<tr><th class='line' colspan='2'><p></p></th></tr>");
-						out.println("<tr><th class='td01'><p>카드잔액</p></th>");
-						out.println("<td class='td02'><p>" +resultMap.get("GAMG_Price6")+"원</p></td></tr>");
-					}
-					out.println("<tr><th class='line' colspan='2'><p></p></th></tr>");
-					
-				}else if("OCBPoint".equals(resultMap.get("payMethod"))){ //오케이 캐쉬백
-				
-					out.println("<tr><th class='line' colspan='2'><p></p></th></tr>");
-					out.println("<tr><th class='td01'><p>지불구분</p></th>");
-					out.println("<td class='td02'><p>" +resultMap.get("PayOption")+"</p></td></tr>");
-					out.println("<tr><th class='line' colspan='2'><p></p></th></tr>");
-// 					out.println("<tr><th class='td01'><p>결제완료금액</p></th>");
-// 					out.println("<td class='td02'><p>" +resultMap.get("applPrice")+"원</p></td></tr>");
-					out.println("<tr><th class='line' colspan='2'><p></p></th></tr>");
-					out.println("<tr><th class='td01'><p>OCB 카드번호</p></th>");
-					out.println("<td class='td02'><p>" +resultMap.get("OCB_Num")+"</p></td></tr>");
-					out.println("<tr><th class='line' colspan='2'><p></p></th></tr>");
-					out.println("<tr><th class='td01'><p>적립 승인번호</p></th>");
-					out.println("<td class='td02'><p>" +resultMap.get("OCB_SaveApplNum")+"</p></td></tr>");
-					out.println("<tr><th class='line' colspan='2'><p></p></th></tr>");
-					out.println("<tr><th class='td01'><p>사용 승인번호</p></th>");
-					out.println("<td class='td02'><p>" +resultMap.get("OCB_PayApplNum")+"</p></td></tr>");
-					out.println("<tr><th class='line' colspan='2'><p></p></th></tr>");					
-					out.println("<tr><th class='td01'><p>OCB 지불 금액</p></th>");
-					out.println("<td class='td02'><p>" +resultMap.get("OCB_PayPrice")+"</p></td></tr>");
-					out.println("<tr><th class='line' colspan='2'><p></p></th></tr>");
-					
-				}else if("GSPT".equals(resultMap.get("payMethod"))){ //GSPoint
-				
-					out.println("<tr><th class='line' colspan='2'><p></p></th></tr>");
-					out.println("<tr><th class='td01'><p>지불구분</p></th>");
-					out.println("<td class='td02'><p>" +resultMap.get("PayOption")+"</p></td></tr>");					
-					out.println("<tr><th class='line' colspan='2'><p></p></th></tr>");
-					out.println("<tr><th class='td01'><p>GS 포인트 승인금액</p></th>");
-					out.println("<td class='td02'><p>" +resultMap.get("GSPT_ApplPrice")+"원</p></td></tr>");
-					out.println("<tr><th class='line' colspan='2'><p></p></th></tr>");
-					out.println("<tr><th class='td01'><p>GS 포인트 적립금액</p></th>");
-					out.println("<td class='td02'><p>" +resultMap.get("GSPT_SavePrice")+"원</p></td></tr>");					
-					out.println("<tr><th class='line' colspan='2'><p></p></th></tr>");
-					out.println("<tr><th class='td01'><p>GS 포인트 지불금액</p></th>");
-					out.println("<td class='td02'><p>" +resultMap.get("GSPT_PayPrice")+"원</p></td></tr>");
-					out.println("<tr><th class='line' colspan='2'><p></p></th></tr>");
-					
-				}else if("UPNT".equals(resultMap.get("payMethod"))){ //U-포인트
-					
-					out.println("<tr><th class='line' colspan='2'><p></p></th></tr>");
-					out.println("<tr><th class='td01'><p>U포인트 카드번호</p></th>");
-					out.println("<td class='td02'><p>" +resultMap.get("UPoint_Num")+"</p></td></tr>");
-					out.println("<tr><th class='line' colspan='2'><p></p></th></tr>");
-					out.println("<tr><th class='td01'><p>가용포인트</p></th>");
-					out.println("<td class='td02'><p>" +resultMap.get("UPoint_usablePoint")+"</p></td></tr>");
-					out.println("<tr><th class='line' colspan='2'><p></p></th></tr>");			
-					out.println("<tr><th class='td01'><p>포인트지불금액</p></th>");
-					out.println("<td class='td02'><p>" +resultMap.get("UPoint_ApplPrice")+"</p></td></tr>");
-					out.println("<tr><th class='line' colspan='2'><p></p></th></tr>");
-					
-				}
-				else if("KWPY".equals(resultMap.get("payMethod"))){ //뱅크월렛 카카오
+				} else if("KWPY".equals(resultMap.get("payMethod"))){ //뱅크월렛 카카오
 					out.println("<tr><th class='td01'><p>결제방법</p></th>");
 					out.println("<td class='td02'><p>" +resultMap.get("payMethod")+"</p></td></tr>");
 					out.println("<tr><th class='line' colspan='2'><p></p></th></tr>");
@@ -394,73 +227,7 @@
 					out.println("<td class='td02'><p>" +resultMap.get("applTime")+"</p></td></tr>");
 					out.println("<tr><th class='line' colspan='2'><p></p></th></tr>");
 					
-				}else if("Culture".equals(resultMap.get("payMethod"))){//문화 상품권
-				  out.println("<tr><th class='td01'><p>컬처랜드 아이디</p></th>");
-					out.println("<td class='td02'><p>" +resultMap.get("CULT_UserID")+"</p></td></tr>");
-					out.println("<tr><th class='line' colspan='2'><p></p></th></tr>");
-					
-				}else if("TEEN".equals(resultMap.get("payMethod"))){//틴캐시
-					out.println("<tr><th class='line' colspan='2'><p></p></th></tr>");
-					out.println("<tr><th class='td01'><p>틴캐시 승인번호</p></th>");
-					out.println("<td class='td02'><p>" +resultMap.get("TEEN_ApplNum")+"</p></td></tr>");									
-					out.println("<tr><th class='line' colspan='2'><p></p></th></tr>");
-					out.println("<tr><th class='td01'><p>틴캐시아이디</p></th>");
-					out.println("<td class='td02'><p>" +resultMap.get("TEEN_UserID")+"</p></td></tr>");
-					out.println("<tr><th class='line' colspan='2'><p></p></th></tr>");
-					out.println("<tr><th class='line' colspan='2'><p></p></th></tr>");
-					out.println("<tr><th class='td01'><p>틴캐시승인금액</p></th>");
-					out.println("<td class='td02'><p>" +resultMap.get("TEEN_ApplPrice")+"원</p></td></tr>");	
-										
-				}else if("Bookcash".equals(resultMap.get("payMethod"))){//도서문화상품권
-					
-					out.println("<tr><th class='line' colspan='2'><p></p></th></tr>");
-					out.println("<tr><th class='td01'><p>도서상품권 승인번호</p></th>");
-					out.println("<td class='td02'><p>" +resultMap.get("BCSH_ApplNum")+"</p></td></tr>");
-					out.println("<tr><th class='line' colspan='2'><p></p></th></tr>");
-					out.println("<tr><th class='td01'><p>도서상품권 사용자ID</p></th>");
-					out.println("<td class='td02'><p>" +resultMap.get("BCSH_UserID")+"</p></td></tr>");
-					out.println("<tr><th class='line' colspan='2'><p></p></th></tr>");
-					out.println("<tr><th class='td01'><p>도서상품권 승인금액</p></th>");
-					out.println("<td class='td02'><p>" +resultMap.get("BCSH_ApplPrice")+"원</p></td></tr>");
-					
-				}else if("PhoneBill".equals(resultMap.get("payMethod"))){//폰빌전화결제
-					out.println("<tr><th class='line' colspan='2'><p></p></th></tr>");
-					out.println("<tr><th class='td01'><p>승인전화번호</p></th>");
-					out.println("<td class='td02'><p>" +resultMap.get("PHNB_Num")+"</p></td></tr>");
-					out.println("<tr><th class='line' colspan='2'><p></p></th></tr>");
-					
-
-				}else if("Bill".equals(resultMap.get("payMethod"))){//빌링결제
-					out.println("<tr><th class='line' colspan='2'><p></p></th></tr>");
-					out.println("<tr><th class='td01'><p>빌링키</p></th>");
-					out.println("<td class='td02'><p>" +resultMap.get("CARD_BillKey")+"</p></td></tr>");
-				}else if("Auth".equals(resultMap.get("payMethod"))){//빌링결제
-					out.println("<tr><th class='line' colspan='2'><p></p></th></tr>");
-					out.println("<tr><th class='td01'><p>빌링키</p></th>");
-					if ("BILL_CARD".equalsIgnoreCase(resultMap.get("payMethodDetail"))) {
-						out.println("<td class='td02'><p>" +resultMap.get("CARD_BillKey")+"</p></td></tr>");
-					} else  if ("BILL_HPP".equalsIgnoreCase(resultMap.get("payMethodDetail"))) {
-						out.println("<td class='td02'><p>" +resultMap.get("HPP_BillKey")+"</p></td></tr>");
-						out.println("<tr><th class='line' colspan='2'><p></p></th></tr>");
-						out.println("<tr><th class='line' colspan='2'><p></p></th></tr>");
-						out.println("<tr><th class='td01'><p>통신사</p></th>");
-						out.println("<td class='td02'><p>" +resultMap.get("HPP_Corp")+"</p></td></tr>");
-						out.println("<tr><th class='line' colspan='2'><p></p></th></tr>");
-						out.println("<tr><th class='td01'><p>결제장치</p></th>");
-						out.println("<td class='td02'><p>" +resultMap.get("payDevice")+"</p></td></tr>");
-						out.println("<tr><th class='line' colspan='2'><p></p></th></tr>");
-						out.println("<tr><th class='td01'><p>휴대폰번호</p></th>");
-						out.println("<td class='td02'><p>" +resultMap.get("HPP_Num")+"</p></td></tr>");
-						out.println("<tr><th class='line' colspan='2'><p></p></th></tr>");
-						out.println("<tr><th class='td01'><p>상품명</p></th>");			//상품명
-						out.println("<td class='td02'><p>" +resultMap.get("goodName")+"</p></td></tr>");
-
-					} else {
-						//
-					}		
-				}else if("HPMN".equals(resultMap.get("payMethod"))){//해피머니
-					
-				}else{//카드
+				} else{//카드
 					int  quota=Integer.parseInt(resultMap.get("CARD_Quota"));
 					if(resultMap.get("EventCode")!=null){				
 						out.println("<tr><th class='line' colspan='2'><p></p></th></tr>");
