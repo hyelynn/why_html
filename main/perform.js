@@ -2,7 +2,7 @@ function initPerform() {
     //Get Room information
     $.ajax({
       type: "GET",
-      url: "http://3.34.150.116:3000/perform",
+      url: "http://3.34.150.116:3000/audition",
       dataType: "JSON",
   
       //성공 시
@@ -24,20 +24,19 @@ function initPerform() {
           }
           $("#main-audition-slide").append(
             $(
-              "<div class='col-lg-3 col-6'><div class='card border-0'>" +
+                "<div class='col-lg-3 col-6'><div class='card border-0'>" +
                 prefix +
-                "<img src='"+item.perform_thumbnail+"' class='card-img-top rounded-0'>" +
+                "<img src='"+item.obj_thumbnail+"' class='card-img-top rounded-0'>" +
                 "<h5 class='mt-lg-3 mt-2'>" +
-                item.perform_name +
+                item.obj_name +
                 "</h5>" +
-                "<p class='font-weight-light border-bottom pb-2 mb-2 font-size-xs'>" +
-                item.perform_name +
+                "<p class='font-weight-light pb-2 mb-2 font-size-xs'>" +
+                item.obj_name +
                 "</p>" +
-                "<a href='/sub/performance_view.html?" +
-                item.perform_id +
+                "<a href='/sub/obj_view.html?" +
+                item.obj_key +
                 "' class='stretched-link text-decoration-none'>" +
-                "<span class='text-red font-weight-bold font-size-l'>"+
-                "</span><span class='text-dark font-weight-light pl-1 font-size-s'>/</span></a></div></div>"
+                "</a></div></div>"
             )
           );
         });
