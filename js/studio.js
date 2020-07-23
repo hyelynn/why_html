@@ -85,12 +85,6 @@ function makelist(keyword) {
             "<div id = 'studio_index' style='display: none;''>" +
             result[i].obj_key +
             "</div>" +
-            "<div class='card border-0 bg-transparent'>" +
-            "<div class='position-absolute p-md-2 p-1 w-100 z-index-2'>" +
-            "<button type='button' class='float-right bg-transparent border-0 p-0 text-white font-size-md' onclick='addWishList(" +
-            result[i].obj_key +
-            ");'><i class='far fa-heart'></i></button>" +
-            "</div>" +
             "<img src='" +
             result[i].obj_thumbnail +
             "' class='card-img-top rounded-0'>" +
