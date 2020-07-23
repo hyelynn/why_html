@@ -13,7 +13,7 @@
 		table, img {border:none}
 		
 	</style>
-	<link rel="stylesheet" href="../css/group.css" type="text/css">
+	<link rel="stylesheet" href="/css/group.css" type="text/css">
 </head>
 <body bgcolor="#FFFFFF" text="#242424" leftmargin=0 topmargin=15 marginwidth=0 marginheight=0 bottommargin=0 rightmargin=0>
 	<div style="padding:10px;width:100%;font-size:14px;color: #ffffff;background-color: #000000;text-align: center">
@@ -56,7 +56,7 @@
 			//############################################
 			
 			String mid 		= paramMap.get("mid");						// 가맹점 ID 수신 받은 데이터로 설정
-			String signKey	= "QjZXWDZDRmxYUXJPYnMvelEvSjJ5QT09";		// 가맹점에 제공된 키(이니라이트키) (가맹점 수정후 고정) !!!절대!! 전문 데이터로 설정금지
+			String signKey	= "bjdYek1nbjlSd3dmZml5b1JDRmowUT09";		// 가맹점에 제공된 키(이니라이트키) (가맹점 수정후 고정) !!!절대!! 전문 데이터로 설정금지
 			String timestamp= SignatureUtil.getTimestamp();				// util에 의해서 자동생성
 			String charset 	= "UTF-8";								    // 리턴형식[UTF-8,EUC-KR](가맹점 수정후 고정)
 			String format 	= "JSON";								    // 리턴형식[XML,JSON,NVP](가맹점 수정후 고정)

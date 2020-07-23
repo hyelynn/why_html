@@ -16,7 +16,7 @@ function login_header() {
     img = "/img/profile_default.png";
   }
   var menu = ""
-  console.log(location.href)
+  
   if (location.href != 'http://artbyus.co.kr/index.html' && location.href != 'https://artbyus.co.kr/index.html' && 
       location.href != 'http://artbyus.co.kr/' && location.href != 'https://artbyus.co.kr/' ) {
     menu = "<ul class='navbar-nav m-auto font-weight-light sub-nav'>" +

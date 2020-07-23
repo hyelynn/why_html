@@ -143,29 +143,6 @@
 
             <!-- payment -->
             <div class="mb-5">
-                <!-- <h5 class="mb-4">결제방식 선택</h5>
-
-                <div class="border mb-3">
-                    <div class="d-flex justify-content-between px-lg-5 py-lg-4 p-3 custom-inputs">
-                        <div class="d-flex align-items-center">
-                            <input type="radio" name="payment" class="custom-radio mr-lg-3 mr-2" id="nPay">
-                            <label for="nPay" class="mb-0"><img src="/img/logo_Npay.png" class="payment-logo" alt="..."></label>
-                        </div>
-                        <div class="d-flex align-items-center">
-                            <input type="radio" name="payment" class="custom-radio mr-lg-3 mr-2" id="kakaoPay">
-                            <label for="kakaoPay" class="mb-0"><img src="/img/logo_kakaoPay.png" class="payment-logo" alt="..."></label>
-                        </div>
-                        <div class="d-flex align-items-center">
-                            <input type="radio" name="payment" class="custom-radio mr-lg-3 mr-2" id="creditCard">
-                            <label for="creditCard" class="font-weight-light font-size-s mb-0">신용카드 결제</label>
-                        </div>
-                        <div class="d-flex align-items-center">
-                            <input type="radio" name="payment" class="custom-radio mr-lg-3 mr-2" id="depBank">
-                            <label for="depBank" class="font-weight-light font-size-s mb-0">무통장입금</label>
-                        </div>
-                    </div>
-                </div> -->
-
                 <div class="d-flex mb-4 custom-inputs">
                     <input type="checkbox" class="custom-checkbox mr-2" id="order_payment">
                     <label for="order_payment" class="mb-0">
@@ -177,14 +154,12 @@
 
             <!-- button -->
             <div class="custom-inputs">
-                <button type="button" id="send" onClick="INIStdPay.pay('SendPayForm_id')"
+                <button type="button" id="send" onClick="payment();"
                     class="btn btn-block bg-yellow">결제 진행하기</button>
             </div>
         </div>
 
-        <form id="SendPayForm_id" name="" method="POST">
-
-        </form>
+        <form id="SendPayForm_id" name="" method="POST"></form>
     </main>
 
 
@@ -196,6 +171,15 @@
     <script>login_header();</script>
 </body>
 <script>
+    function payment() {
+        if (sessionStorage.getItem("phone") == null) {
+            alert('로그인이 필요합니다');
+        } else if (document.getElementById("order_payment").checked && document.getElementById("order_refund").checked) {
+            INIStdPay.pay('SendPayForm_id'); 
+        } else {
+            lert('약관에 동의해주세요');
+        }
+    }
 
     $(document).ready(function () {
         var total_price = 0;
