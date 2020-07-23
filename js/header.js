@@ -34,7 +34,11 @@ function login_header() {
     "<div class='d-flex justify-content-between'>" +
     "<a class='nav-link text-dark' href='/sub/performance.html' id='menu3'>Performance</a>" +
     "<button class='navbar-toggler border-0 font-size-md text-dark' type='button' data-toggle='collapse' data-target='#subNavDropdown3' aria-controls='subNavDropdown3' aria-expanded='false' aria-label='Toggle navigation'>" +
-    "<i class='fas fa-chevron-down'></i></button></div></li></ul>" 
+    "<i class='fas fa-chevron-down'></i></button></div></li></ul>" +
+    "<div class='d-flex justify-content-between'>" +
+    "<a class='nav-link text-dark' href='/sub/audition.html' id='menu2'>Audition</a>" +
+    "<button class='navbar-toggler border-0 font-size-md text-dark' type='button' data-toggle='collapse' data-target='#subNavDropdown2' aria-controls='subNavDropdown2' aria-expanded='false' aria-label='Toggle navigation'>" +
+    "<i class='fas fa-chevron-down'></i></button></div></li>" 
   }
 
   if (nickname != null) {

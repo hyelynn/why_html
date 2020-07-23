@@ -254,7 +254,9 @@ function initialize(curr) {
           });
         } else if (curr == "perform") {
           var rule = "";
+          
             var rules = result[0].obj_info.split("/");
+            var title = title = rules[0];  
 
             for (var s in rules) {
               rule += rules[s] + "<br>";
@@ -263,7 +265,7 @@ function initialize(curr) {
           $("#title").prepend(
             "<img src="+result[0].obj_thumbnail+" class='img-fluid' alt=''>"+
             "<h2 class='my-4'>"+result[0].obj_name+"</h2>"+
-            "<p class='font-weight-light text-light-gray font-size-s'>"+rule+"</p>"
+            "<p class='font-weight-light text-light-gray font-size-s'>"+title+"</p>"
           );
           
           $("#locdate").prepend(
@@ -271,8 +273,10 @@ function initialize(curr) {
           );
           
           for (var i = 0; i < result.length; i++) {
-            $("#info").append("<<img src="+result[i]._images+" class='img-fluid' alt=''>")
+            $("#info").append("<img src="+result[i]._images+" class='img-fluid' alt=''>")
           }          
+          $("#info").append("<p class='font-weight-light font-size-s'>"+ rule + "</p>")
+                    
         } 
 
         price_maker();
