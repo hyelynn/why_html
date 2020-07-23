@@ -20,7 +20,7 @@ function login_header() {
   if (location.href != 'http://artbyus.co.kr/index.html' && location.href != 'https://artbyus.co.kr/index.html' && 
       location.href != 'http://artbyus.co.kr/' && location.href != 'https://artbyus.co.kr/' ) {
     menu = "<ul class='navbar-nav m-auto font-weight-light sub-nav'>" +
-    "<li class='nav-item mx-lg-3 mx-2 active'>" +
+    "<li class='nav-item mx-lg-3 mx-2'>" +
     "<div class='d-flex justify-content-between'>" +
     "<a class='nav-link text-dark' href='/sub/studio.html' id='menu1'>Studio</a>" +
     "<button class='navbar-toggler border-0 font-size-md text-dark' type='button' data-toggle='collapse' data-target='#subNavDropdown1' aria-controls='subNavDropdown1' aria-expanded='false' aria-label='Toggle navigation'>" +
@@ -34,11 +34,12 @@ function login_header() {
     "<div class='d-flex justify-content-between'>" +
     "<a class='nav-link text-dark' href='/sub/performance.html' id='menu3'>Performance</a>" +
     "<button class='navbar-toggler border-0 font-size-md text-dark' type='button' data-toggle='collapse' data-target='#subNavDropdown3' aria-controls='subNavDropdown3' aria-expanded='false' aria-label='Toggle navigation'>" +
-    "<i class='fas fa-chevron-down'></i></button></div></li></ul>" +
+    "<i class='fas fa-chevron-down'></i></button></div></li>" +
+    "<li class='nav-item mx-lg-3 mx-2'>" +
     "<div class='d-flex justify-content-between'>" +
     "<a class='nav-link text-dark' href='/sub/audition.html' id='menu2'>Audition</a>" +
     "<button class='navbar-toggler border-0 font-size-md text-dark' type='button' data-toggle='collapse' data-target='#subNavDropdown2' aria-controls='subNavDropdown2' aria-expanded='false' aria-label='Toggle navigation'>" +
-    "<i class='fas fa-chevron-down'></i></button></div></li>" 
+    "<i class='fas fa-chevron-down'></i></button></div></li></ul>" 
   }
 
   if (nickname != null) {
