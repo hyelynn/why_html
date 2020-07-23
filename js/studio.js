@@ -97,7 +97,7 @@ function makelist(keyword) {
             "<h5 class='mt-lg-3 mt-2'>" +
             result[i].obj_name +
             "</h5>" +
-            "<p class='font-weight-light border-bottom pb-2 mb-2 font-size-xs'>" +
+            "<p class='font-weight-light pb-2 mb-2 font-size-xs'>" +
             result[i].obj_subname +
             "</p>" +
             "<a href='/sub/" +
