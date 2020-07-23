@@ -177,7 +177,7 @@
         } else if (document.getElementById("order_payment").checked && document.getElementById("order_refund").checked) {
             INIStdPay.pay('SendPayForm_id'); 
         } else {
-            lert('약관에 동의해주세요');
+            alert('약관에 동의해주세요');
         }
     }
 
