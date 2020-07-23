@@ -30,7 +30,7 @@
     //###############################################
     Map<String, String> signParam = new HashMap<String, String>();
 
-    signParam.put("mkey", mKey);				// 필수
+    signParam.put("mKey", mKey);				// 필수
     signParam.put("oid", oid); 					// 필수
     signParam.put("price", price);				// 필수
     signParam.put("timestamp", timestamp);		// 필수
