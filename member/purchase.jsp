@@ -8,7 +8,7 @@
     //############################################
 
     // 여기에 설정된 값은 Form 필드에 동일한 값으로 설정
-    String mid					= "welcometst";		// 가맹점 ID(가맹점 수정후 고정)					
+    String mid					= "wpartby071";		// 가맹점 ID(가맹점 수정후 고정)					
 
     //인증
     String signKey			    = "QjZXWDZDRmxYUXJPYnMvelEvSjJ5QT09";	// 가맹점에 제공된 웹 표준 사인키(가맹점 수정후 고정)
