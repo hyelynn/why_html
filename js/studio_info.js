@@ -23,7 +23,7 @@ function initialize(curr) {
     if (xhr.readyState === xhr.DONE) {
       if (xhr.status === 200 || xhr.status === 201) {
         var result = JSON.parse(xhr.responseText);
-        if (curr == "studio" || curr == "class" || curr == "audition") {
+        if (curr == "studio" || curr == "class") {
           for (var i = 0; i < result.length; i++) {
             var indi = "",
               img = "";
