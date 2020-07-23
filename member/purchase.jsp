@@ -15,7 +15,7 @@
     String timestamp			= SignatureUtil.getTimestamp();			// util에 의해서 자동생성
 
     String oid					= mid+"_"+SignatureUtil.getTimestamp();	// 가맹점 주문번호(가맹점에서 직접 설정)
-    String price				= request.getSession().getAttribute('total');													// 상품가격(특수기호 제외, 가맹점에서 직접 설정);
+    String price				= "20000";													// 상품가격(특수기호 제외, 가맹점에서 직접 설정);
     
     String cardNoInterestQuota	= "11-2:3:,34-5:12,14-6:12:24,12-12:36,06-9:12,01-3:4";		// 카드 무이자 여부 설정(가맹점에서 직접 설정)
     String cardQuotaBase		= "2:3:4:5:6:11:12:24:36";		// 가맹점에서 사용할 할부 개월수 설정
