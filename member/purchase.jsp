@@ -70,7 +70,7 @@
     <link rel="stylesheet" href="/css/fontawesome/css/all.min.css">
 </head>
 
-<body onload="INIStdPay.allowpopup();">
+<body>
     <script src="https://cdn.bootpay.co.kr/js/bootpay-3.2.4.min.js" type="application/javascript"></script>
     <modal include-html="/include/header.html"></modal>
     <div class="py-md-3 px-5 py-2 text-center text-white bg-deep-dark top-notice">
@@ -123,11 +123,6 @@
                 <h5 class="mb-4">예약 및 구매자 정보</h5>
 
                 <div class="custom-inputs-sub mb-3" id="user"></div>
-
-                <div class="d-flex mb-4 custom-inputs">
-                    <input type="checkbox" class="custom-checkbox mr-2" id="order_def">
-                    <label for="order_def" class="mb-0">예약자 정보와 다를 경우 체크해 주세요.(동일한 예약자로 진행해야 중복결제가 가능합니다.)</label>
-                </div>
             </div>
 
             <!-- refund -->

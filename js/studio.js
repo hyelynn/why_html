@@ -8,7 +8,7 @@ function makelist(keyword) {
         var result = JSON.parse(xhr.responseText);
         for (var i = 0; i < result.length; i++) {
           var form = "";
-          if (keyword == "studio" || keyword == "class") {
+          if (keyword == "studio" || keyword == "class" || keyword == "audition") {
             form =
               "<div class='col-lg-3 col-6 mb-lg-5 mb-4'>" +
               "<div id = 'studio_index' style='display: none;''>" +
