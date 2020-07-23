@@ -145,8 +145,19 @@
     <script>includeHTML({ });</script>
     <script>login_header();</script>
     <script>$(function () {
+        var total_price = 0;
+
+        items = JSON.parse(sessionStorage.getItem("cart"));
+
+        $.each(items, function (index, item) {
+            total_price += parseInt(item.price);
+        });
+        sessionStorage.setItem('total', total_price);
+
         location.href = '/member/purchase.jsp';
     })</script>
+
+    
 </body>
 
 
