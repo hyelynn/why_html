@@ -262,7 +262,6 @@
                 "' placeholder='example@example.com'></div></div>"
             )
         );
-
         var sfid = "<input type='hidden' name='version' value='1.0'/>" +
             "<input type='hidden' name='mid' value='wpartby071'/>" +
             "<input type='hidden' name='oid' value='wpartby071_<%=timestamp%>'/>" +
@@ -273,11 +272,11 @@
             "<input type='hidden' name='buyertel' value='" + sessionStorage.getItem("phone") + "'/>" +
             "<input type='hidden' name='timestamp' value='<%=timestamp%>'/>" +
             "<input type='hidden' name='signature' value='<%=signature%>'/>" +
-            "<input type='hidden' name='returnUrl' value='artbyus.co.kr/js/INIStdPayReturn.jsp'/>" +
+            "<input type='hidden' name='returnUrl' value='http://artbyus.co.kr/js/INIStdPayReturn.jsp'/>" +
             "<input type='hidden' name='mKey' value='<%=mKey%>'/>" +
             "<input type='hidden' name='gopaymethod' value='Card'/>" +
-            "<input type='hidden' name='closeUrl' value='artbyus.co.kr/js/close.jsp'/>" +
-            "<input type='hidden' name='popupUrl' value='artbyus.co.kr/js/popup.jsp'/>";
+            "<input type='hidden' name='closeUrl' value='http://artbyus.co.kr/js/close.jsp'/>" +
+            "<input type='hidden' name='popupUrl' value='http://artbyus.co.kr/js/popup.jsp'/>";
         
         $("#SendPayForm_id").append($(sfid))
     });
