@@ -16,7 +16,7 @@
 
     String oid					= mid+"_"+SignatureUtil.getTimestamp();	// 가맹점 주문번호(가맹점에서 직접 설정)
     String price				= "<script>document.writeln(total_price)</script>";													// 상품가격(특수기호 제외, 가맹점에서 직접 설정)
-
+    console.log(price);
     String cardNoInterestQuota	= "11-2:3:,34-5:12,14-6:12:24,12-12:36,06-9:12,01-3:4";		// 카드 무이자 여부 설정(가맹점에서 직접 설정)
     String cardQuotaBase		= "2:3:4:5:6:11:12:24:36";		// 가맹점에서 사용할 할부 개월수 설정
 
@@ -37,6 +37,7 @@
 
     // signature 데이터 생성 (모듈에서 자동으로 signParam을 알파벳 순으로 정렬후 NVP 방식으로 나열해 hash)
     String signature = SignatureUtil.makeSignature(signParam);
+    console.log(signature);
 %>
 
 <!DOCTYPE html>
