@@ -279,11 +279,6 @@ function initialize(curr) {
         } else if (curr == "audition") {
           var info = "";
           var splitInfo = result[0].obj_info.split("/");
-
-          for (var s in splitInfo) {
-            info += splitInfo[s] + "<br>";
-          }
-
           var rule = "";
           var rules = result[0].obj_rule.split("/");
 
@@ -294,9 +289,13 @@ function initialize(curr) {
           for (var s in rules) {
             rule += rules[s] + "<br>";
           }
-
+          $("#title").prepend(
+            "<img src="+result[0].obj_thumbnail+" class='img-fluid' alt=''>"+
+            "<h2 class='my-4'>"+result[0].obj_name+"</h2>"
+          );
+          
           $("#info").append($("<p class='font-weight-light font-size-s'>"+info+"</p>"));
-          $("#rules").append($("<p class='font-weight-light font-size-s'>"+rule+"</p>"));
+          $("#rule").append($("<p class='font-weight-light font-size-s'>"+rule+"</p>"));
         }
 
         price_maker();
