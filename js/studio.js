@@ -8,7 +8,7 @@ function makelist(keyword) {
         var result = JSON.parse(xhr.responseText);
         for (var i = 0; i < result.length; i++) {
           var form = "";
-          if (keyword == "studio" || keyword == "class" || keyword == "audition") {
+          if (keyword == "studio" || keyword == "class") {
             form =
               "<div class='col-lg-3 col-6 mb-lg-5 mb-4'>" +
               "<div id = 'studio_index' style='display: none;''>" +
@@ -79,6 +79,33 @@ function makelist(keyword) {
               "<a href='/sub/performance_view.html?" +
               result[i].obj_key +
               "' class='stretched-link text-decoration-none'></a></div></div></div>";
+          } else if (keyword == "audition") {
+            form =
+            "<div class='col-lg-3 col-6 mb-lg-5 mb-4'>" +
+            "<div id = 'studio_index' style='display: none;''>" +
+            result[i].obj_key +
+            "</div>" +
+            "<div class='card border-0 bg-transparent'>" +
+            "<div class='position-absolute p-md-2 p-1 w-100 z-index-2'>" +
+            "<button type='button' class='float-right bg-transparent border-0 p-0 text-white font-size-md' onclick='addWishList(" +
+            result[i].obj_key +
+            ");'><i class='far fa-heart'></i></button>" +
+            "</div>" +
+            "<img src='" +
+            result[i].obj_thumbnail +
+            "' class='card-img-top rounded-0'>" +
+            "<h5 class='mt-lg-3 mt-2'>" +
+            result[i].obj_name +
+            "</h5>" +
+            "<p class='font-weight-light border-bottom pb-2 mb-2 font-size-xs'>" +
+            result[i].obj_subname +
+            "</p>" +
+            "<a href='/sub/" +
+            keyword +
+            "_view.html?" +
+            result[i].obj_key +
+            "' class='stretched-link text-decoration-none'>" +
+            "</a> </div></div>";
           }
 
           $("#show_list").append($(form));
