@@ -147,8 +147,17 @@
             location.href = "index.html";
         }
     </script>
+<script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+<script>
+    function postLoad(){
+        new daum.Postcode({
+            oncomplete: function(data) {
+                $("#studio_addr").val(data.address);
+            }
+        }).open();
+    }
+   
 
-    <script>
         var urlParam = function(name){
         var results = new RegExp('[\?&]' + name + '=([^&#]*)').exec(window.location.href);
         if (results==null){
@@ -184,6 +193,7 @@
             xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
             xhr.send("studio_key="+s_key);
         });
+    
     $('#studio_intro').keyup(function (e){
         var content = $(this).val();
         $('#intro_cnt').html(content.length+"/100"); 
