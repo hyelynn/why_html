@@ -134,7 +134,7 @@
             </div>
         </div>
 
-        <iframe id="iframe" width="1024" height="500" src="http://artbyus.co.kr/member/purchase.jsp"></iframe>
+        <form id="SendPayForm_id" name="" method="POST" ></form>
     </main>
 
     
@@ -150,9 +150,12 @@
         items = JSON.parse(sessionStorage.getItem("cart"));
 
         $.each(items, function (index, item) {
+
             total_price += parseInt(item.price);
         });
         sessionStorage.setItem('total', total_price);
+
+        location.href = '/member/purchase.jsp';
     })</script>
 
     
