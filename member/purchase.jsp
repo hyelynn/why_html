@@ -253,7 +253,7 @@
             "<input type='hidden' name='signature' value='<%=signature%>'/>" +
             "<input type='hidden' name='returnUrl' value='http://artbyus.co.kr/js/INIStdPayReturn.jsp'/>" +
             "<input type='hidden' name='mKey' value='<%=mKey%>'/>" +
-            "<input type='hidden' name='gopaymethod' value='Card'/>" +
+            "<input type='hidden' name='gopaymethod' value='DirectBank'/>" +
             "<input type='hidden' name='closeUrl' value='http://artbyus.co.kr/js/close.jsp'/>" +
             "<input type='hidden' name='popupUrl' value='http://artbyus.co.kr/js/popup.jsp'/>";
         
