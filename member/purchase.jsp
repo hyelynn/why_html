@@ -244,11 +244,11 @@
         var sfid = "<input type='hidden' name='version' value='1.0'/>" +
             "<input type='hidden' name='mid' value='wpartby071'/>" +
             "<input type='hidden' name='oid' value='wpartby071_<%=timestamp%>'/>" +
-            "<input name='goodname' value='아트바이어스 스튜디오&클래스'/>" +
-            "<input name='price' value='" + total_price + "'/>" +
-            "<input name='currency' value='WON'/>" +
-            "<input name='buyername' value='" + sessionStorage.getItem('name') + "'/>" +
-            "<input name='buyertel' value='" + sessionStorage.getItem("phone") + "'/>" +
+            "<input type='hidden' name='goodname' value='아트바이어스 스튜디오&클래스'/>" +
+            "<input type='hidden' name='price' value='" + total_price + "'/>" +
+            "<input type='hidden' name='currency' value='WON'/>" +
+            "<input type='hidden' name='buyername' value='" + sessionStorage.getItem('name') + "'/>" +
+            "<input type='hidden' name='buyertel' value='" + sessionStorage.getItem("phone") + "'/>" +
             "<input type='hidden' name='timestamp' value='<%=timestamp%>'/>" +
             "<input type='hidden' name='signature' value='<%=signature%>'/>" +
             "<input type='hidden' name='returnUrl' value='http://artbyus.co.kr/js/INIStdPayReturn.jsp'/>" +
