@@ -16,9 +16,7 @@
 	<link rel="stylesheet" href="/css/group.css" type="text/css">
 </head>
 <body bgcolor="#FFFFFF" text="#242424" leftmargin=0 topmargin=15 marginwidth=0 marginheight=0 bottommargin=0 rightmargin=0>
-	<div style="padding:10px;width:100%;font-size:14px;color: #ffffff;background-color: #000000;text-align: center">
-		이니시스 표준결제 인증결과 수신 / 승인요청, 승인결과 표시 샘플
-	</div>
+	<div style="padding:10px;width:100%;font-size:14px;color: #ffffff;background-color: #000000;text-align: center"></div>
 <% 
 	try{
 		request.setCharacterEncoding("UTF-8");
@@ -247,7 +245,7 @@
 					if("1".equals(resultMap.get("CARD_Interest")) || "1".equals(resultMap.get("EventCode"))){					
 						out.println("<tr><th class='td01'><p>할부 유형</p></th>");
 						out.println("<td class='td02'><p>무이자</p></td></tr>");	
-					}else if(quota > 0 && !"1".equals(resultMap.get("CARD_Interest"))){
+					} else if(quota > 0 && !"1".equals(resultMap.get("CARD_Interest"))){
 						out.println("<tr><th class='td01'><p>할부 유형</p></th>");
 						out.println("<td class='td02'><p>유이자 <font color='red'> *유이자로 표시되더라도 EventCode 및 EDI에 따라 무이자 처리가 될 수 있습니다.</font></p></td></tr>");
 					}
