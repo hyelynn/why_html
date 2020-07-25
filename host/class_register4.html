@@ -7,10 +7,12 @@
 
     <!-- Bootstrap 4.3.1 -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
 
     <!-- Custom -->
     <link rel="stylesheet" href="/css/custom.css">
     <link rel="stylesheet" href="/css/custom_host.css">
+    <link rel="stylesheet" href="/css/datepicker.css">
 
     <!-- Fontawesome -->
     <link rel="stylesheet" href="/css/fontawesome/css/all.min.css"><script src="/js/include.js"></script>
@@ -111,38 +113,21 @@
                         <label>레슨 일정 (최대 20개)</label>
                     </div>
                     <div class="d-md-flex">
-                        <select name="times1" id="" class="form-control mr-md-3 mb-md-0 mb-3">
-                            <option value="">20-01-24 15:00~18:00</option>
-                            <option value="">20-01-25 15:00~18:00</option>
-                            <option value="">20-01-26 15:00~18:00</option>
-                        </select>
+                        <div class="d-flex justify-content-end align-items-center form-control">
+                            <input id="lesson_start" type="text" class="bg-transparent border-0 w-100 h-100 text-gray datePickerDrop">
+                        </div>
 
                         <div class="d-flex justify-content-end align-items-center form-control mr-md-3 mb-md-0 mb-3">
-                            <input type="text" class="bg-transparent border-0 w-100 h-100 text-right text-gray tag-text">
+                            <input type="text" id="lesson_price" class="bg-transparent border-0 w-100 h-100 text-right text-gray tag-text">
                             <span class="ml-3 text-light-gray">원</span>
                         </div>
 
-                        <button type="button" class="btn bg-yellow fnc-btn" onclick="addTime('tag2')">추가하기</button>
+                        <button type="button" class="btn bg-yellow fnc-btn" onclick="addTime2()">추가하기</button>
                     </div>
 
                     <!-- 태그 -->
-                    <div class="d-flex justify-content-between align-content-center flex-wrap host-search-tags full">
-                        <div class="tag mt-3">
-                            <span class="mr-lg-2">20-01-24 15:00~18:00 38,000원</span>
-                            <button type="button" class="btn bg-transparent" onclick="removeTag(this)"><i class="fa fa-times text-red"></i></button>
-                        </div>
-                        <div class="tag mt-3">
-                            <span class="mr-lg-2">20-01-25 15:00~18:00 38,000원</span>
-                            <button type="button" class="btn bg-transparent" onclick="removeTag(this)"><i class="fa fa-times text-red"></i></button>
-                        </div>
-                        <div class="tag mt-3">
-                            <span class="mr-lg-2">20-01-26 15:00~18:00 38,000원</span>
-                            <button type="button" class="btn bg-transparent" onclick="removeTag(this)"><i class="fa fa-times text-red"></i></button>
-                        </div>
-                        <div class="tag mt-3">
-                            <span class="mr-lg-2">20-01-27 15:00~18:00 38,000원</span>
-                            <button type="button" class="btn bg-transparent" onclick="removeTag(this)"><i class="fa fa-times text-red"></i></button>
-                        </div>
+                    <div id="clock" class="d-flex justify-content-between align-content-center flex-wrap host-search-tags full">
+                        
                     </div>
                 </div>
 
@@ -191,38 +176,21 @@
                         <label>레슨 일정 (최대 20개)</label>
                     </div>
                     <div class="d-md-flex">
-                        <select name="times2" id="" class="form-control mr-md-3 mb-md-0 mb-3">
-                            <option value="">20-01-24 15:00~18:00</option>
-                            <option value="">20-01-25 15:00~18:00</option>
-                            <option value="">20-01-26 15:00~18:00</option>
-                        </select>
+                        <div class="d-flex justify-content-end align-items-center form-control">
+                            <input id="lesson_start2" type="text" class="bg-transparent border-0 w-100 h-100 text-gray datePickerDrop">
+                        </div>
 
                         <div class="d-flex justify-content-end align-items-center form-control mr-md-3 mb-md-0 mb-3">
-                            <input type="text" class="bg-transparent border-0 w-100 h-100 text-right text-gray tag-text">
+                            <input type="text" id="lesson_price2" class="bg-transparent border-0 w-100 h-100 text-right text-gray tag-text">
                             <span class="ml-3 text-light-gray">원</span>
                         </div>
 
-                        <button type="button" class="btn bg-yellow fnc-btn" onclick="addTime('tag1')">추가하기</button>
+                        <button type="button" class="btn bg-yellow fnc-btn" onclick="addTime3()">추가하기</button>
                     </div>
 
                     <!-- 태그 -->
-                    <div class="d-flex justify-content-between align-content-center flex-wrap host-search-tags full">
-                        <div class="tag mt-3">
-                            <span class="mr-lg-2">20-01-24 15:00~18:00 38,000원</span>
-                            <button type="button" class="btn bg-transparent" onclick="removeTag(this)"><i class="fa fa-times text-red"></i></button>
-                        </div>
-                        <div class="tag mt-3">
-                            <span class="mr-lg-2">20-01-25 15:00~18:00 38,000원</span>
-                            <button type="button" class="btn bg-transparent" onclick="removeTag(this)"><i class="fa fa-times text-red"></i></button>
-                        </div>
-                        <div class="tag mt-3">
-                            <span class="mr-lg-2">20-01-26 15:00~18:00 38,000원</span>
-                            <button type="button" class="btn bg-transparent" onclick="removeTag(this)"><i class="fa fa-times text-red"></i></button>
-                        </div>
-                        <div class="tag mt-3">
-                            <span class="mr-lg-2">20-01-27 15:00~18:00 38,000원</span>
-                            <button type="button" class="btn bg-transparent" onclick="removeTag(this)"><i class="fa fa-times text-red"></i></button>
-                        </div>
+                    <div id="clock2" class="d-flex justify-content-between align-content-center flex-wrap host-search-tags full">
+                        
                     </div>
                 </div>
 
@@ -233,9 +201,9 @@
                             <label>기준인원</label>
                         </div>
                         <div class="d-flex justify-content-between">
-                            <button type="button" id="decreaseQuantity" class="btn border bg-gray number-btn">-</button>
-                            <input type="text" id="numberUpDown" value="1" class="text-center form-control border-right-0 border-left-0" style="width: calc(100% - 100px);">
-                            <button type="button" id="increaseQuantity" class="btn border bg-yellow number-btn">+</button>
+                            <button type="button" id="decreaseQuantity2" class="btn border bg-gray number-btn">-</button>
+                            <input type="text" id="numberUpDown2" value="1" class="text-center form-control border-right-0 border-left-0" style="width: calc(100% - 100px);">
+                            <button type="button" id="increaseQuantity2" class="btn border bg-yellow number-btn">+</button>
                         </div>
                     </div>
                 </div>
@@ -284,7 +252,7 @@
         <!-- 이전단계 / 다음단계 -->
         <div class="overflow-hidden mt-lg-5 mt-3">
             <a href="class_register3.html" class="btn bg-gray float-left w-50 rounded-0 py-lg-4 py-3 font-size-m" onclick="history.back()">이전 단계로 이동</a>
-            <a href="class_list.html" class="btn bg-yellow float-right w-50 rounded-0 py-lg-4 py-3 font-size-m">등록 완료</a>
+            <a href="javascript:check()" class="btn bg-yellow float-right w-50 rounded-0 py-lg-4 py-3 font-size-m">등록 완료</a>
         </div>
     </main>
     <footer include-html="/include/footer.html"></footer>
@@ -302,15 +270,188 @@
         }
     </script>
 
-    <script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
-
-    <script src="/js/include_html_host.js"></script>
-    <!-- <script src="/js/custom.js"></script> -->
-</body>
-
 <script>
+    function check(){
+        var category1 = $(":input:radio[id=category1]:checked").val();
+        var numberUpDown = $('#numberUpDown').val();
+        var category2 = $(":input:radio[id=category2]:checked").val();
+        var numberUpDown2 = $('#numberUpDown2').val();
+        var arr_times = document.getElementsByName("times");
+        var arr_times2 = document.getElementsByName("times2");
+        var timesText = [];
+        var times2Text = [];
+
+        for(var i=0;i<arr_times.length;i++){
+            timesText.push(arr_times[i].textContent);
+        }
+
+        for(var i=0;i<arr_times2.length;i++){
+            times2Text.push(arr_times2[i].textContent);
+        }
+        var xhr = new XMLHttpRequest();
+            xhr.onreadystatechange = function() {
+                if (xhr.readyState === xhr.DONE) { 
+                    if (xhr.status === 200 || xhr.status === 201) {
+                        window.location.href = "/host/class_list.html";
+                    } else {
+                        alert("등록이 정상적으로 이루어지지 않았습니다. 다시 시도해주세요.");
+                        console.error(xhr.responseText);
+                    }
+                }else{
+                }
+            };
+            xhr.open('POST', 'http://3.34.150.116:3000/class/apply/info',true);
+            xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+            xhr.send("key="+getCookie("s3_id")+"&category1="+category1+"&numberUpDown="+numberUpDown+"&category2="+category2
+            +"&numberUpDown2="+numberUpDown2+"&times="+timesText.toString()+"&times2="+times2Text.toString()); 
+   
+    }
+    $(document).ready(function (){
+        var s_key = urlParam("key");
+            var xhr = new XMLHttpRequest();
+            xhr.onreadystatechange = function() {
+                if (xhr.readyState === xhr.DONE) { 
+                    if (xhr.status === 200 || xhr.status === 201) {
+                        var result = JSON.parse(xhr.responseText);
+                        var arrDay = result[0].studio_thumbnail.split('/');
+                        $("#category1").val(result[0].category1);
+                        $("#numberUpDown").val(result[0].numberUpDown);
+                        $("#category2").val(result[0].category2);
+                        $("#numberUpDown2").val(result[0].numberUpDown2);
+                        setCookie("s3_id",s_key,1);
+                        var arrDay = result[0].class_times.split(',');
+                        for (var nArrCnt in arrDay) {
+                            if($("input[name=tags][value="+nArrCnt+"]").length > 0){
+                                $("input[name=tags][value="+nArrCnt+"]").prop("checked",true);
+                            }else{
+                                var tag_temp = '<div class="tag mt-3">'
+                                                    +'<span class="mr-lg-2" name="times" value='+nArrCnt+'>'+nArrCnt+'</span>'
+                                                    +'<button type="button" class="btn bg-transparent" onclick="removeTag(this)"><i class="fa fa-times text-red"></i></button>'
+                                                +'</div>';
+                                
+                                $("#clock").append(tag_temp);  
+                            }
+                        }  
+                        var arrDay2 = result[0].class_times2.split(',');
+                        for (var nArrCnt in arrDay2) {
+                            if($("input[name=tags][value="+nArrCnt+"]").length > 0){
+                                $("input[name=tags][value="+nArrCnt+"]").prop("checked",true);
+                            }else{
+                                var tag_temp = '<div class="tag mt-3">'
+                                                    +'<span class="mr-lg-2" name="times2" value='+nArrCnt+'>'+nArrCnt+'</span>'
+                                                    +'<button type="button" class="btn bg-transparent" onclick="removeTag(this)"><i class="fa fa-times text-red"></i></button>'
+                                                +'</div>'; 
+                                $("#clock2").append(tag_temp);  
+                            }
+                        }
+                    } else {
+                        alert("정보를 불러오던 중 오류가 발생했습니다. 다시 시도해주세요.");
+                        console.error(xhr.responseText);
+                    }
+                }else{
+                    
+                }
+            };
+            xhr.open('POST', 'http://3.34.150.116:3000/class/mod/info',true);
+            xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+            xhr.send("studio_key="+s_key);
+    });
+
+
+    function addTime2() {
+        let start = $('#lesson_start').val();
+        let price = $('#lesson_price').val();
+
+        if (!start) {
+            alert('태그를 입력하세요.');
+            $('#lesson_start').focus();
+            return;
+        }
+        if (!price) {
+            alert('태그를 입력하세요.');
+            $('#lesson_price').focus();
+            return;
+        }
+
+        var tag_temp = '<div class="tag mt-3">'
+                            +'<span class="mr-lg-2" name="times" value="'+start+' '+price+'원">'+start+' '+price+'원</span>'
+                            +'<button type="button" class="btn bg-transparent" onclick="removeTag(this)"><i class="fa fa-times text-red"></i></button>'
+                        +'</div>';
+        
+        $("#clock").append(tag_temp);  
+    }
+
+    function addTime3() {
+        let start = $('#lesson_start2').val();
+        let price = $('#lesson_price2').val();
+
+        if (!start) {
+            alert('태그를 입력하세요.');
+            $('#lesson_start2').focus();
+            return;
+        }
+        if (!price) {
+            alert('태그를 입력하세요.');
+            $('#lesson_price2').focus();
+            return;
+        }
+
+        var tag_temp = '<div class="tag mt-3">'
+                            +'<span class="mr-lg-2" name="times2" value="'+start+' '+price+'원">'+start+' '+price+'원</span>'
+                            +'<button type="button" class="btn bg-transparent" onclick="removeTag(this)"><i class="fa fa-times text-red"></i></button>'
+                        +'</div>';
+        
+        $("#clock2").append(tag_temp);  
+    }
+
+     // number of people
+     $('#decreaseQuantity').click(function (e) {
+        e.preventDefault();
+        var stat = $('#numberUpDown').val();
+        var num = parseInt(stat, 10);
+        num--;
+
+        if (num <= 0) {
+            num = 1;
+        }
+        $('#numberUpDown').val(num);
+    });
+    
+    $('#increaseQuantity').click(function (e) {
+        e.preventDefault();
+        var stat = $('#numberUpDown').val();
+        var num = parseInt(stat, 10);
+        num++;
+
+        if (num > 100) {
+            num = 100;
+        }
+        $('#numberUpDown').val(num);
+    });
+   
+    $('#decreaseQuantity2').click(function (e) {
+        e.preventDefault();
+        var stat = $('#numberUpDown2').val();
+        var num = parseInt(stat, 10);
+        num--;
+
+        if (num <= 0) {
+            num = 1;
+        }
+        $('#numberUpDown2').val(num);
+    });
+    
+    $('#increaseQuantity2').click(function (e) {
+        e.preventDefault();
+        var stat = $('#numberUpDown2').val();
+        var num = parseInt(stat, 10);
+        num++;
+
+        if (num > 100) {
+            num = 100;
+        }
+        $('#numberUpDown2').val(num);
+    });
     $(function () {
         // file upload
         var fileTarget = $('.custom-inputs-sub.not .upload-hidden');
@@ -326,5 +467,15 @@
         });
     })
 </script>
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+
+    <!-- Datepicker : 날짜 선택 기능이 있는 페이지에서만 사용 -->
+    <script src="/js/datepicker.js"></script>
+    <script src="/js/include_html_host.js"></script>
+    <!-- <script src="/js/custom.js"></script> -->
+</body>
+
 
 </html>

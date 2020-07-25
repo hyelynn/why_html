@@ -7,6 +7,9 @@
 
     <!-- Bootstrap 4.3.1 -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"
+    integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+    <script src="https://sdk.amazonaws.com/js/aws-sdk-2.283.1.min.js"></script>
 
     <!-- Custom -->
     <link rel="stylesheet" href="/css/custom.css">
@@ -85,9 +88,10 @@
                         <label class="float-left">대표 이미지 (1장)</label>
                     </div>
                     <div class="d-flex custom-file">
-                        <input class="upload-name form-control flex-fill" value="JPG, PNG 파일만 가능합니다." disabled="disabled">
+                        <input class="upload-name form-control flex-fill" id="thumbs_file" accept=".jpg, .png" value="JPG, PNG 파일만 가능합니다."
+                            disabled="disabled">
                         <label for="thumbsFile" class="btn flex-fill fnc-btn mb-0 bg-yellow whitespace-nowrap fnc-btn">업로드</label>
-                        <input type="file" id="thumbsFile" class="upload-hidden">
+                        <input type="file" id="thumbsFile" class="upload-hidden" onchange="addFile(this.id,'thumb');">
                     </div>
                 </div>
 
@@ -116,7 +120,7 @@
                 <div class="mb-lg-5 mb-3">
                     <div class="text-gray font-weight-light">
                         <label for="performance_youtube" class="float-left">소개 영상</label>
-                        <span class="float-right">0/20</span>
+                        <span id="youtube_length" class="float-right">0/20</span>
                     </div>
                     <input type="text" id="performance_youtube" class="form-control" placeholder="YouTube URL로 업로드 해주세요">
                 </div>
@@ -125,7 +129,7 @@
                 <div class="mb-lg-5 mb-3">
                     <div class="text-gray font-weight-light">
                         <label for="performance_place" class="float-left">공연 장소(장소명)</label>
-                        <span class="float-right">0/20</span>
+                        <span id="place_length" class="float-right">0/20</span>
                     </div>
                     <input type="text" id="performance_place" class="form-control" placeholder="예) 샤롯데시어터 아트홀">
                 </div>
@@ -133,45 +137,22 @@
                 <!-- 금액 -->
                 <div class="mb-lg-5 mb-3">
                     <div class="text-gray font-weight-light">
-                        <label for="performance_youtube">금액</label>
+                        <label for="performance_tot_prc">금액</label>
                     </div>
-                    <div class="d-md-flex seat-price">
-                        <input type="text" class="form-control mr-md-3 mb-md-0 mb-3 seat" placeholder="좌석명을 입력해 주세요">
+                    <div id="performance_tot_prc" class="d-md-flex seat-price">
+                        <input type="text" id="performance_seat" class="form-control mr-md-3 mb-md-0 mb-3 seat" placeholder="좌석명을 입력해 주세요">
 
                         <div class="d-flex justify-content-end align-items-center form-control mr-md-3 mb-md-0 mb-3">
-                            <input type="text" class="bg-transparent border-0 w-100 h-100 text-right text-gray price">
+                            <input type="text" id="performance_price" class="bg-transparent border-0 w-100 h-100 text-right text-gray price">
                             <span class="ml-3 text-light-gray">원</span>
                         </div>
 
-                        <button type="button" class="btn bg-yellow fnc-btn" onclick="addPrice()">추가하기</button>
+                        <button type="button" class="btn bg-yellow fnc-btn" onclick="addPrice2()">추가하기</button>
                     </div>
 
                     <!-- 금액 -->
-                    <div class="d-flex align-content-center flex-wrap host-search-tags seat-price-tag">
-                        <div class="tag mt-3">
-                            <span class="mr-lg-2">VIP석 - 129,000원</span>
-                            <button type="button" class="btn bg-transparent" onclick="removeTag(this)"><i class="fa fa-times text-red"></i></button>
-                        </div>
-                        <div class="tag mt-3">
-                            <span class="mr-lg-2">R석 - 105,000원</span>
-                            <button type="button" class="btn bg-transparent" onclick="removeTag(this)"><i class="fa fa-times text-red"></i></button>
-                        </div>
-                        <div class="tag mt-3">
-                            <span class="mr-lg-2">S석 - 75,000원</span>
-                            <button type="button" class="btn bg-transparent" onclick="removeTag(this)"><i class="fa fa-times text-red"></i></button>
-                        </div>
-                        <div class="tag mt-3">
-                            <span class="mr-lg-2">장애인석 - 35,000원</span>
-                            <button type="button" class="btn bg-transparent" onclick="removeTag(this)"><i class="fa fa-times text-red"></i></button>
-                        </div>
-                        <div class="tag mt-3">
-                            <span class="mr-lg-2">A석 - 55,000원</span>
-                            <button type="button" class="btn bg-transparent" onclick="removeTag(this)"><i class="fa fa-times text-red"></i></button>
-                        </div>
-                        <div class="tag mt-3">
-                            <span class="mr-lg-2">B석 - 65,000원</span>
-                            <button type="button" class="btn bg-transparent" onclick="removeTag(this)"><i class="fa fa-times text-red"></i></button>
-                        </div>
+                    <div id="price_tag_cont" class="d-flex align-content-center flex-wrap host-search-tags seat-price-tag">
+                        
                     </div>
                 </div>
 
@@ -187,7 +168,7 @@
                 <div class="mb-lg-5 mb-3">
                     <div class="text-gray font-weight-light">
                         <label for="performance_text" class="float-left">공연 상세 소개</label>
-                        <span class="float-right">0/700</span>
+                        <span id="text_length" class="float-right">0/700</span>
                     </div>
                     <textarea name="" id="performance_text" class="form-control large" placeholder="고객에게 남길 매력적인 소개글을 작성해 보세요"></textarea>
                 </div>
@@ -220,27 +201,12 @@
                     </div>
                     <div class="d-flex">
                         <input type="text" id="tagText" class="form-control" placeholder="사용자가 검색할 수 있는 키워드를 입력해 주세요.">
-                        <button type="button" class="btn bg-yellow fnc-btn" onclick="addTag()">추가하기</button>
+                        <button type="button" class="btn bg-yellow fnc-btn" onclick="addTag2()">추가하기</button>
                     </div>
 
                     <!-- 태그 -->
-                    <div class="d-flex align-content-center flex-wrap host-search-tags tags">
-                        <div class="tag mt-3">
-                            <span class="mr-lg-2">모짜르트</span>
-                            <button type="button" class="btn bg-transparent" onclick="removeTag(this)"><i class="fa fa-times text-red"></i></button>
-                        </div>
-                        <div class="tag mt-3">
-                            <span class="mr-lg-2">세종문화회관</span>
-                            <button type="button" class="btn bg-transparent" onclick="removeTag(this)"><i class="fa fa-times text-red"></i></button>
-                        </div>
-                        <div class="tag mt-3">
-                            <span class="mr-lg-2">광화문역</span>
-                            <button type="button" class="btn bg-transparent" onclick="removeTag(this)"><i class="fa fa-times text-red"></i></button>
-                        </div>
-                        <div class="tag mt-3">
-                            <span class="mr-lg-2">이수</span>
-                            <button type="button" class="btn bg-transparent" onclick="removeTag(this)"><i class="fa fa-times text-red"></i></button>
-                        </div>
+                    <div id="tag_cont" class="d-flex align-content-center flex-wrap host-search-tags tags">
+                        
                     </div>
                 </div>
 
@@ -285,6 +251,287 @@
 </body>
 
 <script>
+    var albumBucketName = 'studio-images-artbyus';
+    var bucketRegion = 'ap-northeast-2';
+    var IdentityPoolId = 'ap-northeast-2:5de34811-ed49-42bb-8378-726186756855';
+    var idx = 1;
+
+    AWS.config.update({
+        region: bucketRegion,
+        credentials: new AWS.CognitoIdentityCredentials({
+            IdentityPoolId: IdentityPoolId
+        })
+    });
+
+    var s3 = new AWS.S3({
+        apiVersion: '2006-03-01',
+        CacheControl: "no-cache",
+        params: {Bucket: albumBucketName}
+    });
+
+    function addFile(id, albumName) {
+        var files = document.getElementById(id).files;
+        if (!files.length) {
+            return alert('업로드할 파일을 선택해주세요.');
+        }
+        var file = files[0];
+        var fileName = file.name;
+        var photoKey = "";
+        if(albumName =='thumb') {
+            photoKey = getCookie("s3_id")+"_thumb.jpg";
+        }else{
+            photoKey = getCookie("s3_id")+"_"+idx+++".jpg";
+        }
+
+        s3.upload({
+            Key: photoKey,
+            Body: file,
+            ACL: 'public-read'
+        }, function(err, data) {
+            if (err) {
+                return alert('파일 업로드 실패: ', err, data);
+                console.log(err, data);
+            }else{
+                var xhr = new XMLHttpRequest();
+                xhr.onreadystatechange = function() {
+                    if (xhr.readyState === xhr.DONE) { 
+                        if (xhr.status === 200 || xhr.status === 201) {
+                            
+                        } else {
+                            alert("등록이 정상적으로 이루어지지 않았습니다. 다시 시도해주세요.");
+                            console.error(xhr.responseText);
+                        }
+                    }else{
+                    }
+                };
+                xhr.open('POST', 'http://3.34.150.116:3000/studio/apply/img',true);
+                xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+                xhr.send("key="+getCookie("s3_id")+"&img="+photoKey);
+            }
+        });
+    }
+
+    var urlParam = function(name){
+        var results = new RegExp('[\?&]' + name + '=([^&#]*)').exec(window.location.href);
+        if (results==null){
+            return null;
+        }
+        else{
+            return results[1] || 0;
+        }
+    }
+
+    var getCookie = function(name) {
+        var value = document.cookie.match('(^|;) ?' + name + '=([^;]*)(;|$)');
+        return value? value[2] : null;
+    };
+
+    $(function () {
+        var fileTarget = $('.custom-inputs-sub.not .upload-hidden');
+        fileTarget.on('change', function () {
+            // 값이 변경되면
+            if (window.FileReader) { // modern browser
+                var filename = $(this)[0].files[0].name;
+            } else { // old IE
+                var filename = $(this).val().split('/').pop().split('\\').pop(); // 파일명만 추출
+            }
+            // 추출한 파일명 삽입
+            $(this).siblings('.upload-name').val(filename);
+        });
+    })
+
+    $(document).ready(function (){
+        var s_key = urlParam("key");
+            var xhr = new XMLHttpRequest();
+            xhr.onreadystatechange = function() {
+                if (xhr.readyState === xhr.DONE) { 
+                    if (xhr.status === 200 || xhr.status === 201) {
+                        var result = JSON.parse(xhr.responseText);
+                        var arrDay = result[0].studio_thumbnail.split('/');
+                        $("#thumbs_file").val(arrDay[3]);
+                        $("#performance_youtube").val(result[0].performance_youtube);
+                        $("#performance_place").val(result[0].performance_place);
+                        $("#performance_site").val(result[0].performance_site);
+                        $("#performance_text").val(result[0].performance_text);
+                        $("#performance_addr").val(result[0].performance_addr);
+                        setCookie("s3_id",s_key,1);
+                        var arrDay = result[0].performance_tags.split(',');
+                        for (var nArrCnt in arrDay) {
+                            if($("input[name=tags][value="+nArrCnt+"]").length > 0){
+                                $("input[name=tags][value="+nArrCnt+"]").prop("checked",true);
+                            }else{
+                                var tag_temp = '<div class="tag mt-3">'
+                                                    +'<span class="mr-lg-2" name="tags" value='+nArrCnt+'>'+nArrCnt+'</span>'
+                                                    +'<button type="button" class="btn bg-transparent" onclick="removeTag(this)">'
+                                                    +'<i class="fa fa-times text-red"></i></button>'
+                                                    +'</div>';
+                                $("#tag_cont").append(tag_temp);    
+                            }
+                        } 
+                        var arrDay2 = result[0].performance_price.split(',');
+                        for (var nArrCnt in arrDay2) {
+                            if($("input[name=prices][value="+arrDay2[nArrCnt]+"]").length > 0){
+                                $("input[name=prices][value="+arrDay2[nArrCnt]+"]").prop("checked",true);
+                            }else{
+                                var tag_temp = '<div class="tag mt-3">'
+                                                    +'<span name="prices" class="mr-lg-2" value='+arrDay2[nArrCnt]+'>'+arrDay2[nArrCnt]+'</span>'
+                                                    +'<button type="button" class="btn bg-transparent" onclick="removeTag(this)"><i class="fa fa-times text-red"></i></button>'
+                                                +'</div>';
+                                $("#price_tag_cont").append(tag_temp);    
+                            }
+                        }  
+                    } else {
+                        alert("정보를 불러오던 중 오류가 발생했습니다. 다시 시도해주세요.");
+                        console.error(xhr.responseText);
+                    }
+                }else{
+                    
+                }
+            };
+            xhr.open('POST', 'http://3.34.150.116:3000/performance/mod/info',true);
+            xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+            xhr.send("studio_key="+s_key);
+    });
+
+    // file input 추가
+    function addInputFile(obj) {
+        if ($(obj).parent().find('div.custom-file').length + 1 > 14) {
+            return;
+        }
+
+        let $last = $(obj).parent().find('div.custom-file:last');
+        let id = $last.find('input[type=file]').prop('id').replace(/[1-9]/g, '');
+        let new_id = id + (parseInt($last.find('input[type=file]').prop('id').match(/\d+/g), 10) + 1);
+        let $clone = $last.clone(true);
+
+        $clone.find('input[type=file]').prop('id', new_id).val('');
+        $clone.find('input.upload-name').val('최대 14장, JPG, PNG 파일만 가능합니다');
+        $clone.find('label').prop('for', new_id);
+
+        $last.after($clone)
+    }
+
+    // tag 추가
+    function addTag2() {
+        let tag = $('#tagText').val();
+
+        if (!tag) {
+            alert('태그를 입력하세요.');
+            $('#tagText').focus();
+            return;
+        }
+
+        var tag_temp = '<div class="tag mt-3">'
+                            +'<span class="mr-lg-2" name="tags" value='+tag+'>'+tag+'</span>'
+                            +'<button type="button" class="btn bg-transparent" onclick="removeTag(this)">'
+                            +'<i class="fa fa-times text-red"></i></button>'
+                            +'</div>';
+        
+        $("#tag_cont").append(tag_temp);         
+    }
+
+    function addPrice2(){
+        let performance_seat = $('#performance_seat').val();
+        let performance_price = $('#performance_price').val();
+        
+        if (!performance_seat) {
+            alert('태그의 이름을 입력하세요.');
+            $('#performance_seat').focus();
+            return;
+        }
+
+        if (!performance_price) {
+            alert('태그의 페이값을 입력하세요.');
+            $('#performance_price').focus();
+            return;
+        }
+
+        var tag_temp = '<div class="tag mt-3">'
+                            +'<span name="prices" class="mr-lg-2" value= "'+performance_seat+'석 - '+performance_price+'">'+performance_seat+'석 - '+performance_price+'원</span>'
+                            +'<button type="button" class="btn bg-transparent" onclick="removeTag(this)"><i class="fa fa-times text-red"></i></button>'
+                        +'</div>';
+        
+        $("#price_tag_cont").append(tag_temp); 
+    }
+
+    // tag 삭제
+    function removeTag(obj) {
+        $(obj).parent().remove();
+    }
+
+    var setCookie = function(name, value, day) {
+        var date = new Date();
+        date.setTime(date.getTime() + day * 60 * 60 * 24 * 1000);
+        document.cookie = name + '=' + value + ';expires=' + date.toUTCString() + ';path=/';
+    };
+
+    function CheckForm(){
+        var performance_youtube = document.getElementById("performance_youtube").value;
+        var performance_place = document.getElementById("performance_place").value;
+        var performance_site = document.getElementById("performance_site").value;
+        var performance_text = document.getElementById("performance_text").value;
+        var performance_addr = document.getElementById("performance_addr").value;
+        var arr_prices = document.getElementsByName("prices");
+        var arr_tags = document.getElementsByName("tags");
+        var thumbsFile = getCookie("s3_id")+"_thumb.jpg";
+        var priceText = [];
+        var tagText = [];
+       
+        for(var i=0;i<arr_prices.length;i++){
+            priceText.push(arr_prices[i].textContent);
+        }
+        for(var i=0;i<arr_tags.length;i++){
+            tagText.push(arr_tags[i].textContent);
+        }
+        var xhr = new XMLHttpRequest();
+            xhr.onreadystatechange = function() {
+                if (xhr.readyState === xhr.DONE) { 
+                    if (xhr.status === 200 || xhr.status === 201) {
+                        window.location.href = "/host/studio_list.html";
+                    } else {
+                        alert("등록이 정상적으로 이루어지지 않았습니다. 다시 시도해주세요.");
+                        console.error(xhr.responseText);
+                    }
+                }else{
+                }
+            };
+            xhr.open('POST', 'http://3.34.150.116:3000/performance/apply/info',true);
+            xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+            xhr.send("key="+getCookie("s3_id")+"&thumbsFile="+thumbsFile+"&performance_youtube="+performance_youtube+"&performance_place="+performance_place
+            +"&performance_site="+performance_site+"&performance_text="+performance_text+"&performance_addr="+performance_addr
+            +"&prices="+priceText.toString()+"&tags="+tagText.toString()); 
+    }
+
+    $('#performance_youtube').keyup(function (e){
+        var content = $(this).val();
+        $('#youtube_length').html(content.length+"/20"); 
+        if (content.length > 20){
+            alert("최대 20자까지 입력 가능합니다.");
+            $(this).val(content.substring(0, 20));
+            $('#youtube_length').html("20/20");
+        }
+    });
+
+    $('#performance_place').keyup(function (e){
+        var content = $(this).val();
+        $('#place_length').html(content.length+"/20"); 
+        if (content.length > 20){
+            alert("최대 20자까지 입력 가능합니다.");
+            $(this).val(content.substring(0, 20));
+            $('#place_length').html("20/20");
+        }
+    });
+
+    $('#performance_text').keyup(function (e){
+        var content = $(this).val();
+        $('#text_length').html(content.length+"/700"); 
+        if (content.length > 700){
+            alert("최대 700자까지 입력 가능합니다.");
+            $(this).val(content.substring(0, 700));
+            $('#text_length').html("700/700");
+        }
+    });
+
     $(function () {
         var fileTarget = $('.custom-inputs-sub.not .upload-hidden');
         fileTarget.on('change', function() {

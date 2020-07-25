@@ -517,7 +517,7 @@
         var noticeSearchList = [];
 
         $("#searchOpt").change(function (){
-            noticeSearchList.remove();
+            noticeSearchList.empty();
             for(var j = 0; j < noticeList.length;j++){
                 if(noticeList[j].notice_target == this.value){
                     noticeSearchList.append(noticeList[j]);
@@ -527,7 +527,7 @@
         });
 
         $("#searchTxt").change(function(){
-            noticeSearchList.remove();
+            noticeSearchList.empty();
             for(var j = 0; j < noticeList.length;j++){
                 if(noticeList[j].notice_title == this.value){
                     noticeSearchList.append(noticeList[j]);
@@ -538,7 +538,7 @@
 
         function writeList(list){
             writeUL(1,list);
-            $("#pager").remove();
+            $("#pager").empty();
             for(var j = 0;j < list.length/10;j++){
                 var page_item = '<li class="page-item"><a class="page-link" href="#x" onclick="writeUL('+(j+1)+','+list+');">'+(j+1)+'</a></li>';
                 $("#pager").append(page_item);
@@ -546,7 +546,7 @@
         }
 
         function writeUL(item,list){
-            $("#noticeUL").remove();
+            $("#noticeUL").empty();
             for(var i = (item-1) * 10; i < item * 10; i++){
                 if(i == list.length)break;
                 var notice = '<li class="list-group-item py-3 position-relative">'

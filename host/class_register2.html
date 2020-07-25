@@ -7,6 +7,8 @@
 
     <!-- Bootstrap 4.3.1 -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"
+    integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
 
     <!-- Custom -->
     <link rel="stylesheet" href="/css/custom.css">
@@ -83,7 +85,7 @@
                 <div class="mb-lg-5 mb-3">
                     <div class="text-gray font-weight-light">
                         <label for="class_name" class="float-left">클래스 이름</label>
-                        <span class="float-right">0/30</span>
+                        <span id="class_length" class="float-right">0/30</span>
                     </div>
                     <input type="text" id="class_name" class="form-control" placeholder="예) 가야금 명장 김준영에게 배우는 원데이 가야금 클래스">
                 </div>
@@ -93,7 +95,7 @@
                         <div class="col-lg-6 mb-lg-0 mb-3">
                             <div class="text-gray font-weight-light">
                                 <label for="class_teacher" class="float-left">강사명</label>
-                                <span class="float-right">0/20</span>
+                                <span id="teacher_length" class="float-right">0/20</span>
                             </div>
                             <input type="text" id="class_teacher" class="form-control" placeholder="예) 김준영">
                         </div>
@@ -101,7 +103,7 @@
                         <div class="col-lg-6">
                             <div class="text-gray font-weight-light">
                                 <label for="class_v_no" class="float-left">가상 전화번호</label>
-                                <span class="float-right">0/20</span>
+                                <span id="v_no_length" class="float-right">0/20</span>
                             </div>
                             <input type="text" id="class_v_no" class="form-control" placeholder="">
                         </div>
@@ -118,14 +120,14 @@
                         <label for="class_addr">클래스 주소</label>
                     </div>
                     <div class="d-flex">
-                        <input type="text" id="class_addr" class="form-control" placeholder="주소검색 버튼을 눌러주세요">
-                        <button type="button" class="btn bg-yellow fnc-btn">주소검색</button>
+                        <input type="text" readonly id="class_addr" class="form-control" placeholder="주소검색 버튼을 눌러주세요">
+                        <button type="button" onclick="postLoad();" class="btn bg-yellow fnc-btn">주소검색</button>
                     </div>
                 </div>
                 <div class="mb-lg-5 mb-3">
                     <div class="text-gray font-weight-light">
                         <label for="class_intro" class="float-left">클래스 간단 소개</label>
-                        <span class="float-right">0/100</span>
+                        <span id="intro_length" class="float-right">0/100</span>
                     </div>
                     <textarea name="" id="class_intro" class="form-control" placeholder="스튜디오를 소개 할 수 있는 간단한 멘트를 작성해 보세요"></textarea>
                 </div>
@@ -135,7 +137,7 @@
         <!-- 이전단계 / 다음단계 -->
         <div class="overflow-hidden mt-lg-5 mt-3">
             <a href="item_register.html" class="btn bg-gray float-left w-50 rounded-0 py-lg-4 py-3 font-size-m">이전 단계로 이동</a>
-            <a href="class_register3.html" class="btn bg-yellow float-right w-50 rounded-0 py-lg-4 py-3 font-size-m">다음으로 이동</a>
+            <a href="javascript:goNext();" class="btn bg-yellow float-right w-50 rounded-0 py-lg-4 py-3 font-size-m">다음으로 이동</a>
         </div>
     </main>
     <footer include-html="/include/footer.html"></footer>
@@ -146,11 +148,158 @@
     <script>includeHTML({});</script>
     <script>login_header();</script>
 
+    <script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
     <script type="text/javascript">
         function onLogout() {
             sessionStorage.clear();
             location.href = "index.html";
         }
+
+        $('#class_name').keyup(function (e){
+            var content = $(this).val();
+            $('#class_length').html(content.length+"/30"); 
+            if (content.length > 30){
+                alert("최대 30자까지 입력 가능합니다.");
+                $(this).val(content.substring(0, 30));
+                $('#class_length').html("30/30");
+            }
+        });
+        $('#class_teacher').keyup(function (e){
+            var content = $(this).val();
+            $('#teacher_length').html(content.length+"/20"); 
+            if (content.length > 20){
+                alert("최대 20자까지 입력 가능합니다.");
+                $(this).val(content.substring(0, 20));
+                $('#teacher_length').html("20/20");
+            }
+        });
+        $('#class_v_no').keyup(function (e){
+            var content = $(this).val();
+            $('#v_no_length').html(content.length+"/20"); 
+            if (content.length > 20){
+                alert("최대 20자까지 입력 가능합니다.");
+                $(this).val(content.substring(0, 20));
+                $('#v_no_length').html("20/20");
+            }
+        });
+        $('#class_intro').keyup(function (e){
+            var content = $(this).val();
+            $('#intro_length').html(content.length+"/100"); 
+            if (content.length > 100){
+                alert("최대 100자까지 입력 가능합니다.");
+                $(this).val(content.substring(0, 100));
+                $('#intro_length').html("100/100");
+            }
+        });
+
+        function postLoad(){
+            new daum.Postcode({
+                oncomplete: function(data) {
+                    $("#class_addr").val(data.address);
+                }
+            }).open();
+        }
+    
+        var urlParam = function(name){
+            var results = new RegExp('[\?&]' + name + '=([^&#]*)').exec(window.location.href);
+            if (results==null){
+                return null;
+            }
+            else{
+                return results[1] || 0;
+            }
+        }
+        $(document).ready(function (){
+            var s_key = urlParam("key");
+            var xhr = new XMLHttpRequest();
+            xhr.onreadystatechange = function() {
+                if (xhr.readyState === xhr.DONE) { 
+                    if (xhr.status === 200 || xhr.status === 201) {
+                        var result = JSON.parse(xhr.responseText);
+                        $("#class_name").val(result[0].class_name);
+                        $("#class_teacher").val(result[0].class_teacher);
+                        $("#class_v_no").val(result[0].class_v_no);
+                        $("#class_email").val(result[0].class_email);
+                        $("#class_addr").val(result[0].class_addr);
+                        $("#class_intro").val(result[0].class_intro);
+                    } else {
+                        alert("정보를 불러오던 중 오류가 발생했습니다. 다시 시도해주세요.");
+                        console.error(xhr.responseText);
+                    }
+                }else{
+                    
+                }
+            };
+            xhr.open('POST', 'http://3.34.150.116:3000/performance/mod/name',true);
+            xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+            xhr.send("studio_key="+s_key);
+        });
+        function goNext(){
+            var class_name = document.getElementById("class_name").value;
+            var class_teacher = document.getElementById("class_teacher").value;
+            var class_v_no = document.getElementById("class_v_no").value;
+            var class_email = document.getElementById("class_email").value;
+            var class_addr = document.getElementById("class_addr").value;
+            var class_intro = document.getElementById("class_intro").value;
+            if(CheckForm(class_name,class_teacher,class_v_no,class_email,class_addr,class_intro)){
+                var xhr = new XMLHttpRequest();
+                xhr.onreadystatechange = function() {
+                    if (xhr.readyState === xhr.DONE) { 
+                        if (xhr.status === 200 || xhr.status === 201) {
+                            window.location.href = "/host/performance_register4.html?key="+urlParam("key");
+                        } else {
+                            alert("등록이 정상적으로 이루어지지 않았습니다. 다시 시도해주세요.");
+                            console.error(xhr.responseText);
+                        }
+                    }else{
+                    }
+                };
+                xhr.open('POST', 'http://3.34.150.116:3000/performance/apply/name',true);
+                xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+                xhr.send("key="+getCookie("s3_id")+"&class_name="+class_name+"&class_teacher="+class_teacher
+                +"&class_v_no="+class_v_no+"&class_email="+class_email+"&class_addr="+class_addr
+                +"&class_intro="+class_intro); 
+            }
+        }
+        var getCookie = function(name) {
+            var value = document.cookie.match('(^|;) ?' + name + '=([^;]*)(;|$)');
+            return value? value[2] : null;
+        };
+        
+        function CheckForm(class_name,class_teacher,class_v_no,class_email,class_addr,class_intro){
+            if(class_name == ""){
+                alert("클래스 이름을 입력해주세요.");
+                document.getElementById("class_name").focus();
+                return false;
+            }
+            if(class_teacher == ""){
+                alert("강사명을 입력해주세요.");
+                document.getElementById("class_teacher").focus();
+                return false;
+            }
+            if(class_v_no == ""){
+                alert("전화번호를 입력해주세요.");
+                document.getElementById("class_v_no").focus();
+                return false;
+            }
+            if(class_email == ""){
+                alert("이메일을 입력해주세요.");
+                document.getElementById("class_email").focus();
+                return false;
+            }
+            if(class_addr == ""){
+                alert("클래스 주소를 입력해주세요.");
+                document.getElementById("class_addr").focus();
+                return false;
+            }
+            if(class_intro == ""){
+                alert("클래스 간단소개를 입력해주세요.");
+                document.getElementById("class_intro").focus();
+                return false;
+            }
+            return true;
+        }
+
     </script>
 
     <script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
