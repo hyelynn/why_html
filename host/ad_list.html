@@ -168,8 +168,8 @@
         var writeList = function(tempList){
             for(var i = 0; i<tempList.length;i++){
                 var studio_temp = tempList[i];
-                var studio = '<li class="list-group-item p-3 mb-3 border">'
-                                +'<div id="border'+i+'" class="row align-items-center">'
+                var studio = '<li id="border'+i+'" class="list-group-item p-3 mb-3 border">'
+                                +'<div  class="row align-items-center">'
                                     +'<div class="col-lg-10">'
                                         +'<div class="d-flex align-items-lg-center">'
                                             +'<div class="d-flex justify-content-center align-items-center overflow-hidden mr-4 item-thumbs">'
@@ -206,10 +206,10 @@
             for(var i = 0;i<length;i++){
                 if(i == num){
                     $("#only_one"+i).attr('class','btn border mr-lg-0 mr-2 item-btn item-pick');
-                    // $("#border"+i).attr('class','#ffde3b solid 2px');
+                    $("#border"+i).css('outline','#ffde3b solid 4px');
                 }else{
                     $("#only_one"+i).attr('class','btn border mr-lg-0 mr-2 item-btn');
-                    // $("#border"+i).attr('outline',none);
+                    $("#border"+i).css('outline','#ffffff solid 4px');
                 }
             }
 

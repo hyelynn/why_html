@@ -190,6 +190,7 @@
             xhr.onreadystatechange = function() {
                 if (xhr.readyState === xhr.DONE) { 
                     if (xhr.status === 200 || xhr.status === 201) {
+                        var result = JSON.parse(xhr.responseText);
                         var price = '<div class="col-md-4 col-6">'
                                         +'<span class="font-weight-light">이번 달 정산 금액</span>'
                                         +'<p class="mb-0 large-number">'+result.this_price+'원</p>'
