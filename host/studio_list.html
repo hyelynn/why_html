@@ -69,10 +69,10 @@
 
             <div class="d-lg-flex mb-3 custom-inputs-sub host-top-function">
                 <div class="input-group search-bar-solid">
-                    <input type="text" class="form-control text-dark search-text" placeholder="공간명을 검색해주세요"
+                    <input type="text" id="searchTxt" class="form-control text-dark search-text" placeholder="공간명을 검색해주세요"
                         aria-label="공간명을 검색해주세요" aria-describedby="search-studio">
                     <div class="input-group-append">
-                        <button type="button" class="btn bg-yellow text-gray">검색</button>
+                        <button type="button" onclick="searchStu();" class="btn bg-yellow text-gray">검색</button>
                     </div>
                 </div>
 
@@ -81,11 +81,11 @@
                         class="d-flex align-items-center justify-content-center btn font-weight-light bg-sky text-white mx-lg-3 mr-3 text-btn">
                         <i class="fas fa-plus mr-1"></i><span>스튜디오 추가</span>
                     </a>
-                    <select class="form-control font-weight-light">
-                        <option value="">가나다순</option>
-                        <option value="">최신순</option>
-                        <option value="">오름차순</option>
-                        <option value="">내림차순</option>
+                    <select id="select_sort" class="form-control font-weight-light">
+                        <option value="1">가나다순</option>
+                        <option value="2">최신순</option>
+                        <option value="3">오름차순</option>
+                        <option value="4">내림차순</option>
                     </select>
                 </div>
             </div>
@@ -111,46 +111,80 @@
     </script>
 
     <script type="text/javascript">
-        var writeList = function(){
+        var studio_list = [];
+        var studio_search = [];
+
+        $("#select_sort").change(function (){
+            switch(this.value){
+                case "1":{//가나다
+                    studio_list.sort(function(a,b){
+                        return a.studio_name > b.studio_name ? -1 : a.studio_name > b.studio_name ? 1 : 0;
+                    });
+                    break;
+                }case "2":{//최신순
+                    studio_list.sort(function(a,b){
+                        return a.studio_key < b.studio_key ? -1 : a.studio_key > b.studio_key ? 1 : 0;
+                    });
+                    break;
+                }case "3":{//오름차순
+                    studio_list.sort(function(a,b){
+                        return a.studio_name < b.studio_name ? -1 : a.studio_name > b.studio_name ? 1 : 0;
+                    });
+                    break;
+                }case "4":{//내림차순
+                    studio_list.sort(function(a,b){
+                        return a.studio_name > b.studio_name ? -1 : a.studio_name > b.studio_name ? 1 : 0;
+                    });
+                    break;
+                }
+            }
+            writeList(studio_list);
+        });
+
+        var writeList = function(list){
+            $("#std_list").empty();
+            for(var i = 0; i<list.length;i++){
+                var studio_temp = list[i];
+                var studio = '<li id="studio_li_'+studio_temp.studio_key+'" class="list-group-item p-3 mb-3 border">'
+                                +'<div class="row align-items-center">'
+                                    +'<div class="col-lg-10">'
+                                        +'<div class="d-flex align-items-lg-center">'
+                                            +'<div class="d-flex justify-content-center overflow-hidden mr-4 item-thumbs">'
+                                                +'<img src="'+studio_temp.studio_thumbnail+'" class="align-self-center h-100" alt="">'
+                                            +'</div>'
+                                            +'<div class="item-texts">'
+                                                +'<a href="/sub/studio_view.html" class="text-decoration-none">'
+                                                    +'<h4 class="text-gray">'+studio_temp.studio_name
+                                                        +'<p class="font-size-xs ml-lg-3 ml-2 d-inline-block mb-1 align-middle">'
+                                                            +'<i class="fas fa-heart text-red"></i>'
+                                                            +'<span class="ml-1">'+studio_temp.studio_like+'</span>'
+                                                        +'</p>'
+                                                    +'</h4>'
+                                                +'</a>'
+                                                +'<p class="font-weight-light text-light-gray mb-2">'+studio_temp.studio_subname+'</p>'
+                                                +'<p class="font-weight-light mb-0"><span class="mr-md-4">예약유형 : '+studio_temp.studio_types+ '</span>'
+                                                +'<span class="d-md-inline-block d-block">'+studio_temp.studio_price+'원 / 시간</span></p>'
+                                            +'</div>'
+                                        +'</div>'
+                                    +'</div>'
+                                    +'<div class="col-lg-2">'
+                                        +'<div class="text-lg-center text-right mt-lg-0 mt-3">'
+                                            +'<button type="button" onclick="modstu('+studio_temp.studio_key+');" class="btn border mr-lg-0 mr-2 item-btn">수정하기</button>'
+                                            +'<button type="button" onclick="delstu('+studio_temp.studio_key+');" class="btn border bg-red text-white item-btn">공간삭제</button>'
+                                        +'</div>'
+                                    +'</div>'
+                                +'</div>'
+                            +'</li>';
+                $("#std_list").append(studio);
+            }
+        }
+        $(document).ready(function (){
             var xhr = new XMLHttpRequest();
             xhr.onreadystatechange = function() {
                 if (xhr.readyState === xhr.DONE) { 
                     if (xhr.status === 200 || xhr.status === 201) {
-                        var studio_list = JSON.parse(xhr.responseText);
-                        for(var i = 0; i<studio_list.length;i++){
-                            var studio_temp = studio_list[i];
-                            var studio = '<li id="studio_li_'+studio_temp.studio_key+'" class="list-group-item p-3 mb-3 border">'
-                                            +'<div class="row align-items-center">'
-                                                +'<div class="col-lg-10">'
-                                                    +'<div class="d-flex align-items-lg-center">'
-                                                        +'<div class="d-flex justify-content-center overflow-hidden mr-4 item-thumbs">'
-                                                            +'<img src="'+studio_temp.studio_thumbnail+'" class="align-self-center h-100" alt="">'
-                                                        +'</div>'
-                                                        +'<div class="item-texts">'
-                                                            +'<a href="/sub/studio_view.html" class="text-decoration-none">'
-                                                                +'<h4 class="text-gray">'+studio_temp.studio_name
-                                                                    +'<p class="font-size-xs ml-lg-3 ml-2 d-inline-block mb-1 align-middle">'
-                                                                        +'<i class="fas fa-heart text-red"></i>'
-                                                                        +'<span class="ml-1">'+studio_temp.studio_like+'</span>'
-                                                                    +'</p>'
-                                                                +'</h4>'
-                                                            +'</a>'
-                                                            +'<p class="font-weight-light text-light-gray mb-2">'+studio_temp.studio_subname+'</p>'
-                                                            +'<p class="font-weight-light mb-0"><span class="mr-md-4">예약유형 : '+studio_temp.studio_types+ '</span>'
-                                                            +'<span class="d-md-inline-block d-block">'+studio_temp.studio_price+'원 / 시간</span></p>'
-                                                        +'</div>'
-                                                    +'</div>'
-                                                +'</div>'
-                                                +'<div class="col-lg-2">'
-                                                    +'<div class="text-lg-center text-right mt-lg-0 mt-3">'
-                                                        +'<button type="button" onclick="modstu('+studio_temp.studio_key+');" class="btn border mr-lg-0 mr-2 item-btn">수정하기</button>'
-                                                        +'<button type="button" onclick="delstu('+studio_temp.studio_key+');" class="btn border bg-red text-white item-btn">공간삭제</button>'
-                                                    +'</div>'
-                                                +'</div>'
-                                            +'</div>'
-                                        +'</li>';
-                            $("#std_list").append(studio);
-                        }
+                        studio_list = JSON.parse(xhr.responseText);
+                        writeList(studio_list);
                     } else {
                         alert("목록이 정상적으로 이루어지지 않았습니다. 다시 시도해주세요.");
                         console.error(xhr.responseText);
@@ -162,11 +196,17 @@
             xhr.open('POST', 'http://3.34.150.116:3000/studio/host',true);
             xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
             xhr.send("user_id=jmnu1203");
-
-        }
-        $(document).ready(function (){
-            writeList();
         });
+
+        function searchStu(){
+            studio_search = [];
+            for(var i = 0;i<studio_list.length;i++){
+                if(studio_list[i].studio_name.indexOf($("#searchTxt").val()) != -1){
+                    studio_search.push(studio_list[i]);
+                }
+            }
+            writeList(studio_search);
+        }
 
         function modstu(key){
             if(sessionStorage.getItem("id")!=null){

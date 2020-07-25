@@ -36,12 +36,11 @@
 </head>
 
 <body>
-    <modal include-html="/include/header.html"></modal>
-    <div class="py-md-3 px-5 py-2 text-center text-white bg-deep-dark top-notice">
-        <span class="font-weight-light">코로나19에 대한 아트바이어스의 대책 및 환불 정책에 대한 최신 정보를 확인하세요.</span>
-        <a href="#x" class="text-white d-lg-inline-block d-block">자세히 알아보기</a>
-    </div>
+ <!-- 모달 -->
+ <div id="modals"></div>
 
+ <!-- 서브 헤더 -->
+ <!-- <header id="header"></header> -->
     <!-- 헤더부분 네비게이션 바-->
     <nav class="navbar navbar-expand-lg navbar-light py-lg-3 py-1">
         <div class="container">
@@ -66,6 +65,15 @@
             <div class="d-flex justify-content-between align-items-center host-top-function mb-md-5 mb-4">
                 <h2 class="">등록/관리</h2>
                 <a href="javascript:addStu();" class="btn d-flex align-items-center rounded-pill bg-dark text-white font-weight-light px-lg-4 px-2 font-size-xs btn-sm">추가하기</a>
+            </div>
+
+            <!-- 카테고리 -->
+            <div class="d-flex custom-nav-tabs text font-size-m mb-md-5 mb-4">
+                <a href="studio_list.html" class="mr-md-5 mr-4 position-relative tab-title">스튜디오</a>
+                <a href="class_list.html" class="mr-md-5 mr-4 position-relative tab-title">클래스</a>
+                <a href="performance_list.html" class="mr-md-5 mr-4 position-relative tab-title">퍼포먼스</a>
+                <a href="audition_list.html" class="mr-md-5 mr-4 position-relative tab-title">오디션</a>
+                <a href="store_list.html" class="position-relative tab-title">스토어</a>
             </div>
 
             <!-- 등록된 아이템 리스트 -->
@@ -100,7 +108,7 @@
 
     <script>
          function modstu(key){
-            if(sessionStorage.getItem("id")!=null){
+            if(sessionStorage.getItem("id")!= null){
              window.location.href = "/host/item_register.html?key="+key;
             }else{
                 alert("로그인해주세요.");
@@ -108,34 +116,35 @@
             }
         }
 
-        function addStu(){
-            if(sessionStorage.getItem("id")!=null){
-                window.location.href = "/host/studio_register.html";
-            }else{
-                alert("로그인해주세요.");
-                window.location.href = "/index.html";
-            }
+        function delStu(key){
+            // if(sessionStorage.getItem("id")!= null){
+                var xhr = new XMLHttpRequest();
+                xhr.onreadystatechange = function() {
+                    if (xhr.readyState === xhr.DONE) { 
+                        if (xhr.status === 200 || xhr.status === 201) {
+                            $("#studio_li_"+key).remove();
+                            alert("suc");
+                        } else {
+                            alert("삭제가 정상적으로 이루어지지 않았습니다. 다시 시도해주세요.");
+                            console.error(xhr.responseText);
+                        }
+                    }else{
+                        
+                    }
+                };
+                xhr.open('POST', 'http://3.34.150.116:3000/studio/delete',true);
+                xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+                xhr.send("key="+key);
+            // }else{
+            //     alert("로그인해주세요.");
+            //     window.location.href = "/index.html";
+            // }
         }
 
-        function delstu(key){
-        if(sessionStorage.getItem("id")!=null){
-           var xhr = new XMLHttpRequest();
-            xhr.onreadystatechange = function() {
-                if (xhr.readyState === xhr.DONE) { 
-                    if (xhr.status === 200 || xhr.status === 201) {
-                        $("#studio_li_"+key).remove();
-                    } else {
-                        alert("삭제가 정상적으로 이루어지지 않았습니다. 다시 시도해주세요.");
-                        console.error(xhr.responseText);
-                    }
-                }else{
-                    
-                }
-            };
-            xhr.open('POST', 'http://3.34.150.116:3000/studio/delete',true);
-            xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
-            xhr.send("key="+key);
-        }else{
+        function addStu(){
+            if(sessionStorage.getItem("id")!= null){
+                window.location.href = "/host/item_register.html";
+            }else{
                 alert("로그인해주세요.");
                 window.location.href = "/index.html";
             }
@@ -153,7 +162,7 @@
                         var studio_list = JSON.parse(xhr.responseText);
                         for(var i = 0; i<studio_list.length;i++){
                             var studio_temp = studio_list[i];
-                            var studio = '<div class="col-lg-3 col-6 mb-lg-5 mb-4">'
+                            var studio = '<div id="studio_li_'+studio_temp.studio_key+'" class="col-lg-3 col-6 mb-lg-5 mb-4">'
                                             +'<div class="card border-0 bg-transparent mb-2">'
                                                 +'<div class="position-absolute p-md-2 p-1 w-100 z-index-2">'
                                                     +'<div class="p-lg-2 p-1 d-flex list-tag list-tag-yellow">'
@@ -173,7 +182,7 @@
                                             +'</div>'
                                             +'<div class="d-flex host-item-btn">'
                                                 +'<a href="javascript:modstu('+studio_temp.studio_key+');" class="btn flex-fill bg-sky text-white">수정</a>'
-                                                +'<button class="btn flex-fill onclick="delstu('+studio_temp.studio_key+');" bg-gray">삭제</button>'
+                                                +'<button class="btn flex-fill bg-gray" onclick="delStu('+studio_temp.studio_key+');">삭제</button>'
                                             +'</div>'
                                         +'</div>';
                             $("#std_list").append(studio);
@@ -192,7 +201,8 @@
             };
             xhr.open('POST', 'http://3.34.150.116:3000/studio/host',true);
             xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
-            xhr.send("user_id="+sessionStorage.getItem("id"));
+            xhr.send("user_id=jmnu1203");
+            // xhr.send("user_id="+sessionStorage.getItem("id"));
         }
         
     </script>

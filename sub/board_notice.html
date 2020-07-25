@@ -433,7 +433,7 @@
             <div class="container py-4">
                 <!-- search -->
                 <div class="d-flex justify-content-between mb-4 custom-inputs">
-                    <input type="text" class="form-control w-75 mr-4" placeholder="검색어를 입력해 주세요">
+                    <input type="text" id="searchTxt" class="form-control w-75 mr-4" placeholder="검색어를 입력해 주세요">
                     <select name="" id="searchOpt" class="form-control w-25">
                         <option value="all">전체보기</option>
                         <option value="guest">게스트</option>
@@ -513,30 +513,64 @@
         </div>
     </footer>
     <script>
-    $("#searchOpt").change(function (){
-        this.value;
+        var noticeList = [];
+        var noticeSearchList = [];
 
-    });
-    $(document).ready(function (){
-        var xhr = new XMLHttpRequest();
+        $("#searchOpt").change(function (){
+            noticeSearchList.remove();
+            for(var j = 0; j < noticeList.length;j++){
+                if(noticeList[j].notice_target == this.value){
+                    noticeSearchList.append(noticeList[j]);
+                }
+            }
+            writeList(noticeSearchList);
+        });
+
+        $("#searchTxt").change(function(){
+            noticeSearchList.remove();
+            for(var j = 0; j < noticeList.length;j++){
+                if(noticeList[j].notice_title == this.value){
+                    noticeSearchList.append(noticeList[j]);
+                }
+            }
+            writeList(noticeSearchList);
+        });
+
+        function writeList(list){
+            writeUL(1,list);
+            $("#pager").remove();
+            for(var j = 0;j < list.length/10;j++){
+                var page_item = '<li class="page-item"><a class="page-link" href="#x" onclick="writeUL('+(j+1)+','+list+');">'+(j+1)+'</a></li>';
+                $("#pager").append(page_item);
+            }
+        }
+
+        function writeUL(item,list){
+            $("#noticeUL").remove();
+            for(var i = (item-1) * 10; i < item * 10; i++){
+                if(i == list.length)break;
+                var notice = '<li class="list-group-item py-3 position-relative">'
+                                +'<div class="row">'
+                                    +'<div class="col-2 text-center">'
+                                        +'<p class="mb-0 text-sky">'+list[i].notice_target+'</p>'
+                                    +'</div>'
+                                    +'<div class="col-10">'
+                                        +'<p class="mb-0 font-weight-light">'+list[i].notice_title+'</p>'
+                                    +'</div>'
+                                +'</div>'
+                                +'<a href="board_view.html?view_id="'+list[i].notice_id+' class="stretched-link text-decoration-none"></a>'
+                            +'</li>';
+                $("#noticeUL").append(notice);
+            }
+        }
+
+        $(document).ready(function (){
+            var xhr = new XMLHttpRequest();
             xhr.onreadystatechange = function() {
                 if (xhr.readyState === xhr.DONE) { 
                     if (xhr.status === 200 || xhr.status === 201) {
-                        var noticeList = JSON.parse(xhr.responseText);
-                        for(var i = 0;i < noticeList.length; i++){
-                            var notice = '<li class="list-group-item py-3 position-relative">'
-                                            +'<div class="row">'
-                                                +'<div class="col-2 text-center">'
-                                                    +'<p class="mb-0 text-sky">'+noticeList[i].notice_target+'</p>'
-                                                +'</div>'
-                                                +'<div class="col-10">'
-                                                    +'<p class="mb-0 font-weight-light">'+noticeList[i].notice_title+'</p>'
-                                                +'</div>'
-                                            +'</div>'
-                                            +'<a href="board_view.html" class="stretched-link text-decoration-none"></a>'
-                                        +'</li>';
-                            $("#noticeUL").append(notice);
-                        }
+                        noticeList = JSON.parse(xhr.responseText);
+                        writeList(noticeList);
                     } else {
                         alert("등록이 정상적으로 이루어지지 않았습니다. 다시 시도해주세요.");
                         console.error(xhr.responseText);
@@ -547,8 +581,7 @@
             };
             xhr.open('POST', 'http://3.34.150.116:3000/',true);
             xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
-            xhr.send("user_id="+sessionStorage.getItem("id"));
-    });
+        });
 
     </script>
 </body>
