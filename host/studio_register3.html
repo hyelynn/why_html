@@ -12,7 +12,8 @@
     <!-- Bootstrap 4.3.1 -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
         integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-
+    <script src="https://sdk.amazonaws.com/js/aws-sdk-2.283.1.min.js"></script>
+    
     <!-- Custom -->
     <link rel="stylesheet" href="/css/custom.css">
     <link rel="stylesheet" href="/css/custom_host.css">
@@ -97,8 +98,7 @@
                     <div class="d-flex custom-file">
                         <input class="upload-name form-control flex-fill" id="thumbs_file" accept=".jpg, .png" value="JPG, PNG 파일만 가능합니다."
                             disabled="disabled">
-                        <label for="thumbsFile"
-                            class="btn flex-fill fnc-btn mb-0 bg-yellow whitespace-nowrap fnc-btn">업로드</label>
+                        <label for="thumbsFile" class="btn flex-fill fnc-btn mb-0 bg-yellow whitespace-nowrap fnc-btn">업로드</label>
                         <input type="file" id="thumbsFile" class="upload-hidden" onchange="addFile(this.id,'thumb');">
                     </div>
                 </div>
@@ -123,8 +123,7 @@
                         <input type="file" id="studioImageA2" class="upload-hidden" onchange="addFile(this.id, this.files);">
                     </div>
                     <!-- 추가버튼 -->
-                    <button type="button" class="btn border font-weight-light font-size-xs sm-btn"
-                        onclick="addInputFile(this)">
+                    <button type="button" class="btn border font-weight-light font-size-xs sm-btn" onclick="addInputFile(this)">
                         <i class="fas fa-plus mr-lg-1 mr-0 text-sky"></i><span class="d-inline-block">추가</span>
                     </button>
                 </div>
@@ -165,20 +164,17 @@
                     <div class="d-flex custom-file mb-3">
                         <input class="upload-name form-control flex-fill" accept=".jpg, .png"  value="최대 14장, JPG, PNG 파일만 가능합니다"
                             disabled="disabled">
-                        <label for="studioImageB1"
-                            class="btn flex-fill fnc-btn mb-0 bg-yellow whitespace-nowrap fnc-btn">업로드</label>
+                        <label for="studioImageB1" class="btn flex-fill fnc-btn mb-0 bg-yellow whitespace-nowrap fnc-btn">업로드</label>
                         <input type="file" id="studioImageB1" class="upload-hidden"onchange="addFile(this.id, this.files);">
                     </div>
                     <div class="d-flex custom-file mb-3">
                         <input class="upload-name form-control flex-fill" accept=".jpg, .png" value="최대 14장, JPG, PNG 파일만 가능합니다"
                             disabled="disabled">
-                        <label for="studioImageB2"
-                            class="btn flex-fill fnc-btn mb-0 bg-yellow whitespace-nowrap fnc-btn">업로드</label>
+                        <label for="studioImageB2" class="btn flex-fill fnc-btn mb-0 bg-yellow whitespace-nowrap fnc-btn">업로드</label>
                         <input type="file" id="studioImageB2" class="upload-hidden"onchange="addFile(this.id, this.files);">
                     </div>
                     <!-- 추가버튼 -->
-                    <button type="button" class="btn border font-weight-light font-size-xs sm-btn"
-                        onclick="addInputFile(this)">
+                    <button type="button" class="btn border font-weight-light font-size-xs sm-btn" onclick="addInputFile(this)">
                         <i class="fas fa-plus mr-lg-1 mr-0 text-sky"></i><span class="d-inline-block">추가</span>
                     </button>
                 </div>
@@ -189,8 +185,7 @@
                         <label for="studio_tags">스튜디오 검색 태그</label>
                     </div>
                     <div class="d-flex">
-                        <input type="text" id="studioTag" class="form-control"
-                            placeholder="사용자가 검색할 수 있는 키워드를 입력해 주세요.">
+                        <input type="text" id="studioTag" class="form-control" placeholder="사용자가 검색할 수 있는 키워드를 입력해 주세요.">
                         <button type="button" class="btn bg-yellow fnc-btn" onclick="addTag()">추가하기</button>
                     </div>
 
@@ -511,11 +506,11 @@
                         setCookie("s3_id",s_key,1);
                         var arrDay = result[0].studio_tags.split(',');
                         for (var nArrCnt in arrDay) {
-                            if($("input[name=tags][value="+arrDay[nArrCnt]+"]").length > 0){
-                                $("input[name=tags][value="+arrDay[nArrCnt]+"]").prop("checked",true);
+                            if($("input[name=tags][value="+nArrCnt+"]").length > 0){
+                                $("input[name=tags][value="+nArrCnt+"]").prop("checked",true);
                             }else{
                                 var tag_temp = '<div class="tag mt-3">'
-                                                    +'<span class="mr-lg-2" name="tags" value='+arrDay[nArrCnt]+'>'+arrDay[nArrCnt]+'</span>'
+                                                    +'<span class="mr-lg-2" name="tags" value='+nArrCnt+'>'+nArrCnt+'</span>'
                                                     +'<button type="button" class="btn bg-transparent" onclick="removeTag(this)">'
                                                     +'<i class="fa fa-times text-red"></i></button>'
                                                     +'</div>';
@@ -525,11 +520,11 @@
                         alert(result[0].studio_useful);
                         var arrDay2 = result[0].studio_useful.split(',');
                         for (var nArrCnt in arrDay) {
-                            if($("input[name=convs][value="+arrDay2[nArrCnt]+"]").length > 0){
-                                $("input[name=convs][value="+arrDay2[nArrCnt]+"]").prop("checked",true);
+                            if($("input[name=convs][value="+nArrCnt+"]").length > 0){
+                                $("input[name=convs][value="+nArrCnt+"]").prop("checked",true);
                             }else{
                                 $("#add_conv").prop("checked",true);
-                                $("#add_conv_text").val(arrDay2[nArrCnt]);
+                                $("#add_conv_text").val(nArrCnt);
                             } 
                         }  
                     } else {
@@ -580,9 +575,6 @@
                             +'</div>';
         
         $("#tag_cont").append(tag_temp);         
-        // let $clone = $('div.tag:last').clone(true);
-        // $clone.find('span').text(tag);
-        // $('.host-search-tags').append($clone);
     }
 
     // tag 삭제

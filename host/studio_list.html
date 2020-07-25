@@ -195,7 +195,7 @@
             };
             xhr.open('POST', 'http://3.34.150.116:3000/studio/host',true);
             xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
-            xhr.send("user_id=jmnu1203");
+            xhr.send("user_id=a");
         });
 
         function searchStu(){
@@ -218,36 +218,36 @@
         }
 
         function addStu(){
-            if(sessionStorage.getItem("id")!=null){
-                window.location.href = "/host/studio_register.html";
-            }else{
-                alert("로그인해주세요.");
-                window.location.href = "/index.html";
-            }
+            // if(sessionStorage.getItem("id")!=null){
+                window.location.href = "/host/item_register.html?category=studio";
+            // }else{
+            //     alert("로그인해주세요.");
+            //     window.location.href = "/index.html";
+            // }
         }
 
         function delstu(key){
-        if(sessionStorage.getItem("id")!=null){
-           var xhr = new XMLHttpRequest();
-            xhr.onreadystatechange = function() {
-                if (xhr.readyState === xhr.DONE) { 
-                    if (xhr.status === 200 || xhr.status === 201) {
-                        $("#studio_li_"+key).remove();
-                    } else {
-                        alert("삭제가 정상적으로 이루어지지 않았습니다. 다시 시도해주세요.");
-                        console.error(xhr.responseText);
+            // if(sessionStorage.getItem("id")!=null){
+                var xhr = new XMLHttpRequest();
+                xhr.onreadystatechange = function() {
+                    if (xhr.readyState === xhr.DONE) { 
+                        if (xhr.status === 200 || xhr.status === 201) {
+                            $("#studio_li_"+key).remove();
+                        } else {
+                            alert("삭제가 정상적으로 이루어지지 않았습니다. 다시 시도해주세요.");
+                            console.error(xhr.responseText);
+                        }
+                    }else{
+                        
                     }
-                }else{
-                    
-                }
-            };
-            xhr.open('POST', 'http://3.34.150.116:3000/studio/delete',true);
-            xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
-            xhr.send("key="+key);
-        }else{
-                alert("로그인해주세요.");
-                window.location.href = "/index.html";
-            }
+                };
+                xhr.open('POST', 'http://3.34.150.116:3000/studio/delete',true);
+                xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+                xhr.send("key="+key);
+            // }else{
+            //     alert("로그인해주세요.");
+            //     window.location.href = "/index.html";
+            // }
         }
         
         function onLogout() {

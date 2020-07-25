@@ -7,6 +7,8 @@
 
     <!-- Bootstrap 4.3.1 -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+    <script src="https://sdk.amazonaws.com/js/aws-sdk-2.283.1.min.js"></script>
 
     <!-- Custom -->
     <link rel="stylesheet" href="/css/custom.css">
@@ -85,9 +87,10 @@
                         <label class="float-left">대표 이미지 (1장)</label>
                     </div>
                     <div class="d-flex custom-file">
-                        <input class="upload-name form-control flex-fill" value="JPG, PNG 파일만 가능합니다." disabled="disabled">
+                        <input class="upload-name form-control flex-fill" id="thumbs_file" accept=".jpg, .png" value="JPG, PNG 파일만 가능합니다."
+                            disabled="disabled">
                         <label for="thumbsFile" class="btn flex-fill fnc-btn mb-0 bg-yellow whitespace-nowrap fnc-btn">업로드</label>
-                        <input type="file" id="thumbsFile" class="upload-hidden">
+                        <input type="file" id="thumbsFile" class="upload-hidden" onchange="addFile(this.id,'thumb');">
                     </div>
                 </div>
 
@@ -116,7 +119,7 @@
                 <div class="mb-lg-5 mb-3">
                     <div class="text-gray font-weight-light">
                         <label for="audition_youtube" class="float-left">소개 영상</label>
-                        <span class="float-right">0/20</span>
+                        <span id="youtube_length" class="float-right">0/20</span>
                     </div>
                     <input type="text" id="audition_youtube" class="form-control" placeholder="YouTube URL로 업로드 해주세요">
                 </div>
@@ -125,7 +128,7 @@
                 <div class="mb-lg-5 mb-3">
                     <div class="text-gray font-weight-light">
                         <label for="audition_addr" class="float-left">오디션 장소명</label>
-                        <span class="float-right">0/20</span>
+                        <span id="addr_length" class="float-right">0/20</span>
                     </div>
                     <input type="text" id="audition_addr" class="form-control" placeholder="예) 아트바이어스 엔터테인먼트">
                 </div>
@@ -134,7 +137,7 @@
                 <div class="mb-lg-5 mb-3">
                     <div class="text-gray font-weight-light">
                         <label for="audition_url" class="float-left">관련 URL</label>
-                        <span class="float-right">0/20</span>
+                        <span id="url_length" class="float-right">0/20</span>
                     </div>
                     <input type="text" id="audition_url" class="form-control" placeholder="URL로 입력해 주세요">
                 </div>
@@ -143,7 +146,7 @@
                 <div class="mb-lg-5 mb-3">
                     <div class="text-gray font-weight-light">
                         <label for="audition_caution" class="float-left">오디션 준비사항</label>
-                        <span class="float-right">0/700</span>
+                        <span id="caution_length" class="float-right">0/700</span>
                     </div>
                     <textarea name="" id="audition_caution" class="form-control large" placeholder="오디션에 필요한 준비사항을 작성 해 주세요."></textarea>
                 </div>
@@ -152,7 +155,7 @@
                 <div class="mb-lg-5 mb-3">
                     <div class="text-gray font-weight-light">
                         <label for="audition_terms" class="float-left">오디션 준비물 및 과제</label>
-                        <span class="float-right">0/700</span>
+                        <span id="terms_length" class="float-right">0/700</span>
                     </div>
                     <textarea name="" id="audition_terms" class="form-control large" placeholder="오디션에 필요한 준비사항과 과제를 작성해 주세요"></textarea>
                 </div>
@@ -185,27 +188,12 @@
                     </div>
                     <div class="d-flex">
                         <input type="text" id="tagText" class="form-control" placeholder="사용자가 검색할 수 있는 키워드를 입력해 주세요.">
-                        <button type="button" class="btn bg-yellow fnc-btn" onclick="addTag()">추가하기</button>
+                        <button type="button" class="btn bg-yellow fnc-btn" onclick="addTag2();">추가하기</button>
                     </div>
 
                     <!-- 태그 -->
-                    <div class="d-flex align-content-center flex-wrap host-search-tags tags">
-                        <div class="tag mt-3">
-                            <span class="mr-lg-2">걸그룹</span>
-                            <button type="button" class="btn bg-transparent" onclick="removeTag(this)"><i class="fa fa-times text-red"></i></button>
-                        </div>
-                        <div class="tag mt-3">
-                            <span class="mr-lg-2">걸그룹오디션</span>
-                            <button type="button" class="btn bg-transparent" onclick="removeTag(this)"><i class="fa fa-times text-red"></i></button>
-                        </div>
-                        <div class="tag mt-3">
-                            <span class="mr-lg-2">안무오디션</span>
-                            <button type="button" class="btn bg-transparent" onclick="removeTag(this)"><i class="fa fa-times text-red"></i></button>
-                        </div>
-                        <div class="tag mt-3">
-                            <span class="mr-lg-2">신인</span>
-                            <button type="button" class="btn bg-transparent" onclick="removeTag(this)"><i class="fa fa-times text-red"></i></button>
-                        </div>
+                    <div id="tag_cont" class="d-flex align-content-center flex-wrap host-search-tags tags">
+                        
                     </div>
                 </div>
 
@@ -222,7 +210,7 @@
         <!-- 이전단계 / 다음단계 -->
         <div class="overflow-hidden mt-lg-5 mt-3">
             <a href="audition_register2.html" class="btn bg-gray float-left w-50 rounded-0 py-lg-4 py-3 font-size-m" onclick="history.back()">이전 단계로 이동</a>
-            <a href="audition_list.html" class="btn bg-yellow float-right w-50 rounded-0 py-lg-4 py-3 font-size-m">등록 완료 및 검수 신청</a>
+            <a href="javascript:CheckForm();" class="btn bg-yellow float-right w-50 rounded-0 py-lg-4 py-3 font-size-m">등록 완료 및 검수 신청</a>
         </div>
     </main>
 
@@ -244,6 +232,253 @@
 </body>
 
 <script>
+    var albumBucketName = 'studio-images-artbyus';
+    var bucketRegion = 'ap-northeast-2';
+    var IdentityPoolId = 'ap-northeast-2:5de34811-ed49-42bb-8378-726186756855';
+    var idx = 1;
+
+    AWS.config.update({
+        region: bucketRegion,
+        credentials: new AWS.CognitoIdentityCredentials({
+            IdentityPoolId: IdentityPoolId
+        })
+    });
+
+    var s3 = new AWS.S3({
+        apiVersion: '2006-03-01',
+        CacheControl: "no-cache",
+        params: {Bucket: albumBucketName}
+    });
+
+    $('#audition_youtube').keyup(function (e){
+        var content = $(this).val();
+        $('#youtube_length').html(content.length+"/20"); 
+        if (content.length > 20){
+            alert("최대 20자까지 입력 가능합니다.");
+            $(this).val(content.substring(0, 20));
+            $('#youtube_length').html("20/20");
+        }
+    });
+
+    $('#audition_addr').keyup(function (e){
+        var content = $(this).val();
+        $('#addr_length').html(content.length+"/20"); 
+        if (content.length > 20){
+            alert("최대 20자까지 입력 가능합니다.");
+            $(this).val(content.substring(0, 20));
+            $('#addr_length').html("20/20");
+        }
+    });
+
+    $('#audition_url').keyup(function (e){
+        var content = $(this).val();
+        $('#url_length').html(content.length+"/20"); 
+        if (content.length > 20){
+            alert("최대 20자까지 입력 가능합니다.");
+            $(this).val(content.substring(0, 20));
+            $('#url_length').html("20/20");
+        }
+    });
+
+    $('#audition_caution').keyup(function (e){
+        var content = $(this).val();
+        $('#caution_length').html(content.length+"/700"); 
+        if (content.length > 700){
+            alert("최대 700자까지 입력 가능합니다.");
+            $(this).val(content.substring(0, 700));
+            $('#caution_length').html("700/700");
+        }
+    });
+
+    $('#audition_terms').keyup(function (e){
+        var content = $(this).val();
+        $('#terms_length').html(content.length+"/700"); 
+        if (content.length > 700){
+            alert("최대 700자까지 입력 가능합니다.");
+            $(this).val(content.substring(0, 700));
+            $('#terms_length').html("700/700");
+        }
+    });
+    
+    function addFile(id, albumName) {
+        var files = document.getElementById(id).files;
+        if (!files.length) {
+            return alert('업로드할 파일을 선택해주세요.');
+        }
+        var file = files[0];
+        var fileName = file.name;
+        var photoKey = "";
+        if(albumName =='thumb') {
+            photoKey = getCookie("s3_id")+"_thumb.jpg";
+        }else{
+            photoKey = getCookie("s3_id")+"_"+idx+++".jpg";
+        }
+
+        s3.upload({
+            Key: photoKey,
+            Body: file,
+            ACL: 'public-read'
+        }, function(err, data) {
+            if (err) {
+                return alert('파일 업로드 실패: ', err, data);
+                console.log(err, data);
+            }else{
+                var xhr = new XMLHttpRequest();
+                xhr.onreadystatechange = function() {
+                    if (xhr.readyState === xhr.DONE) { 
+                        if (xhr.status === 200 || xhr.status === 201) {
+                            
+                        } else {
+                            alert("등록이 정상적으로 이루어지지 않았습니다. 다시 시도해주세요.");
+                            console.error(xhr.responseText);
+                        }
+                    }else{
+                    }
+                };
+                xhr.open('POST', 'http://3.34.150.116:3000/class/apply/img',true);
+                xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+                xhr.send("key="+getCookie("s3_id")+"&img="+photoKey);
+            }
+        });
+    }
+
+// tag 추가
+    function addTag2() {
+        let tag = $('#tagText').val();
+
+        if (!tag) {
+            alert('태그를 입력하세요.');
+            $('#tagText').focus();
+            return;
+        }
+
+        var tag_temp = '<div class="tag mt-3">'
+                            +'<span class="mr-lg-2" name="tags" value='+tag+'>'+tag+'</span>'
+                            +'<button type="button" class="btn bg-transparent" onclick="removeTag(this)">'
+                            +'<i class="fa fa-times text-red"></i></button>'
+                        +'</div>';
+        
+        $("#tag_cont").append(tag_temp);  
+    }
+        
+    var urlParam = function(name){
+        var results = new RegExp('[\?&]' + name + '=([^&#]*)').exec(window.location.href);
+        if (results==null){
+            return null;
+        }
+        else{
+            return results[1] || 0;
+        }
+    }
+
+    var getCookie = function(name) {
+        var value = document.cookie.match('(^|;) ?' + name + '=([^;]*)(;|$)');
+        return value? value[2] : null;
+    };
+
+    var setCookie = function(name, value, day) {
+        var date = new Date();
+        date.setTime(date.getTime() + day * 60 * 60 * 24 * 1000);
+        document.cookie = name + '=' + value + ';expires=' + date.toUTCString() + ';path=/';
+    };
+
+    $(document).ready(function (){
+        var s_key = urlParam("key");
+        var xhr = new XMLHttpRequest();
+        xhr.onreadystatechange = function() {
+            if (xhr.readyState === xhr.DONE) { 
+                if (xhr.status === 200 || xhr.status === 201) {
+                    var result = JSON.parse(xhr.responseText);
+                    var arrDay0 = result[0].studio_thumbnail.split('/');
+                    $("#thumbs_file").val(arrDay0[3]);
+                    $("#audition_youtube").val(result[0].audition_youtube);
+                    $("#audition_addr").val(result[0].audition_addr);
+                    $("#audition_url").val(result[0].audition_url);
+                    $("#audition_caution").val(result[0].audition_caution);
+                    $("#audition_terms").val(result[0].audition_terms);
+                    $("#audition_addr2").val(result[0].audition_addr2);
+                    setCookie("s3_id",s_key,1);
+                    var arrDay = result[0].tagText.split(',');
+                    for (var nArrCnt in arrDay) {
+                        if($("input[name=tags][value="+nArrCnt+"]").length > 0){
+                            $("input[name=tags][value="+nArrCnt+"]").prop("checked",true);
+                        }else{
+                            var tag_temp = '<div class="tag mt-3">'
+                                                +'<span class="mr-lg-2" name="tags" value='+nArrCnt+'>'+nArrCnt+'</span>'
+                                                +'<button type="button" class="btn bg-transparent" onclick="removeTag(this)">'
+                                                    +'<i class="fa fa-times text-red"></i>'
+                                                +'</button>'
+                                            +'</div>';
+                            $("#tag_cont").append(tag_temp);    
+                        }
+                    }  
+                } else {
+                    alert("정보를 불러오던 중 오류가 발생했습니다. 다시 시도해주세요.");
+                    console.error(xhr.responseText);
+                }
+            }else{
+                
+            }
+        };
+        xhr.open('POST', 'http://3.34.150.116:3000/class/mod/info',true);
+        xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+        xhr.send("studio_key="+s_key);
+    });
+
+    function CheckForm(){
+        var audition_youtube = document.getElementById("audition_youtube").value;
+        var audition_addr = document.getElementById("audition_addr").value;
+        var audition_url = document.getElementById("audition_url").value;
+        var audition_caution = document.getElementById("audition_caution").value;
+        var audition_terms = document.getElementById("audition_terms").value;
+        var audition_addr2 = document.getElementById("audition_addr2").value;
+        var arr_tags = document.getElementsByName("tags");
+        var thumbsFile = getCookie("s3_id")+"_thumb.jpg";
+        var tagText = [];
+        for(var i=0;i<arr_tags.length;i++){
+            tagText.push(arr_tags[i].textContent);
+        }
+        var xhr = new XMLHttpRequest();
+        xhr.onreadystatechange = function() {
+            if (xhr.readyState === xhr.DONE) { 
+                if (xhr.status === 200 || xhr.status === 201) {
+                    window.location.href = "/host/studio_list.html";
+                } else {
+                    alert("등록이 정상적으로 이루어지지 않았습니다. 다시 시도해주세요.");
+                    console.error(xhr.responseText);
+                }
+            }else{
+            }
+        };
+        xhr.open('POST', 'http://3.34.150.116:3000/audio/apply/info',true);
+        xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+        xhr.send("key="+getCookie("s3_id")+"&thumbsFile="+thumbsFile+"&audition_youtube="+audition_youtube+"&audition_addr="+audition_addr
+        +"&audition_url="+audition_url+"&audition_caution="+audition_caution+"&tags="+tagText.toString()
+        +"&audition_terms="+audition_terms+"&audition_addr2="+audition_addr2); 
+    } 
+    
+    function addInputFile(obj) {
+        if ($(obj).parent().find('div.custom-file').length + 1 > 14) {
+            return;
+        }
+
+        let $last = $(obj).parent().find('div.custom-file:last');
+        let id = $last.find('input[type=file]').prop('id').replace(/[1-9]/g, '');
+        let new_id = id + (parseInt( $last.find('input[type=file]').prop('id').match(/\d+/g), 10 ) + 1);
+        let $clone = $last.clone(true);
+
+        $clone.find('input[type=file]').prop('id', new_id).val('');
+        $clone.find('input.upload-name').val('최대 14장, JPG, PNG 파일만 가능합니다');
+        $clone.find('label').prop('for', new_id);
+
+        $last.after($clone)
+    }
+
+    // tag 삭제
+    function removeTag(obj) {
+        $(obj).parent().remove();
+    }
+    
     $(function () {
         var fileTarget = $('.custom-inputs-sub.not .upload-hidden');
         fileTarget.on('change', function() {

@@ -11,6 +11,9 @@
     <!-- Datepicker : 날짜 선택 기능이 있는 페이지에서만 사용 -->
     <link rel="stylesheet" href="/css/datepicker.css">
 
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"
+        integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+
     <!-- Custom -->
     <link rel="stylesheet" href="/css/custom.css">
     <link rel="stylesheet" href="/css/custom_host.css">
@@ -83,7 +86,7 @@
                 <div class="mb-lg-5 mb-3">
                     <div class="text-gray font-weight-light">
                         <label for="performance_name" class="float-left">공연 이름</label>
-                        <span class="float-right">0/30</span>
+                        <span id="performance_length"class="float-right">0/30</span>
                     </div>
                     <input type="text" id="performance_name" class="form-control" placeholder="예) 뮤지컬 아트바이어스 서울 초연">
                 </div>
@@ -94,13 +97,13 @@
                     <div class="row">
                         <div class="col-md-6 mb-lg-0 mb-3">
                             <div class="d-flex justify-content-end align-items-center form-control">
-                                <input type="text" class="bg-transparent border-0 w-100 h-100 text-gray datePickerDrop">
+                                <input type="text" id="start" class="bg-transparent border-0 w-100 h-100 text-gray datePickerDrop">
                                 <span class="ml-3 text-light-gray whitespace-nowrap">부터</span>
                             </div>
                         </div>
                         <div class="col-md-6">
                             <div class="d-flex justify-content-end align-items-center form-control">
-                                <input type="text" class="bg-transparent border-0 w-100 h-100 text-gray datePickerDrop">
+                                <input type="text" id="end" class="bg-transparent border-0 w-100 h-100 text-gray datePickerDrop">
                                 <span class="ml-3 text-light-gray whitespace-nowrap">까지</span>
                             </div>
                         </div>
@@ -111,8 +114,7 @@
                         <label for="performance_addr">공연 장소</label>
                     </div>
                     <div class="d-flex">
-                        <input type="text" id="performance_addr" class="form-control" placeholder="주소검색 버튼을 눌러주세요">
-                        <button type="button" class="btn bg-yellow fnc-btn">주소검색</button>
+                        <input type="text" id="performance_addr" onclick="postLoad();" class="form-control" placeholder="주소검색 버튼을 눌러주세요">
                     </div>
                 </div>
                 <div class="mb-lg-5 mb-3">
@@ -128,7 +130,7 @@
         <!-- 이전단계 / 다음단계 -->
         <div class="overflow-hidden mt-lg-5 mt-3">
             <a href="item_register.html" class="btn bg-gray float-left w-50 rounded-0 py-lg-4 py-3 font-size-m">이전 단계로 이동</a>
-            <a href="performance_register3.html" class="btn bg-yellow float-right w-50 rounded-0 py-lg-4 py-3 font-size-m">다음으로 이동</a>
+            <a href="javascript:goNext();" class="btn bg-yellow float-right w-50 rounded-0 py-lg-4 py-3 font-size-m">다음으로 이동</a>
         </div>
     </main>
 
@@ -140,11 +142,122 @@
     <script>includeHTML({});</script>
     <script>login_header();</script>
 
+    <script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
     <script type="text/javascript">
         function onLogout() {
             sessionStorage.clear();
             location.href = "index.html";
         }
+        function postLoad(){
+            new daum.Postcode({
+                oncomplete: function(data) {
+                    $("#performance_addr").val(data.address);
+                }
+            }).open();
+        }
+    
+        $('#performance_name').keyup(function (e){
+            var content = $(this).val();
+            $('#performance_length').html(content.length+"/30"); 
+            if (content.length > 30){
+                alert("최대 30자까지 입력 가능합니다.");
+                $(this).val(content.substring(0, 30));
+                $('#performance_length').html("30/30");
+            }
+        });
+        var urlParam = function(name){
+            var results = new RegExp('[\?&]' + name + '=([^&#]*)').exec(window.location.href);
+            if (results==null){
+                return null;
+            }
+            else{
+                return results[1] || 0;
+            }
+        }
+        $(document).ready(function (){
+            var s_key = urlParam("key");
+            var xhr = new XMLHttpRequest();
+            xhr.onreadystatechange = function() {
+                if (xhr.readyState === xhr.DONE) { 
+                    if (xhr.status === 200 || xhr.status === 201) {
+                        var result = JSON.parse(xhr.responseText);
+                        $("#performance_name").val(result[0].performance_name);
+                        $("#start").val(result[0].start);
+                        $("#end").val(result[0].end);
+                        $("#performance_addr").val(result[0].performance_addr);
+                        $("#performance_intro").val(result[0].performance_intro);
+                    } else {
+                        alert("정보를 불러오던 중 오류가 발생했습니다. 다시 시도해주세요.");
+                        console.error(xhr.responseText);
+                    }
+                }else{
+                    
+                }
+            };
+            xhr.open('POST', 'http://3.34.150.116:3000/performance/mod/name',true);
+            xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+            xhr.send("studio_key="+s_key);
+        });
+        function goNext(){
+            var performance_name = document.getElementById("performance_name").value;
+            var start = document.getElementById("start").value;
+            var end = document.getElementById("end").value;
+            var performance_addr = document.getElementById("performance_addr").value;
+            var performance_intro = document.getElementById("performance_intro").value;
+            if(CheckForm(performance_name,start,end,performance_addr,performance_intro)){
+                var xhr = new XMLHttpRequest();
+                xhr.onreadystatechange = function() {
+                    if (xhr.readyState === xhr.DONE) { 
+                        if (xhr.status === 200 || xhr.status === 201) {
+                            window.location.href = "/host/performance_register3.html?key="+urlParam("key");
+                        } else {
+                            alert("등록이 정상적으로 이루어지지 않았습니다. 다시 시도해주세요.");
+                            console.error(xhr.responseText);
+                        }
+                    }else{
+                    }
+                };
+                xhr.open('POST', 'http://3.34.150.116:3000/performance/apply/name',true);
+                xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+                xhr.send("key="+getCookie("s3_id")+"&performance_name="+performance_name+"&start="+start
+                +"&end="+end+"&performance_addr="+performance_addr+"&performance_intro="+performance_intro); 
+                
+            }
+        }
+        var getCookie = function(name) {
+            var value = document.cookie.match('(^|;) ?' + name + '=([^;]*)(;|$)');
+            return value? value[2] : null;
+        };
+        
+        function CheckForm(performance_name,start,end,performance_addr,performance_intro){
+            if(performance_name == ""){
+                alert("공연 이름을 입력해주세요.");
+                document.getElementById("performance_name").focus();
+                return false;
+            }
+            if(start == ""){
+                alert("공연 기간을 입력해주세요.");
+                document.getElementById("start").focus();
+                return false;
+            }
+            if(end == ""){
+                alert("공연 기간을 입력해주세요.");
+                document.getElementById("end").focus();
+                return false;
+            }
+            if(performance_addr == ""){
+                alert("공연 장소를 입력해주세요.");
+                document.getElementById("performance_addr").focus();
+                return false;
+            }
+            if(performance_intro == ""){
+                alert("공연 간단소개를 입력해주세요.");
+                document.getElementById("performance_intro").focus();
+                return false;
+            }
+            return true;
+        }
+
     </script>
 
     <script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>

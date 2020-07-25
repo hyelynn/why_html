@@ -5,14 +5,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ART BY US</title>
 
-    <script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
-
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"
+        integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
     <!-- Bootstrap 4.3.1 -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 
     <!-- Custom -->
     <link rel="stylesheet" href="/css/custom.css">
     <link rel="stylesheet" href="/css/custom_host.css">
+    <script src="https://sdk.amazonaws.com/js/aws-sdk-2.283.1.min.js"></script>
 
     <!-- Fontawesome -->
     <link rel="stylesheet" href="/css/fontawesome/css/all.min.css"><script src="/js/include.js"></script>
@@ -90,9 +91,10 @@
                         <label class="float-left">대표 이미지 (1장)</label>
                     </div>
                     <div class="d-flex custom-file">
-                        <input class="upload-name form-control flex-fill" value="JPG, PNG 파일만 가능합니다." disabled="disabled">
+                        <input class="upload-name form-control flex-fill" id="thumbs_file" accept=".jpg, .png" value="JPG, PNG 파일만 가능합니다."
+                            disabled="disabled">
                         <label for="thumbsFile" class="btn flex-fill fnc-btn mb-0 bg-yellow whitespace-nowrap fnc-btn">업로드</label>
-                        <input type="file" id="thumbsFile" class="upload-hidden">
+                        <input type="file" id="thumbsFile" class="upload-hidden" onchange="addFile(this.id,'thumb');">
                     </div>
                 </div>
 
@@ -102,14 +104,17 @@
                         <label class="float-left">추가 이미지 (최대 14장)</label>
                     </div>
                     <div class="d-flex custom-file mb-3">
-                        <input class="upload-name form-control flex-fill" value="최대 14장, JPG, PNG 파일만 가능합니다" disabled="disabled">
-                        <label for="classImageA1" class="btn flex-fill fnc-btn mb-0 bg-yellow whitespace-nowrap fnc-btn">업로드</label>
-                        <input type="file" id="classImageA1" class="upload-hidden">
+                        <input class="upload-name form-control flex-fill" accept=".jpg, .png" value="최대 14장, JPG, PNG 파일만 가능합니다"
+                            disabled="disabled">
+                        <label for="classImageA1"
+                            class="btn flex-fill fnc-btn mb-0 bg-yellow whitespace-nowrap fnc-btn">업로드</label>
+                        <input type="file" id="classImageA1" class="upload-hidden" onchange="addFile(this.id, this.files);">
                     </div>
                     <div class="d-flex custom-file mb-3">
-                        <input class="upload-name form-control flex-fill" value="최대 14장, JPG, PNG 파일만 가능합니다" disabled="disabled">
+                        <input class="upload-name form-control flex-fill" accept=".jpg, .png"  value="최대 14장, JPG, PNG 파일만 가능합니다"
+                        disabled="disabled">
                         <label for="classImageA2" class="btn flex-fill fnc-btn mb-0 bg-yellow whitespace-nowrap fnc-btn">업로드</label>
-                        <input type="file" id="classImageA2" class="upload-hidden">
+                        <input type="file" id="classImageA2" class="upload-hidden" onchange="addFile(this.id, this.files);">
                     </div>
                     <!-- 추가버튼 -->
                     <button type="button" class="btn border font-weight-light font-size-xs sm-btn" onclick="addInputFile(this)">
@@ -121,7 +126,7 @@
                 <div class="mb-lg-5 mb-3">
                     <div class="text-gray font-weight-light">
                         <label for="class_youtube" class="float-left">소개 영상</label>
-                        <span class="float-right">0/20</span>
+                        <span id="youtube_length" class="float-right">0/20</span>
                     </div>
                     <input type="text" id="class_youtube" class="form-control" placeholder="YouTube URL로 업로드 해주세요">
                 </div>
@@ -130,7 +135,7 @@
                 <div class="mb-lg-5 mb-3">
                     <div class="text-gray font-weight-light">
                         <label for="class_text" class="float-left">클래스 상세 소개</label>
-                        <span class="float-right">0/700</span>
+                        <span id="text_length" class="float-right">0/700</span>
                     </div>
                     <textarea name="" id="class_text" class="form-control large" placeholder="클래스 소개글을 작성하세요"></textarea>
                 </div>
@@ -141,14 +146,16 @@
                         <label class="float-left">추가 이미지 (최대 14장)</label>
                     </div>
                     <div class="d-flex custom-file mb-3">
-                        <input class="upload-name form-control flex-fill" value="최대 14장, JPG, PNG 파일만 가능합니다" disabled="disabled">
+                        <input class="upload-name form-control flex-fill" accept=".jpg, .png"  value="최대 14장, JPG, PNG 파일만 가능합니다"
+                            disabled="disabled">
                         <label for="classImageB1" class="btn flex-fill fnc-btn mb-0 bg-yellow whitespace-nowrap fnc-btn">업로드</label>
-                        <input type="file" id="classImageB1" class="upload-hidden">
+                        <input type="file" id="classImageB1" class="upload-hidden"onchange="addFile(this.id, this.files);">
                     </div>
                     <div class="d-flex custom-file mb-3">
-                        <input class="upload-name form-control flex-fill" value="최대 14장, JPG, PNG 파일만 가능합니다" disabled="disabled">
+                        <input class="upload-name form-control flex-fill" accept=".jpg, .png" value="최대 14장, JPG, PNG 파일만 가능합니다"
+                            disabled="disabled">
                         <label for="classImageB2" class="btn flex-fill fnc-btn mb-0 bg-yellow whitespace-nowrap fnc-btn">업로드</label>
-                        <input type="file" id="classImageB2" class="upload-hidden">
+                        <input type="file" id="classImageB2" class="upload-hidden"onchange="addFile(this.id, this.files);">
                     </div>
                     <!-- 추가버튼 -->
                     <button type="button" class="btn border font-weight-light font-size-xs sm-btn" onclick="addInputFile(this)">
@@ -163,23 +170,12 @@
                     </div>
                     <div class="d-flex">
                         <input type="text" id="tagText" class="form-control" placeholder="사용자가 검색할 수 있는 키워드를 입력해 주세요.">
-                        <button type="button" class="btn bg-yellow fnc-btn" onclick="addTag()">추가하기</button>
+                        <button type="button" class="btn bg-yellow fnc-btn" onclick="addTag2();">추가하기</button>
                     </div>
 
                     <!-- 태그 -->
-                    <div class="d-flex align-content-center flex-wrap host-search-tags tags">
-                        <div class="tag mt-3">
-                            <span class="mr-lg-2">서초동</span>
-                            <button type="button" class="btn bg-transparent" onclick="removeTag(this)"><i class="fa fa-times text-red"></i></button>
-                        </div>
-                        <div class="tag mt-3">
-                            <span class="mr-lg-2">서초역</span>
-                            <button type="button" class="btn bg-transparent" onclick="removeTag(this)"><i class="fa fa-times text-red"></i></button>
-                        </div>
-                        <div class="tag mt-3">
-                            <span class="mr-lg-2">현대무용</span>
-                            <button type="button" class="btn bg-transparent" onclick="removeTag(this)"><i class="fa fa-times text-red"></i></button>
-                        </div>
+                    <div id="tag_cont" class="d-flex align-content-center flex-wrap host-search-tags tags">
+                        
                     </div>
                 </div>
 
@@ -187,7 +183,7 @@
                 <div class="mb-lg-5 mb-3">
                     <div class="text-gray font-weight-light">
                         <label for="class_terms" class="float-left">클래스 이용 약관</label>
-                        <span class="float-right">0/700</span>
+                        <span id="terms_length" class="float-right">0/700</span>
                     </div>
                     <textarea name="" id="class_terms" class="form-control large" placeholder="사용자가 인지할 수 있는 약관을 작성하세요. ※ 환불규정은 아트바이어스의 공동 환불정책으로 적용됩니다."></textarea>
                 </div>
@@ -217,8 +213,8 @@
 
         <!-- 이전단계 / 다음단계 -->
         <div class="overflow-hidden mt-lg-5 mt-3">
-            <a href="class_register2.html" class="btn bg-gray float-left w-50 rounded-0 py-lg-4 py-3 font-size-m" onclick="history.back()">이전 단계로 이동</a>
-            <a href="class_register4.html" class="btn bg-yellow float-right w-50 rounded-0 py-lg-4 py-3 font-size-m">다음으로 이동</a>
+            <a href="javaScript:window.history.back();" class="btn bg-gray float-left w-50 rounded-0 py-lg-4 py-3 font-size-m" onclick="history.back()">이전 단계로 이동</a>
+            <a href="javascript:CheckForm();" class="btn bg-yellow float-right w-50 rounded-0 py-lg-4 py-3 font-size-m">다음으로 이동</a>
         </div>
     </main>
     <footer include-html="/include/footer.html"></footer>
@@ -241,9 +237,231 @@
 
     <script src="/js/include_html_host.js"></script>
     <!-- <script src="/js/custom.js"></script> -->
-</body>
+
 
 <script>
+    var albumBucketName = 'studio-images-artbyus';
+    var bucketRegion = 'ap-northeast-2';
+    var IdentityPoolId = 'ap-northeast-2:5de34811-ed49-42bb-8378-726186756855';
+    var idx = 1;9
+
+    AWS.config.update({
+        region: bucketRegion,
+        credentials: new AWS.CognitoIdentityCredentials({
+            IdentityPoolId: IdentityPoolId
+        })
+    });
+
+    var s3 = new AWS.S3({
+        apiVersion: '2006-03-01',
+        CacheControl: "no-cache",
+        params: {Bucket: albumBucketName}
+    });
+
+    $('#class_youtube').keyup(function (e){
+        var content = $(this).val();
+        $('#youtube_length').html(content.length+"/20"); 
+        if (content.length > 20){
+            alert("최대 20자까지 입력 가능합니다.");
+            $(this).val(content.substring(0, 20));
+            $('#youtube_length').html("20/20");
+        }
+    });
+
+    $('#class_text').keyup(function (e){
+        var content = $(this).val();
+        $('#text_length').html(content.length+"/700"); 
+        if (content.length > 700){
+            alert("최대 700자까지 입력 가능합니다.");
+            $(this).val(content.substring(0, 700));
+            $('#text_length').html("700/700");
+        }
+    });
+
+    $('#class_terms').keyup(function (e){
+        var content = $(this).val();
+        $('#terms_length').html(content.length+"/700"); 
+        if (content.length > 700){
+            alert("최대 700자까지 입력 가능합니다.");
+            $(this).val(content.substring(0, 700));
+            $('#terms_length').html("700/700");
+        }
+    });
+    
+    function addFile(id, albumName) {
+        var files = document.getElementById(id).files;
+        if (!files.length) {
+            return alert('업로드할 파일을 선택해주세요.');
+        }
+        var file = files[0];
+        var fileName = file.name;
+        var photoKey = "";
+        if(albumName =='thumb') {
+            photoKey = getCookie("s3_id")+"_thumb.jpg";
+        }else{
+            photoKey = getCookie("s3_id")+"_"+idx+++".jpg";
+        }
+
+        s3.upload({
+            Key: photoKey,
+            Body: file,
+            ACL: 'public-read'
+        }, function(err, data) {
+            if (err) {
+                return alert('파일 업로드 실패: ', err, data);
+                console.log(err, data);
+            }else{
+                var xhr = new XMLHttpRequest();
+                xhr.onreadystatechange = function() {
+                    if (xhr.readyState === xhr.DONE) { 
+                        if (xhr.status === 200 || xhr.status === 201) {
+                            
+                        } else {
+                            alert("등록이 정상적으로 이루어지지 않았습니다. 다시 시도해주세요.");
+                            console.error(xhr.responseText);
+                        }
+                    }else{
+                    }
+                };
+                xhr.open('POST', 'http://3.34.150.116:3000/class/apply/img',true);
+                xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+                xhr.send("key="+getCookie("s3_id")+"&img="+photoKey);
+            }
+        });
+    }
+
+// tag 추가
+    function addTag2() {
+        let tag = $('#tagText').val();
+
+        if (!tag) {
+            alert('태그를 입력하세요.');
+            $('#tagText').focus();
+            return;
+        }
+
+        var tag_temp = '<div class="tag mt-3">'
+                            +'<span class="mr-lg-2" name="tags" value='+tag+'>'+tag+'</span>'
+                            +'<button type="button" class="btn bg-transparent" onclick="removeTag(this)">'
+                            +'<i class="fa fa-times text-red"></i></button>'
+                        +'</div>';
+        
+        $("#tag_cont").append(tag_temp);  
+    }
+        
+    var urlParam = function(name){
+        var results = new RegExp('[\?&]' + name + '=([^&#]*)').exec(window.location.href);
+        if (results==null){
+            return null;
+        }
+        else{
+            return results[1] || 0;
+        }
+    }
+
+    var getCookie = function(name) {
+        var value = document.cookie.match('(^|;) ?' + name + '=([^;]*)(;|$)');
+        return value? value[2] : null;
+    };
+
+    var setCookie = function(name, value, day) {
+        var date = new Date();
+        date.setTime(date.getTime() + day * 60 * 60 * 24 * 1000);
+        document.cookie = name + '=' + value + ';expires=' + date.toUTCString() + ';path=/';
+    };
+
+    $(document).ready(function (){
+        var s_key = urlParam("key");
+        var xhr = new XMLHttpRequest();
+        xhr.onreadystatechange = function() {
+            if (xhr.readyState === xhr.DONE) { 
+                if (xhr.status === 200 || xhr.status === 201) {
+                    var result = JSON.parse(xhr.responseText);
+                    var arrDay0 = result[0].studio_thumbnail.split('/');
+                    $("#thumbs_file").val(arrDay0[3]);
+                    $("#class_youtube").val(result[0].class_youtube);
+                    $("#class_text").val(result[0].class_text);
+                    $("#class_terms").val(result[0].class_terms);
+                    $("#class_caution").val(result[0].class_caution);
+                    $("#class_addr").val(result[0].class_addr);
+                    setCookie("s3_id",s_key,1);
+                    var arrDay = result[0].tagText.split(',');
+                    for (var nArrCnt in arrDay) {
+                        if($("input[name=tags][value="+nArrCnt+"]").length > 0){
+                            $("input[name=tags][value="+nArrCnt+"]").prop("checked",true);
+                        }else{
+                            var tag_temp = '<div class="tag mt-3">'
+                                                +'<span class="mr-lg-2" name="tags" value='+nArrCnt+'>'+nArrCnt+'</span>'
+                                                +'<button type="button" class="btn bg-transparent" onclick="removeTag(this)">'
+                                                    +'<i class="fa fa-times text-red"></i>'
+                                                +'</button>'
+                                            +'</div>';
+                            $("#tag_cont").append(tag_temp);    
+                        }
+                    }  
+                    // alert(result[0].class_caution);
+                    // var arrDay2 = result[0].class_caution.split(',');
+                    // for (var nArrCnt in arrDay) {
+                    //     if($("input[name=convs][value="+arrDay2[nArrCnt]+"]").length > 0){
+                    //         $("input[name=convs][value="+arrDay2[nArrCnt]+"]").prop("checked",true);
+                    //     }else{
+                    //         $("#add_conv").prop("checked",true);
+                    //         $("#add_conv_text").val(arrDay2[nArrCnt]);
+                    //     } 
+                    // }  
+                } else {
+                    alert("정보를 불러오던 중 오류가 발생했습니다. 다시 시도해주세요.");
+                    console.error(xhr.responseText);
+                }
+            }else{
+                
+            }
+        };
+        xhr.open('POST', 'http://3.34.150.116:3000/class/mod/info',true);
+        xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+        xhr.send("studio_key="+s_key);
+    });
+
+    function CheckForm(){
+        var class_youtube = document.getElementById("class_youtube").value;
+        var class_text = document.getElementById("class_text").value;
+        var class_terms = document.getElementById("class_terms").value;
+        var class_caution = document.getElementById("class_caution").value;
+        var class_addr = document.getElementById("class_addr").value;
+        // var arr_conv = document.getElementsByName("convs");
+        var arr_tags = document.getElementsByName("tags");
+        var thumbsFile = getCookie("s3_id")+"_thumb.jpg";
+        // var convText = [];
+        // for(var i=0;i<arr_conv.length;i++){
+        //     if(arr_conv[i].checked == true) {
+        //         convText.push(arr_conv[i].value);
+        //     }
+        // }
+        // if($("input:checkbox[id='add_conv']").is(":checked") == true){
+        //     convText.push(add_conv_text);
+        // }
+        var tagText = [];
+        for(var i=0;i<arr_tags.length;i++){
+            tagText.push(arr_tags[i].textContent);
+        }
+        var xhr = new XMLHttpRequest();
+            xhr.onreadystatechange = function() {
+                if (xhr.readyState === xhr.DONE) { 
+                    if (xhr.status === 200 || xhr.status === 201) {
+                        window.location.href = "/host/studio_register4.html?key="+urlParam("key");
+                    } else {
+                        alert("등록이 정상적으로 이루어지지 않았습니다. 다시 시도해주세요.");
+                        console.error(xhr.responseText);
+                    }
+                }else{
+                }
+            };
+            xhr.open('POST', 'http://3.34.150.116:3000/studio/apply/info',true);
+            xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+            xhr.send("key="+getCookie("s3_id")+"&thumbsFile="+thumbsFile+"&class_youtube="+class_youtube+"&class_text="+class_text
+            +"&class_terms="+class_terms+"&class_caution="+class_caution+"&class_addr="+class_addr+"&tags="+tagText.toString()); 
+    }
+    
     $(function () {
         var fileTarget = $('.custom-inputs-sub.not .upload-hidden');
         fileTarget.on('change', function() {
@@ -276,25 +494,11 @@
         $last.after($clone)
     }
 
-    // tag 추가
-    function addTag() {
-        let tag = $('#classTag').val();
-
-        if (!tag) {
-            alert('태그를 입력하세요.');
-            $('#classTag').focus();
-            return;
-        }
-
-        let $clone = $('div.tag:last').clone(true);
-        $clone.find('span').text(tag);
-        $('.host-search-tags').append($clone);
-    }
-
     // tag 삭제
     function removeTag(obj) {
         $(obj).parent().remove();
     }
 </script>
+</body>
 
 </html>

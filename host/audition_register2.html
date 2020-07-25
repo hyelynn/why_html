@@ -7,6 +7,7 @@
 
     <!-- Bootstrap 4.3.1 -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
 
     <!-- Datepicker : 날짜 선택 기능이 있는 페이지에서만 사용 -->
     <link rel="stylesheet" href="/css/datepicker.css">
@@ -83,7 +84,7 @@
                 <div class="mb-lg-5 mb-3">
                     <div class="text-gray font-weight-light">
                         <label for="audition_name" class="float-left">오디션 타이틀</label>
-                        <span class="float-right">0/30</span>
+                        <span id="audition_length" class="float-right">0/30</span>
                     </div>
                     <input type="text" id="audition_name" class="form-control" placeholder="예) 아트바이어스 신인 걸그룹 연습생 오디션">
                 </div>
@@ -94,13 +95,13 @@
                     <div class="row">
                         <div class="col-md-6 mb-lg-0 mb-3">
                             <div class="d-flex justify-content-end align-items-center form-control">
-                                <input type="text" class="bg-transparent border-0 w-100 h-100 text-gray datePickerDrop">
+                                <input id="sub_start" type="text" class="bg-transparent border-0 w-100 h-100 text-gray datePickerDrop">
                                 <span class="ml-3 text-light-gray whitespace-nowrap">부터</span>
                             </div>
                         </div>
                         <div class="col-md-6">
                             <div class="d-flex justify-content-end align-items-center form-control">
-                                <input type="text" class="bg-transparent border-0 w-100 h-100 text-gray datePickerDrop">
+                                <input id="sub_end" type="text" class="bg-transparent border-0 w-100 h-100 text-gray datePickerDrop">
                                 <span class="ml-3 text-light-gray whitespace-nowrap">까지</span>
                             </div>
                         </div>
@@ -113,13 +114,13 @@
                     <div class="row">
                         <div class="col-md-6 mb-lg-0 mb-3">
                             <div class="d-flex justify-content-end align-items-center form-control">
-                                <input type="text" class="bg-transparent border-0 w-100 h-100 text-gray datePickerDrop">
+                                <input id="aud_start" type="text" class="bg-transparent border-0 w-100 h-100 text-gray datePickerDrop">
                                 <span class="ml-3 text-light-gray whitespace-nowrap">부터</span>
                             </div>
                         </div>
                         <div class="col-md-6">
                             <div class="d-flex justify-content-end align-items-center form-control">
-                                <input type="text" class="bg-transparent border-0 w-100 h-100 text-gray datePickerDrop">
+                                <input id="aud_end" type="text" class="bg-transparent border-0 w-100 h-100 text-gray datePickerDrop">
                                 <span class="ml-3 text-light-gray whitespace-nowrap">까지</span>
                             </div>
                         </div>
@@ -130,14 +131,14 @@
                         <label for="audition_addr">오디션 장소</label>
                     </div>
                     <div class="d-flex">
-                        <input type="text" id="audition_addr" class="form-control" placeholder="주소검색 버튼을 눌러주세요">
-                        <button type="button" class="btn bg-yellow fnc-btn">주소검색</button>
+                        <input type="text" readonly id="audition_addr" class="form-control" placeholder="주소검색 버튼을 눌러주세요">
+                        <button type="button" onclick="postLoad();" class="btn bg-yellow fnc-btn">주소검색</button>
                     </div>
                 </div>
                 <div class="mb-lg-5 mb-3">
                     <div class="text-gray font-weight-light">
                         <label for="audition_intro" class="float-left">오디션 간단 소개</label>
-                        <span class="float-right">0/100</span>
+                        <span id="intro_length" class="float-right">0/100</span>
                     </div>
                     <textarea name="" id="audition_intro" class="form-control" placeholder="예) 여러분이 주인공이 될 수 있는 단 한번의 기회!"></textarea>
                 </div>
@@ -147,7 +148,7 @@
         <!-- 이전단계 / 다음단계 -->
         <div class="overflow-hidden mt-lg-5 mt-3">
             <a href="item_register.html" class="btn bg-gray float-left w-50 rounded-0 py-lg-4 py-3 font-size-m">이전 단계로 이동</a>
-            <a href="audition_register3.html" class="btn bg-yellow float-right w-50 rounded-0 py-lg-4 py-3 font-size-m">다음으로 이동</a>
+            <a href="javascript:goNext();" class="btn bg-yellow float-right w-50 rounded-0 py-lg-4 py-3 font-size-m">다음으로 이동</a>
         </div>
     </main>
 
@@ -158,11 +159,146 @@
 
     <script>includeHTML({});</script>
     <script>login_header();</script>
-
+    <script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+   
     <script type="text/javascript">
         function onLogout() {
             sessionStorage.clear();
             location.href = "index.html";
+        }
+        $('#audition_name').keyup(function (e){
+            var content = $(this).val();
+            $('#audition_length').html(content.length+"/30"); 
+            if (content.length > 30){
+                alert("최대 30자까지 입력 가능합니다.");
+                $(this).val(content.substring(0, 30));
+                $('#audition_length').html("30/30");
+            }
+        });
+        $('#audition_intro').keyup(function (e){
+            var content = $(this).val();
+            $('#intro_length').html(content.length+"/100"); 
+            if (content.length > 100){
+                alert("최대 100자까지 입력 가능합니다.");
+                $(this).val(content.substring(0, 100));
+                $('#intro_length').html("100/100");
+            }
+        });
+
+        function postLoad(){
+            new daum.Postcode({
+                oncomplete: function(data) {
+                    $("#audition_addr").val(data.address);
+                }
+            }).open();
+        }
+    
+        var urlParam = function(name){
+            var results = new RegExp('[\?&]' + name + '=([^&#]*)').exec(window.location.href);
+            if (results==null){
+                return null;
+            }
+            else{
+                return results[1] || 0;
+            }
+        }
+
+        $(document).ready(function (){
+            var s_key = urlParam("key");
+            var xhr = new XMLHttpRequest();
+            xhr.onreadystatechange = function() {
+                if (xhr.readyState === xhr.DONE) { 
+                    if (xhr.status === 200 || xhr.status === 201) {
+                        var result = JSON.parse(xhr.responseText);
+                        $("#audition_name").val(result[0].audition_name);
+                        $("#sub_start").val(result[0].sub_start);
+                        $("#sub_end").val(result[0].sub_end);
+                        $("#aud_start").val(result[0].aud_start);
+                        $("#aud_end").val(result[0].aud_end);
+                        $("#audition_addr").val(result[0].audition_addr);
+                        $("#audition_intro").val(result[0].audition_intro);
+                    } else {
+                        alert("정보를 불러오던 중 오류가 발생했습니다. 다시 시도해주세요.");
+                        console.error(xhr.responseText);
+                    }
+                }else{
+                    
+                }
+            };
+            xhr.open('POST', 'http://3.34.150.116:3000/audition/mod/name',true);
+            xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+            xhr.send("studio_key="+s_key);
+        });
+        function goNext(){
+            var audition_name = document.getElementById("audition_name").value;
+            var sub_start = document.getElementById("sub_start").value;
+            var sub_end = document.getElementById("sub_end").value;
+            var aud_start = document.getElementById("aud_start").value;
+            var aud_end = document.getElementById("aud_end").value;
+            var audition_addr = document.getElementById("audition_addr").value;
+            var audition_intro = document.getElementById("audition_intro").value;
+            if(CheckForm(audition_name,sub_start,sub_end,aud_start,aud_end,audition_addr,audition_intro)){
+                var xhr = new XMLHttpRequest();
+                xhr.onreadystatechange = function() {
+                    if (xhr.readyState === xhr.DONE) { 
+                        if (xhr.status === 200 || xhr.status === 201) {
+                            window.location.href = "/host/audition_register3.html?key="+urlParam("key");
+                        } else {
+                            alert("등록이 정상적으로 이루어지지 않았습니다. 다시 시도해주세요.");
+                            console.error(xhr.responseText);
+                        }
+                    }else{
+                    }
+                };
+                xhr.open('POST', 'http://3.34.150.116:3000/audition/apply/name',true);
+                xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+                xhr.send("key="+getCookie("s3_id")+"&audition_name="+audition_name+"&sub_start="+sub_start
+                +"&sub_end="+sub_end+"&aud_start="+aud_start+"&aud_end="+aud_end+"&audition_addr="+audition_addr
+                +"&audition_intro="+audition_intro); 
+            }
+        }
+        var getCookie = function(name) {
+            var value = document.cookie.match('(^|;) ?' + name + '=([^;]*)(;|$)');
+            return value? value[2] : null;
+        };
+        
+        function CheckForm(audition_name,sub_start,sub_end,aud_start,aud_end,audition_addr,audition_intro){
+            if(audition_name == ""){
+                alert("오디션 타이틀을 입력해주세요.");
+                document.getElementById("audition_name").focus();
+                return false;
+            }
+            if(sub_start == ""){
+                alert("접수 기간을 입력해주세요.");
+                document.getElementById("sub_start").focus();
+                return false;
+            }
+            if(sub_end == ""){
+                alert("접수 기간을 입력해주세요.");
+                document.getElementById("sub_end").focus();
+                return false;
+            }
+            if(aud_start == ""){
+                alert("오디션 기간을 입력해주세요.");
+                document.getElementById("aud_start").focus();
+                return false;
+            }
+            if(aud_end == ""){
+                alert("오디션 기간을 입력해주세요.");
+                document.getElementById("aud_end").focus();
+                return false;
+            }
+            if(audition_addr == ""){
+                alert("오디션 장소를 입력해주세요.");
+                document.getElementById("audition_addr").focus();
+                return false;
+            }
+            if(audition_intro == ""){
+                alert("오디션 간단소개를 입력해주세요.");
+                document.getElementById("audition_intro").focus();
+                return false;
+            }
+            return true;
         }
     </script>
 
