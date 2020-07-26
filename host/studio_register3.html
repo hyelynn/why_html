@@ -497,14 +497,14 @@
                 if (xhr.readyState === xhr.DONE) { 
                     if (xhr.status === 200 || xhr.status === 201) {
                         var result = JSON.parse(xhr.responseText);
-                        var arrDay = result[0].studio_thumbnail.split('/');
+                        var arrDay = result[0].obj_thumbnail.split('/');
                         $("#thumbs_file").val(arrDay[3]);
-                        $("#studioYoutube").val(result[0].studio_youtube);
-                        $("#studioText").val(result[0].studio_info);
-                        $("#studioTerms").val(result[0].studio_rule);
-                        $("#studioAddr").val(result[0].studio_subway);
+                        $("#studioYoutube").val(result[0].obj_youtube);
+                        $("#studioText").val(result[0].obj_info);
+                        $("#studioTerms").val(result[0].obj_rule);
+                        $("#studioAddr").val(result[0].obj_subway);
                         setCookie("s3_id",s_key,1);
-                        var arrDay = result[0].studio_tags.split(',');
+                        var arrDay = result[0].obj_tags.split(',');
                         for (var nArrCnt in arrDay) {
                             if($("input[name=tags][value="+nArrCnt+"]").length > 0){
                                 $("input[name=tags][value="+nArrCnt+"]").prop("checked",true);
@@ -517,8 +517,8 @@
                                 $("#tag_cont").append(tag_temp);    
                             }
                         }  
-                        alert(result[0].studio_useful);
-                        var arrDay2 = result[0].studio_useful.split(',');
+                        alert(result[0].obj_useful);
+                        var arrDay2 = result[0].obj_useful.split(',');
                         for (var nArrCnt in arrDay) {
                             if($("input[name=convs][value="+nArrCnt+"]").length > 0){
                                 $("input[name=convs][value="+nArrCnt+"]").prop("checked",true);

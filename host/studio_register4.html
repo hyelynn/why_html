@@ -1090,16 +1090,16 @@
             if (xhr.readyState === xhr.DONE) { 
                 if (xhr.status === 200 || xhr.status === 201) {
                     var result = JSON.parse(xhr.responseText);
-                    $("#standard").val(result[0].studio_price);
-                    if(result[0].studio_max == ""){
+                    $("#standard").val(result[0].obj_price);
+                    if(result[0].obj_max == ""){
                         $("#numberUpDown").val(1);
                     }else{
-                        $("#numberUpDown").val(result[0].studio_max);
+                        $("#numberUpDown").val(result[0].obj_max);
                     }
-                    $("#additional").val(result[0].studio_people_price);
+                    $("#additional").val(result[0].obj_people_price);
 
                     setCookie("s3_id",s_key,1);
-                    $("input[name=reserv_type][value="+result[0].studio_types+"]").prop("checked",true);
+                    $("input[name=reserv_type][value="+result[0].obj_types+"]").prop("checked",true);
                 } else {
                     alert("정보를 불러오던 중 오류가 발생했습니다. 다시 시도해주세요.");
                     console.error(xhr.responseText);

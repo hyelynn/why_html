@@ -244,7 +244,7 @@
                         <div class="row">
                             <div class="col-12 px-lg-5 px-3 font-weight-light">
                                 <p id="notice_content"></p>
-                                <img id="notice_subdata" src="../img/board-sample-img.png" class="img-fluid" alt="">
+                                <img id="notice_subdata" class="img-fluid" alt="">
                             </div>
                         </div>
                     </li>
@@ -297,11 +297,9 @@
             var xhr = new XMLHttpRequest();
             xhr.onreadystatechange = function() {
                 if (xhr.readyState === xhr.DONE) { 
-                    alert(xhr.status);
                     if (xhr.status === 200 || xhr.status === 201) {
                         var result = JSON.parse(xhr.responseText);
-                        alert(result[0].notice_content);
-                        $("#notice_target").text(result[0].notice_target);
+                        $("#notice_target").text("호스트");
                         $("#notice_title").text(result[0].notice_title);
                         $("#notice_content").text(result[0].notice_content);
                         $("#notice_subdata").attr("src",result[0].notice_subdata);
@@ -315,7 +313,7 @@
             };
             xhr.open('POST', 'http://3.34.150.116:3000/notice/info',true);
             xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
-            xhr.send("key="+urlParam(view_id));
+            xhr.send("key="+urlParam("view_id"));
         });
     </script>
 </body>
