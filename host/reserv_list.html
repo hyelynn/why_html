@@ -25,25 +25,25 @@
 
     <main role="main">
         <!-- 리스트 탭 -->
-        <div id="reservTab">
+        <div>
             <div class="border-bottom mt-3">
                 <div class="container">
                     <!-- 탭 클릭시 아래 리스트 변경 -->
                     <ul class="nav nav-pills nav-fill flex-nowrap custom-nav-tabs button">
                         <li class="nav-item">
-                            <a class="nav-link active" data-toggle="tab" href="javascript:notyet();">예약 대기</a>
+                            <a href="#" onclick="notyet();" class="nav-link active" data-toggle="tab">예약 대기</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" data-toggle="tab" href="javascript:sure();">예약 확정</a>
+                            <a href="#" onclick="sure();" class="nav-link" data-toggle="tab">예약 확정</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" data-toggle="tab" href="javascript:paid();">결제 완료</a>
+                            <a class="nav-link" data-toggle="tab" href="#" onclick="paid();">결제 완료</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" data-toggle="tab" href="javascript:done();">사용 완료</a>
+                            <a class="nav-link" data-toggle="tab" href="#" onclick="done();">사용 완료</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" data-toggle="tab" href="javascript:cancel();">취소/환불</a>
+                            <a class="nav-link" data-toggle="tab" href="#" onclick="cancel();">취소/환불</a>
                         </li>
                     </ul>
                 </div>
@@ -83,40 +83,10 @@
                 </div>
             </div>
             
+            
             <!-- 리스트 -->
             <ul id="reserv_list" class="list-group host-item-list reserv">
-                <li class="list-group-item p-3 mb-3 border">
-                    <div class="row align-items-center">
-                        <div class="col-lg-10">
-                            <div class="d-flex align-items-lg-center">
-                                <div class="d-flex justify-content-center align-items-center overflow-hidden mr-4 item-thumbs">
-                                    <img src="../img/cart-1.jpg" alt="">
-                                </div>
-                                <div class="item-texts font-weight-light">
-                                    <span class="text-red">예약번호 : num</span>
-                                    <a href="../sub/studio_view.html" class="text-decoration-none">
-                                        <h4 class="text-gray">사당 G1안무연습실</h4>
-                                    </a>
-                                    <ul class="list-unstyled text-light-gray mb-2">
-                                        <li>예약호실 : 그라운드 J4</li>
-                                        <li>예약자명 : 김민범</li>
-                                        <li>예약일시 : 2020-05-01 14:00 ~ 2020-05-01 18:00</li>
-                                    </ul>
-
-                                    <a href="../member/chat_host_view.html" class="d-inline-block text-decoration-none text-sky mr-2">1:1 대화하기</a>
-                                    <a href="#x" class="d-inline-block text-decoration-none text-sky" data-toggle="modal" data-target="#callModal">전화하기</a>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="col-lg-2">
-                            <div class="text-lg-center text-right mt-lg-0 mt-3 host-menu">
-                                <button type="button" class="btn border mr-lg-0 mr-2 item-btn">예약확정</button>
-                                <button type="button" class="btn border mr-lg-0 mr-2 item-btn">예약취소</button>
-                            </div>
-                        </div>
-                    </div>
-                </li>
+                
             </ul>
         </div>
     </main>
@@ -139,6 +109,49 @@
         var done_list = [];
         var cancel_list = [];
 
+        function sureCheck(key){
+            alert(2);
+            var xhr = new XMLHttpRequest();
+            xhr.onreadystatechange = function() {
+                if (xhr.readyState === xhr.DONE) { 
+                    if (xhr.status === 200 || xhr.status === 201) {
+                        var result = JSON.parse(xhr.responseText);
+                        redirect();
+                    } else {
+                        alert("등록이 정상적으로 이루어지지 않았습니다. 다시 시도해주세요.");
+                        console.error(xhr.responseText);
+                    }
+                }else{
+                    
+                }
+            };
+            xhr.open('POST', 'http://3.34.150.116:3000/reserv/change',true);
+            xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+            xhr.send("key="+key+"&type=fix");
+            // xhr.send("user_id="+sessionStorage.getItem("id"));
+        }
+
+        function canCheck(key){
+            alert(key);
+            var xhr = new XMLHttpRequest();
+            xhr.onreadystatechange = function() {
+                if (xhr.readyState === xhr.DONE) { 
+                    if (xhr.status === 200 || xhr.status === 201) {
+                        var result = JSON.parse(xhr.responseText);
+                        redirect();
+                    } else {
+                        alert("등록이 정상적으로 이루어지지 않았습니다. 다시 시도해주세요.");
+                        console.error(xhr.responseText);
+                    }
+                }else{
+                    
+                }
+            };
+            xhr.open('POST', 'http://3.34.150.116:3000/reserv/change',true);
+            xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+            xhr.send("key="+key+"&type=refund");
+            // xhr.send("user_id="+sessionStorage.getItem("id"));
+        }
         function notyet(){
             $("#reserv_list").empty();
             for(var i = 0 ;i<not_list.length;i++){
@@ -150,7 +163,7 @@
                                                 +'<img src="'+not_list[i].reserv_img+'" alt="">'
                                             +'</div>'
                                             +'<div class="item-texts font-weight-light">'
-                                                +'<span class="text-red">예약번호 : '+not_list[i].reserv_num+'</span>'
+                                                +'<span class="text-red">예약번호 : '+not_list[i].reserv_id+'</span>'
                                                 +'<a href="../sub/studio_view.html" class="text-decoration-none">'
                                                     +'<h4 class="text-gray">사'+not_list[i].reserv_name+'</h4>'
                                                 +'</a>'
@@ -166,17 +179,18 @@
                                     +'</div>'
                                     +'<div class="col-lg-2">'
                                         +'<div class="text-lg-center text-right mt-lg-0 mt-3 host-menu">'
-                                            +'<button type="button" onclick="sureCheck();" class="btn border mr-lg-0 mr-2 item-btn">예약확정</button>'
-                                            +'<button type="button" onclick="canCheck();" class="btn border mr-lg-0 mr-2 item-btn">예약취소</button>'
+                                            +'<button type="button" class="btn border mr-lg-0 mr-2 item-btn" onclick="sureCheck('+not_list[i].reserv_id+');">예약확정</button>'
+                                            +'<button type="button" class="btn border mr-lg-0 mr-2 item-btn" onclick="canCheck('+not_list[i].reserv_id+');">예약취소</button>'
                                         +'</div>'
                                     +'</div>'
                                 +'</div>'
                             +'</li>';
                 $("#reserv_list").append(reserv);
+            }
         }
-    }
 
         function sure(){
+            alert(3);
             $("#reserv_list").empty();
             for(var i = 0 ;i<sure_list.length;i++){
                 var reserv = '<li class="list-group-item p-3 mb-3 border">'
@@ -187,7 +201,7 @@
                                                 +'<img src="'+sure_list[i].reserv_img+'" alt="">'
                                             +'</div>'
                                             +'<div class="item-texts font-weight-light">'
-                                                +'<span class="text-red">예약번호 : '+sure_list[i].reserv_num+'</span>'
+                                                +'<span class="text-red">예약번호 : '+sure_list[i].reserv_id+'</span>'
                                                 +'<a href="../sub/studio_view.html" class="text-decoration-none">'
                                                     +'<h4 class="text-gray">사'+sure_list[i].reserv_name+'</h4>'
                                                 +'</a>'
@@ -203,14 +217,14 @@
                                     +'</div>'
                                     +'<div class="col-lg-2">'
                                         +'<div class="text-lg-center text-right mt-lg-0 mt-3 host-menu">'
-                                            +'<button type="button" onclick="canCheck();" class="btn border mr-lg-0 mr-2 item-btn">예약취소</button>'
+                                            +'<button type="button" class="btn border mr-lg-0 mr-2 item-btn" onclick="canCheck('+sure_list[i].reserv_id+');">예약취소</button>'
                                         +'</div>'
                                     +'</div>'
                                 +'</div>'
                             +'</li>';
                 $("#reserv_list").append(reserv);
+            }
         }
-    }
 
         function paid(){
             $("#reserv_list").empty();
@@ -223,7 +237,7 @@
                                                 +'<img src="'+paid_list[i].reserv_img+'" alt="">'
                                             +'</div>'
                                             +'<div class="item-texts font-weight-light">'
-                                                +'<span class="text-red">예약번호 : '+paid_list[i].reserv_num+'</span>'
+                                                +'<span class="text-red">예약번호 : '+paid_list[i].reserv_id+'</span>'
                                                 +'<a href="../sub/studio_view.html" class="text-decoration-none">'
                                                     +'<h4 class="text-gray">사'+paid_list[i].reserv_name+'</h4>'
                                                 +'</a>'
@@ -239,7 +253,7 @@
                                     +'</div>'
                                     +'<div class="col-lg-2">'
                                         +'<div class="text-lg-center text-right mt-lg-0 mt-3 host-menu">'
-                                            +'<button type="button" onclick="canCheck();" class="btn border mr-lg-0 mr-2 item-btn">예약취소</button>'
+                                            +'<button type="button" class="btn border mr-lg-0 mr-2 item-btn" onclick="canCheck('+paid_list[i].reserv_id+');">예약취소</button>'
                                         +'</div>'
                                     +'</div>'
                                 +'</div>'
@@ -259,7 +273,7 @@
                                                 +'<img src="'+done_list[i].reserv_img+'" alt="">'
                                             +'</div>'
                                             +'<div class="item-texts font-weight-light">'
-                                                +'<span class="text-red">예약번호 : '+done_list[i].reserv_num+'</span>'
+                                                +'<span class="text-red">예약번호 : '+done_list[i].reserv_id+'</span>'
                                                 +'<a href="../sub/studio_view.html" class="text-decoration-none">'
                                                     +'<h4 class="text-gray">사'+done_list[i].reserv_name+'</h4>'
                                                 +'</a>'
@@ -292,7 +306,7 @@
                                                 +'<img src="'+cancel_list[i].reserv_img+'" alt="">'
                                             +'</div>'
                                             +'<div class="item-texts font-weight-light">'
-                                                +'<span class="text-red">예약번호 : '+cancel_list[i].reserv_num+'</span>'
+                                                +'<span class="text-red">예약번호 : '+cancel_list[i].reserv_id+'</span>'
                                                 +'<a href="../sub/studio_view.html" class="text-decoration-none">'
                                                     +'<h4 class="text-gray">사'+cancel_list[i].reserv_name+'</h4>'
                                                 +'</a>'
@@ -312,6 +326,52 @@
                             +'</li>';
                 $("#reserv_list").append(reserv);
             }
+        }
+
+        function redirect(){
+            not_list = [];
+            sure_list = [];
+            paid_list = [];
+            done_list = [];
+            cancel_list = [];
+            var xhr = new XMLHttpRequest();
+            xhr.onreadystatechange = function() {
+                if (xhr.readyState === xhr.DONE) { 
+                    if (xhr.status === 200 || xhr.status === 201) {
+                        var result = JSON.parse(xhr.responseText);
+                        for(var i =0; i<result.length;i++){
+                            switch(result[i].reserv_type){
+                                case "wait":{
+                                    not_list.push(result[i]);
+                                    break;
+                                }case "fix":{
+                                    sure_list.push(result[i]);
+                                    break;
+                                }case "comp":{
+                                    paid_list.push(result[i]);
+                                    break;
+                                }case "used":{
+                                    done_list.push(result[i]);
+                                    break;
+                                }case "refund":{
+                                    cancel_list.push(result[i]);
+                                    break;
+                                }
+                            }
+                        }
+                        notyet();
+                    } else {
+                        alert("등록이 정상적으로 이루어지지 않았습니다. 다시 시도해주세요.");
+                        console.error(xhr.responseText);
+                    }
+                }else{
+                    
+                }
+            };
+            xhr.open('POST', 'http://3.34.150.116:3000/reserv/host',true);
+            xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+            xhr.send("key=jmnu1203");
+            // xhr.send("key="+sessionStorage.getItem("id"));
         }
 
         $(document).ready(function (){
@@ -336,70 +396,9 @@
                     }
                 }
             });
-
-            var xhr = new XMLHttpRequest();
-            xhr.onreadystatechange = function() {
-                if (xhr.readyState === xhr.DONE) { 
-                    if (xhr.status === 200 || xhr.status === 201) {
-                        var result = JSON.parse(xhr.responseText);
-                        for(var i =0; i<result.length;i++){
-                            if(result[i]){
-
-                            }
-                        }
-                        notyet();
-                    } else {
-                        alert("등록이 정상적으로 이루어지지 않았습니다. 다시 시도해주세요.");
-                        console.error(xhr.responseText);
-                    }
-                }else{
-                    
-                }
-            };
-            // xhr.open('POST', 'http://3.34.150.116:3000/studio/get',true);
-            xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
-            xhr.send("user_id="+sessionStorage.getItem("id"));
+            redirect();
         });
 
-        function sureCheck(){
-            var xhr = new XMLHttpRequest();
-            xhr.onreadystatechange = function() {
-                if (xhr.readyState === xhr.DONE) { 
-                    if (xhr.status === 200 || xhr.status === 201) {
-                        var result = JSON.parse(xhr.responseText);
-                       
-                    } else {
-                        alert("등록이 정상적으로 이루어지지 않았습니다. 다시 시도해주세요.");
-                        console.error(xhr.responseText);
-                    }
-                }else{
-                    
-                }
-            };
-            // xhr.open('POST', 'http://3.34.150.116:3000/studio/get',true);
-            xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
-            xhr.send("user_id="+sessionStorage.getItem("id"));
-        }
-
-        function canCheck(){
-            var xhr = new XMLHttpRequest();
-            xhr.onreadystatechange = function() {
-                if (xhr.readyState === xhr.DONE) { 
-                    if (xhr.status === 200 || xhr.status === 201) {
-                        var result = JSON.parse(xhr.responseText);
-                       
-                    } else {
-                        alert("등록이 정상적으로 이루어지지 않았습니다. 다시 시도해주세요.");
-                        console.error(xhr.responseText);
-                    }
-                }else{
-                    
-                }
-            };
-            // xhr.open('POST', 'http://3.34.150.116:3000/studio/get',true);
-            xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
-            xhr.send("user_id="+sessionStorage.getItem("id"));
-        }
     </script>
 </body>
 

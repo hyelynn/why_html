@@ -94,23 +94,23 @@
     <script src="/js/naver_login.js"></script>
     <script src="/js/login.js"></script>
 
+    <script src="/js/include_html_host.js"></script>
+
     <script>includeHTML({});</script>
     <script>login_header();</script>
 
     <script type="text/javascript">
+        var studio_list = [];
+
         function onLogout() {
             sessionStorage.clear();
             location.href = "index.html";
         }
-    </script>
-    
-    <script src="/js/include_html_host.js"></script>
 
-    <script>
-        
-        function modstu(key,cate){
+        function modStu(key){
+            alert(2);
             // if(sessionStorage.getItem("id")!= null){
-             window.location.href = "/host/item_register.html?key="+key+"?category="+cate;
+             window.location.href = "/host/item_register.html?key="+key.split(',')[0]+"&category="+key.split(',')[1];
             // }else{
             //     alert("로그인해주세요.");
             //     window.location.href = "/index.html";
@@ -123,15 +123,12 @@
                 xhr.onreadystatechange = function() {
                     if (xhr.readyState === xhr.DONE) { 
                         if (xhr.status === 200 || xhr.status === 201) {
-                            $("#studio_li_"+key).remove();
-                            alert("suc");
+                            redirect();
                         } else {
                             alert("삭제가 정상적으로 이루어지지 않았습니다. 다시 시도해주세요.");
                             console.error(xhr.responseText);
                         }
-                    }else{
-                        
-                    }
+                    }else{}
                 };
                 xhr.open('POST', 'http://3.34.150.116:3000/studio/delete',true);
                 xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
@@ -151,48 +148,18 @@
             // }
         }
         
-         $(document).ready(function (){
-            writeList();
+        $(document).ready(function (){
+            redirect();
         });
 
-        var writeList = function(){
+        function redirect(){
+            studio_list = [];
             var xhr = new XMLHttpRequest();
             xhr.onreadystatechange = function() {
                 if (xhr.readyState === xhr.DONE) { 
                     if (xhr.status === 200 || xhr.status === 201) {
-                        var studio_list = JSON.parse(xhr.responseText);
-                        for(var i = 0; i<studio_list.length;i++){
-                            var studio_temp = studio_list[i];
-                            var studio = '<div id="studio_li_'+studio_temp.obj_key+'" class="col-lg-3 col-6 mb-lg-5 mb-4">'
-                                            +'<div class="card border-0 bg-transparent mb-2">'
-                                                +'<div class="position-absolute p-md-2 p-1 w-100 z-index-2">'
-                                                    +'<div class="p-lg-2 p-1 d-flex list-tag list-tag-yellow">'
-                                                        +'<span class="align-self-center list-tag-title">'+studio_temp.obj_types+ '</span>'
-                                                    +'</div>'
-                                                    +'<div class="float-right bg-white px-2 rounded-xl font-size-xs">'
-                                                        +'<i class="fas fa-heart text-red"></i> <span>'+studio_temp.obj_like+'</span>'
-                                                    +'</div>'
-                                                +'</div>'
-                                                +'<img src="'+studio_temp.obj_thumbnail+'" class="card-img-top rounded-0" srcset="'+studio_temp.obj_thumbnail+' 2x, '+studio_temp.obj_thumbnail+' 3x" alt="">'
-                                                +'<h5 class="mt-lg-3 mt-2">'+studio_temp.obj_name+'</h5>'
-                                                +'<p class="font-weight-light border-bottom pb-2 mb-2 font-size-xs">'+studio_temp.obj_subname+'</p>'
-                                                +'<a href="#x" class="stretched-link text-decoration-none">'
-                                                    +'<span class="text-red font-weight-bold font-size-l">'+studio_temp.obj_price+'</span>'
-                                                    +'<span class="text-dark font-weight-light pl-1 font-size-s">원/시간</span>'
-                                                +'</a>'
-                                            +'</div>'
-                                            +'<div class="d-flex host-item-btn">'
-                                                +'<a href="javascript:modstu('+studio_temp.obj_key+','+studio_temp.obj_category+');" class="btn flex-fill bg-sky text-white">수정</a>'
-                                                +'<button class="btn flex-fill bg-gray" onclick="delStu('+studio_temp.obj_key+');">삭제</button>'
-                                            +'</div>'
-                                        +'</div>';
-                            $("#std_list").append(studio);
-
-                            if(i % 4 == 3){
-                                var line = '<div class="w-100"></div>'
-                                $("#std_list").append(line);
-                            }
-                        }
+                        studio_list = JSON.parse(xhr.responseText);
+                        writeList(studio_list);
                     } else {
                         alert("목록이 정상적으로 이루어지지 않았습니다. 다시 시도해주세요.");
                         console.error(xhr.responseText);
@@ -204,6 +171,41 @@
             xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
             xhr.send("user_id=jmnu1203");
             // xhr.send("user_id="+sessionStorage.getItem("id"));
+        }
+
+        function writeList(list){
+            $("#std_list").empty();
+            for(var i = 0; i<list.length;i++){
+                var studio = '<div id="studio_li_'+list[i].obj_key+'" class="col-lg-3 col-6 mb-lg-5 mb-4">'
+                                +'<div class="card border-0 bg-transparent mb-2">'
+                                    +'<div class="position-absolute p-md-2 p-1 w-100 z-index-2">'
+                                        +'<div class="p-lg-2 p-1 d-flex list-tag list-tag-yellow">'
+                                            +'<span class="align-self-center list-tag-title">'+list[i].obj_types+ '</span>'
+                                        +'</div>'
+                                        +'<div class="float-right bg-white px-2 rounded-xl font-size-xs">'
+                                            +'<i class="fas fa-heart text-red"></i> <span>'+list[i].obj_like+'</span>'
+                                        +'</div>'
+                                    +'</div>'
+                                    +'<img src="'+list[i].obj_thumbnail+'" class="card-img-top rounded-0" srcset="'+list[i].obj_thumbnail+' 2x, '+list[i].obj_thumbnail+' 3x" alt="">'
+                                    +'<h5 class="mt-lg-3 mt-2">'+list[i].obj_name+'</h5>'
+                                    +'<p class="font-weight-light border-bottom pb-2 mb-2 font-size-xs">'+list[i].obj_subname+'</p>'
+                                    +'<a href="#x" class="stretched-link text-decoration-none">'
+                                        +'<span class="text-red font-weight-bold font-size-l">'+list[i].obj_price+'</span>'
+                                        +'<span class="text-dark font-weight-light pl-1 font-size-s">원/시간</span>'
+                                    +'</a>'
+                                +'</div>'
+                                +'<div class="d-flex host-item-btn">'
+                                    +'<button class="btn flex-fill bg-sky text-white" onclick="modStu('+list[i].obj_key+','+list[i].obj_category+');">수정</button>'
+                                    +'<button class="btn flex-fill bg-gray" onclick="delStu('+list[i].obj_key+');">삭제</button>'
+                                +'</div>'
+                            +'</div>';
+                $("#std_list").append(studio);
+
+                if(i % 4 == 3){
+                    var line = '<div class="w-100"></div>'
+                    $("#std_list").append(line);
+                }
+            }
         }
         
     </script>

@@ -104,16 +104,15 @@
     <script>login_header();</script>
 
     <script type="text/javascript">
+
+        var studio_list = [];
+        var studio_search = [];
+        
         function onLogout() {
             sessionStorage.clear();
             location.href = "index.html";
         }
-    </script>
 
-    <script type="text/javascript">
-        var studio_list = [];
-        var studio_search = [];
-        
         $("#select_sort").change(function (){
             switch(this.value){
                 case "1":{//가나다
@@ -178,7 +177,9 @@
                 $("#std_list").append(studio);
             }
         }
-        $(document).ready(function (){
+
+        function redirect(){
+            studio_list = [];
             var xhr = new XMLHttpRequest();
             xhr.onreadystatechange = function() {
                 if (xhr.readyState === xhr.DONE) { 
@@ -201,6 +202,10 @@
             xhr.open('POST', 'http://3.34.150.116:3000/studio/host',true);
             xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
             xhr.send("user_id=jmnu1203");
+        }
+
+        $(document).ready(function (){
+            redirect();
         });
 
         function searchStu(){
@@ -237,7 +242,7 @@
             xhr.onreadystatechange = function() {
                 if (xhr.readyState === xhr.DONE) { 
                     if (xhr.status === 200 || xhr.status === 201) {
-                        $("#studio_li_"+key).remove();
+                        redirect();
                     } else {
                         alert("삭제가 정상적으로 이루어지지 않았습니다. 다시 시도해주세요.");
                         console.error(xhr.responseText);
@@ -255,10 +260,6 @@
         //     }
         }
         
-        function onLogout() {
-            sessionStorage.clear();
-            location.href = "index.html";
-        }
     </script>
 
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
