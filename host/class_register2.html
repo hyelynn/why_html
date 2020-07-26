@@ -216,12 +216,12 @@
                 if (xhr.readyState === xhr.DONE) { 
                     if (xhr.status === 200 || xhr.status === 201) {
                         var result = JSON.parse(xhr.responseText);
-                        $("#class_name").val(result[0].class_name);
-                        $("#class_teacher").val(result[0].class_teacher);
-                        $("#class_v_no").val(result[0].class_v_no);
-                        $("#class_email").val(result[0].class_email);
-                        $("#class_addr").val(result[0].class_addr);
-                        $("#class_intro").val(result[0].class_intro);
+                        $("#class_name").val(result[0].obj_name);
+                        $("#class_teacher").val(result[0].obj_subname.split('/')[0]);
+                        $("#class_v_no").val(result[0].obj_subname.split('/')[1]);
+                        $("#class_email").val(result[0].obj_bus);
+                        $("#class_addr").val(result[0].obj_location);
+                        $("#class_intro").val(result[0].obj_subdata);
                     } else {
                         alert("정보를 불러오던 중 오류가 발생했습니다. 다시 시도해주세요.");
                         console.error(xhr.responseText);
@@ -230,7 +230,7 @@
                     
                 }
             };
-            xhr.open('POST', 'http://3.34.150.116:3000/performance/mod/name',true);
+            xhr.open('POST', 'http://3.34.150.116:3000/modify/info',true);
             xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
             xhr.send("studio_key="+s_key);
         });
@@ -246,7 +246,7 @@
                 xhr.onreadystatechange = function() {
                     if (xhr.readyState === xhr.DONE) { 
                         if (xhr.status === 200 || xhr.status === 201) {
-                            window.location.href = "/host/performance_register4.html?key="+urlParam("key");
+                            window.location.href = "/host/class_register3.html?key="+urlParam("key");
                         } else {
                             alert("등록이 정상적으로 이루어지지 않았습니다. 다시 시도해주세요.");
                             console.error(xhr.responseText);
@@ -254,7 +254,7 @@
                     }else{
                     }
                 };
-                xhr.open('POST', 'http://3.34.150.116:3000/performance/apply/name',true);
+                xhr.open('POST', 'http://3.34.150.116:3000/class/modify/name',true);
                 xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
                 xhr.send("key="+getCookie("s3_id")+"&class_name="+class_name+"&class_teacher="+class_teacher
                 +"&class_v_no="+class_v_no+"&class_email="+class_email+"&class_addr="+class_addr

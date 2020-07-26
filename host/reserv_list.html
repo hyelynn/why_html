@@ -25,12 +25,64 @@
 
     <main role="main">
         <!-- 리스트 탭 -->
-        <div id="reservTab"></div>
+        <div id="reservTab">
+            <div class="border-bottom mt-3">
+                <div class="container">
+                    <!-- 탭 클릭시 아래 리스트 변경 -->
+                    <ul class="nav nav-pills nav-fill flex-nowrap custom-nav-tabs button">
+                        <li class="nav-item">
+                            <a class="nav-link active" data-toggle="tab" href="javascript:notyet();">예약 대기</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" data-toggle="tab" href="javascript:sure();">예약 확정</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" data-toggle="tab" href="javascript:paid();">결제 완료</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" data-toggle="tab" href="javascript:done();">사용 완료</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" data-toggle="tab" href="javascript:cancel();">취소/환불</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
 
         <div class="container my-3">
-            <!-- 검색바(include/common/sub_search_bar2.html) -->
-            <div id="subSearchBar" class="host-search"></div>
+            <div class="d-lg-flex mb-3 custom-inputs-sub host-top-function host-search-bar">
+                <div class="input-group search-bar-solid w-100">
+                    <input type="text" class="form-control text-dark search-text" placeholder="placeholder를 입력하세요.">
+                    <div class="input-group-append">
+                        <button type="button" class="btn bg-yellow text-gray">검색</button>
+                    </div>
+                </div>
 
+                <div class="d-flex">
+                    <select id="main" class="form-control font-weight-light mt-lg-0 mt-3 mx-lg-3 mr-3 text-btn">
+                        <option value="studio">스튜디오</option>
+                        <option value="class">클래스</option>
+                    </select>
+                    <select id="A" class="form-control font-weight-light mt-lg-0 mt-3">
+                        <option value="무용1">무용</option>
+                        <option value="연기1">연기</option>
+                        <option value="음악1">음악</option>
+                        <option value="보컬1">보컬</option>
+                        <option value="댄스1">댄스</option>
+                        <option value="촬영스튜디오">촬영 스튜디오</option>
+                    </select>
+                    <select id="B" class="form-control font-weight-light mt-lg-0 mt-3">
+                        <option value="무용2">무용</option>
+                        <option value="연기2">연기</option>
+                        <option value="음악2">음악</option>
+                        <option value="댄스2">댄스</option>
+                        <option value="보컬2">보컬</option>
+                        <option value="그외1">그외</option>
+                    </select>
+                </div>
+            </div>
+            
             <!-- 리스트 -->
             <ul id="reserv_list" class="list-group host-item-list reserv">
                 <li class="list-group-item p-3 mb-3 border">
@@ -80,43 +132,222 @@
     <!-- 스크립트가 동작하지 않아 include_html.js에서 getScript로 불러옴 -->
     <!-- <script src="../js/custom.js"></script> -->
     <script>
+        var list = [];
+        var not_list = [];
+        var sure_list = [];
+        var paid_list = [];
+        var done_list = [];
+        var cancel_list = [];
+
+        function notyet(){
+            $("#reserv_list").empty();
+            for(var i = 0 ;i<not_list.length;i++){
+                var reserv = '<li class="list-group-item p-3 mb-3 border">'
+                                +'<div class="row align-items-center">'
+                                    +'<div class="col-lg-10">'
+                                        +'<div class="d-flex align-items-lg-center">'
+                                            +'<div class="d-flex justify-content-center align-items-center overflow-hidden mr-4 item-thumbs">'
+                                                +'<img src="'+not_list[i].reserv_img+'" alt="">'
+                                            +'</div>'
+                                            +'<div class="item-texts font-weight-light">'
+                                                +'<span class="text-red">예약번호 : '+not_list[i].reserv_num+'</span>'
+                                                +'<a href="../sub/studio_view.html" class="text-decoration-none">'
+                                                    +'<h4 class="text-gray">사'+not_list[i].reserv_name+'</h4>'
+                                                +'</a>'
+                                                +'<ul class="list-unstyled text-light-gray mb-2">'
+                                                    +'<li>예약호실 : '+not_list[i].reserv_place+'</li>'
+                                                    +'<li>예약자명 : '+not_list[i].reserv_pers+'</li>'
+                                                    +'<li>예약일시 : '+not_list[i].reserv_time+'</li>'
+                                                +'</ul>'
+                                                +'<a href="../member/chat_host_view.html" class="d-inline-block text-decoration-none text-sky mr-2">1:1 대화하기</a>'
+                                                +'<a href="#x" class="d-inline-block text-decoration-none text-sky" data-toggle="modal" data-target="#callModal">전화하기</a>'
+                                            +'</div>'
+                                        +'</div>'
+                                    +'</div>'
+                                    +'<div class="col-lg-2">'
+                                        +'<div class="text-lg-center text-right mt-lg-0 mt-3 host-menu">'
+                                            +'<button type="button" onclick="sureCheck();" class="btn border mr-lg-0 mr-2 item-btn">예약확정</button>'
+                                            +'<button type="button" onclick="canCheck();" class="btn border mr-lg-0 mr-2 item-btn">예약취소</button>'
+                                        +'</div>'
+                                    +'</div>'
+                                +'</div>'
+                            +'</li>';
+                $("#reserv_list").append(reserv);
+        }
+    }
+
+        function sure(){
+            $("#reserv_list").empty();
+            for(var i = 0 ;i<sure_list.length;i++){
+                var reserv = '<li class="list-group-item p-3 mb-3 border">'
+                                +'<div class="row align-items-center">'
+                                    +'<div class="col-lg-10">'
+                                        +'<div class="d-flex align-items-lg-center">'
+                                            +'<div class="d-flex justify-content-center align-items-center overflow-hidden mr-4 item-thumbs">'
+                                                +'<img src="'+sure_list[i].reserv_img+'" alt="">'
+                                            +'</div>'
+                                            +'<div class="item-texts font-weight-light">'
+                                                +'<span class="text-red">예약번호 : '+sure_list[i].reserv_num+'</span>'
+                                                +'<a href="../sub/studio_view.html" class="text-decoration-none">'
+                                                    +'<h4 class="text-gray">사'+sure_list[i].reserv_name+'</h4>'
+                                                +'</a>'
+                                                +'<ul class="list-unstyled text-light-gray mb-2">'
+                                                    +'<li>예약호실 : '+sure_list[i].reserv_place+'</li>'
+                                                    +'<li>예약자명 : '+sure_list[i].reserv_pers+'</li>'
+                                                    +'<li>예약일시 : '+sure_list[i].reserv_time+'</li>'
+                                                +'</ul>'
+                                                +'<a href="../member/chat_host_view.html" class="d-inline-block text-decoration-none text-sky mr-2">1:1 대화하기</a>'
+                                                +'<a href="#x" class="d-inline-block text-decoration-none text-sky" data-toggle="modal" data-target="#callModal">전화하기</a>'
+                                            +'</div>'
+                                        +'</div>'
+                                    +'</div>'
+                                    +'<div class="col-lg-2">'
+                                        +'<div class="text-lg-center text-right mt-lg-0 mt-3 host-menu">'
+                                            +'<button type="button" onclick="canCheck();" class="btn border mr-lg-0 mr-2 item-btn">예약취소</button>'
+                                        +'</div>'
+                                    +'</div>'
+                                +'</div>'
+                            +'</li>';
+                $("#reserv_list").append(reserv);
+        }
+    }
+
+        function paid(){
+            $("#reserv_list").empty();
+            for(var i = 0 ;i<paid_list.length;i++){
+                var reserv = '<li class="list-group-item p-3 mb-3 border">'
+                                +'<div class="row align-items-center">'
+                                    +'<div class="col-lg-10">'
+                                        +'<div class="d-flex align-items-lg-center">'
+                                            +'<div class="d-flex justify-content-center align-items-center overflow-hidden mr-4 item-thumbs">'
+                                                +'<img src="'+paid_list[i].reserv_img+'" alt="">'
+                                            +'</div>'
+                                            +'<div class="item-texts font-weight-light">'
+                                                +'<span class="text-red">예약번호 : '+paid_list[i].reserv_num+'</span>'
+                                                +'<a href="../sub/studio_view.html" class="text-decoration-none">'
+                                                    +'<h4 class="text-gray">사'+paid_list[i].reserv_name+'</h4>'
+                                                +'</a>'
+                                                +'<ul class="list-unstyled text-light-gray mb-2">'
+                                                    +'<li>예약호실 : '+paid_list[i].reserv_place+'</li>'
+                                                    +'<li>예약자명 : '+paid_list[i].reserv_pers+'</li>'
+                                                    +'<li>예약일시 : '+paid_list[i].reserv_time+'</li>'
+                                                +'</ul>'
+                                                +'<a href="../member/chat_host_view.html" class="d-inline-block text-decoration-none text-sky mr-2">1:1 대화하기</a>'
+                                                +'<a href="#x" class="d-inline-block text-decoration-none text-sky" data-toggle="modal" data-target="#callModal">전화하기</a>'
+                                            +'</div>'
+                                        +'</div>'
+                                    +'</div>'
+                                    +'<div class="col-lg-2">'
+                                        +'<div class="text-lg-center text-right mt-lg-0 mt-3 host-menu">'
+                                            +'<button type="button" onclick="canCheck();" class="btn border mr-lg-0 mr-2 item-btn">예약취소</button>'
+                                        +'</div>'
+                                    +'</div>'
+                                +'</div>'
+                            +'</li>';
+                $("#reserv_list").append(reserv);
+        }
+    }
+
+        function done(){
+            $("#reserv_list").empty();
+            for(var i = 0 ;i<done_list.length;i++){
+                var reserv = '<li class="list-group-item p-3 mb-3 border">'
+                                +'<div class="row align-items-center">'
+                                    +'<div class="col-lg-10">'
+                                        +'<div class="d-flex align-items-lg-center">'
+                                            +'<div class="d-flex justify-content-center align-items-center overflow-hidden mr-4 item-thumbs">'
+                                                +'<img src="'+done_list[i].reserv_img+'" alt="">'
+                                            +'</div>'
+                                            +'<div class="item-texts font-weight-light">'
+                                                +'<span class="text-red">예약번호 : '+done_list[i].reserv_num+'</span>'
+                                                +'<a href="../sub/studio_view.html" class="text-decoration-none">'
+                                                    +'<h4 class="text-gray">사'+done_list[i].reserv_name+'</h4>'
+                                                +'</a>'
+                                                +'<ul class="list-unstyled text-light-gray mb-2">'
+                                                    +'<li>예약호실 : '+done_list[i].reserv_place+'</li>'
+                                                    +'<li>예약자명 : '+done_list[i].reserv_pers+'</li>'
+                                                    +'<li>예약일시 : '+done_list[i].reserv_time+'</li>'
+                                                +'</ul>'
+                                                +'<a href="../member/chat_host_view.html" class="d-inline-block text-decoration-none text-sky mr-2">1:1 대화하기</a>'
+                                                +'<a href="#x" class="d-inline-block text-decoration-none text-sky" data-toggle="modal" data-target="#callModal">전화하기</a>'
+                                            +'</div>'
+                                        +'</div>'
+                                    +'</div>'
+                                    +'<div class="col-lg-2">'
+                                    +'</div>'
+                                +'</div>'
+                            +'</li>';
+                $("#reserv_list").append(reserv);
+            }
+        }
+
+        function cancel(){
+            $("#reserv_list").empty();
+            for(var i = 0 ;i<cancel_list.length;i++){
+                var reserv = '<li class="list-group-item p-3 mb-3 border">'
+                                +'<div class="row align-items-center">'
+                                    +'<div class="col-lg-10">'
+                                        +'<div class="d-flex align-items-lg-center">'
+                                            +'<div class="d-flex justify-content-center align-items-center overflow-hidden mr-4 item-thumbs">'
+                                                +'<img src="'+cancel_list[i].reserv_img+'" alt="">'
+                                            +'</div>'
+                                            +'<div class="item-texts font-weight-light">'
+                                                +'<span class="text-red">예약번호 : '+cancel_list[i].reserv_num+'</span>'
+                                                +'<a href="../sub/studio_view.html" class="text-decoration-none">'
+                                                    +'<h4 class="text-gray">사'+cancel_list[i].reserv_name+'</h4>'
+                                                +'</a>'
+                                                +'<ul class="list-unstyled text-light-gray mb-2">'
+                                                    +'<li>예약호실 : '+cancel_list[i].reserv_place+'</li>'
+                                                    +'<li>예약자명 : '+cancel_list[i].reserv_pers+'</li>'
+                                                    +'<li>예약일시 : '+cancel_list[i].reserv_time+'</li>'
+                                                +'</ul>'
+                                                +'<a href="../member/chat_host_view.html" class="d-inline-block text-decoration-none text-sky mr-2">1:1 대화하기</a>'
+                                                +'<a href="#x" class="d-inline-block text-decoration-none text-sky" data-toggle="modal" data-target="#callModal">전화하기</a>'
+                                            +'</div>'
+                                        +'</div>'
+                                    +'</div>'
+                                    +'<div class="col-lg-2">'
+                                    +'</div>'
+                                +'</div>'
+                            +'</li>';
+                $("#reserv_list").append(reserv);
+            }
+        }
+
         $(document).ready(function (){
+
+            $("#A").show();
+            $("#B").hide();
+
+            $("#main").change(function (){
+                switch($("#main").val()){
+                    case "studio":{
+                        $("#A").show();
+                        $("#B").hide();
+                        break;
+                    }case "class":{
+                        $("#A").hide();
+                        $("#B").show();
+                        break;
+                    }default:{
+                        $("#A").hide();
+                        $("#B").hide();
+                        break;
+                    }
+                }
+            });
+
             var xhr = new XMLHttpRequest();
             xhr.onreadystatechange = function() {
                 if (xhr.readyState === xhr.DONE) { 
                     if (xhr.status === 200 || xhr.status === 201) {
                         var result = JSON.parse(xhr.responseText);
-                        var reserv = '<li class="list-group-item p-3 mb-3 border">'
-                                        +'<div class="row align-items-center">'
-                                            +'<div class="col-lg-10">'
-                                                +'<div class="d-flex align-items-lg-center">'
-                                                    +'<div class="d-flex justify-content-center align-items-center overflow-hidden mr-4 item-thumbs">'
-                                                        +'<img src="'+result[0].reserv_img+'" alt="">'
-                                                    +'</div>'
-                                                    +'<div class="item-texts font-weight-light">'
-                                                        +'<span class="text-red">예약번호 : '+result[0].reserv_num+'</span>'
-                                                        +'<a href="../sub/studio_view.html" class="text-decoration-none">'
-                                                            +'<h4 class="text-gray">사'+result[0].reserv_name+'</h4>'
-                                                        +'</a>'
-                                                        +'<ul class="list-unstyled text-light-gray mb-2">'
-                                                            +'<li>예약호실 : '+result[0].reserv_place+'</li>'
-                                                            +'<li>예약자명 : '+result[0].reserv_pers+'</li>'
-                                                            +'<li>예약일시 : 2'+result[0].reserv_time+'</li>'
-                                                        +'</ul>'
-                                                        +'<a href="../member/chat_host_view.html" class="d-inline-block text-decoration-none text-sky mr-2">1:1 대화하기</a>'
-                                                        +'<a href="#x" class="d-inline-block text-decoration-none text-sky" data-toggle="modal" data-target="#callModal">전화하기</a>'
-                                                    +'</div>'
-                                                +'</div>'
-                                            +'</div>'
-                                            +'<div class="col-lg-2">'
-                                                +'<div class="text-lg-center text-right mt-lg-0 mt-3 host-menu">'
-                                                    +'<button type="button" onclick="sureCheck();" class="btn border mr-lg-0 mr-2 item-btn">예약확정</button>'
-                                                    +'<button type="button" onclick="canCheck();" class="btn border mr-lg-0 mr-2 item-btn">예약취소</button>'
-                                                +'</div>'
-                                            +'</div>'
-                                        +'</div>'
-                                    +'</li>';
-                        $("#reserv_list").append(reserv);
+                        for(var i =0; i<result.length;i++){
+                            if(result[i]){
+
+                            }
+                        }
+                        notyet();
                     } else {
                         alert("등록이 정상적으로 이루어지지 않았습니다. 다시 시도해주세요.");
                         console.error(xhr.responseText);

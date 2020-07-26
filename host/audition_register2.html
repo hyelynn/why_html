@@ -210,13 +210,15 @@
                 if (xhr.readyState === xhr.DONE) { 
                     if (xhr.status === 200 || xhr.status === 201) {
                         var result = JSON.parse(xhr.responseText);
-                        $("#audition_name").val(result[0].audition_name);
-                        $("#sub_start").val(result[0].sub_start);
-                        $("#sub_end").val(result[0].sub_end);
-                        $("#aud_start").val(result[0].aud_start);
-                        $("#aud_end").val(result[0].aud_end);
-                        $("#audition_addr").val(result[0].audition_addr);
-                        $("#audition_intro").val(result[0].audition_intro);
+                        $("#audition_name").val(result[0].obj_name);
+                        var subname = result[0].obj_subname.split('~');
+                        $("#sub_start").val(subname[0]);
+                        $("#sub_end").val(subname[1]);
+                        var useful = result[0].obj_useful.split('~');
+                        $("#aud_start").val(useful[0]);
+                        $("#aud_end").val(useful[1]);
+                        $("#audition_addr").val(result[0].obj_location.split(',')[0]);
+                        $("#audition_intro").val(result[0].obj_info);
                     } else {
                         alert("정보를 불러오던 중 오류가 발생했습니다. 다시 시도해주세요.");
                         console.error(xhr.responseText);
@@ -225,7 +227,7 @@
                     
                 }
             };
-            xhr.open('POST', 'http://3.34.150.116:3000/audition/mod/name',true);
+            xhr.open('POST', 'http://3.34.150.116:3000/modify/info',true);
             xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
             xhr.send("studio_key="+s_key);
         });
@@ -250,7 +252,7 @@
                     }else{
                     }
                 };
-                xhr.open('POST', 'http://3.34.150.116:3000/audition/apply/name',true);
+                xhr.open('POST', 'http://3.34.150.116:3000/audition/modify/name',true);
                 xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
                 xhr.send("key="+getCookie("s3_id")+"&audition_name="+audition_name+"&sub_start="+sub_start
                 +"&sub_end="+sub_end+"&aud_start="+aud_start+"&aud_end="+aud_end+"&audition_addr="+audition_addr

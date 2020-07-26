@@ -102,59 +102,29 @@
             <!-- 검색 및 정렬 -->
             <div class="d-lg-flex mb-3 custom-inputs-sub host-top-function">
                 <div class="input-group search-bar-solid">
-                    <input type="text" class="form-control text-dark search-text" placeholder="공간명을 검색해주세요"
+                    <input type="text" id="searchTxt" class="form-control text-dark search-text" placeholder="공간명을 검색해주세요"
                         aria-label="공간명을 검색해주세요" aria-describedby="search-studio">
                     <div class="input-group-append">
-                        <button type="button" class="btn bg-yellow text-gray">검색</button>
+                        <button type="button" onclick="searchBtn();" class="btn bg-yellow text-gray">검색</button>
                     </div>
                 </div>
 
                 <div class="d-flex mt-3 mt-lg-0">
-                    <a href="studio_register.html"
-                        class="d-flex align-items-center justify-content-center btn font-weight-light bg-yellow mx-lg-3 mr-3 text-btn">
+                    <a href="#" class="d-flex align-items-center justify-content-center btn font-weight-light bg-yellow mx-lg-3 mr-3 text-btn">
                         <span>계좌정보 수정</span>
                     </a>
-                    <select class="form-control font-weight-light">
-                        <option value="">가나다순</option>
-                        <option value="">최신순</option>
-                        <option value="">오름차순</option>
-                        <option value="">내림차순</option>
+                    <select id="select_sort" class="form-control font-weight-light">
+                        <option value="1">가나다순</option>
+                        <option value="2">최신순</option>
+                        <option value="3">오름차순</option>
+                        <option value="4">내림차순</option>
                     </select>
                 </div>
             </div>
 
             <!-- 리스트 -->
             <ul id="calList" class="list-group host-item-list calc">
-                <li class="list-group-item p-3 mb-3 border">
-                    <div class="row align-items-center">
-                        <div class="col-lg-9">
-                            <div class="d-flex align-items-lg-center">
-                                <div class="d-flex justify-content-center overflow-hidden mr-4 item-thumbs">
-                                    <img src="/img/cart-1.jpg" class="align-self-center h-100" alt="">
-                                </div>
-                                <div class="item-texts">
-                                    <a href="/sub/studio_view.html" class="text-decoration-none">
-                                        <h4 class="text-gray">사당 studio_name
-                                            <p class="font-size-xs ml-lg-3 ml-2 d-inline-block mb-1 align-middle"><i
-                                                    class="fas fa-heart text-red"></i> <span class="ml-1">1,459</span>
-                                            </p>
-                                        </h4>
-                                    </a>
-                                    <p class="font-weight-light text-light-gray mb-2">하나 피어나듯이 못 무성할 헤는 까닭입니다. 벌써 이웃 위에
-                                        봅니다. 벌레는 아스라히 너무나 까닭이요, 별에도 책상을 내일 계십니다.</p>
-                                    <p class="font-weight-light mb-0"><span class="mr-md-4">예약유형 : 바로결제</span><span
-                                            class="d-md-inline-block d-block">1,500원 / 시간</span></p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-lg-3">
-                            <div class="text-lg-center text-right mt-lg-0 mt-3 calc-number">
-                                <span class="font-weight-light">최종 정산 금액</span>
-                                <p class="mb-0 large-number">21,800,000원</p>
-                            </div>
-                        </div>
-                    </div>
-                </li>
+                
                 
             </ul>
         </div>
@@ -185,6 +155,83 @@
     <script src="/js/custom.js"></script>
 
     <script>
+        var studio_list = [];
+        var search_list = [];
+        
+        function searchBtn(){
+            search_list = [];
+            for(var i = 0;i<studio_list.length;i++){
+                if(studio_list[i].obj_name.indexOf($("#searchTxt").val()) != -1){
+                    search_list.push(studio_list[i]);
+                }
+            }
+            writeList(search_list);
+        }
+
+        $("#select_sort").change(function (){
+            switch(this.value){
+                case "1":{//가나다
+                    studio_list.sort(function(a,b){
+                        return a.obj_name > b.obj_name ? -1 : a.obj_name > b.obj_name ? 1 : 0;
+                    });
+                    break;
+                }case "2":{//최신순
+                    studio_list.sort(function(a,b){
+                        return a.obj_key < b.obj_key ? -1 : a.obj_key > b.obj_key ? 1 : 0;
+                    });
+                    break;
+                }case "3":{//오름차순
+                    studio_list.sort(function(a,b){
+                        return a.obj_name < b.obj_name ? -1 : a.obj_name > b.obj_name ? 1 : 0;
+                    });
+                    break;
+                }case "4":{//내림차순
+                    studio_list.sort(function(a,b){
+                        return a.obj_name > b.obj_name ? -1 : a.obj_name > b.obj_name ? 1 : 0;
+                    });
+                    break;
+                }
+            }
+            writeList(studio_list);
+        });
+        
+        function writeList(list){
+            $("#calList").empty();
+            for(var i = 0; i<list.length;i++){
+                var price = '<li class="list-group-item p-3 mb-3 border">'
+                                +'<div class="row align-items-center">'
+                                    +'<div class="col-lg-9">'
+                                        +'<div class="d-flex align-items-lg-center">'
+                                            +'<div class="d-flex justify-content-center overflow-hidden mr-4 item-thumbs">'
+                                                +'<img src="'+list[i].obj_thumbnail+'" class="align-self-center h-100" alt="">'
+                                                +'</div>'
+                                                +'<div class="item-texts">'
+                                                    +'<a href="/sub/studio_view.html" class="text-decoration-none">'
+                                                        +'<h4 class="text-gray">'+list[i].obj_name
+                                                            +'<p class="font-size-xs ml-lg-3 ml-2 d-inline-block mb-1 align-middle">'
+                                                                +'<i class="fas fa-heart text-red"></i> <span class="ml-1">'+list[i].obj_like+'</span>'
+                                                            +'</p>'
+                                                        +'</h4>'
+                                                    +'</a>'
+                                                    +'<p class="font-weight-light text-light-gray mb-2">'+list[i].obj_subname+'</p>'
+                                                    +'<p class="font-weight-light mb-0"><span class="mr-md-4">예약유형 : '+list[i].obj_types+'</span>'
+                                                        +'<span class="d-md-inline-block d-block">'+list[i].obj_price+'원 / 시간</span>'
+                                                    +'</p>'
+                                                +'</div>'
+                                            +'</div>'
+                                        +'</div>'
+                                        +'<div class="col-lg-3">'
+                                            +'<div class="text-lg-center text-right mt-lg-0 mt-3 calc-number">'
+                                                +'<span class="font-weight-light">최종 정산 금액</span>'
+                                                +'<p class="mb-0 large-number">'+list[i].tot_price+'</p>'
+                                            +'</div>'
+                                        +'</div>'
+                                    +'</div>'
+                            +'</li>';
+                $("#calList").append(price);
+            }
+        }
+
         $(document).ready(function (){
             var xhr = new XMLHttpRequest();
             xhr.onreadystatechange = function() {
@@ -193,15 +240,15 @@
                         var result = JSON.parse(xhr.responseText);
                         var price = '<div class="col-md-4 col-6">'
                                         +'<span class="font-weight-light">이번 달 정산 금액</span>'
-                                        +'<p class="mb-0 large-number">'+result.this_price+'원</p>'
+                                        +'<p class="mb-0 large-number">'+result[0].this_price+'원</p>'
                                     +'</div>'
                                     +'<div class="col-md-4 col-6">'
                                         +'<span class="font-weight-light">입금 예정 금액</span>'
-                                        +'<p class="mb-0 large-number">'+result.will_price+'원</p>'
+                                        +'<p class="mb-0 large-number">'+result[0].will_price+'원</p>'
                                     +'</div>'
                                     +'<div class="col-md-4 col-12 mt-4 mt-md-0">'
                                         +'<span class="font-weight-light">누적 정산 금액</span>'
-                                        +'<p class="mb-0 large-number">'+result.add_price+'원</p>'
+                                        +'<p class="mb-0 large-number">'+result[0].add_price+'원</p>'
                                     +'</div>';
                         $("#pri_text").append(price);
                     } else {
@@ -212,62 +259,31 @@
                     
                 }
             };
-            // xhr.open('POST', 'http://3.34.150.116:3000/studio/get',true);
+            xhr.open('POST', 'http://3.34.150.116:3000/price/result',true);
             xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
-            xhr.send("user_id="+sessionStorage.getItem("id"));
-            
-            
-            var xhr = new XMLHttpRequest();
-            xhr.onreadystatechange = function() {
-                if (xhr.readyState === xhr.DONE) { 
-                    if (xhr.status === 200 || xhr.status === 201) {
-                        var studio_list = JSON.parse(xhr.responseText);
-                        for(var i = 0; i<studio_list.length;i++){
-                            var studio_temp = studio_list[i];
-                            var price = '<li class="list-group-item p-3 mb-3 border">'
-                                            +'<div class="row align-items-center">'
-                                                +'<div class="col-lg-9">'
-                                                    +'<div class="d-flex align-items-lg-center">'
-                                                        +'<div class="d-flex justify-content-center overflow-hidden mr-4 item-thumbs">'
-                                                            +'<img src="'+studio_temp.studio_img+'" class="align-self-center h-100" alt="">'
-                                                            +'</div>'
-                                                            +'<div class="item-texts">'
-                                                                +'<a href="/sub/studio_view.html" class="text-decoration-none">'
-                                                                    +'<h4 class="text-gray">'+studio_temp.studio_name
-                                                                        +'<p class="font-size-xs ml-lg-3 ml-2 d-inline-block mb-1 align-middle">'
-                                                                            +'<i class="fas fa-heart text-red"></i> <span class="ml-1">'+studio_temp.studio_like+'</span>'
-                                                                        +'</p>'
-                                                                    +'</h4>'
-                                                                +'</a>'
-                                                                +'<p class="font-weight-light text-light-gray mb-2">'+studio_temp.studio_subname+'</p>'
-                                                                +'<p class="font-weight-light mb-0"><span class="mr-md-4">예약유형 : '+studio_temp.studio_type+'</span>'
-                                                                    +'<span class="d-md-inline-block d-block">'+studio_temp.studio_price+'원 / 시간</span>'
-                                                                +'</p>'
-                                                            +'</div>'
-                                                        +'</div>'
-                                                    +'</div>'
-                                                    +'<div class="col-lg-3">'
-                                                        +'<div class="text-lg-center text-right mt-lg-0 mt-3 calc-number">'
-                                                            +'<span class="font-weight-light">최종 정산 금액</span>'
-                                                            +'<p class="mb-0 large-number">'+studio_temp.tot_price+'</p>'
-                                                        +'</div>'
-                                                    +'</div>'
-                                                +'</div>'
-                                        +'</li>';
-                            $("#calList").append(price);
-                        }
+            xhr.send("key=jmnu1203");
+            // xhr.send("key="+sessionStorage.getItem("id"));
+        
+            var xhr2 = new XMLHttpRequest();
+            xhr2.onreadystatechange = function() {
+                if (xhr2.readyState === xhr2.DONE) { 
+                    if (xhr2.status === 200 || xhr2.status === 201) {
+                        studio_list = JSON.parse(xhr2.responseText);
+                        writeList(studio_list);
                     } else {
                         alert("등록이 정상적으로 이루어지지 않았습니다. 다시 시도해주세요.");
-                        console.error(xhr.responseText);
+                        console.error(xhr2.responseText);
                     }
                 }else{
                     
                 }
             };
-            // xhr.open('POST', 'http://3.34.150.116:3000/studio/get',true);
-            xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
-            xhr.send("user_id="+sessionStorage.getItem("id"));
+            xhr2.open('POST', 'http://3.34.150.116:3000/price/object',true);
+            xhr2.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+            xhr2.send("key=jmnu1203");
+            // xhr.send("key="+sessionStorage.getItem("id"));
         });
+
         // 수정 input 활성화
         function handleQna(id) {
             console.log(id)

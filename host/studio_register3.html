@@ -506,11 +506,11 @@
                         setCookie("s3_id",s_key,1);
                         var arrDay = result[0].obj_tags.split(',');
                         for (var nArrCnt in arrDay) {
-                            if($("input[name=tags][value="+nArrCnt+"]").length > 0){
-                                $("input[name=tags][value="+nArrCnt+"]").prop("checked",true);
+                            if($("input[name=tags][value="+arrDay[nArrCnt]+"]").length > 0){
+                                $("input[name=tags][value="+arrDay[nArrCnt]+"]").prop("checked",true);
                             }else{
                                 var tag_temp = '<div class="tag mt-3">'
-                                                    +'<span class="mr-lg-2" name="tags" value='+nArrCnt+'>'+nArrCnt+'</span>'
+                                                    +'<span class="mr-lg-2" name="tags" value='+arrDay[nArrCnt]+'>'+arrDay[nArrCnt]+'</span>'
                                                     +'<button type="button" class="btn bg-transparent" onclick="removeTag(this)">'
                                                     +'<i class="fa fa-times text-red"></i></button>'
                                                     +'</div>';
@@ -519,12 +519,12 @@
                         }  
                         alert(result[0].obj_useful);
                         var arrDay2 = result[0].obj_useful.split(',');
-                        for (var nArrCnt in arrDay) {
-                            if($("input[name=convs][value="+nArrCnt+"]").length > 0){
-                                $("input[name=convs][value="+nArrCnt+"]").prop("checked",true);
+                        for (var nArrCnt in arrDay2) {
+                            if($("input[name=convs][value="+arrDay2[nArrCnt]+"]").length > 0){
+                                $("input[name=convs][value="+arrDay2[nArrCnt]+"]").prop("checked",true);
                             }else{
                                 $("#add_conv").prop("checked",true);
-                                $("#add_conv_text").val(nArrCnt);
+                                $("#add_conv_text").val(arrDay2[nArrCnt]);
                             } 
                         }  
                     } else {

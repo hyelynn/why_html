@@ -252,7 +252,7 @@
         <!-- 이전단계 / 다음단계 -->
         <div class="overflow-hidden mt-lg-5 mt-3">
             <a href="class_register3.html" class="btn bg-gray float-left w-50 rounded-0 py-lg-4 py-3 font-size-m" onclick="history.back()">이전 단계로 이동</a>
-            <a href="javascript:check()" class="btn bg-yellow float-right w-50 rounded-0 py-lg-4 py-3 font-size-m">등록 완료</a>
+            <a href="javascript:checkForm();" class="btn bg-yellow float-right w-50 rounded-0 py-lg-4 py-3 font-size-m">등록 완료</a>
         </div>
     </main>
     <footer include-html="/include/footer.html"></footer>
@@ -271,10 +271,33 @@
     </script>
 
 <script>
-    function check(){
-        var category1 = $(":input:radio[id=category1]:checked").val();
+        
+        var urlParam = function(name){
+        var results = new RegExp('[\?&]' + name + '=([^&#]*)').exec(window.location.href);
+        if (results==null){
+            return null;
+        }
+        else{
+            return results[1] || 0;
+        }
+    }
+
+    var getCookie = function(name) {
+        var value = document.cookie.match('(^|;) ?' + name + '=([^;]*)(;|$)');
+        return value? value[2] : null;
+    };
+
+    var setCookie = function(name, value, day) {
+        var date = new Date();
+        date.setTime(date.getTime() + day * 60 * 60 * 24 * 1000);
+        document.cookie = name + '=' + value + ';expires=' + date.toUTCString() + ';path=/';
+    };
+
+
+    function checkForm(){
+        var category1 = $(":input:radio[name=category1]:checked").val();
         var numberUpDown = $('#numberUpDown').val();
-        var category2 = $(":input:radio[id=category2]:checked").val();
+        var category2 = $(":input:radio[name=category2]:checked").val();
         var numberUpDown2 = $('#numberUpDown2').val();
         var arr_times = document.getElementsByName("times");
         var arr_times2 = document.getElementsByName("times2");
@@ -290,7 +313,7 @@
         }
         var xhr = new XMLHttpRequest();
             xhr.onreadystatechange = function() {
-                if (xhr.readyState === xhr.DONE) { 
+                if (xhr.readyState === xhr.DONE) {
                     if (xhr.status === 200 || xhr.status === 201) {
                         window.location.href = "/host/class_list.html";
                     } else {
@@ -300,7 +323,7 @@
                 }else{
                 }
             };
-            xhr.open('POST', 'http://3.34.150.116:3000/class/apply/info',true);
+            xhr.open('POST', 'http://3.34.150.116:3000/class/modify/price',true);
             xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
             xhr.send("key="+getCookie("s3_id")+"&category1="+category1+"&numberUpDown="+numberUpDown+"&category2="+category2
             +"&numberUpDown2="+numberUpDown2+"&times="+timesText.toString()+"&times2="+times2Text.toString()); 
@@ -308,53 +331,48 @@
     }
     $(document).ready(function (){
         var s_key = urlParam("key");
-            var xhr = new XMLHttpRequest();
-            xhr.onreadystatechange = function() {
-                if (xhr.readyState === xhr.DONE) { 
-                    if (xhr.status === 200 || xhr.status === 201) {
-                        var result = JSON.parse(xhr.responseText);
-                        var arrDay = result[0].studio_thumbnail.split('/');
-                        $("#category1").val(result[0].category1);
-                        $("#numberUpDown").val(result[0].numberUpDown);
-                        $("#category2").val(result[0].category2);
-                        $("#numberUpDown2").val(result[0].numberUpDown2);
-                        setCookie("s3_id",s_key,1);
-                        var arrDay = result[0].class_times.split(',');
-                        for (var nArrCnt in arrDay) {
-                            if($("input[name=tags][value="+nArrCnt+"]").length > 0){
-                                $("input[name=tags][value="+nArrCnt+"]").prop("checked",true);
-                            }else{
-                                var tag_temp = '<div class="tag mt-3">'
-                                                    +'<span class="mr-lg-2" name="times" value='+nArrCnt+'>'+nArrCnt+'</span>'
-                                                    +'<button type="button" class="btn bg-transparent" onclick="removeTag(this)"><i class="fa fa-times text-red"></i></button>'
-                                                +'</div>';
-                                
-                                $("#clock").append(tag_temp);  
-                            }
-                        }  
-                        var arrDay2 = result[0].class_times2.split(',');
-                        for (var nArrCnt in arrDay2) {
-                            if($("input[name=tags][value="+nArrCnt+"]").length > 0){
-                                $("input[name=tags][value="+nArrCnt+"]").prop("checked",true);
-                            }else{
-                                var tag_temp = '<div class="tag mt-3">'
-                                                    +'<span class="mr-lg-2" name="times2" value='+nArrCnt+'>'+nArrCnt+'</span>'
-                                                    +'<button type="button" class="btn bg-transparent" onclick="removeTag(this)"><i class="fa fa-times text-red"></i></button>'
-                                                +'</div>'; 
-                                $("#clock2").append(tag_temp);  
-                            }
-                        }
-                    } else {
-                        alert("정보를 불러오던 중 오류가 발생했습니다. 다시 시도해주세요.");
-                        console.error(xhr.responseText);
+        var xhr = new XMLHttpRequest();
+        xhr.onreadystatechange = function() {
+            if (xhr.readyState === xhr.DONE) { 
+                if (xhr.status === 200 || xhr.status === 201) {
+                    var result = JSON.parse(xhr.responseText);
+                    $("input[name=category1][value="+result[0].class_type+"]").prop("checked",true);
+                    $("#numberUpDown").val(result[0].class_people);
+                    $("input[name=category2][value="+result[0].class_type_two+"]").prop("checked",true);
+                    $("#numberUpDown2").val(result[0].class_people_two);
+                    setCookie("s3_id",s_key,1);
+                    var arrDay = result[0].class_price.split(',');
+                    for (var nArrCnt in arrDay) {
+                       
+                            var tag_temp = '<div class="tag mt-3">'
+                                                +'<span class="mr-lg-2" name="times" value='+arrDay[nArrCnt]+'>'+arrDay[nArrCnt]+'</span>'
+                                                +'<button type="button" class="btn bg-transparent" onclick="removeTag(this)"><i class="fa fa-times text-red"></i></button>'
+                                            +'</div>';
+                            
+                            $("#clock").append(tag_temp);  
+                        
+                    }  
+                    var arrDay2 = result[0].class_price_two.split(',');
+                    for (var nArrCnt in arrDay2) {
+                        
+                            var tag_temp = '<div class="tag mt-3">'
+                                                +'<span class="mr-lg-2" name="times2" value='+arrDay2[nArrCnt]+'>'+arrDay2[nArrCnt]+'</span>'
+                                                +'<button type="button" class="btn bg-transparent" onclick="removeTag(this)"><i class="fa fa-times text-red"></i></button>'
+                                            +'</div>'; 
+                            $("#clock2").append(tag_temp);  
+                        
                     }
-                }else{
-                    
+                } else {
+                    alert("정보를 불러오던 중 오류가 발생했습니다. 다시 시도해주세요.");
+                    console.error(xhr.responseText);
                 }
-            };
-            xhr.open('POST', 'http://3.34.150.116:3000/class/mod/info',true);
-            xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
-            xhr.send("studio_key="+s_key);
+            }else{
+                
+            }
+        };
+        xhr.open('POST', 'http://3.34.150.116:3000/class/price',true);
+        xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+        xhr.send("studio_key="+s_key);
     });
 
 
