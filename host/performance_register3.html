@@ -223,7 +223,7 @@
         <!-- 이전단계 / 다음단계 -->
         <div class="overflow-hidden mt-lg-5 mt-3">
             <a href="performance_register2.html" class="btn bg-gray float-left w-50 rounded-0 py-lg-4 py-3 font-size-m" onclick="history.back()">이전 단계로 이동</a>
-            <a href="performance_list.html" class="btn bg-yellow float-right w-50 rounded-0 py-lg-4 py-3 font-size-m">등록 완료 및 검수 신청</a>
+            <a href="javascript:CheckForm();" class="btn bg-yellow float-right w-50 rounded-0 py-lg-4 py-3 font-size-m">등록 완료 및 검수 신청</a>
         </div>
     </main>
 
@@ -347,38 +347,37 @@
                 if (xhr.readyState === xhr.DONE) { 
                     if (xhr.status === 200 || xhr.status === 201) {
                         var result = JSON.parse(xhr.responseText);
-                        var arrDay = result[0].studio_thumbnail.split('/');
+                        var arrDay = result[0].obj_thumbnail.split('/');
                         $("#thumbs_file").val(arrDay[3]);
-                        $("#performance_youtube").val(result[0].performance_youtube);
-                        $("#performance_place").val(result[0].performance_place);
-                        $("#performance_site").val(result[0].performance_site);
-                        $("#performance_text").val(result[0].performance_text);
-                        $("#performance_addr").val(result[0].performance_addr);
+                        $("#performance_youtube").val(result[0].obj_youtube);
+                        $("#performance_place").val(result[0].obj_types);
+                        $("#performance_site").val(result[0].obj_bus);
+                        $("#performance_text").val(result[0].obj_info);
+                        $("#performance_addr").val(result[0].obj_subway);
                         setCookie("s3_id",s_key,1);
-                        var arrDay = result[0].performance_tags.split(',');
+                        var arrDay = result[0].obj_tags.split(',');
                         for (var nArrCnt in arrDay) {
-                            if($("input[name=tags][value="+nArrCnt+"]").length > 0){
-                                $("input[name=tags][value="+nArrCnt+"]").prop("checked",true);
+                            if($("input[name=tags][value="+arrDay[nArrCnt]+"]").length > 0){
+                                $("input[name=tags][value="+arrDay[nArrCnt]+"]").prop("checked",true);
                             }else{
                                 var tag_temp = '<div class="tag mt-3">'
-                                                    +'<span class="mr-lg-2" name="tags" value='+nArrCnt+'>'+nArrCnt+'</span>'
+                                                    +'<span class="mr-lg-2" name="tags" value='+arrDay[nArrCnt]+'>'+arrDay[nArrCnt]+'</span>'
                                                     +'<button type="button" class="btn bg-transparent" onclick="removeTag(this)">'
                                                     +'<i class="fa fa-times text-red"></i></button>'
                                                     +'</div>';
                                 $("#tag_cont").append(tag_temp);    
                             }
                         } 
-                        var arrDay2 = result[0].performance_price.split(',');
+                        var arrDay2 = result[0].obj_price.split(',');
                         for (var nArrCnt in arrDay2) {
-                            if($("input[name=prices][value="+arrDay2[nArrCnt]+"]").length > 0){
-                                $("input[name=prices][value="+arrDay2[nArrCnt]+"]").prop("checked",true);
-                            }else{
+                            
                                 var tag_temp = '<div class="tag mt-3">'
                                                     +'<span name="prices" class="mr-lg-2" value='+arrDay2[nArrCnt]+'>'+arrDay2[nArrCnt]+'</span>'
-                                                    +'<button type="button" class="btn bg-transparent" onclick="removeTag(this)"><i class="fa fa-times text-red"></i></button>'
+                                                    +'<button type="button" class="btn bg-transparent" onclick="removeTag(this)">'
+                                                        +'<i class="fa fa-times text-red"></i></button>'
                                                 +'</div>';
                                 $("#price_tag_cont").append(tag_temp);    
-                            }
+                            
                         }  
                     } else {
                         alert("정보를 불러오던 중 오류가 발생했습니다. 다시 시도해주세요.");
@@ -388,7 +387,7 @@
                     
                 }
             };
-            xhr.open('POST', 'http://3.34.150.116:3000/performance/mod/info',true);
+            xhr.open('POST', 'http://3.34.150.116:3000/modify/info',true);
             xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
             xhr.send("studio_key="+s_key);
     });
@@ -487,7 +486,7 @@
             xhr.onreadystatechange = function() {
                 if (xhr.readyState === xhr.DONE) { 
                     if (xhr.status === 200 || xhr.status === 201) {
-                        window.location.href = "/host/studio_list.html";
+                        window.location.href = "/host/performance_list.html";
                     } else {
                         alert("등록이 정상적으로 이루어지지 않았습니다. 다시 시도해주세요.");
                         console.error(xhr.responseText);
@@ -495,7 +494,7 @@
                 }else{
                 }
             };
-            xhr.open('POST', 'http://3.34.150.116:3000/performance/apply/info',true);
+            xhr.open('POST', 'http://3.34.150.116:3000/perform/modify/info',true);
             xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
             xhr.send("key="+getCookie("s3_id")+"&thumbsFile="+thumbsFile+"&performance_youtube="+performance_youtube+"&performance_place="+performance_place
             +"&performance_site="+performance_site+"&performance_text="+performance_text+"&performance_addr="+performance_addr

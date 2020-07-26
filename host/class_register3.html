@@ -323,7 +323,7 @@
                     }else{
                     }
                 };
-                xhr.open('POST', 'http://3.34.150.116:3000/class/apply/img',true);
+                xhr.open('POST', 'http://3.34.150.116:3000/studio/apply/img',true);
                 xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
                 xhr.send("key="+getCookie("s3_id")+"&img="+photoKey);
             }
@@ -377,21 +377,21 @@
             if (xhr.readyState === xhr.DONE) { 
                 if (xhr.status === 200 || xhr.status === 201) {
                     var result = JSON.parse(xhr.responseText);
-                    var arrDay0 = result[0].studio_thumbnail.split('/');
+                    var arrDay0 = result[0].obj_thumbnail.split('/');
                     $("#thumbs_file").val(arrDay0[3]);
-                    $("#class_youtube").val(result[0].class_youtube);
-                    $("#class_text").val(result[0].class_text);
-                    $("#class_terms").val(result[0].class_terms);
-                    $("#class_caution").val(result[0].class_caution);
-                    $("#class_addr").val(result[0].class_addr);
+                    $("#class_youtube").val(result[0].obj_youtube);
+                    $("#class_text").val(result[0].obj_info);
+                    $("#class_terms").val(result[0].obj_useful);
+                    $("#class_caution").val(result[0].obj_rule);
+                    $("#class_addr").val(result[0].obj_subway);
                     setCookie("s3_id",s_key,1);
-                    var arrDay = result[0].tagText.split(',');
+                    var arrDay = result[0].obj_tags.split(',');
                     for (var nArrCnt in arrDay) {
-                        if($("input[name=tags][value="+nArrCnt+"]").length > 0){
-                            $("input[name=tags][value="+nArrCnt+"]").prop("checked",true);
+                        if($("input[name=tags][value="+arrDay[nArrCnt]+"]").length > 0){
+                            $("input[name=tags][value="+arrDay[nArrCnt]+"]").prop("checked",true);
                         }else{
                             var tag_temp = '<div class="tag mt-3">'
-                                                +'<span class="mr-lg-2" name="tags" value='+nArrCnt+'>'+nArrCnt+'</span>'
+                                                +'<span class="mr-lg-2" name="tags" value='+arrDay[nArrCnt]+'>'+arrDay[nArrCnt]+'</span>'
                                                 +'<button type="button" class="btn bg-transparent" onclick="removeTag(this)">'
                                                     +'<i class="fa fa-times text-red"></i>'
                                                 +'</button>'
@@ -417,7 +417,7 @@
                 
             }
         };
-        xhr.open('POST', 'http://3.34.150.116:3000/class/mod/info',true);
+        xhr.open('POST', 'http://3.34.150.116:3000/modify/info',true);
         xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
         xhr.send("studio_key="+s_key);
     });
@@ -448,7 +448,7 @@
             xhr.onreadystatechange = function() {
                 if (xhr.readyState === xhr.DONE) { 
                     if (xhr.status === 200 || xhr.status === 201) {
-                        window.location.href = "/host/studio_register4.html?key="+urlParam("key");
+                        window.location.href = "/host/class_register4.html?key="+urlParam("key");
                     } else {
                         alert("등록이 정상적으로 이루어지지 않았습니다. 다시 시도해주세요.");
                         console.error(xhr.responseText);
@@ -456,7 +456,7 @@
                 }else{
                 }
             };
-            xhr.open('POST', 'http://3.34.150.116:3000/studio/apply/info',true);
+            xhr.open('POST', 'http://3.34.150.116:3000/class/modify/info',true);
             xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
             xhr.send("key="+getCookie("s3_id")+"&thumbsFile="+thumbsFile+"&class_youtube="+class_youtube+"&class_text="+class_text
             +"&class_terms="+class_terms+"&class_caution="+class_caution+"&class_addr="+class_addr+"&tags="+tagText.toString()); 

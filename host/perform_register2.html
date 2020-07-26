@@ -120,7 +120,7 @@
                 <div class="mb-lg-5 mb-3">
                     <div class="text-gray font-weight-light">
                         <label for="performance_intro" class="float-left">공연 간단 소개</label>
-                        <span class="float-right">0/100</span>
+                        <span id="intro_length" class="float-right">0/100</span>
                     </div>
                     <textarea name="" id="performance_intro" class="form-control" placeholder="예) 당신의 심장을 울린 단 하나의 공연!"></textarea>
                 </div>
@@ -156,6 +156,16 @@
             }).open();
         }
     
+        $('#performance_intro').keyup(function (e){
+            var content = $(this).val();
+            $('#intro_length').html(content.length+"/30"); 
+            if (content.length > 30){
+                alert("최대 30자까지 입력 가능합니다.");
+                $(this).val(content.substring(0, 30));
+                $('#intro_length').html("30/30");
+            }
+        });
+
         $('#performance_name').keyup(function (e){
             var content = $(this).val();
             $('#performance_length').html(content.length+"/30"); 
@@ -181,11 +191,12 @@
                 if (xhr.readyState === xhr.DONE) { 
                     if (xhr.status === 200 || xhr.status === 201) {
                         var result = JSON.parse(xhr.responseText);
-                        $("#performance_name").val(result[0].performance_name);
-                        $("#start").val(result[0].start);
-                        $("#end").val(result[0].end);
-                        $("#performance_addr").val(result[0].performance_addr);
-                        $("#performance_intro").val(result[0].performance_intro);
+                        $("#performance_name").val(result[0].obj_name);
+                        var useful = result[0].obj_useful.split('~');
+                        $("#start").val(useful[0]);
+                        $("#end").val(useful[1]);
+                        $("#performance_addr").val(result[0].obj_location.split(',')[0]);
+                        $("#performance_intro").val(result[0].obj_info);
                     } else {
                         alert("정보를 불러오던 중 오류가 발생했습니다. 다시 시도해주세요.");
                         console.error(xhr.responseText);
@@ -194,7 +205,7 @@
                     
                 }
             };
-            xhr.open('POST', 'http://3.34.150.116:3000/performance/mod/name',true);
+            xhr.open('POST', 'http://3.34.150.116:3000/modify/info',true);
             xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
             xhr.send("studio_key="+s_key);
         });
@@ -217,7 +228,7 @@
                     }else{
                     }
                 };
-                xhr.open('POST', 'http://3.34.150.116:3000/performance/apply/name',true);
+                xhr.open('POST', 'http://3.34.150.116:3000/perform/modify/name',true);
                 xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
                 xhr.send("key="+getCookie("s3_id")+"&performance_name="+performance_name+"&start="+start
                 +"&end="+end+"&performance_addr="+performance_addr+"&performance_intro="+performance_intro); 
