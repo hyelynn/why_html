@@ -81,7 +81,7 @@
                 </div>
                 <div class="col-lg-2 col-md-3 col-4">
                     <label class="radio-items">
-                        <input type="radio" name="category" value="performance">
+                        <input type="radio" name="category" value="perform">
                         <span>퍼포먼스</span>
                     </label>
                 </div>
@@ -190,7 +190,7 @@
                 </div>
             </div>
 
-            <div id="performance" class="category-depth" style="display: none">
+            <div id="perform" class="category-depth" style="display: none">
                 <h3 class="mb-md-4 mb-3">세부 카테고리를 선택해 주세요<span class="d-lg-inline-block d-block text-light-gray font-weight-light ml-lg-3 ml-0 mt-lg-0 mt-3 font-size-s">1개만 선택 가능 합니다.</span></h3>
                 <div class="row host-register-items mb-md-5 mb-4">
                     <div class="col-lg-2 col-md-3 col-4">
@@ -337,11 +337,10 @@
                         if (xhr.readyState === xhr.DONE) { 
                             if (xhr.status === 200 || xhr.status === 201) {
                                 var result = JSON.parse(xhr.responseText);
-                                setCookie("s3_id",result[0].studio_key,1);
-                                s_key = result[0].studio_key;
+                                setCookie("s3_id",result[0].obj_key,1);
+                                s_key = result[0].obj_key;
                             } else {
-                                alert(xhr.status);
-                                // alert("등록이 정상적으로 이루어지지 않았습니다. 다시 시도해주세요.");
+                                alert("등록이 정상적으로 이루어지지 않았습니다. 다시 시도해주세요.");
                                 console.error(xhr.responseText);
                             }
                         }else{
@@ -358,10 +357,10 @@
                     if (xhr.readyState === xhr.DONE) { 
                         if (xhr.status === 200 || xhr.status === 201) {
                             var result = JSON.parse(xhr.responseText);
-                            $("input[name=category][value="+result[0].studio_category+"]").prop("checked",true);
+                            $("input[name=category][value="+result[0].obj_category+"]").prop("checked",true);
                             $("#studio").hide();
-                            $("#"+result[0].studio_category).show(); 
-                            var arrDay = result[0].studio_sub.split(',');
+                            $("#"+result[0].obj_category).show(); 
+                            var arrDay = result[0].obj_sub.split(',');
                             $("input[name=category_depth]").prop('checked', false);
                             for (var nArrCnt in arrDay) {
                                 $("input[name=category_depth][value="+arrDay[nArrCnt]+"]").prop("checked",true);
@@ -412,7 +411,7 @@
                 }
                 case "audition":
                 case "class":
-                case "performance":{
+                case "perform":{
                     if ($("input[name='category_depth']:checked").length > 1) {
                         $(this).prop('checked', false);
                         alert("최대 1개까지 선택 가능합니다.");

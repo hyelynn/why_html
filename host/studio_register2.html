@@ -174,10 +174,10 @@
             if (xhr.readyState === xhr.DONE) { 
                 if (xhr.status === 200 || xhr.status === 201) {
                     var result = JSON.parse(xhr.responseText);
-                    var arrDay = result[0].studio_name.split('-');
-                    var arrDay2 = result[0].studio_location.split('/');
+                    var arrDay = result[0].obj_name.split('-');
+                    var arrDay2 = result[0].obj_location.split('/');
                     $("#studio_name").val(arrDay[0]);
-                    $("#studio_intro").val(result[0].studio_subname);
+                    $("#studio_intro").val(result[0].obj_subname);
                     $("#studio_room").val(arrDay[1]);
                     $("#studio_addr").val(arrDay2[0]);
                     $("#studio_addr2").val(arrDay2[1]);
