@@ -232,10 +232,10 @@
                     <li class="list-group-item py-3">
                         <div class="row">
                             <div class="col-2 px-lg-5">
-                                <p id="notice_target" class="mb-0 text-sky">notice_target</p>
+                                <p id="notice_target" class="mb-0 text-sky"></p>
                             </div>
                             <div class="col-10">
-                                <p uf="notice_title" class="mb-0 font-weight-light">notice_title</p>
+                                <p id="notice_title" class="mb-0 font-weight-light"></p>
                             </div>
                         </div>
                     </li>
@@ -243,7 +243,7 @@
                     <li class="list-group-item py-4">
                         <div class="row">
                             <div class="col-12 px-lg-5 px-3 font-weight-light">
-                                <p id="notice_content">notice_content</p>
+                                <p id="notice_content"></p>
                                 <img id="notice_subdata" src="../img/board-sample-img.png" class="img-fluid" alt="">
                             </div>
                         </div>
@@ -292,15 +292,18 @@
                 return results[1] || 0;
             }
         }
+
         $(document).ready(function (){
             var xhr = new XMLHttpRequest();
             xhr.onreadystatechange = function() {
                 if (xhr.readyState === xhr.DONE) { 
+                    alert(xhr.status);
                     if (xhr.status === 200 || xhr.status === 201) {
                         var result = JSON.parse(xhr.responseText);
-                        $("#notice_target").val(result[0].notice_target);
-                        $("#notice_title").val(result[0].notice_title);
-                        $("#notice_content").val(result[0].notice_content);
+                        alert(result[0].notice_content);
+                        $("#notice_target").text(result[0].notice_target);
+                        $("#notice_title").text(result[0].notice_title);
+                        $("#notice_content").text(result[0].notice_content);
                         $("#notice_subdata").attr("src",result[0].notice_subdata);
                     } else {
                         alert("등록이 정상적으로 이루어지지 않았습니다. 다시 시도해주세요.");
@@ -310,9 +313,9 @@
                     
                 }
             };
-            xhr.open('POST', 'http://3.34.150.116:3000/',true);
+            xhr.open('POST', 'http://3.34.150.116:3000/notice/info',true);
             xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
-            xhr.send("view_id="+urlParam(view_id));
+            xhr.send("key="+urlParam(view_id));
         });
     </script>
 </body>
