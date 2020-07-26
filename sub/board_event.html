@@ -467,8 +467,8 @@
                 </ul>
 
                 <nav aria-label="Page navigation">
-                    <ul class="pagination justify-content-center custom-navigation">
-                        <li id="pager" class="page-item">
+                    <ul id="pageUl" class="pagination justify-content-center custom-navigation">
+                        <li id="pager" class="page-arrow">
                             <a class="page-link" href="#x" aria-label="Previous"><span aria-hidden="true">&laquo;</span></a>
                         </li>
                         <li class="page-item"><a class="page-link" href="#x">1</a></li>
@@ -541,8 +541,10 @@
             $(".page-item").remove();
             for(var j = 0;j < list.length/10;j++){
                 var page_item = '<li class="page-item"><a class="page-link" href="#x" onclick="writeUL('+(j+1)+','+list+');">'+(j+1)+'</a></li>';
-                $("#pager").append(page_item);
+                $("#pageUl").append(page_item);
             }
+            var page_arrow = '<li class="page-item"><a class="page-link" href="#x" aria-label="Next"><span aria-hidden="true">&raquo;</span></a></li>'
+            $("#pageUl").append(page_arrow);
         }
 
         function writeUL(item, list){
@@ -558,7 +560,7 @@
                                         +'<p class="mb-0 font-weight-light">'+list[i].notice_title+'</p>'
                                     +'</div>'
                                 +'</div>'
-                                +'<a href="board_view.html?view_id="'+list[i].notice_id+' class="stretched-link text-decoration-none"></a>'
+                                +'<a href="board_view.html?view_id='+list[i].notice_id+'" class="stretched-link text-decoration-none"></a>'
                             +'</li>';
                 $("#eventUL").append(notice);
             }
@@ -571,7 +573,8 @@
                     if (xhr.status === 200 || xhr.status === 201) {
                         var list = JSON.parse(xhr.responseText);
                         for(var i = 0;i < list.length; i++){
-                            if(list[i].notice_target == sessionStorage.getItem("user_type")){
+                            // if(list[i].notice_target == sessionStorage.getItem("user_type")){
+                            if(list[i].notice_target == 'h'){
                                 eventList.push(list[i]);
                             }
                         }
@@ -584,7 +587,7 @@
                     
                 }
             };
-            xhr.open('GET', 'http://3.34.150.116:3000/notice',true);
+            xhr.open('GET', 'http://3.34.150.116:3000/event',true);
             xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
             xhr.send();
         });

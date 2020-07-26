@@ -455,8 +455,8 @@
                     </li>
                 </ul>
                 <nav aria-label="Page navigation">
-                    <ul class="pagination justify-content-center custom-navigation">
-                        <li class="page-item">
+                    <ul id="pageUl" class="pagination justify-content-center custom-navigation">
+                        <li class="page-arrow">
                             <a class="page-link" href="#x" aria-label="Previous"><span aria-hidden="true">&laquo;</span></a>
                         </li>
                         <li class="page-item"><a class="page-link" href="#x">1</a></li>
@@ -526,11 +526,13 @@
 
         function writeList(list){
             writeUL(1,list);
-            $("#pager").empty();
+            $(".page-item").remove();
             for(var j = 0;j < list.length/10;j++){
                 var page_item = '<li class="page-item"><a class="page-link" href="#x" onclick="writeUL('+(j+1)+','+list+');">'+(j+1)+'</a></li>';
-                $("#pager").append(page_item);
+                $("#pageUl").append(page_item);
             }
+            var page_arrow = '<li class="page-item"><a class="page-link" href="#x" aria-label="Next"><span aria-hidden="true">&raquo;</span></a></li>'
+            $("#pageUl").append(page_arrow);
         }
 
         function writeUL(item, list){
@@ -546,7 +548,7 @@
                                         +'<p class="mb-0 font-weight-light">'+list[i].notice_title+'</p>'
                                     +'</div>'
                                 +'</div>'
-                                +'<a href="board_view.html?view_id="'+list[i].notice_id+' class="stretched-link text-decoration-none"></a>'
+                                +'<a href="board_view.html?view_id='+list[i].notice_id+'" class="stretched-link text-decoration-none"></a>'
                             +'</li>';
                 $("#noticeUL").append(notice);
             }
@@ -555,19 +557,17 @@
         $(document).ready(function (){
             var xhr = new XMLHttpRequest();
             xhr.onreadystatechange = function() {
-                        alert("01::"+xhr.status);
                 if (xhr.readyState === xhr.DONE) { 
                     if (xhr.status === 200 || xhr.status === 201) {
-                        alert("00::"+xhr.status);
                         var list = JSON.parse(xhr.responseText);
                         for(var i = 0;i < list.length; i++){
+                            // if(list[i].notice_target == sessionStorage.getItem("user_type")){
                             if(list[i].notice_target == 'h'){
                                 noticeList.push(list[i]);
                             }
                         }
                         writeList(noticeList);
                     } else {
-                        alert("02::"+xhr.status);
                         alert("등록이 정상적으로 이루어지지 않았습니다. 다시 시도해주세요.");
                         console.error(xhr.responseText);
                     }
