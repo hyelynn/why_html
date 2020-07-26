@@ -434,11 +434,11 @@
                 <!-- search -->
                 <div class="d-flex justify-content-between mb-4 custom-inputs">
                     <input type="text" id="searchTxt" class="form-control w-75 mr-4" placeholder="검색어를 입력해 주세요">
-                    <select name="" id="searchOpt" class="form-control w-25">
+                    <!-- <select name="" id="searchOpt" class="form-control w-25">
                         <option value="all">전체보기</option>
                         <option value="guest">게스트</option>
                         <option value="host">호스트</option>
-                    </select>
+                    </select> -->
                 </div>
                 <!-- list -->
                 <ul id="eventUL" class="list-group list-group-flush border border-top-0 mb-4 font-size-s">
@@ -538,29 +538,29 @@
 
         function writeList(list){
             writeUL(1,list);
-            $("#pager").empty();
+            $(".page-item").remove();
             for(var j = 0;j < list.length/10;j++){
                 var page_item = '<li class="page-item"><a class="page-link" href="#x" onclick="writeUL('+(j+1)+','+list+');">'+(j+1)+'</a></li>';
                 $("#pager").append(page_item);
             }
         }
 
-        function writeUL(item,list){
+        function writeUL(item, list){
             $("#eventUL").empty();
             for(var i = (item-1) * 10; i < item * 10; i++){
                 if(i == list.length)break;
-                var event = '<li class="list-group-item py-3 position-relative">'
+                var notice = '<li class="list-group-item py-3 position-relative">'
                                 +'<div class="row">'
                                     +'<div class="col-2 text-center">'
-                                        +'<p class="mb-0 text-sky">'+list[i].event_target+'</p>'
+                                        +'<p class="mb-0 text-sky">호스트</p>'
                                     +'</div>'
                                     +'<div class="col-10">'
-                                        +'<p class="mb-0 font-weight-light">'+list[i].event_title+'</p>'
+                                        +'<p class="mb-0 font-weight-light">'+list[i].notice_title+'</p>'
                                     +'</div>'
                                 +'</div>'
-                                +'<a href="board_view.html?view_id="'+list[i].event_id+' class="stretched-link text-decoration-none"></a>'
+                                +'<a href="board_view.html?view_id="'+list[i].notice_id+' class="stretched-link text-decoration-none"></a>'
                             +'</li>';
-                $("#eventUL").append(event);
+                $("#eventUL").append(notice);
             }
         }
 
@@ -569,7 +569,12 @@
             xhr.onreadystatechange = function() {
                 if (xhr.readyState === xhr.DONE) { 
                     if (xhr.status === 200 || xhr.status === 201) {
-                        eventList = JSON.parse(xhr.responseText);
+                        var list = JSON.parse(xhr.responseText);
+                        for(var i = 0;i < list.length; i++){
+                            if(list[i].notice_target == sessionStorage.getItem("user_type")){
+                                eventList.push(list[i]);
+                            }
+                        }
                         writeList(eventList);
                     } else {
                         alert("등록이 정상적으로 이루어지지 않았습니다. 다시 시도해주세요.");
@@ -579,8 +584,9 @@
                     
                 }
             };
-            xhr.open('POST', 'http://3.34.150.116:3000/',true);
+            xhr.open('GET', 'http://3.34.150.116:3000/notice',true);
             xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+            xhr.send();
         });
 
 
