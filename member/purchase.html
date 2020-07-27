@@ -144,7 +144,7 @@
     <script>login_header();</script>
     <script>
         function goPurchase() {
-            location.href = '/member/purchase.jsp';
+            location.href = '/member/purchase.jsp?p=' + total_price;
         }
 
     $(function () {
@@ -185,10 +185,7 @@
                 )
             );
 
-            total_price += parseInt(item.price);
-        });
-
-        $("#price").append(
+            $("#price").append(
             $(
                 "<p class='font-weight-light text-gray font-size-l'>총 <span class='font-weight-bold'>" +
                 items.length +
@@ -215,6 +212,11 @@
                 "' placeholder='example@example.com'></div></div>"
             )
         );
+
+            total_price += parseInt(item.price);
+        });
+
+        
         sessionStorage.setItem('total', total_price);
 
     })</script>
