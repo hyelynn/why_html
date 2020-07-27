@@ -91,6 +91,7 @@
             "<input type='hidden' name='buyertel' value='" + sessionStorage.getItem("phone") + "'/>" +
             "<input type='hidden' name='timestamp' value='<%=timestamp%>'/>" +
             "<input type='hidden' name='signature' value='<%=signature%>'/>" +
+            "<input type='hidden' name='gopaymethod' value='Card'/>" +
             "<input type='hidden' name='returnUrl' value='http://artbyus.co.kr/js/INIStdPayReturn.jsp'/>" +
             "<input type='hidden' name='mKey' value='<%=mKey%>'/>" +
             "<input type='hidden' name='closeUrl' value='http://artbyus.co.kr/js/close.jsp'/>" +
