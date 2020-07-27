@@ -11,16 +11,16 @@ $(document).ready(function () {
             for (var i = 0; i < result.length; i++) {
                 $("#reserv_item").append($(
                     "<li class='list-group-item p-3 mb-3 border'><div class='row align-items-center'><div class='col'><div class='d-flex align-items-lg-center'>"+
-                    "<div class='d-flex justify-content-center align-items-center overflow-hidden mr-4 item-thumbs'><img src='"+result[i].obj_thumbnail+"' alt=''></div>"+
+                    "<div class='d-flex justify-content-center align-items-center overflow-hidden mr-4 item-thumbs'><img src='"+result[i].reserv_img+"' alt=''></div>"+
                     "<div class='item-texts font-weight-light'><span class='text-red'>예약번호 : "+ result[i].reserv_id +"</span>" +
-                    "<a href='/sub/"+result[i].obj_category+"_view.html' class='text-decoration-none'><h4 class='text-gray'>"+result[i].obj_name+"</h4></a>"+
+                    "<a href='/sub/class_view.html' class='text-decoration-none'><h4 class='text-gray'>"+result[i].reserv_name+"</h4></a>"+
                     "<ul class='list-unstyled text-light-gray mb-2'><li>예약호실 : "+result[i].reserv_place+"</li><li>예약자명 : "+result[i].reserv_pers+"</li><li>예약일시 : "+result[i].reserv_time+"</li></ul>"+
-                    "<a href='qna_list_user.html?"+result[i].reserv_host+"' class='d-inline-block text-decoration-none text-sky mr-2'>1:1 대화하기</a>"+
+                    "<a href='chat_user_view.html?"+result[i].reserv_host+"' class='d-inline-block text-decoration-none text-sky mr-2'>1:1 대화하기</a>"+
                     "<a type='button' data-toggle='modal' data-target='#notifyModal' class='d-inline-block text-decoration-none text-sky'>전화하기</a></div></div></div></div></li>"    
                 ))
-                
-                $("#notifytext").append($("<p class='text-gray wordbreak-keep-all'>" + result[i].biz_num + "</p>"));
             }
+
+            $("#notifytext").append($("<p class='text-gray wordbreak-keep-all'>" + result[0].reserv_num + "</p>"));
           }
         }
       };
