@@ -47,6 +47,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ART BY US</title>
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
         integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
         crossorigin="anonymous"></script>
@@ -55,14 +56,6 @@
         crossorigin="anonymous"></script>
     <script language="javascript" type="text/javascript" src="HTTPS://stdpay.paywelcome.co.kr/stdjs/INIStdPay.js"
         charset="UTF-8"></script>
-
-    <!-- Custom -->
-    <link rel="stylesheet" href="/css/custom.css">
-    <script src="/js/custom.js"></script>
-    <!-- <script src="/js/payment.js"></script> -->
-    <script src="/js/include.js"></script>
-    <!-- Fontawesome -->
-    <link rel="stylesheet" href="/css/fontawesome/css/all.min.css">
 </head>
 
 <body>
