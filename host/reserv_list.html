@@ -53,9 +53,9 @@
         <div class="container my-3">
             <div class="d-lg-flex mb-3 custom-inputs-sub host-top-function host-search-bar">
                 <div class="input-group search-bar-solid w-100">
-                    <input type="text" class="form-control text-dark search-text" placeholder="placeholder를 입력하세요.">
+                    <input type="text" id="searchTxt" class="form-control text-dark search-text" placeholder="placeholder를 입력하세요.">
                     <div class="input-group-append">
-                        <button type="button" class="btn bg-yellow text-gray">검색</button>
+                        <button type="button" onclick="searchBtn();" class="btn bg-yellow text-gray">검색</button>
                     </div>
                 </div>
 
@@ -152,6 +152,12 @@
             xhr.send("key="+key+"&type=refund");
             // xhr.send("user_id="+sessionStorage.getItem("id"));
         }
+
+        function searchBtn(){
+            $("#searchTxt").val();
+
+        }
+
         function notyet(){
             $("#reserv_list").empty();
             for(var i = 0 ;i<not_list.length;i++){
@@ -190,7 +196,6 @@
         }
 
         function sure(){
-            alert(3);
             $("#reserv_list").empty();
             for(var i = 0 ;i<sure_list.length;i++){
                 var reserv = '<li class="list-group-item p-3 mb-3 border">'
