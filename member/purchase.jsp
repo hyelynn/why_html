@@ -68,13 +68,7 @@
 
 <script>
     function payment() {
-        if (sessionStorage.getItem("phone") == null) {
-            alert('로그인이 필요합니다');
-        } else if (document.getElementById("order_payment").checked && document.getElementById("order_refund").checked) {
-            INIStdPay.pay('SendPayForm_id');
-        } else {
-            alert('약관에 동의해주세요');
-        }
+        INIStdPay.pay('SendPayForm_id');
     }
 
     $(document).ready(function () {

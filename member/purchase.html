@@ -1,16 +1,23 @@
 <!DOCTYPE html>
 <html lang="ko">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ART BY US</title>
 
     <!-- Bootstrap 4.3.1 -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
-    <script language="javascript" type="text/javascript" src="HTTPS://tstdpay.paywelcome.co.kr/stdjs/INIStdPay.js" charset="UTF-8"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+        integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
+        integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
+        crossorigin="anonymous"></script>
+    <script language="javascript" type="text/javascript" src="HTTPS://tstdpay.paywelcome.co.kr/stdjs/INIStdPay.js"
+        charset="UTF-8"></script>
 
     <!-- Custom -->
     <link rel="stylesheet" href="/css/custom.css">
@@ -21,7 +28,7 @@
     <link rel="stylesheet" href="/css/fontawesome/css/all.min.css">
 </head>
 
-<body onload="INIStdPay.allowpopup();"> 
+<body onload="INIStdPay.allowpopup();">
     <script src="https://cdn.bootpay.co.kr/js/bootpay-3.2.4.min.js" type="application/javascript"></script>
     <modal include-html="/include/header.html"></modal>
     <div class="py-md-3 px-5 py-2 text-center text-white bg-deep-dark top-notice">
@@ -36,8 +43,7 @@
             <div class="ml-auto align-items-center d-lg-none d-flex">
                 <a class="text-dark mr-3 font-size-sm" href="/member/calendar.html"><i
                         class="far fa-calendar-alt"></i></a>
-                <a class="text-dark mr-3 font-size-sm" href="/member/recent_list.html"><i
-                        class="far fa-clock"></i></a>
+                <a class="text-dark mr-3 font-size-sm" href="/member/recent_list.html"><i class="far fa-clock"></i></a>
                 <a class="text-dark mr-2 font-size-sm" href="/member/purchase.html"><i
                         class="fas fa-shopping-cart"></i></a>
             </div>
@@ -66,7 +72,7 @@
 
                 <!-- price -->
                 <div class="d-flex justify-content-between" id="price">
-                    
+
                 </div>
             </div>
 
@@ -86,7 +92,7 @@
             <div class="mb-5">
                 <h5 class="mb-4">환불규정</h5>
                 <refund include-html="/include/refund.html"></refund>
-                
+
 
                 <div class="d-flex mb-4 custom-inputs">
                     <input type="checkbox" class="custom-checkbox mr-2" id="order_refund">
@@ -135,19 +141,26 @@
         </div>
     </main>
 
-    
+
     <footer include-html="/include/footer.html"></footer>
     <script src="/js/naver_login.js"></script>
     <script src="/js/login.js"></script>
 
-    <script>includeHTML({ });</script>
+    <script>includeHTML({});</script>
     <script>login_header();</script>
     <script>
         function goPurchase() {
-            location.href = '/member/purchase.jsp?p=' + total_price;
+            if (sessionStorage.getItem("phone") == null) {
+                alert('로그인이 필요합니다');
+            } else if (document.getElementById("order_payment").checked && document.getElementById("order_refund").checked) {
+                location.href = '/member/purchase.jsp?p=' + total_price;
+            } else {
+                alert('약관에 동의해주세요');
+            }
+
         }</script>
 
-    
+
 </body>
 
 
