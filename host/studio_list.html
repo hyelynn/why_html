@@ -201,7 +201,8 @@
             };
             xhr.open('POST', 'http://3.34.150.116:3000/studio/host',true);
             xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
-            xhr.send("user_id=jmnu1203");
+            // xhr.send("user_id=jmnu1203");
+            xhr.send("user_id="+sessionStorage.getItem("id"));
         }
 
         $(document).ready(function (){
@@ -219,25 +220,25 @@
         }
 
         function modstu(key){
-            // if(sessionStorage.getItem("id")!=null){
+            if(sessionStorage.getItem("id")!=null){
              window.location.href = "/host/item_register.html?key="+key+"&category=studio";
-            // }else{
-            //     alert("로그인해주세요.");
-            //     window.location.href = "/index.html";
-            // }
+            }else{
+                alert("로그인해주세요.");
+                window.location.href = "/index.html";
+            }
         }
 
         function addStu(){
-            // if(sessionStorage.getItem("id")!=null){
+            if(sessionStorage.getItem("id")!=null){
                 window.location.href = "/host/item_register.html?category=studio";
-            // }else{
-            //     alert("로그인해주세요.");
-            //     window.location.href = "/index.html";
-            // }
+            }else{
+                alert("로그인해주세요.");
+                window.location.href = "/index.html";
+            }
         }
 
         function delstu(key){
-            // if(sessionStorage.getItem("id")!=null){
+            if(sessionStorage.getItem("id")!=null){
                 var xhr = new XMLHttpRequest();
                 xhr.onreadystatechange = function() {
                     if (xhr.readyState === xhr.DONE) { 
@@ -254,10 +255,10 @@
                 xhr.open('POST', 'http://3.34.150.116:3000/studio/delete',true);
                 xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
                 xhr.send("key="+key);
-            // }else{
-            //     alert("로그인해주세요.");
-            //     window.location.href = "/index.html";
-            // }
+            }else{
+                alert("로그인해주세요.");
+                window.location.href = "/index.html";
+            }
         }
         
         function onLogout() {
