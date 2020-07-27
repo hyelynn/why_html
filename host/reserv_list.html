@@ -375,8 +375,8 @@
             };
             xhr.open('POST', 'http://3.34.150.116:3000/reserv/host',true);
             xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
-            xhr.send("key=jmnu1203");
-            // xhr.send("key="+sessionStorage.getItem("id"));
+            // xhr.send("key=jmnu1203");
+            xhr.send("key="+sessionStorage.getItem("id"));
         }
 
         $(document).ready(function (){

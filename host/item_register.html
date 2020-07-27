@@ -349,8 +349,8 @@
                     };
                     xhr.open('POST', 'http://3.34.150.116:3000/studio/create',true);
                     xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
-                    xhr.send("user_id=jmnu1203");
-                    // xhr.send("user_id="+sessionStorage.getItem("id"));
+                    // xhr.send("user_id=jmnu1203");
+                    xhr.send("user_id="+sessionStorage.getItem("id"));
             }else{
                 var xhr = new XMLHttpRequest();
                 xhr.onreadystatechange = function() {
