@@ -27,7 +27,7 @@ $(document).ready(function () {
   
       xhr.open("POST", "http://3.34.150.116:3000/reserv/user");
       xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-      xhr.send("key=" + id);
+      xhr.send("id=" + id);
     } else {
       alert("로그인이 필요합니다");
     }
