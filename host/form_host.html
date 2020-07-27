@@ -210,7 +210,7 @@
                         }
                         $("#host_nickname").val(user[0].user_nickname);
                         $("#host_phone").val(user[0].user_phone);
-                        $("#host_safe_no").val(user[0].biz_num);
+                        ocument.getElementById('host_safe_no').value = user[0].biz_num;
                         if(user[0].user_sms){
                             $("#agree_sms").attr("checked", true); 
                         }else{

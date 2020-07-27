@@ -107,10 +107,9 @@
             location.href = "index.html";
         }
 
-        function modStu(key){
-            alert(2);
+        function modStu(key,cate){
             // if(sessionStorage.getItem("id")!= null){
-             window.location.href = "/host/item_register.html?key="+key.split(',')[0]+"&category="+key.split(',')[1];
+             window.location.href = "/host/item_register.html?key="+key+"&category="+cate;
             // }else{
             //     alert("로그인해주세요.");
             //     window.location.href = "/index.html";
@@ -195,7 +194,7 @@
                                     +'</a>'
                                 +'</div>'
                                 +'<div class="d-flex host-item-btn">'
-                                    +'<button class="btn flex-fill bg-sky text-white" onclick="modStu('+list[i].obj_key+','+list[i].obj_category+');">수정</button>'
+                                    +'<button class="btn flex-fill bg-sky text-white" onclick="modStu('+list[i].obj_key+');">수정</button>'
                                     +'<button class="btn flex-fill bg-gray" onclick="delStu('+list[i].obj_key+');">삭제</button>'
                                 +'</div>'
                             +'</div>';
