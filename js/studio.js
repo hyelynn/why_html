@@ -100,6 +100,12 @@ function makelist(keyword) {
             result[i].obj_key +
             "' class='stretched-link text-decoration-none'>" +
             "</a> </div></div>";
+          } else {
+            form =  "<div class='col-lg-3 col-6 mb-lg-5 mb-4'><div class='card border-0 bg-transparent'>" + 
+                    "<img src='"+result[i].obj_thumbnail +"' class='card-img-top rounded-0' alt=''>"+
+                    "<h5 class='mt-lg-3 mt-2'>" + result[i].obj_name +"</h5>" +
+                    "<p class='font-weight-light font-size-xs'>"+result[i].obj_subname +"</p>"+
+                    "<a href='/sub/store_view.html"+result[i].obj_key +"' class='stretched-link text-decoration-none'></a></div></div>"
           }
 
           $("#show_list").append($(form));

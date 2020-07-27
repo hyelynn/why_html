@@ -30,10 +30,33 @@
          // SDK 초기화 여부를 판단합니다.
          console.log(Kakao.isInitialized());
      </script>
+     <script src="/member/list/reserv.js"></script>
 </head>
 
 <body>
     <modal include-html="/include/header.html"></modal>
+    <!-- 알림 모달 -->
+    <div class="modal fade" id="notifyModal" tabindex="-1" role="dialog" aria-labelledby="notifyModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog custom-modal" role="document">
+            <div class="modal-content px-lg-10 px-5 py-lg-5 py-5">
+                <div class="modal-header p-0 mb-4 border-0 justify-content-center">
+                    <h2 class="modal-title text-center" id="notifyModalLabel">알림</h2>
+                </div>
+
+                <!-- 메세지 -->
+                <div class="modal-body p-0 text-center font-size-s">
+                    <div id="notifytext" class="mb-lg-5 mb-4">
+
+                    </div>
+
+                    <button type="button" class="btn btn-block bg-yellow py-lg-3 py-2 h-auto rounded-0 font-size-s"
+                        data-dismiss="modal">확인</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <div class="py-md-3 px-5 py-2 text-center text-white bg-deep-dark top-notice">
         <span class="font-weight-light">코로나19에 대한 아트바이어스의 대책 및 환불 정책에 대한 최신 정보를 확인하세요.</span>
         <a href="#x" class="text-white d-lg-inline-block d-block">자세히 알아보기</a>
@@ -68,119 +91,17 @@
 
         <div class="container my-3">
             <!-- 리스트 -->
-            <ul class="list-group host-item-list reserv">
-                <li class="list-group-item p-3 mb-3 border">
-                    <div class="row align-items-center">
-                        <div class="col">
-                            <div class="d-flex align-items-lg-center">
-                                <div class="d-flex justify-content-center align-items-center overflow-hidden mr-4 item-thumbs">
-                                    <img src="/img/cart-1.jpg" alt="">
-                                </div>
-                                <div class="item-texts font-weight-light">
-                                    <span class="text-red">예약번호 : 12345678</span>
-                                    <a href="/sub/studio_view.html" class="text-decoration-none">
-                                        <h4 class="text-gray">사당 G1안무연습실</h4>
-                                    </a>
-                                    <ul class="list-unstyled text-light-gray mb-2">
-                                        <li>예약호실 : 그라운드 J4</li>
-                                        <li>예약자명 : 김민범</li>
-                                        <li>예약일시 : 2020-05-01 14:00 ~ 2020-05-01 18:00</li>
-                                    </ul>
-
-                                    <a href="qna_list_user.html" class="d-inline-block text-decoration-none text-sky mr-2">1:1 대화하기</a>
-                                    <a href="#x" class="d-inline-block text-decoration-none text-sky">전화하기</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </li>
-
-                <li class="list-group-item p-3 mb-3 border">
-                    <div class="row align-items-center">
-                        <div class="col">
-                            <div class="d-flex align-items-lg-center">
-                                <div class="d-flex justify-content-center align-items-center overflow-hidden mr-4 item-thumbs">
-                                    <img src="/img/cart-1.jpg" alt="">
-                                </div>
-                                <div class="item-texts font-weight-light">
-                                    <span class="text-red">예약번호 : 12345678</span>
-                                    <a href="/sub/studio_view.html" class="text-decoration-none">
-                                        <h4 class="text-gray">사당 G1안무연습실</h4>
-                                    </a>
-                                    <ul class="list-unstyled text-light-gray mb-2">
-                                        <li>예약호실 : 그라운드 J4</li>
-                                        <li>예약자명 : 김민범</li>
-                                        <li>예약일시 : 2020-05-01 14:00 ~ 2020-05-01 18:00</li>
-                                    </ul>
-
-                                    <a href="qna_list_user.html" class="d-inline-block text-decoration-none text-sky mr-2">1:1 대화하기</a>
-                                    <a href="#x" class="d-inline-block text-decoration-none text-sky">전화하기</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </li>
-
-                <li class="list-group-item p-3 mb-3 border">
-                    <div class="row align-items-center">
-                        <div class="col">
-                            <div class="d-flex align-items-lg-center">
-                                <div class="d-flex justify-content-center align-items-center overflow-hidden mr-4 item-thumbs">
-                                    <img src="/img/cart-1.jpg" alt="">
-                                </div>
-                                <div class="item-texts font-weight-light">
-                                    <span class="text-red">예약번호 : 12345678</span>
-                                    <a href="/sub/studio_view.html" class="text-decoration-none">
-                                        <h4 class="text-gray">사당 G1안무연습실</h4>
-                                    </a>
-                                    <ul class="list-unstyled text-light-gray mb-2">
-                                        <li>예약호실 : 그라운드 J4</li>
-                                        <li>예약자명 : 김민범</li>
-                                        <li>예약일시 : 2020-05-01 14:00 ~ 2020-05-01 18:00</li>
-                                    </ul>
-
-                                    <a href="qna_list_user.html" class="d-inline-block text-decoration-none text-sky mr-2">1:1 대화하기</a>
-                                    <a href="#x" class="d-inline-block text-decoration-none text-sky">전화하기</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </li>
-
-                <li class="list-group-item p-3 mb-3 border">
-                    <div class="row align-items-center">
-                        <div class="col">
-                            <div class="d-flex align-items-lg-center">
-                                <div class="d-flex justify-content-center align-items-center overflow-hidden mr-4 item-thumbs">
-                                    <img src="/img/cart-1.jpg" alt="">
-                                </div>
-                                <div class="item-texts font-weight-light">
-                                    <span class="text-red">예약번호 : 12345678</span>
-                                    <a href="/sub/studio_view.html" class="text-decoration-none">
-                                        <h4 class="text-gray">사당 G1안무연습실</h4>
-                                    </a>
-                                    <ul class="list-unstyled text-light-gray mb-2">
-                                        <li>예약호실 : 그라운드 J4</li>
-                                        <li>예약자명 : 김민범</li>
-                                        <li>예약일시 : 2020-05-01 14:00 ~ 2020-05-01 18:00</li>
-                                    </ul>
-
-                                    <a href="qna_list_user.html" class="d-inline-block text-decoration-none text-sky mr-2">1:1 대화하기</a>
-                                    <a href="#x" class="d-inline-block text-decoration-none text-sky">전화하기</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </li>
+            <ul class="list-group host-item-list reserv" id="reserv_item">
+                
             </ul>
         </div>
     </main>
 
-    <!-- 서브 푸터 -->
     <footer include-html="/include/footer.html"></footer>
     <script>includeHTML();</script>
     <script>login_header();</script>
     <script src="/js/naver_login.js"></script>
+    <script src="/js/login.js"></script>
     <!-- 스크립트가 동작하지 않아 include_html.js에서 getScript로 불러옴 -->
     <!-- <script src="/js/custom.js"></script> -->
 </body>
