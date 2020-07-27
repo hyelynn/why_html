@@ -15,7 +15,7 @@
     String timestamp			= SignatureUtil.getTimestamp();			// util에 의해서 자동생성
 
     String oid					= mid+"_"+SignatureUtil.getTimestamp();	// 가맹점 주문번호(가맹점에서 직접 설정)
-    String price				= "20000";													// 상품가격(특수기호 제외, 가맹점에서 직접 설정);
+    String price				= request.getParameter("p");													// 상품가격(특수기호 제외, 가맹점에서 직접 설정);
     
     String cardNoInterestQuota	= "11-2:3:,34-5:12,14-6:12:24,12-12:36,06-9:12,01-3:4";		// 카드 무이자 여부 설정(가맹점에서 직접 설정)
     String cardQuotaBase		= "2:3:4:5:6:11:12:24:36";		// 가맹점에서 사용할 할부 개월수 설정
@@ -47,11 +47,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ART BY US</title>
-
-    <!-- Bootstrap 4.3.1 -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
-        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
         integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
         crossorigin="anonymous"></script>
@@ -71,175 +66,34 @@
 </head>
 
 <body>
-    <modal include-html="/include/header.html"></modal>
-    <div class="py-md-3 px-5 py-2 text-center text-white bg-deep-dark top-notice">
-        <span class="font-weight-light">코로나19에 대한 아트바이어스의 대책 및 환불 정책에 대한 최신 정보를 확인하세요.</span>
-        <a href="#x" class="text-white d-lg-inline-block d-block">자세히 알아보기</a>
-    </div>
-
-    <nav class="navbar navbar-expand-lg navbar-light py-lg-3 py-1">
-        <div class="container">
-            <a class="navbar-brand" href="/index.html"><img src="http://artbyus.co.kr/img/logo.png"
-                    srcset="http://artbyus.co.kr/img/logo@2x.png 2x, http://artbyus.co.kr/img/logo@3x.png 3x"></a>
-            <div class="ml-auto align-items-center d-lg-none d-flex">
-                <a class="text-dark mr-3 font-size-sm" href="/member/calendar.html"><i
-                        class="far fa-calendar-alt"></i></a>
-                <a class="text-dark mr-3 font-size-sm" href="/member/recent_list.html"><i class="far fa-clock"></i></a>
-                <a class="text-dark mr-2 font-size-sm" href="/member/purchase.html"><i
-                        class="fas fa-shopping-cart"></i></a>
-            </div>
-            <button class="navbar-toggler border-0 font-size-md text-dark" type="button" data-toggle="collapse"
-                data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false"
-                aria-label="Toggle navigation">
-                <i class="fas fa-bars"></i>
-            </button>
-
-            <div class="collapse navbar-collapse" id="navbarNavDropdown"></div>
-        </div>
-    </nav>
-    <script src="/js/header.js"></script>
-
     <main role="main">
-        <div class="container my-md-5 my-3">
-            <h3 class="mb-4">결제</h3>
-
-            <!-- list -->
-            <div class="mb-5">
-                <h5 class="mb-4">예약 및 구입정보</h5>
-
-                <div class="border mb-4">
-                    <ul class="list-group list-group-flush cart-list" id="cart"> </ul>
-                </div>
-
-                <!-- price -->
-                <div class="d-flex justify-content-between" id="price">
-
-                </div>
-            </div>
-
-            <!-- orderer form -->
-            <div class="mb-5">
-                <h5 class="mb-4">예약 및 구매자 정보</h5>
-
-                <div class="custom-inputs-sub mb-3" id="user"></div>
-            </div>
-
-            <!-- refund -->
-            <div class="mb-5">
-                <h5 class="mb-4">환불규정</h5>
-                <refund include-html="/include/refund.html"></refund>
-
-
-                <div class="d-flex mb-4 custom-inputs">
-                    <input type="checkbox" class="custom-checkbox mr-2" id="order_refund">
-                    <label for="order_refund" class="mb-0">환불규정에 대한 정보를 이해하였으며 이에 동의합니다.</label>
-                </div>
-            </div>
-
-            <!-- payment -->
-            <div class="mb-5">
-                <div class="d-flex mb-4 custom-inputs">
-                    <input type="checkbox" class="custom-checkbox mr-2" id="order_payment">
-                    <label for="order_payment" class="mb-0">
-                        서비스 및 결제방식에 대한 내용을 이해하였으며 이에 동의합니다.
-                        <a href="/sub/payment_notice.html" class="text-dark" target="_blank">(보기)</a>
-                    </label>
-                </div>
-            </div>
-
-            <!-- button -->
-            <div class="custom-inputs">
-                <button type="button" id="send" onClick="payment();"
-                    class="btn btn-block bg-yellow">결제 진행하기</button>
-            </div>
-        </div>
-
-        <form id="SendPayForm_id" name="" method="POST"></form>
+        <form id="SendPayForm_id" name="" method="POST">
+            
+        </form>
     </main>
-
-
-    <footer include-html="/include/footer.html"></footer>
-    <script src="/js/naver_login.js"></script>
-    <script src="/js/login.js"></script>
-
-    <script>includeHTML();</script>
-    <script>login_header();</script>
 </body>
+
 <script>
     function payment() {
         if (sessionStorage.getItem("phone") == null) {
             alert('로그인이 필요합니다');
         } else if (document.getElementById("order_payment").checked && document.getElementById("order_refund").checked) {
-            INIStdPay.pay('SendPayForm_id'); 
+            INIStdPay.pay('SendPayForm_id');
         } else {
             alert('약관에 동의해주세요');
         }
     }
 
     $(document).ready(function () {
-        var total_price = 0;
+        var total_price = sessionStorage.getItem('total');
+        var prc = "<%=price%>";
 
-        items = JSON.parse(sessionStorage.getItem("cart"));
+        console.log(total_price + ", " + prc);
+        if (total_price != prc) {
+            alert('가격 위변조')
+            location.href = "/member/purchase.html"
+        }
 
-        $.each(items, function (index, item) {
-            $("#cart").append(
-                $(
-                    "<li class='list-group-item pr-4 pl-3 py-4'>" +
-                    "<div class='d-lg-flex align-items-center custom-inputs'>" +
-                    "<div class='d-flex align-items-lg-center'>" +
-                    "<input type='checkbox' class='custom-checkbox mr-sm-3 mr-2'>" +
-                    "<div class='d-flex justify-content-center overflow-hidden mr-sm-3 mr-2 cart-thumbs'>" +
-                    "<img src='" +
-                    item.img +
-                    "' class='align-self-center w-100 h-100' alt=''></div>" +
-                    "<div><span class='d-block font-weight-light text-red cart-item-category'>연습실</span>" +
-                    "<a href='/sub/studio_view.html' class='text-decoration-none'>" +
-                    "<h4 class='text-gray cart-item-title'>" +
-                    item.title +
-                    "</h4></a>" +
-                    "<p class='font-weight-light text-gray mb-0'>" +
-                    item.date +
-                    "</p>" +
-                    "<p class='font-weight-light text-gray'></p>" +
-                    "<p class='font-weight-light text-light-gray mb-0'><span class='ml-5'> </span></p>" +
-                    "<div class='text-right ml-auto'>" +
-                    "<p class='font-weight-light text-gray mb-0'>합계</p>" +
-                    "<h2 class='mb-0'>" +
-                    item.price +
-                    "원</h2><p class='font-weight-light text-light-gray mb-0'>(VAT포함)</p></div></div></li>"
-                )
-            );
-
-            total_price += parseInt(item.price);
-        });
-
-        $("#price").append(
-            $(
-                "<p class='font-weight-light text-gray font-size-l'>총 <span class='font-weight-bold'>" +
-                items.length +
-                "</span></p>" +
-                "<div class='d-flex text-right' ><div class='mr-4'>" +
-                "<p class='font-weight-light mb-0 text-gray'>합계</p>" +
-                "<p class='font-weight-light mb-0 text-light-gray'>(VAT포함)</p></div>" +
-                "<h1 class='font-weight-bold text-red'>" +
-                total_price +
-                "원</h1></div>"
-            )
-        );
-
-        $("#user").append(
-            $(
-                "<div class='d-md-flex'><div class='flex-fill w-25 mr-md-4 mb-3 mb-md-0'>" +
-                "<label for='order_name' class='d-block text-gray'>이름</label>" +
-                "<input type='text' class='form-control' id='order_name' value='" +
-                sessionStorage.getItem("nickname") +
-                "' placeholder='이름'></div>" +
-                "<div class='flex-fill w-75'><label for='order_email' class='d-block text-gray'>이메일</label>" +
-                "<input type='text' class='form-control' id='order_email' value='" +
-                sessionStorage.getItem("id") +
-                "' placeholder='example@example.com'></div></div>"
-            )
-        );
         var sfid = "<input type='hidden' name='version' value='1.0'/>" +
             "<input type='hidden' name='mid' value='wpartby071'/>" +
             "<input type='hidden' name='oid' value='wpartby071_<%=timestamp%>'/>" +
@@ -252,15 +106,16 @@
             "<input type='hidden' name='signature' value='<%=signature%>'/>" +
             "<input type='hidden' name='returnUrl' value='http://artbyus.co.kr/js/INIStdPayReturn.jsp'/>" +
             "<input type='hidden' name='mKey' value='<%=mKey%>'/>" +
-            "<input type='hidden' name='gopaymethod' value='DirectBank'/>" +
             "<input type='hidden' name='closeUrl' value='http://artbyus.co.kr/js/close.jsp'/>" +
             "<input type='hidden' name='popupUrl' value='http://artbyus.co.kr/js/popup.jsp'/>";
         
         $("#SendPayForm_id").append($(sfid))
+
+        payment();
     });
 
 
 </script>
-
-
 </html>
+
+<!-- "<input type='hidden' name='gopaymethod' value='DirectBank'/>" + -->

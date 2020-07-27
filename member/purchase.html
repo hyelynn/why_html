@@ -130,11 +130,9 @@
 
             <!-- button -->
             <div class="custom-inputs">
-                <button type="button" id="send" onClick="INIStdPay.pay('SendPayForm_id')" class="btn btn-block bg-yellow">결제 진행하기</button>
+                <button type="button" id="send" onClick="goPurchase();" class="btn btn-block bg-yellow">결제 진행하기</button>
             </div>
         </div>
-
-        <form id="SendPayForm_id" name="" method="POST" ></form>
     </main>
 
     
@@ -144,18 +142,81 @@
 
     <script>includeHTML({ });</script>
     <script>login_header();</script>
-    <script>$(function () {
+    <script>
+        function goPurchase() {
+            location.href = '/member/purchase.jsp';
+        }
+
+    $(function () {
         var total_price = 0;
 
         items = JSON.parse(sessionStorage.getItem("cart"));
 
+        items = JSON.parse(sessionStorage.getItem("cart"));
+
+        
+
         $.each(items, function (index, item) {
+            $("#cart").append(
+                $(
+                    "<li class='list-group-item pr-4 pl-3 py-4'>" +
+                    "<div class='d-lg-flex align-items-center custom-inputs'>" +
+                    "<div class='d-flex align-items-lg-center'>" +
+                    "<input type='checkbox' class='custom-checkbox mr-sm-3 mr-2'>" +
+                    "<div class='d-flex justify-content-center overflow-hidden mr-sm-3 mr-2 cart-thumbs'>" +
+                    "<img src='" +
+                    item.img +
+                    "' class='align-self-center w-100 h-100' alt=''></div>" +
+                    "<div><span class='d-block font-weight-light text-red cart-item-category'>연습실</span>" +
+                    "<a href='/sub/studio_view.html' class='text-decoration-none'>" +
+                    "<h4 class='text-gray cart-item-title'>" +
+                    item.title +
+                    "</h4></a>" +
+                    "<p class='font-weight-light text-gray mb-0'>" +
+                    item.date +
+                    "</p>" +
+                    "<p class='font-weight-light text-gray'></p>" +
+                    "<p class='font-weight-light text-light-gray mb-0'><span class='ml-5'> </span></p>" +
+                    "<div class='text-right ml-auto'>" +
+                    "<p class='font-weight-light text-gray mb-0'>합계</p>" +
+                    "<h2 class='mb-0'>" +
+                    item.price +
+                    "원</h2><p class='font-weight-light text-light-gray mb-0'>(VAT포함)</p></div></div></li>"
+                )
+            );
 
             total_price += parseInt(item.price);
         });
+
+        $("#price").append(
+            $(
+                "<p class='font-weight-light text-gray font-size-l'>총 <span class='font-weight-bold'>" +
+                items.length +
+                "</span></p>" +
+                "<div class='d-flex text-right' ><div class='mr-4'>" +
+                "<p class='font-weight-light mb-0 text-gray'>합계</p>" +
+                "<p class='font-weight-light mb-0 text-light-gray'>(VAT포함)</p></div>" +
+                "<h1 class='font-weight-bold text-red'>" +
+                total_price +
+                "원</h1></div>"
+            )
+        );
+
+        $("#user").append(
+            $(
+                "<div class='d-md-flex'><div class='flex-fill w-25 mr-md-4 mb-3 mb-md-0'>" +
+                "<label for='order_name' class='d-block text-gray'>이름</label>" +
+                "<input type='text' class='form-control' id='order_name' value='" +
+                sessionStorage.getItem("nickname") +
+                "' placeholder='이름'></div>" +
+                "<div class='flex-fill w-75'><label for='order_email' class='d-block text-gray'>이메일</label>" +
+                "<input type='text' class='form-control' id='order_email' value='" +
+                sessionStorage.getItem("id") +
+                "' placeholder='example@example.com'></div></div>"
+            )
+        );
         sessionStorage.setItem('total', total_price);
 
-        location.href = '/member/purchase.jsp';
     })</script>
 
     
