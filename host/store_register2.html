@@ -137,9 +137,10 @@
 
     <script>includeHTML({});</script>
     <script>login_header();</script>
-
+<!-- 주소 검색 api -->
     <script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
     <script type="text/javascript">
+        <!-- 주소 검색 로드 -->
         function postLoad(){
             new daum.Postcode({
                 oncomplete: function(data) {
@@ -151,7 +152,7 @@
             sessionStorage.clear();
             location.href = "index.html";
         }
-
+<!-- 길이 체크 -->
         $('#store_name').keyup(function (e){
             var content = $(this).val();
             $('#name_length').html(content.length+"/30"); 
@@ -161,7 +162,7 @@
                 $('#name_length').html("30/30");
             }
         });        
-    
+    <!-- param 자르기 -->
         var urlParam = function(name){
             var results = new RegExp('[\?&]' + name + '=([^&#]*)').exec(window.location.href);
             if (results==null){
@@ -171,7 +172,7 @@
                 return results[1] || 0;
             }
         }
-            
+            <!-- 페이지 ready -->
         $(document).ready(function (){
             var s_key = urlParam("key");
             var xhr = new XMLHttpRequest();
@@ -197,7 +198,7 @@
             xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
             xhr.send("studio_key="+s_key);
         });
-
+<!-- 다음 페이지 ready -->
         function goNext(){
         var store_name = document.getElementById("store_name").value;
         var store_no = document.getElementById("store_no").value;
@@ -225,12 +226,12 @@
             
         }
     }
-
+<!-- 쿠키 정보 가져오기 -->
     var getCookie = function(name) {
         var value = document.cookie.match('(^|;) ?' + name + '=([^;]*)(;|$)');
         return value? value[2] : null;
     };
-    
+    <!-- form check -->
 
     function CheckForm(store_name,store_no,store_url,store_addr,store_intro,store_way){
         if(store_name == ""){
