@@ -324,7 +324,7 @@
     <script>login_header();</script>
 
     <script type="text/javascript">
-
+<!-- 페이지 ready -->
         $(document).ready(function (){
             s_key = urlParam("key");
             $('input:radio[name=category]:input[value=' + urlParam("category") + ']').attr("checked", true);
@@ -384,7 +384,7 @@
             sessionStorage.clear();
             location.href = "index.html";
         }
-
+<!-- param 자르기 -->
         var urlParam = function(name){
             var results = new RegExp('[\?&]' + name + '=([^&#]*)').exec(window.location.href);
             if (results==null){
@@ -394,6 +394,7 @@
                 return results[1] || 0;
             }
         }
+        <!-- 카테고리 당 페이지 로드 -->
         $('input[name=category]').on('change', function (e) {
             $("input[name='category_depth']").prop('checked',false);
         });
@@ -425,7 +426,7 @@
 
             }
         });
-
+<!-- 다음 페이지준비 -->
         function goNext(){
             var category = document.getElementsByName("category");
             var category_depth = document.getElementsByName("category_depth");
@@ -462,13 +463,13 @@
             xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
             xhr.send("key="+getCookie("s3_id")+"&category="+cateText+"&category_depth="+cateDepText); 
         }
-
+<!-- 쿠키 저장하기 -->
         var setCookie = function(name, value, day) {
             var date = new Date();
             date.setTime(date.getTime() + day * 60 * 60 * 24 * 1000);
             document.cookie = name + '=' + value + ';expires=' + date.toUTCString() + ';path=/';
         };
-
+<!-- 쿠키가져오기 -->
         var getCookie = function(name) {
             var value = document.cookie.match('(^|;) ?' + name + '=([^;]*)(;|$)');
             return value? value[2] : null;
