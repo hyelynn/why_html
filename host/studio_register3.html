@@ -401,20 +401,20 @@
     var bucketRegion = 'ap-northeast-2';
     var IdentityPoolId = 'ap-northeast-2:5de34811-ed49-42bb-8378-726186756855';
     var idx = 1;
-
+<!-- AWS 연결 -->
     AWS.config.update({
         region: bucketRegion,
         credentials: new AWS.CognitoIdentityCredentials({
             IdentityPoolId: IdentityPoolId
         })
     });
-
+<!-- S3 연결 -->
     var s3 = new AWS.S3({
         apiVersion: '2006-03-01',
         CacheControl: "no-cache",
         params: {Bucket: albumBucketName}
     });
-
+<!-- 사진 추가  -->
     function addFile(id, albumName) {
         var files = document.getElementById(id).files;
         if (!files.length) {
@@ -456,7 +456,7 @@
             }
         });
     }
-
+<!-- param 자르기 -->
     var urlParam = function(name){
         var results = new RegExp('[\?&]' + name + '=([^&#]*)').exec(window.location.href);
         if (results==null){
@@ -466,7 +466,7 @@
             return results[1] || 0;
         }
     }
-
+<!-- 쿠키 가져오기 -->
     var getCookie = function(name) {
         var value = document.cookie.match('(^|;) ?' + name + '=([^;]*)(;|$)');
         return value? value[2] : null;
@@ -486,10 +486,11 @@
         });
     })
 
+    <!-- 태그에 저장 -->
     $("#add_conv_text").change(function(){
         $("#add_conv").val($("#add_conv_text").val());
     });
-
+<!-- 페이지 ready -->
     $(document).ready(function (){
         var s_key = urlParam("key");
             var xhr = new XMLHttpRequest();
@@ -581,13 +582,13 @@
     function removeTag(obj) {
         $(obj).parent().remove();
     }
-
+<!-- 쿠키 저장 -->
     var setCookie = function(name, value, day) {
         var date = new Date();
         date.setTime(date.getTime() + day * 60 * 60 * 24 * 1000);
         document.cookie = name + '=' + value + ';expires=' + date.toUTCString() + ';path=/';
     };
-
+<!-- form check -->
     function CheckForm(){
         var studioYoutube = document.getElementById("studioYoutube").value;
         var studioText = document.getElementById("studioText").value;
@@ -627,7 +628,7 @@
             xhr.send("key="+getCookie("s3_id")+"&thumbsFile="+thumbsFile+"&studioYoutube="+studioYoutube+"&studioText="+studioText
             +"&studioTerms="+studioTerms+"&studioAddr="+studioAddr+"&conv="+convText.toString()+"&tags="+tagText.toString()); 
     }
-
+<!-- 길이  -->
     $('#studioTerms').keyup(function (e){
         var content = $(this).val();
         $('#studioTerms_cnt').html(content.length+"/700"); 
