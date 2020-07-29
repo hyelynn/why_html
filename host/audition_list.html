@@ -112,7 +112,7 @@
             sessionStorage.clear();
             location.href = "index.html";
         }
-
+<!-- 리스트 소트 -->
         $("#select_sort").change(function (){
             switch(this.value){
                 case "1":{//가나다
@@ -139,7 +139,7 @@
             }
             writeList(studio_list);
         });
-        
+        <!-- 리스트 작성 -->
         var writeList = function(list){
             $("#std_list").empty();
             for(var i = 0; i<list.length;i++){
@@ -177,7 +177,7 @@
                 $("#std_list").append(studio);
             }
         }
-
+<!-- 페이지 재로딩 -->
         function redirect(){
             studio_list = [];
             var xhr = new XMLHttpRequest();
@@ -204,11 +204,11 @@
             // xhr.send("user_id=jmnu1203");
             xhr.send("user_id="+sessionStorage.getItem("id"));
         }
-
+<!-- 페이지 ready -->
         $(document).ready(function (){
             redirect();
         });
-
+<!-- 검색 후 새로고침 -->
         function searchStu(){
             studio_search = [];
             for(var i = 0;i<studio_list.length;i++){
@@ -218,7 +218,7 @@
             }
             writeList(studio_search);
         }
-
+<!-- 스튜디오 수정 -->
         function modstu(key){
             if(sessionStorage.getItem("id")!=null){
              window.location.href = "/host/item_register.html?key="+key+"&category=audition";
@@ -227,7 +227,7 @@
                 window.location.href = "/index.html";
             }
         }
-
+<!-- 스튜디오 추가 -->
         function addStu(){
             if(sessionStorage.getItem("id")!=null){
                 window.location.href = "/host/item_register.html?category=audition";
@@ -236,7 +236,7 @@
                 window.location.href = "/index.html";
             }
         }
-
+<!-- 스튜디오  -->
         function delstu(key){
         if(sessionStorage.getItem("id")!=null){
            var xhr = new XMLHttpRequest();
