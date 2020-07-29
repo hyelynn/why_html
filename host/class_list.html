@@ -113,7 +113,7 @@
     <script type="text/javascript">
         var studio_list = [];
         var studio_search = [];
-
+<!-- 리스트 정렬 -->
         $("#select_sort").change(function (){
             switch(this.value){
                 case "1":{//가나다
@@ -140,7 +140,7 @@
             }
             writeList(studio_list);
         });
-        
+        <!-- 리스트 작성 -->
         var writeList = function(list){
             $("#std_list").empty();
             for(var i = 0; i<list.length;i++){
@@ -178,7 +178,7 @@
                 $("#std_list").append(studio);
             }
         }
-
+<!-- 페이지 새로고침 -->
         function redirect(){
             studio_list = [];
             var xhr = new XMLHttpRequest();
@@ -205,11 +205,11 @@
             // xhr.send("user_id=jmnu1203");
             xhr.send("user_id="+sessionStorage.getItem("id"));
         }
-
+<!-- 페이지 ready -->
         $(document).ready(function (){
             redirect();
         });
-
+<!-- 검색 -->
         function searchStu(){
             studio_search = [];
             for(var i = 0;i<studio_list.length;i++){
@@ -219,7 +219,7 @@
             }
             writeList(studio_search);
         }
-
+<!-- 수정 -->
         function modstu(key){
             if(sessionStorage.getItem("id")!=null){
              window.location.href = "/host/item_register.html?key="+key+"&category=class";
@@ -228,7 +228,7 @@
                 window.location.href = "/index.html";
             }
         }
-
+<!-- 추가 -->
         function addStu(){
             if(sessionStorage.getItem("id")!=null){
                 window.location.href = "/host/item_register.html?category=class";
@@ -237,7 +237,7 @@
                 window.location.href = "/index.html";
             }
         }
-
+<!-- 페이지 ready -->
         function delstu(key){
         if(sessionStorage.getItem("id")!=null){
            var xhr = new XMLHttpRequest();
