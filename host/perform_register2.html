@@ -141,13 +141,14 @@
 
     <script>includeHTML({});</script>
     <script>login_header();</script>
-
+<!-- 주소 검색 api -->
     <script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
     <script type="text/javascript">
         function onLogout() {
             sessionStorage.clear();
             location.href = "index.html";
         }
+        <!-- 주소 검색 로드 -->
         function postLoad(){
             new daum.Postcode({
                 oncomplete: function(data) {
@@ -155,7 +156,7 @@
                 }
             }).open();
         }
-    
+    <!-- 길이 체크 -->
         $('#performance_intro').keyup(function (e){
             var content = $(this).val();
             $('#intro_length').html(content.length+"/30"); 
@@ -175,6 +176,7 @@
                 $('#performance_length').html("30/30");
             }
         });
+        <!-- param 자르기 -->
         var urlParam = function(name){
             var results = new RegExp('[\?&]' + name + '=([^&#]*)').exec(window.location.href);
             if (results==null){
@@ -184,6 +186,7 @@
                 return results[1] || 0;
             }
         }
+        <!-- 페이지 ready -->
         $(document).ready(function (){
             var s_key = urlParam("key");
             var xhr = new XMLHttpRequest();
@@ -209,6 +212,7 @@
             xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
             xhr.send("studio_key="+s_key);
         });
+        <!-- 다음 페이지 ready -->
         function goNext(){
             var performance_name = document.getElementById("performance_name").value;
             var start = document.getElementById("start").value;
@@ -235,11 +239,12 @@
                 
             }
         }
+        <!-- 쿠키 가져오기 -->
         var getCookie = function(name) {
             var value = document.cookie.match('(^|;) ?' + name + '=([^;]*)(;|$)');
             return value? value[2] : null;
         };
-        
+        <!-- form check -->
         function CheckForm(performance_name,start,end,performance_addr,performance_intro){
             if(performance_name == ""){
                 alert("공연 이름을 입력해주세요.");
