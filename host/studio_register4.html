@@ -1072,7 +1072,7 @@
     <script src="/js/custom.js"></script>
 </body>
 <script>
-
+<!-- param 자르기 -->
     var urlParam = function(name){  
         var results = new RegExp('[\?&]' + name + '=([^&#]*)').exec(window.location.href);
         if (results==null){
@@ -1082,7 +1082,7 @@
             return results[1] || 0;
         }
     }
-
+<!-- 페이지 ready -->
     $(document).ready(function (){
         var s_key = urlParam("key");
         var xhr = new XMLHttpRequest();
@@ -1112,7 +1112,7 @@
         xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
         xhr.send("studio_key="+s_key);
     });
-
+<!-- 설정에 대한 block 처리(시간당 가격) -->
     function blank_change(day){
         var input_day = document.getElementsByClassName("input_"+day);
         
@@ -1129,6 +1129,7 @@
             input_day[k].disabled = true;
         }
     }
+    <!-- 등록 -->
     function insert(){
         var start_mon = parseInt(document.getElementById("start_mon").value);
         var end_mon = parseInt(document.getElementById("end_mon").value);
@@ -1228,6 +1229,8 @@
         +"&start_sun="+start_sun+"&end_sun="+end_sun+"&price_sun="+price_sun); 
         
     }
+    
+    <!-- 값 추가 -->
     function goSub(){
         var numberUpDown = document.getElementById("numberUpDown").value;
         var additional = document.getElementById("additional").value;
@@ -1258,19 +1261,19 @@
         +"&standard="+standard+"&resv="+resv); 
         
     }
- 
+ <!-- 쿠키  저장 -->
 
     var setCookie = function(name, value, day) {
         var date = new Date();
         date.setTime(date.getTime() + day * 60 * 60 * 24 * 1000);
         document.cookie = name + '=' + value + ';expires=' + date.toUTCString() + ';path=/';
     };
-
+<!-- 쿠키 가져오기 -->
     var getCookie = function(name) {
         var value = document.cookie.match('(^|;) ?' + name + '=([^;]*)(;|$)');
         return value? value[2] : null;
     };
-
+<!-- 쿠키 삭제 -->
     var deleteCookie = function(name) {
         var date = new Date();
         document.cookie = name + "= " + "; expires=" + date.toUTCString() + "; path=/";
@@ -1291,7 +1294,7 @@
             $(this).siblings('.upload-name').val(filename);
         });
 
-        // number of people
+        <!-- 버튼 당 값 변경 -->
         $('#decreaseQuantity').click(function (e) {
             e.preventDefault();
             var stat = $('#numberUpDown').val();
@@ -1303,7 +1306,7 @@
             }
             $('#numberUpDown').val(num);
         });
-
+<!-- 시간에 대한 값 변경(휴식, 24시간) -->
         function doRest(day){
             var time_mon = document.getElementsByName("time_"+day);
             var start = document.getElementById("start_"+day).value;
@@ -1354,7 +1357,7 @@
         $("input:radio[name=time_sat]").click(function(){
             doRest("sat");
         });
-
+<!-- 사람 수 변경 -->
         $('#increaseQuantity').click(function (e) {
             e.preventDefault();
             var stat = $('#numberUpDown').val();
