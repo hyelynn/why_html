@@ -123,7 +123,7 @@
 
     <script>
         var qnaList;
-
+<!-- 검색 -->
         function searchWriter(){
             var tempList = [];
             var writer = document.getElementById("searchText").value;
@@ -144,7 +144,7 @@
             $('#qnaItem' + id).find('div.card-body').hide();
             $('#qnaItem' + id).find('div.accordion-textarea').show().find('textarea').val(answer_text).focus();
         }
-
+<!-- 답변 등록 -->
         function goAns(id){
             var ans = document.getElementById("ans_"+id).value;
             var xhr = new XMLHttpRequest();
@@ -165,7 +165,7 @@
             xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
             xhr.send("id="+id+"&answer="+ans); 
         }
-        
+        <!-- 소트 - 답변 없음 -->
         function noAnsSort(){
             var tempList = [];
             for(var i = 0; i<qnaList.length;i++){
@@ -182,7 +182,7 @@
             }
             writeHtml(tempList);
         }
-
+<!-- 소트2- 답변 -->
         function AnsSort(){
             var tempList = [];
             for(var i = 0; i<qnaList.length;i++){
@@ -199,9 +199,9 @@
             }
             writeHtml(tempList);
         }
-        
+        <!-- 날짜로 정렬 -->
         function recentSort(a, b) { if(a.qna_date == b.qna_date){ return 0} return a.qna_date < b.qna_date ? 1 : -1; }
-
+<!-- 정렬 선택 -->
         $("#selectVal").change(function (){
             var num = $("#selectVal option:selected").val();
             switch(num){
@@ -224,7 +224,7 @@
                 }
             }
         });
-
+<!-- 리스트 작성 -->
         function writeHtml(studio_list){
             for(var i = 0; i<studio_list.length;i++){
                 var studio_temp = studio_list[i];
@@ -294,7 +294,7 @@
                 $("#qna_text").append(re_studio);
             }
         }
-
+<!-- 페이지 ready -->
         $(document).ready(function (){
             var xhr = new XMLHttpRequest();
             xhr.onreadystatechange = function() {
