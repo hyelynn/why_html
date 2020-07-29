@@ -285,19 +285,19 @@
     var albumBucketName = 'biz-cetificate';
     var bucketRegion = 'ap-northeast-2';
     var IdentityPoolId = 'ap-northeast-2:5de34811-ed49-42bb-8378-726186756855';
-
+<!-- AWS 연결 -->
     AWS.config.update({
         region: bucketRegion,
         credentials: new AWS.CognitoIdentityCredentials({
             IdentityPoolId: IdentityPoolId
         })
     });
-
+<!-- S3 연결 -->
     var s3 = new AWS.S3({
         apiVersion: '2006-03-01',
         params: {Bucket: albumBucketName}
     });
-
+<!-- 파일 추가 -->
     function addFile(albumName) {
         var files = document.getElementById('host_file').files;
         if (!files.length) {
@@ -321,7 +321,7 @@
             viewAlbum(albumName);
         });
     }
-    
+    <!-- 문자 보내기 -->
     function goMsg(){
         ran_code = Math.floor(Math.random() * 9000 + 1000);
         var phone = document.getElementById("host_phone").value;
@@ -366,7 +366,7 @@
             }
         });
     }
-
+<!-- 안심번호 가져오기 -->
     function give_me_num(){
         var phone = document.getElementById("host_phone").value;
         if(phone == ''){
@@ -395,12 +395,12 @@
         xhr.send("iid="+iid+"&rn="+phone+"&auth="+auth);
            
     }
-    
+    <!-- 중복 체크 했는지 확인 -->
     document.getElementById("host_id").addEventListener('input', function(){
         emailFlag = false;
         document.getElementById("is_dup").disabled = false;
     });
-
+<!-- 아이디 중복확인 -->
     document.getElementById("is_dup").addEventListener('click', function(){
         var email =  document.getElementById("host_id").value;
         var regEmail = /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i;
@@ -436,7 +436,7 @@
         xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
         xhr.send("email="+ email); 
     })
-    
+    <!-- 등록 -->
     function sendFormAjax(){
         if(CheckForm()){
         var host_id = document.getElementById("host_id").value;
@@ -480,7 +480,7 @@
         +"&host_sector2="+host_sector2+"&host_bank="+host_bank+"&host_bank_account="+host_bank_account+"&host_bank_no="+host_bank_no+"&host_file="+host_file); 
     }
 }
- 
+ <!-- check form -->
     function CheckForm(){
         var host_id = document.getElementById("host_id").value;
         var host_pw = document.getElementById("host_pw").value;
