@@ -145,7 +145,7 @@
     <script src="/js/login.js"></script>
 
     <script type="text/javascript">
-
+<!-- 아이디 중복체크-->
         var ran_code = 0;
         document.getElementById("is_dup").addEventListener('click', function(){
             var email =  document.getElementById("user_id").value;
@@ -180,7 +180,7 @@
             xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
             xhr.send("email="+ email); 
         })
-
+<!-- 등록 -->
         function sendFormAjax(){
             if(CheckForm()){
                 var user_id_t = document.getElementById("user_id").value;
@@ -217,7 +217,7 @@
             }
                 
         }
-        
+        <!-- 문자 보내기 -->
         function goMsg(){
         ran_code = Math.floor(Math.random() * 9000 + 1000);
         var phone = document.getElementById("user_phone").value;
@@ -259,7 +259,7 @@
         });
     }
      
-     
+     <!-- form check -->
     function CheckForm(){
         var user_id = document.getElementById("user_id").value;
         var user_pw = document.getElementById("user_pw").value;
