@@ -244,20 +244,20 @@
     var bucketRegion = 'ap-northeast-2';
     var IdentityPoolId = 'ap-northeast-2:5de34811-ed49-42bb-8378-726186756855';
     var idx = 1;9
-
+<!-- AWS 연결 -->
     AWS.config.update({
         region: bucketRegion,
         credentials: new AWS.CognitoIdentityCredentials({
             IdentityPoolId: IdentityPoolId
         })
     });
-
+<!-- S3 연결 -->
     var s3 = new AWS.S3({
         apiVersion: '2006-03-01',
         CacheControl: "no-cache",
         params: {Bucket: albumBucketName}
     });
-
+<!-- 길이 체크 -->
     $('#class_youtube').keyup(function (e){
         var content = $(this).val();
         $('#youtube_length').html(content.length+"/20"); 
@@ -287,7 +287,7 @@
             $('#terms_length').html("700/700");
         }
     });
-    
+    <!-- 사진  -->
     function addFile(id, albumName) {
         var files = document.getElementById(id).files;
         if (!files.length) {
@@ -348,7 +348,7 @@
         
         $("#tag_cont").append(tag_temp);  
     }
-        
+        <!-- param 자르기 -->
     var urlParam = function(name){
         var results = new RegExp('[\?&]' + name + '=([^&#]*)').exec(window.location.href);
         if (results==null){
@@ -358,18 +358,18 @@
             return results[1] || 0;
         }
     }
-
+<!-- 쿠키 가져오기 -->
     var getCookie = function(name) {
         var value = document.cookie.match('(^|;) ?' + name + '=([^;]*)(;|$)');
         return value? value[2] : null;
     };
-
+<!-- 쿠키 저장 -->
     var setCookie = function(name, value, day) {
         var date = new Date();
         date.setTime(date.getTime() + day * 60 * 60 * 24 * 1000);
         document.cookie = name + '=' + value + ';expires=' + date.toUTCString() + ';path=/';
     };
-
+<!-- 페이지 ready -->
     $(document).ready(function (){
         var s_key = urlParam("key");
         var xhr = new XMLHttpRequest();
@@ -421,7 +421,7 @@
         xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
         xhr.send("studio_key="+s_key);
     });
-
+<!--form check -->
     function CheckForm(){
         var class_youtube = document.getElementById("class_youtube").value;
         var class_text = document.getElementById("class_text").value;
