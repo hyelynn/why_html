@@ -134,7 +134,7 @@
     <script>
         var eventList = [];
         var eventSearchList = [];
-
+<!-- 검색 옵션에 대한 검색 -->
         $("#searchOpt").change(function (){
             eventSearchList.empty();
             for(var j = 0; j < eventList.length;j++){
@@ -144,7 +144,7 @@
             }
             writeList(eventSearchList);
         });
-
+<!-- 검색 값에 대한 검색 -->
         $("#searchTxt").change(function(){
             eventSearchList.empty();
             for(var j = 0; j < eventList.length;j++){
@@ -154,7 +154,7 @@
             }
             writeList(eventSearchList);
         });
-
+<!-- 리스트 작성 -->
         function writeList(list){
             writeUL(1,list);
             $(".page-item").remove();
@@ -184,7 +184,7 @@
                 $("#eventUL").append(notice);
             }
         }
-
+<!-- 페이지 ready -->
         $(document).ready(function (){
             var xhr = new XMLHttpRequest();
             xhr.onreadystatechange = function() {
