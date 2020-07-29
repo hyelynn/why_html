@@ -108,7 +108,7 @@
         var paid_list = [];
         var done_list = [];
         var cancel_list = [];
-
+<!-- 확정으로 변경 -->
         function sureCheck(key){
             alert(2);
             var xhr = new XMLHttpRequest();
@@ -130,7 +130,7 @@
             xhr.send("key="+key+"&type=fix");
             // xhr.send("user_id="+sessionStorage.getItem("id"));
         }
-
+<!-- 취소로 변경 -->
         function canCheck(key){
             alert(key);
             var xhr = new XMLHttpRequest();
@@ -152,12 +152,12 @@
             xhr.send("key="+key+"&type=refund");
             // xhr.send("user_id="+sessionStorage.getItem("id"));
         }
-
+<!-- 검색(미구현) -> tag값으로 검색 가능하게 함-->
         function searchBtn(){
             $("#searchTxt").val();
 
         }
-
+<!-- 확정 안된 리스트 -->
         function notyet(){
             $("#reserv_list").empty();
             for(var i = 0 ;i<not_list.length;i++){
@@ -194,7 +194,7 @@
                 $("#reserv_list").append(reserv);
             }
         }
-
+<!-- 확정  -->
         function sure(){
             $("#reserv_list").empty();
             for(var i = 0 ;i<sure_list.length;i++){
@@ -230,7 +230,7 @@
                 $("#reserv_list").append(reserv);
             }
         }
-
+<!-- 지불  -->
         function paid(){
             $("#reserv_list").empty();
             for(var i = 0 ;i<paid_list.length;i++){
@@ -266,7 +266,7 @@
                 $("#reserv_list").append(reserv);
         }
     }
-
+<!-- 종료 리스트 -->
         function done(){
             $("#reserv_list").empty();
             for(var i = 0 ;i<done_list.length;i++){
@@ -299,7 +299,7 @@
                 $("#reserv_list").append(reserv);
             }
         }
-
+<!-- 취소 리스트 -->
         function cancel(){
             $("#reserv_list").empty();
             for(var i = 0 ;i<cancel_list.length;i++){
@@ -332,7 +332,7 @@
                 $("#reserv_list").append(reserv);
             }
         }
-
+<!-- 페이지 새로고침 -->
         function redirect(){
             not_list = [];
             sure_list = [];
@@ -378,7 +378,7 @@
             // xhr.send("key=jmnu1203");
             xhr.send("key="+sessionStorage.getItem("id"));
         }
-
+<!-- 페이지 ready -->
         $(document).ready(function (){
 
             $("#A").show();
