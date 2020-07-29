@@ -124,7 +124,7 @@
     <script>
         var noticeList = [];
         var noticeSearchList = [];
-
+<!-- 검색 옵션에 대한 검색 -->
         $("#searchOpt").change(function (){
             noticeSearchList.empty();
             for(var j = 0; j < noticeList.length;j++){
@@ -134,7 +134,7 @@
             }
             writeList(noticeSearchList);
         });
-
+<!-- 검색 값에 대한 검색 -->
         $("#searchTxt").change(function(){
             noticeSearchList.empty();
             for(var j = 0; j < noticeList.length;j++){
@@ -144,7 +144,7 @@
             }
             writeList(noticeSearchList);
         });
-
+<!-- 리스트 작성 -->
         function writeList(list){
             writeUL(1,list);
             $(".page-item").remove();
@@ -174,7 +174,7 @@
                 $("#noticeUL").append(notice);
             }
         }
-
+<!-- 페이지 ready -->
         $(document).ready(function (){
             var xhr = new XMLHttpRequest();
             xhr.onreadystatechange = function() {
