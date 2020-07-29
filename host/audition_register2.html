@@ -159,6 +159,7 @@
 
     <script>includeHTML({});</script>
     <script>login_header();</script>
+    <!-- 주소검색 api연결 -->
     <script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
    
     <script type="text/javascript">
@@ -166,6 +167,7 @@
             sessionStorage.clear();
             location.href = "index.html";
         }
+        <!-- 길이 체크 -->
         $('#audition_name').keyup(function (e){
             var content = $(this).val();
             $('#audition_length').html(content.length+"/30"); 
@@ -184,7 +186,7 @@
                 $('#intro_length').html("100/100");
             }
         });
-
+<!-- 주소 검색 로드 -->
         function postLoad(){
             new daum.Postcode({
                 oncomplete: function(data) {
@@ -192,7 +194,7 @@
                 }
             }).open();
         }
-    
+    <!-- param 자르기 -->
         var urlParam = function(name){
             var results = new RegExp('[\?&]' + name + '=([^&#]*)').exec(window.location.href);
             if (results==null){
@@ -202,7 +204,7 @@
                 return results[1] || 0;
             }
         }
-
+<!-- 페이지 ready -->
         $(document).ready(function (){
             var s_key = urlParam("key");
             var xhr = new XMLHttpRequest();
@@ -231,6 +233,7 @@
             xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
             xhr.send("studio_key="+s_key);
         });
+        <!--  페이지 ready -->
         function goNext(){
             var audition_name = document.getElementById("audition_name").value;
             var sub_start = document.getElementById("sub_start").value;
@@ -259,11 +262,12 @@
                 +"&audition_intro="+audition_intro); 
             }
         }
+        <!-- 쿠키 가져오기 -->
         var getCookie = function(name) {
             var value = document.cookie.match('(^|;) ?' + name + '=([^;]*)(;|$)');
             return value? value[2] : null;
         };
-        
+        <!-- form check -->
         function CheckForm(audition_name,sub_start,sub_end,aud_start,aud_end,audition_addr,audition_intro){
             if(audition_name == ""){
                 alert("오디션 타이틀을 입력해주세요.");
