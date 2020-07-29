@@ -255,20 +255,20 @@
     var bucketRegion = 'ap-northeast-2';
     var IdentityPoolId = 'ap-northeast-2:5de34811-ed49-42bb-8378-726186756855';
     var idx = 1;
-
+<!-- AWS 연결 -->
     AWS.config.update({
         region: bucketRegion,
         credentials: new AWS.CognitoIdentityCredentials({
             IdentityPoolId: IdentityPoolId
         })
     });
-
+<!-- S3 연결 -->
     var s3 = new AWS.S3({
         apiVersion: '2006-03-01',
         CacheControl: "no-cache",
         params: {Bucket: albumBucketName}
     });
-
+<!-- 사진  -->
     function addFile(id, albumName) {
         var files = document.getElementById(id).files;
         if (!files.length) {
@@ -310,7 +310,7 @@
             }
         });
     }
-
+<!-- param 자르기 -->
     var urlParam = function(name){
         var results = new RegExp('[\?&]' + name + '=([^&#]*)').exec(window.location.href);
         if (results==null){
@@ -320,7 +320,7 @@
             return results[1] || 0;
         }
     }
-
+<!-- 쿠키 가져오기 -->
     var getCookie = function(name) {
         var value = document.cookie.match('(^|;) ?' + name + '=([^;]*)(;|$)');
         return value? value[2] : null;
@@ -339,7 +339,7 @@
             $(this).siblings('.upload-name').val(filename);
         });
     })
-
+<!-- 페이지 ready -->
     $(document).ready(function (){
         var s_key = urlParam("key");
             var xhr = new XMLHttpRequest();
@@ -428,7 +428,7 @@
         
         $("#tag_cont").append(tag_temp);         
     }
-
+<!-- 가격 태그 추가-->
     function addPrice2(){
         let performance_seat = $('#performance_seat').val();
         let performance_price = $('#performance_price').val();
@@ -457,13 +457,13 @@
     function removeTag(obj) {
         $(obj).parent().remove();
     }
-
+<!-- 쿠키 저장하기  -->
     var setCookie = function(name, value, day) {
         var date = new Date();
         date.setTime(date.getTime() + day * 60 * 60 * 24 * 1000);
         document.cookie = name + '=' + value + ';expires=' + date.toUTCString() + ';path=/';
     };
-
+<!-- form check -->
     function CheckForm(){
         var performance_youtube = document.getElementById("performance_youtube").value;
         var performance_place = document.getElementById("performance_place").value;
@@ -500,7 +500,7 @@
             +"&performance_site="+performance_site+"&performance_text="+performance_text+"&performance_addr="+performance_addr
             +"&prices="+priceText.toString()+"&tags="+tagText.toString()); 
     }
-
+<!-- 길이 체크 -->
     $('#performance_youtube').keyup(function (e){
         var content = $(this).val();
         $('#youtube_length').html(content.length+"/20"); 
