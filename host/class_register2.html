@@ -154,7 +154,7 @@
             sessionStorage.clear();
             location.href = "index.html";
         }
-
+<!-- 길이 체크 -->
         $('#class_name').keyup(function (e){
             var content = $(this).val();
             $('#class_length').html(content.length+"/30"); 
@@ -191,7 +191,7 @@
                 $('#intro_length').html("100/100");
             }
         });
-
+<!--주소 검색 -->
         function postLoad(){
             new daum.Postcode({
                 oncomplete: function(data) {
@@ -199,7 +199,7 @@
                 }
             }).open();
         }
-    
+    <!-- param 자르기 -->
         var urlParam = function(name){
             var results = new RegExp('[\?&]' + name + '=([^&#]*)').exec(window.location.href);
             if (results==null){
@@ -209,6 +209,7 @@
                 return results[1] || 0;
             }
         }
+        <!-- 페이지 ready -->
         $(document).ready(function (){
             var s_key = urlParam("key");
             var xhr = new XMLHttpRequest();
@@ -234,6 +235,7 @@
             xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
             xhr.send("studio_key="+s_key);
         });
+        <!-- 다음 페이지 전송 -->
         function goNext(){
             var class_name = document.getElementById("class_name").value;
             var class_teacher = document.getElementById("class_teacher").value;
@@ -261,11 +263,12 @@
                 +"&class_intro="+class_intro); 
             }
         }
+        <!-- 쿠키 가져오기 -->
         var getCookie = function(name) {
             var value = document.cookie.match('(^|;) ?' + name + '=([^;]*)(;|$)');
             return value? value[2] : null;
         };
-        
+        <!-- form check -->
         function CheckForm(class_name,class_teacher,class_v_no,class_email,class_addr,class_intro){
             if(class_name == ""){
                 alert("클래스 이름을 입력해주세요.");
