@@ -271,7 +271,7 @@
     </script>
 
 <script>
-        
+        <!-- param 자르기 -->
         var urlParam = function(name){
         var results = new RegExp('[\?&]' + name + '=([^&#]*)').exec(window.location.href);
         if (results==null){
@@ -281,19 +281,19 @@
             return results[1] || 0;
         }
     }
-
+<!-- 쿠키 가져오기 -->
     var getCookie = function(name) {
         var value = document.cookie.match('(^|;) ?' + name + '=([^;]*)(;|$)');
         return value? value[2] : null;
     };
-
+<!-- 쿠키 저장하기 -->
     var setCookie = function(name, value, day) {
         var date = new Date();
         date.setTime(date.getTime() + day * 60 * 60 * 24 * 1000);
         document.cookie = name + '=' + value + ';expires=' + date.toUTCString() + ';path=/';
     };
 
-
+<!-- check form -->
     function checkForm(){
         var category1 = $(":input:radio[name=category1]:checked").val();
         var numberUpDown = $('#numberUpDown').val();
@@ -329,6 +329,7 @@
             +"&numberUpDown2="+numberUpDown2+"&times="+timesText.toString()+"&times2="+times2Text.toString()); 
    
     }
+    <!-- 페이지 ready -->
     $(document).ready(function (){
         var s_key = urlParam("key");
         var xhr = new XMLHttpRequest();
@@ -375,7 +376,7 @@
         xhr.send("studio_key="+s_key);
     });
 
-
+<!-- 시간 태그 추가 -->
     function addTime2() {
         let start = $('#lesson_start').val();
         let price = $('#lesson_price').val();
@@ -398,7 +399,7 @@
         
         $("#clock").append(tag_temp);  
     }
-
+<!-- 레슨 태그 추가 -->
     function addTime3() {
         let start = $('#lesson_start2').val();
         let price = $('#lesson_price2').val();
@@ -421,7 +422,7 @@
         
         $("#clock2").append(tag_temp);  
     }
-
+<!-- 길이  -->
      // number of people
      $('#decreaseQuantity').click(function (e) {
         e.preventDefault();
