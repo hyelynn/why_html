@@ -182,20 +182,20 @@
         var albumBucketName = 'user-profile-artbyus';
         var bucketRegion = 'ap-northeast-2';
         var IdentityPoolId = 'ap-northeast-2:5de34811-ed49-42bb-8378-726186756855';
-      
+      <!-- AWS 연결 -->
         AWS.config.update({
             region: bucketRegion,
             credentials: new AWS.CognitoIdentityCredentials({
                 IdentityPoolId: IdentityPoolId
             })
         });
-
+<!-- S3 연결 -->
         var s3 = new AWS.S3({
             apiVersion: '2006-03-01',
             CacheControl: "no-cache",
             params: {Bucket: albumBucketName}
         });
-
+<!-- 페이지 ready -->
         $(document).ready(function (){
             var xhr = new XMLHttpRequest();
             xhr.onreadystatechange = function() {
@@ -244,7 +244,7 @@
             xhr.send("id=a");
             // xhr.send("user_id="+sessionStorage.getItem("id"));
         });
-        
+        <!-- 파일 추가 -->
         function addFile(me) {
             readURL(me)
             var files = document.getElementById(me.id).files;
@@ -275,7 +275,7 @@
             });
 
         }
-
+<!-- 사진 보여주기 -->
         function readURL(input) {
             if (input.files && input.files[0]) {
                 var reader = new FileReader();
@@ -287,7 +287,7 @@
                 reader.readAsDataURL(input.files[0]);
             }
         }
-  
+  <!-- 안심번호 주기 -->
         function give_me_num(){
             var phone = document.getElementById("host_phone").value;
             if(phone == ''){
@@ -316,7 +316,7 @@
             xhr.send("iid="+iid+"&rn="+phone+"&auth="+auth);
             
         }
-
+<!-- 정보  -->
         function upUser(){
             var id = document.getElementById("email_text").value;
             var host_nickname = document.getElementById("host_nickname").value;
@@ -349,7 +349,7 @@
             +"&biz_num="+host_safe_no
             );
         }
-
+<!-- 탈퇴 -->
         function delUser(){
             var xhr = new XMLHttpRequest();
             xhr.onreadystatechange = function() {
