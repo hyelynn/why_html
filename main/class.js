@@ -1,3 +1,4 @@
+//!< 메인 페이지 클래스 부분
 function initClass() {
     //Get Room information
     $.ajax({

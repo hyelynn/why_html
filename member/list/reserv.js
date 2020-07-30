@@ -1,4 +1,4 @@
-
+//!< 현재 사용자가 지금까지 예약한 스튜디오들의 정보 요청
 $(document).ready(function () {
     var xhr = new XMLHttpRequest();
     var id = sessionStorage.getItem("id");

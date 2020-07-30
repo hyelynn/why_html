@@ -1,3 +1,5 @@
+
+//!< 사용자가 장바구니에 담은 데이터가 있다면, 해당 데이터를 출력해 주는 jquery
 $(document).ready(function(){
     var items = JSON.parse(sessionStorage.getItem("cart"));
     console.log(items)

@@ -1,6 +1,8 @@
 var total_price = 0;
 var items = [];
 
+//!< 결제 창에서 현재 구매할 아이템들을 확인하고
+//!< 총 금액을 확인함
 $(document).ready(function () {
   items = JSON.parse(sessionStorage.getItem("cart"));
   console.log(items);
@@ -65,6 +67,7 @@ $(document).ready(function () {
     )
   );
     
+  //!< 총 금액을 저장하여 추후 검증에 사용함ㅁ
   sessionStorage.setItem('total', total_price);
 });
 

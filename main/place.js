@@ -1,3 +1,4 @@
+//!< 메인 페이지 스튜디오 부분
 function initPlace() {
 
   //Get Room information

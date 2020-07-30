@@ -1,10 +1,11 @@
+//!< 현재 사용자 데이터를 얻어오기 위한 슬라이스
 var value = location.href.slice(location.href.indexOf("?") + 1, location.href.length).split("&");
 
 $(document).ready(function () {
     //Get Room information
     var xhr = new XMLHttpRequest();
     var id = sessionStorage.getItem("id");
-
+    //!< 같은 페이지에 계속 머무는 경우 3분마다 화면 갱신
     window.setTimeout('window.location.reload()',180000);
   
     if (id != null) {
@@ -59,6 +60,7 @@ $(document).ready(function () {
   
 
 
+//!< 채팅을 보내는 부분 
 function send_chat() {
     var xhr = new XMLHttpRequest();
     var id = sessionStorage.getItem("id");

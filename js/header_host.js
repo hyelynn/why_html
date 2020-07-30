@@ -1,3 +1,4 @@
+//!< 호스트 헤더 또한 일반 헤더와 동일기능을 사용함에 따라 header.js로 통합되었음
 function login_header() {
     var nickname = sessionStorage.getItem("nickname");
   

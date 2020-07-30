@@ -1,6 +1,6 @@
+//!< 퍼포먼스 부분 정보 요청
+
 $(document).ready(function(){
-    
-   
     //Get Room information
     $.ajax({
 

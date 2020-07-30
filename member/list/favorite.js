@@ -1,3 +1,4 @@
+//!< 현재 사용자가 등록한 찜 목록의 데이터 요청
 $(document).ready(function () {
   //Get Room information
   var xhr = new XMLHttpRequest();
@@ -55,7 +56,7 @@ $(document).ready(function () {
   }
 });
 
-
+//!< 찜 목록에서의 좋아요 요청 (페이지 별 좋아요 요소가 다름)
 function addWishList(value) {
   let uid = sessionStorage.getItem("id");
   if (uid == null) {

@@ -1,3 +1,4 @@
+//!< 현재 사용자가 세션에 등록한 최근 본 목록 정보 요청
 $(document).ready(function () {
     //Get Room information
     var xhr = new XMLHttpRequest();

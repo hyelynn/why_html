@@ -1,6 +1,7 @@
+
+//!< 각각 클래스 정보 요청 및 드로우
 $(document).ready(function(){
-    
-   
+
     //Get Room information
     $.ajax({
 

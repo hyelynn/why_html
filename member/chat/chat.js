@@ -1,3 +1,5 @@
+//!< 채팅 방 정보 요청 및 드로우
+
 $(document).ready(function () {
   //Get Room information
   var xhr = new XMLHttpRequest();
@@ -23,6 +25,7 @@ $(document).ready(function () {
             );
           }
 
+          //!< 진행중인 채팅이 없는 경우 리스트의 크기가 0이 아니라 undefined로 정의됨
           if (result.length == undefined || result.length == 'undefined') {
             alert('현재 진행중인 채팅이 없습니다');
           }

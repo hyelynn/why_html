@@ -1,3 +1,4 @@
+//!< 특정 좌표에 마커를 찍고 지도를 호출하는 부분
 var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
 mapOption = { 
     center: new kakao.maps.LatLng(33.450701, 126.570667), // 지도의 중심좌표

@@ -1,4 +1,4 @@
-
+//!< 현재 사용자가 등록한 QNA 요청
 $(document).ready(function () {
     var xhr = new XMLHttpRequest();
     var id = sessionStorage.getItem("id");

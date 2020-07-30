@@ -1,3 +1,4 @@
+//!< 질의 응답이 있는 경우 해당 데이터를 추가해줌
 $("#qna_list").append(
     $("<li class='mb-3'>"+
     "<div class='d-flex'>"+

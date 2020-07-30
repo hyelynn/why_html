@@ -1,3 +1,5 @@
+//!< S3 사용간에 있어서 사전 데이터
+
 var s3 = new AWS.S3({
     accessKeyId: '<YOUR_ACCESS_KEY>',
     secretAccessKey: '<YOUR_SECRET_ACCESS_KEY>'

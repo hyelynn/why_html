@@ -9,6 +9,8 @@ var host = "";
 var like = 0;
 var img_link = "";
 
+//!< 현재 페이지 속성에 따라 정보를 다르게 그려주는 함수
+//!< curr는 studio, class, audition, perform, store의 다섯종류가 있음
 function initialize(curr) {
   var valnum = Number(value);
 
@@ -28,6 +30,7 @@ function initialize(curr) {
             var indi = "",
               img = "";
 
+              //!< 현재가, 인원당 가격을 저장
             price = parseInt(result[0].obj_price);
             curr_price = price;
             max = parseInt(result[0].obj_max);
@@ -35,7 +38,7 @@ function initialize(curr) {
             title = result[0].obj_name;
             host = result[0].user_key;
             
-
+            //!< 캐로샐에 이미지 추가
             if (i == 0) {
               indi =
                 "<li data-target='#carouselStudioView' data-slide-to='" +
@@ -61,6 +64,7 @@ function initialize(curr) {
             $("#carousel").append($(img));
           }
 
+          //!< 메인 타이틀 부분 설정
           $("#title").append(
             $(
               "<h2 class='my-4'>" +
@@ -72,6 +76,7 @@ function initialize(curr) {
             )
           );
 
+          //!< 정보 데이터
           var info = "";
           var splitInfo = result[0].obj_info.split("/");
 
@@ -79,6 +84,7 @@ function initialize(curr) {
             info += splitInfo[s] + "<br>";
           }
 
+          //!< 편의시설 정보는 스튜디오만 있음
           var suf = "";
           if (curr == "studio") {
             suf =
@@ -252,6 +258,7 @@ function initialize(curr) {
               $(".live-rating").text(currentRating);
             },
           });
+          //!< PERFORM
         } else if (curr == "perform") {
           var rule = "";
           
@@ -314,6 +321,7 @@ function initialize(curr) {
   xhr.send("key=" + value);
 }
 
+//!< 채팅 시작을 위한 함수
 function start_chat() {
   let id = sessionStorage.getItem("id");
   if (id == null) {
@@ -329,6 +337,7 @@ function start_chat() {
       }
     };
 
+    //!< 현재 사용자 아이디와 해당 오브젝트의 호스트 값을 이용하여 채팅 시작 요청을 보냄
     xhr.open("POST", "http://3.34.150.116:3000/chat/start");
     xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
     console.log("from=" + id + "&dest=" + host);
@@ -336,6 +345,7 @@ function start_chat() {
   }
 }
 
+//!< 해당 오브젝트에 연결된 QNA 데이터 요청
 function load_qna() {
   var valnum = Number(value);
 
@@ -353,6 +363,7 @@ function load_qna() {
         for (var i = 0; i < result.length; i++) {
           var suffix = "";
 
+          //!< 답변이 있는경우
           if (
             result[i].qna_answer != "undefined" &&
             result[i].qna_answer != null
@@ -398,6 +409,7 @@ function load_qna() {
   xhr.send("studio_key=" + value);
 }
 
+//!< 해당 오브젝트에 연결된 리뷰 데이터 요청
 function load_review() {
   var valnum = Number(value);
 
@@ -417,6 +429,7 @@ function load_review() {
           totalscore += parseFloat(result[i].review_score);
           var suffix = "";
 
+          //!< 답변이 있는경우
           if (
             result[i].review_answer != "undefined" &&
             result[i].review_answer != null
@@ -474,6 +487,7 @@ function load_review() {
   xhr.send("studio_key=" + value);
 }
 
+//!< 스튜디오에서 시간 값이 있는 경우 
 function time_picker() {
   for (var i = 0; i < 23; i++) {
     $("#start_times").append(
@@ -492,6 +506,7 @@ function time_picker() {
   }
 }
 
+//!< 가격 정보에 대한 입력
 function price_maker() {
   var stat = $("#numberUpDown").val();
   var num = parseInt(stat, 10);
@@ -525,13 +540,15 @@ function price_maker() {
   );
 }
 
-// wishlist btn
+//!< 상세페이지에서의 좋아요 요청
 function addWishList(obj) {
+  //!< 로그인이 되어있어야 찜이 가능함
   let uid = sessionStorage.getItem("id");
   if (uid == null) {
     alert("로그인이 필요합니다");
     location.reload();
   } else {
+    //!< 현재 아이콘 상태에 따라 좋아요 혹은 취소 요청
     let icon = $(obj).find("i");
     if (icon.hasClass("far fa-heart")) {
       like++;
@@ -564,6 +581,8 @@ function numberFormat(inputNumber) {
   return inputNumber.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 }
 
+//!< 질문 전달
+//!< qna_text라는 아이템의 데이터를 바탕으로 전달
 function sendQna() {
   let id = sessionStorage.getItem("id");
   if (id != null) {
@@ -592,6 +611,8 @@ function sendQna() {
   }
 }
 
+//!< 리뷰 전달
+//!< 별점의 텍스트를 점수로 환산하고, 입력 값을 리뷰로 하여 전달
 function sendReview() {
   let id = sessionStorage.getItem("id");
   if (id != null) {
@@ -621,11 +642,15 @@ function sendReview() {
   }
 }
 
+
+//!< 데이터를 카트에 저장
 function addCart() {
   var cartInfo = JSON.parse(sessionStorage.getItem("cart"));
   var cart = [];
 
+  //!< 현재 가격이 0인 경우 잘못된 상태로 가정
   if (curr_price > 0) {
+    //!< 기존 카트 정보 획득
       for (var item in cartInfo) {
           cart.push({
               img: cartInfo[item].img,
@@ -635,6 +660,7 @@ function addCart() {
           });
       }
 
+      //!< 신규 정보 카트 등록
       cart.push({
           img: img_link,
           title: title,
@@ -657,6 +683,8 @@ function addCart() {
   }
 }
 
+//!< 구매하기
+//!< 바로 결제페이지로 넘어감
 function purchase() {
   addCart();
   location.href = "http://artbyus.co.kr/member/purchase.html";

@@ -23,6 +23,7 @@ function naver_login() {
   });
 }
 
+//!< 카카오를 통해 토큰을 받아옴 
 function kakao_login() {
   var access_token;
   var refresh_token;

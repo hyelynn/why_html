@@ -1,7 +1,10 @@
+//!< 기존 헤더에 상황에 맞는 버튼들을 제공하기 위해 사용하는 함수
 function login_header() {
+  //!< 로그인 여부확인을 위한 값
   var nickname = sessionStorage.getItem("nickname");
   var img = sessionStorage.getItem("prof");
   
+  //!< 위치정보를 가져오기 위한 값
   if (navigator.geolocation) {
     navigator.geolocation.getCurrentPosition(function(pos) {
       sessionStorage.setItem("lat", pos.coords.latitude);
@@ -12,11 +15,13 @@ function login_header() {
     alert('해당 브라우저에서는 위치정보를 제공하지 않습니다')
   }
 
+  //!< 프로필 사진이 없는 경우 기본 이미지로 출력
   if (img == undefined || img == 'undefined') {
     img = "/img/profile_default.png";
   }
   var menu = ""
   
+  //!< 메인페이지에서는 상단바 메뉴가 없어야 함, 해당 값을 현재 경로로 확인하였음
   if (location.href != 'http://artbyus.co.kr/index.html' && location.href != 'https://artbyus.co.kr/index.html' && 
       location.href != 'http://artbyus.co.kr/' && location.href != 'https://artbyus.co.kr/' ) {
     menu = "<ul class='navbar-nav m-auto font-weight-light sub-nav'>" +
@@ -47,6 +52,7 @@ function login_header() {
     "<i class='fas fa-chevron-down'></i></button></div></li></ul>" 
   }
 
+  //!< 로그인 여부에 따른 로그인 버튼 or 드롭다운 버튼 확인
   if (nickname != null) {
     var append_html = menu +
       "<ul class='navbar-nav ml-auto align-items-center d-none d-lg-flex'>" +
@@ -123,6 +129,7 @@ function login_header() {
   }
 }
 
+//!< 링크 복사, 공유 등이 진행될 때 현재 주소값을 클립보드에 복사하는 함수
 function copyToClipboard() {
   var t = document.createElement("textarea");
   document.body.appendChild(t);
@@ -133,8 +140,7 @@ function copyToClipboard() {
   alert('링크 복사 완료');
 }
 
-
-
+//!< 금액 관련 숫자 입력시 세자리마다 , 찍어주는 함수
 function numberFormat(inputNumber) {
   return inputNumber.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 }

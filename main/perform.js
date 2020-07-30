@@ -1,3 +1,4 @@
+//!< 메인 페이지 오디션 부분
 function initPerform() {
     //Get Room information
     $.ajax({

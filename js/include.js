@@ -1,3 +1,6 @@
+//!< HTML 파일들을 분할하기 위해 제공하는 함수 
+//!< 해당 함수를 호출하게 되면, include-html 속성을 가진 값에서 html 파일을 읽어옴
+
 function includeHTML(callback) {
     var z, i, elmnt, file, xhr;
     /*loop through a collection of all HTML elements:*/
